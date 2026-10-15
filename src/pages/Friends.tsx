@@ -64,6 +64,21 @@ function AuthCard() {
     }
   };
   const api = () => import('../online/api').then((m) => m.online());
+  // After signing up, keep quietly trying to sign in, so clicking the link in the email is enough.
+  useEffect(() => {
+    if (mode !== 'code' || !email.trim() || pw.length < 6) return;
+    let tries = 0;
+    const h = window.setInterval(async () => {
+      if (++tries > 120) return window.clearInterval(h);
+      try {
+        await (await api()).signIn(email.trim(), pw);
+        window.clearInterval(h);
+      } catch {
+        /* not confirmed yet */
+      }
+    }, 5000);
+    return () => window.clearInterval(h);
+  }, [mode, email, pw]);
   const submit = () =>
     run(async () => {
       const a = await api();
@@ -106,7 +121,7 @@ function AuthCard() {
       <p className="auth-sub">
         {mode === 'in' && 'Your critiques stay on this computer. Signing in shares them with the friends you add, unless you hide them.'}
         {mode === 'up' && 'Use an email you can check. You’ll pick a username and a picture next.'}
-        {mode === 'code' && `Iris sent an email to ${email}. Enter the code from it here, or click the link in it and then come back and sign in.`}
+        {mode === 'code' && `Iris sent an email to ${email}. Type the code from it here, or just click the link in it and Iris will sign you in. If it hasn’t arrived in a minute, check your spam folder.`}
         {mode === 'forgot' && 'Iris will email you a code so you can choose a new password.'}
         {mode === 'reset' && `Enter the code sent to ${email} and your new password.`}
       </p>
@@ -143,9 +158,14 @@ function AuthCard() {
             </button>
           </>
         )}
+        {mode === 'code' && pw.length >= 6 && (
+          <button type="button" className="inline-link" onClick={() => void run(async () => (await api()).signIn(email.trim(), pw))}>
+            I clicked the link, sign me in
+          </button>
+        )}
         {mode !== 'in' && (
           <button type="button" className="inline-link" onClick={() => setMode('in')}>
-            {mode === 'code' ? 'I clicked the link, sign me in' : 'Back to sign in'}
+            Back to sign in
           </button>
         )}
       </div>

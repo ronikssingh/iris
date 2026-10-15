@@ -7,3 +7,5 @@ build/background.tiff
 .DS_Store
 Thumbs.db
 live-check.txt
+.dev/
+supabase-integration.txt

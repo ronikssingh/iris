@@ -95,6 +95,19 @@ describe('supabase/setup.sql', () => {
     expect(await as(C, () => q(`select * from public.friendships`))).toHaveLength(0);
   });
 
+  it('keeps names and the taste line for friends only', async () => {
+    await as(A, () => q(`update public.profiles set display_name = 'Ronik', bio = 'Sci-fi first' where id = $1`, [A]));
+    // strangers can see usernames and pictures, but not names or bios
+    expect(await as(C, () => fails(`select display_name from public.profiles`))).toBe(true);
+    expect(await as(C, () => fails(`select * from public.profiles`))).toBe(true);
+    expect((await as(C, () => q(`select id, username, avatar, created_at from public.profiles`))).length).toBe(3);
+    expect(await as(C, () => q(`select * from public.profile_details(array[$1]::uuid[])`, [A]))).toHaveLength(0);
+    // friends and yourself can
+    const forB = await as(B, () => q(`select display_name, bio from public.profile_details(array[$1, $2]::uuid[])`, [A, C]));
+    expect(forB).toEqual([{ display_name: 'Ronik', bio: 'Sci-fi first' }]);
+    expect(await as(C, () => q(`select id from public.profile_details(array[$1]::uuid[])`, [C]))).toHaveLength(1);
+  });
+
   it('shows critiques only to their owner and friends, and never hidden ones', async () => {
     await as(A, () => critique(A, 'c1'));
     await as(A, () => critique(A, 'c2', true));

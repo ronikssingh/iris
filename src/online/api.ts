@@ -116,7 +116,11 @@ export interface OnlineApi {
 export function explain(e: any): string {
   const m = String(e?.message || e || '');
   if (/invalid login credentials/i.test(m)) return 'That email and password don’t match an account.';
-  if (/email not confirmed/i.test(m)) return 'Confirm your email first. Enter the code from the email Iris sent you.';
+  if (/email not confirmed/i.test(m)) return 'Confirm your email first: click the link or type the code from the email Iris sent you.';
+  if (/email address not authorized|error sending (confirmation|recovery|magic link)? ?email|smtp/i.test(m))
+    return 'The confirmation email couldn’t be sent. Whoever runs this copy of Iris needs to finish the email step in supabase/README.md.';
+  if (/signups? not allowed|signup.*disabled/i.test(m)) return 'New accounts are switched off for this copy of Iris.';
+  if (/email.*invalid|invalid.*email|unable to validate email/i.test(m)) return 'That doesn’t look like an email address.';
   if (/user already registered/i.test(m)) return 'There’s already an account with that email. Sign in instead.';
   if (/password should be at least/i.test(m)) return 'Use a password with at least 6 characters.';
   if (/rate limit|too many/i.test(m)) return 'Too many tries in a row. Wait a minute and try again.';
@@ -131,6 +135,7 @@ export function explain(e: any): string {
 /* --------------------------------------------------------------- Supabase */
 
 const t = (v: any) => (v ? Date.parse(v) : 0);
+const PUBLIC_PROFILE = 'id, username, avatar, created_at';
 const fromProfile = (r: any): Profile => ({
   id: r.id,
   username: String(r.username),
@@ -206,11 +211,13 @@ function check<T>(r: { data: T; error: any } | { data: any; error: any }): T {
   return r.data;
 }
 
-class SupabaseApi implements OnlineApi {
+export class SupabaseApi implements OnlineApi {
   readonly configured = true;
   private sb: SupabaseClient;
-  constructor(url: string, key: string) {
-    this.sb = createClient(url, key, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, storageKey: 'iris-online' } });
+  constructor(url: string, key: string, storage?: { getItem(k: string): string | null; setItem(k: string, v: string): void; removeItem(k: string): void }) {
+    this.sb = createClient(url, key, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, storageKey: 'iris-online', ...(storage ? { storage } : {}) },
+    });
   }
   async session() {
     const { data } = await this.sb.auth.getSession();
@@ -242,12 +249,29 @@ class SupabaseApi implements OnlineApi {
     await this.sb.auth.signOut();
   }
   async deleteAccount() {
+    // pictures first, while this account can still reach its own folders
+    const me = (await this.sb.auth.getUser()).data.user?.id;
+    if (me) {
+      for (const bucket of ['avatars', 'posters'] as const) {
+        try {
+          const files = check(await this.sb.storage.from(bucket).list(me, { limit: 1000 })) as any[];
+          const paths = (files ?? []).map((f) => `${me}/${f.name}`);
+          for (let i = 0; i < paths.length; i += 100) await this.sb.storage.from(bucket).remove(paths.slice(i, i + 100));
+        } catch {
+          /* leftover pictures are harmless */
+        }
+      }
+    }
     check(await this.sb.rpc('delete_my_account'));
     await this.sb.auth.signOut();
   }
   async profiles(ids: string[]) {
     if (!ids.length) return [];
-    return (check(await this.sb.from('profiles').select('*').in('id', ids)) as any[]).map(fromProfile);
+    // Anyone signed in may see a username and picture. Names and bios come back only for yourself and friends.
+    const rows = check(await this.sb.from('profiles').select(PUBLIC_PROFILE).in('id', ids)) as any[];
+    const extra = check(await this.sb.rpc('profile_details', { ids })) as any[];
+    const byId = new Map((extra ?? []).map((r) => [r.id, r]));
+    return rows.map((r) => fromProfile({ ...r, ...(byId.get(r.id) ?? {}) }));
   }
   async saveProfile(p: Profile, isNew: boolean) {
     const row = { id: p.id, username: p.username.toLowerCase(), display_name: p.displayName, avatar: p.avatar, bio: p.bio, updated_at: new Date().toISOString() };
@@ -259,12 +283,13 @@ class SupabaseApi implements OnlineApi {
     return rows.length > 0;
   }
   async searchProfiles(q: string, exceptId: string) {
-    const clean = q.replace(/[^a-zA-Z0-9_. ]/g, '').trim();
+    const clean = q.toLowerCase().replace(/^@/, '').replace(/[^a-z0-9_.]/g, '');
     if (clean.length < 2) return [];
-    const rows = check(
-      await this.sb.from('profiles').select('*').or(`username.ilike.%${clean}%,display_name.ilike.%${clean}%`).neq('id', exceptId).limit(12),
-    ) as any[];
-    return rows.map(fromProfile);
+    const rows = check(await this.sb.from('profiles').select(PUBLIC_PROFILE).ilike('username', `%${clean}%`).neq('id', exceptId).limit(12)) as any[];
+    // closest usernames first
+    return rows
+      .map(fromProfile)
+      .sort((a, b) => Number(b.username === clean) - Number(a.username === clean) || Number(b.username.startsWith(clean)) - Number(a.username.startsWith(clean)) || a.username.localeCompare(b.username));
   }
   async uploadImage(bucket: 'avatars' | 'posters', path: string, blob: Blob) {
     check(await this.sb.storage.from(bucket).upload(path, blob, { upsert: true, contentType: blob.type || 'image/jpeg', cacheControl: '31536000' }));
@@ -442,8 +467,14 @@ class FakeApi implements OnlineApi {
     this.me = null;
     this.emit();
   }
+  /** Same rule as the real server: names and bios only for yourself and friends. */
+  private visible(p: Profile): Profile {
+    const me = this.uid();
+    const friend = this.friends.some((f) => f.status === 'accepted' && ((f.requester === me && f.addressee === p.id) || (f.addressee === me && f.requester === p.id)));
+    return p.id === me || friend ? p : { ...p, displayName: '', bio: '' };
+  }
   async profiles(ids: string[]) {
-    return ids.map((i) => this.profilesById.get(i)).filter(Boolean) as Profile[];
+    return (ids.map((i) => this.profilesById.get(i)).filter(Boolean) as Profile[]).map((p) => this.visible(p));
   }
   async saveProfile(p: Profile) {
     this.profilesById.set(p.id, p);
@@ -452,8 +483,8 @@ class FakeApi implements OnlineApi {
     return [...this.profilesById.values()].some((p) => p.username === name.toLowerCase() && p.id !== exceptId);
   }
   async searchProfiles(q: string, exceptId: string) {
-    const n = q.toLowerCase();
-    return [...this.profilesById.values()].filter((p) => p.id !== exceptId && (p.username.includes(n) || p.displayName.toLowerCase().includes(n)));
+    const n = q.toLowerCase().replace(/^@/, '');
+    return [...this.profilesById.values()].filter((p) => p.id !== exceptId && p.username.includes(n)).map((p) => this.visible(p));
   }
   async uploadImage(_b: string, _p: string, blob: Blob) {
     return URL.createObjectURL(blob);

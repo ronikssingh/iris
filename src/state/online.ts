@@ -196,9 +196,23 @@ useOnline.setState({
       if (!lib.meta.onlineOwner) libState.patchMeta({ onlineOwner: me.id });
       const stamps = new Map((await api.myStamps(me.id)).map((s) => [s.id, s.updatedAt]));
       const uploads = { ...useLibrary.getState().lib.meta.posterUploads };
+      const localIds = new Set(lib.critiques.map((c) => c.id));
+      const trashed = new Set(lib.trash.map((t) => t.id));
+      const knew = new Set(lib.meta.syncedIds);
+      // Critiques this computer shared before that are no longer online were deleted on another computer.
+      // If most of them vanished at once, the online copy was more likely reset, so they're shared again instead.
+      const vanished = lib.critiques.filter((c) => knew.has(c.id) && !stamps.has(c.id)).map((c) => c.id);
+      const reset = vanished.length >= 3 && vanished.length > knew.size / 2;
+      const deletedElsewhere = reset ? [] : vanished;
       const toPush: SharedCritique[] = [];
+      const pullIds: string[] = [];
       for (const c of lib.critiques) {
+        if (deletedElsewhere.includes(c.id)) continue;
         const remote = stamps.get(c.id);
+        if (remote !== undefined && remote > c.updatedAt + 1000) {
+          pullIds.push(c.id); // changed on another computer since
+          continue;
+        }
         const needsPoster = !!c.poster && !uploads[c.poster];
         if (remote !== undefined && Math.abs(remote - c.updatedAt) < 1000 && !needsPoster) continue;
         if (c.poster && !uploads[c.poster]) {
@@ -212,25 +226,27 @@ useOnline.setState({
         toPush.push(toShared(c, me.id, c.poster ? (uploads[c.poster] ?? null) : null));
       }
       if (toPush.length) await api.push(toPush);
-      // anything online that isn't here: deleted here, or written on your other computer
-      const localIds = new Set(lib.critiques.map((c) => c.id));
-      const trashed = new Set(lib.trash.map((t) => t.id));
-      const knew = new Set(lib.meta.syncedIds);
+      // online but not here: deleted here, or written on another computer
       const gone: string[] = [];
-      const pullIds: string[] = [];
       for (const id of stamps.keys()) {
         if (localIds.has(id)) continue;
         if (trashed.has(id) || knew.has(id)) gone.push(id);
         else pullIds.push(id);
       }
       if (gone.length) await api.remove(me.id, gone);
+      let pulledCount = 0;
       if (pullIds.length) {
         const rows = (await api.critiques([me.id], 5000)).filter((r) => pullIds.includes(r.id));
+        const localByUrl = new Map(Object.entries(uploads).map(([file, url]) => [url, file]));
         const pulled: Critique[] = [];
         for (const r of rows) {
           let poster: string | null = null;
           let posterColor: string | null = null;
-          if (r.posterUrl) {
+          const local = lib.critiques.find((c) => c.id === r.id);
+          if (r.posterUrl && localByUrl.has(r.posterUrl)) {
+            poster = localByUrl.get(r.posterUrl)!;
+            posterColor = local?.poster === poster ? local.posterColor : null;
+          } else if (r.posterUrl) {
             const p = await savePosterFromUrl(r.posterUrl).catch(() => null);
             if (p) {
               poster = p.name;
@@ -238,28 +254,23 @@ useOnline.setState({
               uploads[p.name] = r.posterUrl;
             }
           }
-          pulled.push(
-            normalizeCritique({
-              ...r,
-              cast: r.cast,
-              poster,
-              posterColor,
-              ext: extFromKey(r.extKey),
-              classOverride: null,
-            }),
-          );
-        }
-        // keep the class exactly as it was written
-        for (const c of pulled) {
-          const r = rows.find((x) => x.id === c.id)!;
+          const c = normalizeCritique({ ...r, poster, posterColor, ext: extFromKey(r.extKey), classOverride: null });
+          // keep the class exactly as it was written
           if (classOf(c) !== r.cls) c.classOverride = r.cls;
+          pulled.push(c);
         }
         useLibrary.getState().mergeCritiques(pulled);
-        if (pulled.length) useUi.getState().toast({ text: `Brought ${pulled.length} critique${pulled.length === 1 ? '' : 's'} over from your account`, tone: 'good' });
+        pulledCount = pulled.filter((c) => !localIds.has(c.id)).length;
       }
+      for (const id of deletedElsewhere) useLibrary.getState().removeCritique(id);
       const now = useLibrary.getState().lib;
-      useLibrary.getState().patchMeta({ posterUploads: uploads, syncedIds: [...new Set([...now.critiques.map((c) => c.id)])] });
+      useLibrary.getState().patchMeta({ posterUploads: uploads, syncedIds: [...new Set(now.critiques.map((c) => c.id))] });
       set({ lastSync: Date.now(), syncNote: null });
+      if (pulledCount) useUi.getState().toast({ text: `Brought ${pulledCount} critique${pulledCount === 1 ? '' : 's'} over from your account`, tone: 'good' });
+      if (deletedElsewhere.length)
+        useUi.getState().toast({
+          text: `${deletedElsewhere.length === 1 ? 'A critique you deleted on another computer was' : `${deletedElsewhere.length} critiques you deleted on another computer were`} moved to Recently deleted`,
+        });
     } catch (e) {
       set({ syncNote: explain(e) });
     } finally {

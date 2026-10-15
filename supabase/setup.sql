@@ -190,6 +190,21 @@ grant execute on function public.delete_my_account() to authenticated;
 grant usage on schema public to authenticated;
 grant select, insert, update, delete on public.profiles, public.friendships, public.critiques, public.likes, public.comments, public.suggestions to authenticated;
 
+-- Anyone signed in can see a username and profile picture (that's how friends find each other).
+-- Names and the line about your taste are only for you and your friends, through profile_details().
+revoke select on public.profiles from authenticated, anon;
+grant select (id, username, avatar, created_at, updated_at) on public.profiles to authenticated;
+
+create or replace function public.profile_details(ids uuid[])
+returns table (id uuid, display_name text, bio text)
+language sql stable security definer set search_path = public as $$
+  select p.id, p.display_name, p.bio
+  from public.profiles p
+  where p.id = any(ids) and (p.id = auth.uid() or public.are_friends(auth.uid(), p.id));
+$$;
+revoke all on function public.profile_details(uuid[]) from public, anon;
+grant execute on function public.profile_details(uuid[]) to authenticated;
+
 -- Pictures: profile pictures and posters, each person writes only into their own folder.
 insert into storage.buckets (id, name, public) values ('avatars', 'avatars', true) on conflict (id) do nothing;
 insert into storage.buckets (id, name, public) values ('posters', 'posters', true) on conflict (id) do nothing;
