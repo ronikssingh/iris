@@ -1,0 +1,36 @@
+name: Live check
+
+# Talks to the real TMDB, IGDB and Supabase services with the app's own code and reports what
+# came back (never the keys themselves). Runs on pushes to check/* branches and by hand.
+
+on:
+  push:
+    branches: ['check/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    name: Live services
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci --ignore-scripts
+
+      - name: Check TMDB, IGDB and Supabase
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_TOKEN }}
+          IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
+          IGDB_CLIENT_SECRET: ${{ secrets.IGDB_CLIENT_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node scripts/live-check.mjs
