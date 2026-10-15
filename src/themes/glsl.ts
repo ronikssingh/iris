@@ -311,49 +311,167 @@ vec3 scene(vec2 uv){
 }`;
 
 /* ---------------------------------------------------------- Fimbulwinter */
+// A frozen fjord at the end of the world: aurora over layered peaks, a moon in the haze,
+// a pine shore, ice that mirrors the sky, and an old rune stone whose carvings breathe with light.
 const fimbulwinter = /* glsl */ `
-vec3 scene(vec2 uv){
-  float asp = uRes.x / uRes.y;
-  vec2 p = (uv - 0.5) * vec2(asp, 1.0);
-  vec3 col = mix(vec3(0.025, 0.06, 0.11), vec3(0.004, 0.01, 0.024), smoothstep(0.2, 1.0, uv.y));
+float fwSeg(vec2 p, vec2 a, vec2 b){ vec2 pa = p - a, ba = b - a; float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0); return length(pa - ba * h); }
+
+vec3 fwAurora(vec2 p, float y){
+  vec3 aur = vec3(0.0);
+  for (int i = 0; i < 3; i++){
+    float fi = float(i);
+    float x = p.x * (0.85 + fi * 0.25) + fi * 4.0 + uMouse.x * 0.04;
+    float center = 0.66 + fi * 0.07 + (fbm3(vec2(x * 0.65 + uTime * 0.028, fi * 2.0)) - 0.5) * 0.34;
+    float yd = y - center;
+    float curtain = exp(-max(yd, 0.0) * (4.6 - fi)) * exp(-max(-yd, 0.0) * 26.0);
+    float rays = vnoise(vec2(x * 16.0 + uTime * 0.35, fi)) * 0.65 + vnoise(vec2(x * 44.0 - uTime * 0.25, fi + 3.0)) * 0.35;
+    float flow = fbm3(vec2(x * 1.8 - uTime * 0.07, fi));
+    float a = curtain * (0.45 + rays * 0.7) * smoothstep(0.22, 0.7, flow);
+    aur += mix(vec3(0.16, 1.0, 0.62), vec3(0.58, 0.34, 1.0), clamp(yd * 4.0 + 0.3, 0.0, 1.0)) * a;
+  }
+  return aur;
+}
+
+// sky, moon, aurora and the three mountain ranges, for any point above the waterline
+vec3 fwLand(vec2 uv, vec2 p, out vec3 aurOut){
+  vec3 col = mix(vec3(0.03, 0.07, 0.12), vec3(0.004, 0.01, 0.026), smoothstep(0.3, 1.0, uv.y));
+  // stars
   vec2 sg = gl_FragCoord.xy / (2.0 * uRes.y / 900.0);
   vec2 cell = floor(sg / 3.0);
   float st = hash21(cell);
   float tw = 0.55 + 0.45 * sin(uTime * (1.0 + st * 4.0) + st * 40.0);
   vec2 spp = fract(sg / 3.0) - 0.5 - (hash22(cell) - 0.5) * 0.6;
-  col += vec3(0.82, 0.9, 1.0) * smoothstep(0.09, 0.0, length(spp)) * step(0.984, st) * tw * smoothstep(0.35, 0.85, uv.y);
-  vec3 aur = vec3(0.0);
+  col += vec3(0.82, 0.9, 1.0) * smoothstep(0.09, 0.0, length(spp)) * step(0.985, st) * tw * smoothstep(0.5, 0.9, uv.y);
+  // moon in the haze
+  vec2 mp = p - vec2(0.42 * (uRes.x / uRes.y) * 0.9, 0.31);
+  float md = length(mp);
+  float crater = fbm3(mp * 40.0);
+  col += vec3(0.8, 0.86, 0.95) * smoothstep(0.034, 0.03, md) * (0.6 + 0.35 * crater);
+  col += vec3(0.35, 0.5, 0.7) * exp(-md * 11.0) * 0.3;
+  vec3 aur = fwAurora(p, uv.y);
+  col += aur * 0.75;
+  aurOut = aur;
+  // drifting high cloud veils catch the aurora
+  float veil = fbm(vec2(p.x * 1.4 + uTime * 0.012, uv.y * 4.0));
+  col = mix(col, vec3(0.08, 0.13, 0.2) + aur * 0.2, smoothstep(0.55, 0.85, veil) * 0.35 * smoothstep(0.4, 0.8, uv.y));
+  // three ranges, far to near: tall jagged peaks, then darker foothills
   for (int i = 0; i < 3; i++){
     float fi = float(i);
-    float x = p.x * (0.85 + fi * 0.25) + fi * 4.0 + uMouse.x * 0.04;
-    float center = 0.6 + fi * 0.075 + (fbm3(vec2(x * 0.65 + uTime * 0.028, fi * 2.0)) - 0.5) * 0.36;
-    float yd = uv.y - center;
-    float curtain = exp(-max(yd, 0.0) * (5.0 - fi)) * exp(-max(-yd, 0.0) * 28.0);
-    float rays = vnoise(vec2(x * 16.0 + uTime * 0.35, fi)) * 0.65 + vnoise(vec2(x * 44.0 - uTime * 0.25, fi + 3.0)) * 0.35;
-    float flow = fbm3(vec2(x * 1.8 - uTime * 0.07, fi));
-    float a = curtain * (0.5 + rays * 0.6) * smoothstep(0.22, 0.7, flow);
-    vec3 c1 = vec3(0.18, 1.0, 0.64);
-    vec3 c2 = vec3(0.56, 0.34, 1.0);
-    aur += mix(c1, c2, clamp(yd * 4.0 + 0.3, 0.0, 1.0)) * a;
-  }
-  col += aur * 0.72;
-  for (int i = 0; i < 2; i++){
-    float fi = float(i);
-    float x = p.x * (1.1 + fi * 0.8) + uMouse.x * (0.03 + fi * 0.05) + fi * 7.0;
-    float h = 0.22 - fi * 0.09 + ridge(vec2(x * 0.9, fi * 5.0)) * (0.34 - fi * 0.1);
+    float x = p.x * (0.8 + fi * 0.6) + uMouse.x * (0.015 + fi * 0.03) + fi * 9.3;
+    float r = ridge(vec2(x * 0.8, fi * 5.0));
+    float amp = 0.34 - fi * 0.1;
+    float h = 0.31 + (2.0 - fi) * 0.025 + pow(r, 1.6) * amp + (fi == 0.0 ? 0.1 * exp(-pow((p.x + 0.35) * 2.6, 2.0)) : 0.0);
     if (uv.y < h){
-      float depth = h - uv.y;
-      float rs = fbm(vec2(x * 7.0, uv.y * 12.0));
-      float snow = smoothstep(0.16, 0.0, depth + (rs - 0.5) * 0.12);
-      vec3 rock = mix(vec3(0.05, 0.09, 0.14), vec3(0.015, 0.025, 0.045), fi);
-      rock *= 0.75 + 0.5 * rs;
-      vec3 snowC = mix(vec3(0.36, 0.5, 0.62), vec3(0.72, 0.86, 0.95), rs) * (1.0 - fi * 0.35) + aur * 0.3;
-      col = mix(rock, snowC, snow * (1.0 - fi * 0.4));
-      col = mix(col, vec3(0.07, 0.13, 0.2), (1.0 - fi) * 0.38 * smoothstep(0.0, 0.25, depth));
+      float depth = (h - uv.y) / amp;
+      float rs = fbm(vec2(x * 9.0, uv.y * 16.0));
+      float gully = ridge(vec2(x * 6.0, uv.y * 3.0 + fi * 7.0));
+      float snow = smoothstep(0.32, 0.06, depth + (rs - 0.5) * 0.3 - gully * 0.18) + smoothstep(0.75, 0.95, gully) * 0.35 * smoothstep(0.9, 0.3, depth);
+      vec3 rock = vec3(0.022, 0.034, 0.055) * (0.55 + 0.9 * rs) + vec3(0.02, 0.03, 0.04) * smoothstep(0.5, 0.9, gully);
+      vec3 snowC = mix(vec3(0.3, 0.42, 0.55), vec3(0.74, 0.86, 0.96), rs) + aur * 0.3;
+      float lit = smoothstep(-0.02, 0.03, ridge(vec2(x * 0.8 - 0.02, fi * 5.0)) - r);
+      vec3 m = mix(rock, snowC * (0.55 + 0.45 * lit), snow);
+      m = mix(m, vec3(0.06, 0.1, 0.16) + aur * 0.08, (2.0 - fi) * 0.22);
+      m *= 1.0 - fi * 0.25;
+      col = m;
     }
   }
-  float mist = fbm(vec2(p.x * 2.0 + uTime * 0.035, uv.y * 6.0));
-  col += vec3(0.25, 0.4, 0.5) * mist * smoothstep(0.26, 0.0, uv.y) * 0.34;
+  return col;
+}
+
+vec3 scene(vec2 uv){
+  float asp = uRes.x / uRes.y;
+  vec2 p = (uv - 0.5) * vec2(asp, 1.0);
+  float water = 0.3; // the fjord's far shore
+  vec3 aur;
+  vec3 col;
+  if (uv.y >= water){
+    col = fwLand(uv, p, aur);
+  } else {
+    // frozen fjord: mirrored sky, softened, broken by ice plates and cracks
+    float ripple = (vnoise(vec2(p.x * 40.0, uv.y * 160.0 + uTime * 0.2)) - 0.5) * 0.006;
+    vec2 ruv = vec2(uv.x + ripple, water + (water - uv.y) * 1.15);
+    vec2 rp = (ruv - 0.5) * vec2(asp, 1.0);
+    col = fwLand(ruv, rp, aur) * vec3(0.62, 0.72, 0.8);
+    vec2 ip = vec2(p.x * 6.0, (water - uv.y) * 26.0 / max(water - uv.y + 0.08, 0.08));
+    vec2 g = floor(ip); vec2 f = fract(ip);
+    float d1 = 9.0, d2 = 9.0;
+    for (int j = -1; j <= 1; j++) for (int k = -1; k <= 1; k++){
+      vec2 o = vec2(float(j), float(k));
+      vec2 r = o + hash22(g + o) - f;
+      float d = dot(r, r);
+      if (d < d1){ d2 = d1; d1 = d; } else if (d < d2){ d2 = d; }
+    }
+    float crack = smoothstep(0.06, 0.0, sqrt(d2) - sqrt(d1));
+    float frost = fbm(vec2(p.x * 14.0, uv.y * 40.0));
+    col = mix(col, vec3(0.5, 0.65, 0.78), frost * 0.22);
+    col += vec3(0.65, 0.85, 1.0) * crack * 0.12 * smoothstep(0.0, 0.2, uv.y);
+    col += aur * 0.18 * smoothstep(0.05, water, uv.y);
+    col = mix(col, vec3(0.02, 0.04, 0.07), smoothstep(water, 0.0, uv.y) * 0.35);
+  }
+  // pine shore along the far side of the ice
+  float px = p.x * 34.0 + uMouse.x * 0.6;
+  float tid = floor(px);
+  float tf = fract(px) - 0.5;
+  float th = 0.012 + hash11(tid) * 0.05;
+  float ty = (uv.y - water) / th;
+  float teeth = 0.55 + 0.45 * fract(ty * 5.0);
+  float tree = step(0.0, ty) * step(ty, 1.0) * step(abs(tf), (1.0 - ty) * 0.42 * teeth);
+  float bank = step(abs(uv.y - water), 0.004 + 0.003 * vnoise(vec2(px, 2.0)));
+  col = mix(col, vec3(0.012, 0.025, 0.04) + aur * 0.05, max(tree, bank));
+  // a longhouse on the far shore, one warm window and its reflection
+  vec2 hq = vec2((uv.x - 0.72) * asp, uv.y - water);
+  float hut = step(abs(hq.x), 0.022) * step(0.0, hq.y) * step(hq.y, 0.011 + (0.022 - abs(hq.x)) * 0.55);
+  col = mix(col, vec3(0.012, 0.02, 0.03), hut);
+  float flick = 0.85 + 0.15 * sin(uTime * 7.0) * sin(uTime * 3.1);
+  col += vec3(1.0, 0.62, 0.25) * exp(-length(hq - vec2(0.006, 0.006)) * 260.0) * 1.4 * flick;
+  col += vec3(1.0, 0.55, 0.2) * exp(-length(vec2(hq.x - 0.006, (hq.y + 0.006) * 0.25)) * 90.0) * 0.35 * flick * step(uv.y, water);
+  float smoke = fbm(vec2(hq.x * 30.0 - uTime * 0.1, hq.y * 12.0 - uTime * 0.3));
+  col += vec3(0.25, 0.3, 0.36) * smoothstep(0.5, 0.8, smoke) * exp(-abs(hq.x - 0.01 - hq.y * 0.25) * 60.0) * step(0.015, hq.y) * smoothstep(0.2, 0.03, hq.y) * 0.5;
+  // snowy near shore
+  float shore = 0.085 + 0.035 * fbm3(vec2(p.x * 2.5, 3.0)) + 0.02 * sin(p.x * 3.0 + 1.0);
+  if (uv.y < shore){
+    float sn = fbm(vec2(p.x * 12.0, uv.y * 30.0));
+    vec3 snowC = mix(vec3(0.3, 0.42, 0.55), vec3(0.7, 0.83, 0.93), sn) * smoothstep(-0.05, shore, uv.y) + aur * 0.15;
+    col = snowC;
+  }
+  // the rune stone
+  vec2 q = vec2((uv.x - 0.16) * asp - uMouse.x * 0.02, uv.y - 0.05);
+  float w = 0.066 - q.y * 0.05;
+  float topY = 0.25 + 0.045 * sqrt(max(0.0, 1.0 - pow(q.x / w, 2.0)));
+  float edge = w + (vnoise(vec2(q.y * 40.0, 1.0)) - 0.5) * 0.008;
+  if (abs(q.x) < edge && q.y > -0.04 && q.y < topY){
+    float rs = fbm(q * 30.0);
+    vec3 stone = mix(vec3(0.05, 0.065, 0.085), vec3(0.16, 0.19, 0.23), rs);
+    stone *= 0.75 + 0.4 * smoothstep(-w, w, q.x); // lit from the right
+    stone += aur * 0.25 * smoothstep(w * 0.4, w, q.x);
+    float cap = smoothstep(topY - 0.025, topY, q.y + (rs - 0.5) * 0.02);
+    stone = mix(stone, vec3(0.75, 0.86, 0.95), cap * 0.85);
+    // carved runes
+    vec2 rq = vec2(q.x / 0.026, (q.y - 0.07) / 0.036);
+    vec2 rc = floor(rq + 0.5);
+    vec2 rf = rq - rc;
+    float glyph = 9.0;
+    if (abs(rc.x) <= 1.0 && rc.y >= 0.0 && rc.y <= 4.0 && abs(q.x) < w * 0.78){
+      float h = hash21(rc + 7.0);
+      glyph = fwSeg(rf, vec2(0.0, -0.36), vec2(0.0, 0.36));
+      if (h > 0.25) glyph = min(glyph, fwSeg(rf, vec2(0.0, 0.36), vec2(0.28, 0.08)));
+      if (h < 0.6) glyph = min(glyph, fwSeg(rf, vec2(0.0, 0.05), vec2(-0.28, -0.2)));
+      if (fract(h * 7.0) > 0.5) glyph = min(glyph, fwSeg(rf, vec2(0.0, -0.1), vec2(0.28, 0.16)));
+      if (fract(h * 13.0) > 0.7) glyph = min(glyph, fwSeg(rf, vec2(-0.26, 0.3), vec2(0.0, 0.06)));
+    }
+    float pulse = 0.55 + 0.45 * sin(uTime * 0.9 - rc.y * 0.7);
+    float carve = smoothstep(0.075, 0.03, glyph);
+    float glow = exp(-glyph * 14.0);
+    stone = mix(stone, stone * 0.35, carve);
+    stone += vec3(0.3, 1.0, 0.85) * (carve * 0.9 + glow * 0.35) * pulse;
+    col = stone;
+  }
+  // rune light spills onto the snow at its foot
+  float spill = exp(-length(vec2((uv.x - 0.16) * asp, (uv.y - 0.06) * 3.0)) * 9.0);
+  col += vec3(0.2, 0.75, 0.65) * spill * 0.18 * (0.7 + 0.3 * sin(uTime * 0.9));
+  // ground mist rolling over the ice
+  float mist = fbm(vec2(p.x * 2.0 + uTime * 0.03, uv.y * 7.0 - uTime * 0.01));
+  col += vec3(0.28, 0.42, 0.52) * mist * smoothstep(0.38, 0.05, uv.y) * 0.3;
   return col;
 }`;
 
