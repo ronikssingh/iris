@@ -10,10 +10,17 @@ import '@fontsource-variable/jost';
 import '@fontsource-variable/tilt-neon';
 import '@fontsource/limelight';
 import '@fontsource-variable/cormorant-garamond';
+import '@fontsource/rye';
+import '@fontsource/marcellus-sc';
+import '@fontsource/im-fell-english-sc';
+import '@fontsource/shippori-mincho/latin-700.css';
+import '@fontsource-variable/fraunces/full.css';
+import '@fontsource/special-elite';
 import './styles/base.css';
 import './styles/components.css';
 import './styles/pages.css';
 import './styles/editor.css';
+import './styles/social.css';
 import './styles/themes.css';
 import { App } from './App';
 

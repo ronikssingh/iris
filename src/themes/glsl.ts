@@ -1,5 +1,6 @@
 /* GLSL for the ten living backgrounds and the transitions between them. */
 import type { ThemeId } from '../shared/settings';
+import { frostkeep, hanami, hollowpines, lagoon, moonspire, sundown } from './glsl2';
 
 export const VERT = /* glsl */ `#version 300 es
 void main() {
@@ -556,6 +557,12 @@ const SCENES: Record<ThemeId, string> = {
   midnightdrive,
   silverscreen,
   emberrealm,
+  sundown,
+  frostkeep,
+  moonspire,
+  hanami,
+  lagoon,
+  hollowpines,
 };
 
 export function sceneSource(id: ThemeId): string {
@@ -637,6 +644,26 @@ void main(){
     float t = p * 1.3 - 0.15;
     float m = smoothstep(t, t - 0.06, n);
     col = mix(a, b, m) + vec3(1.0, 0.58, 0.18) * exp(-abs(n - t) * 50.0) * 1.4 * s + vec3(1.0, 0.95, 0.8) * exp(-abs(n - t) * 160.0) * s;
+  } else if (uStyle == 10) {
+    float d = length((uv - uOrigin) * vec2(asp, 1.0));
+    float ang = atan(uv.y - uOrigin.y, (uv.x - uOrigin.x) * asp);
+    float swirl = fbm(vec2(ang * 3.0 + d * 6.0 - p * 4.0, d * 3.0));
+    float r = p * 2.2 - 0.2 + (swirl - 0.5) * 0.35;
+    float m = smoothstep(r, r - 0.12, d);
+    float edge = exp(-abs(d - r) * 22.0);
+    float sparks = step(0.93, hash21(floor(uv * uRes / 6.0) + floor(p * 20.0))) * edge;
+    col = mix(a, b, m) + vec3(1.0, 0.85, 0.5) * edge * s * 0.9 + vec3(0.7, 0.6, 1.0) * sparks * s * 2.0;
+  } else if (uStyle == 11) {
+    float n = fbm(uv * vec2(asp, 1.0) * 5.0 + vec2(p * 2.0, -p * 3.0));
+    float v = (1.0 - uv.y) * 0.5 + uv.x * 0.4 + n * 0.5;
+    float t = p * 1.7 - 0.3;
+    float m = smoothstep(t + 0.05, t - 0.05, v);
+    float edge = exp(-abs(v - t) * 26.0);
+    col = mix(a, b, m) + vec3(1.0, 0.72, 0.84) * edge * s * 0.9;
+  } else if (uStyle == 12) {
+    float n = fbm(vec2(uv.x * 3.0 + p * 1.5, uv.y * 2.0) + uTime * 0.05);
+    float fogA = s * (0.65 + 0.35 * n);
+    col = mix(mix(a, b, smoothstep(0.35, 0.7, p + (n - 0.5) * 0.3)), vec3(0.3, 0.38, 0.36), fogA * 0.85);
   } else {
     float n = fbm(vec2(uv.x * 4.0, uv.y * 3.0 - p * 2.5));
     float v = uv.y * 0.7 + n * 0.5;

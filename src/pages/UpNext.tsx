@@ -92,6 +92,9 @@ function AddBar({ existing, critiqued }: { existing: WatchItem[]; critiqued: str
       studio: '',
       cast: '',
       description: '',
+      ext: c?.ext ?? null,
+      genres: [],
+      from: '',
       order,
       addedAt: Date.now(),
       updatedAt: Date.now(),
@@ -116,6 +119,8 @@ function AddBar({ existing, critiqued }: { existing: WatchItem[]; critiqued: str
             studio: det.studio,
             cast: det.cast,
             description: det.description,
+            ext: det.ext ?? cur.ext,
+            genres: det.genres ?? cur.genres,
             poster: poster?.name ?? null,
             posterColor: poster?.color ?? null,
           });
@@ -289,6 +294,7 @@ function WatchCard({ w, dragId, setDragId }: { w: WatchItem; dragId: string | nu
             {TYPE_LABEL[w.type]}
             {w.year ? `, ${w.year}` : ''}
           </span>
+          {w.from && <span className="watch-from">from {w.from}</span>}
         </span>
         {editingNote ? (
           <input

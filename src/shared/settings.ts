@@ -11,6 +11,12 @@ export const THEME_IDS = [
   'midnightdrive',
   'silverscreen',
   'emberrealm',
+  'sundown',
+  'frostkeep',
+  'moonspire',
+  'hanami',
+  'lagoon',
+  'hollowpines',
 ] as const;
 export type ThemeId = (typeof THEME_IDS)[number];
 
@@ -60,6 +66,11 @@ export interface Settings {
   rotateMinutes: number;
   rotateOrder: 'random' | 'sequence';
   rotation: ThemeId[];
+  themesSeen: ThemeId[]; // worlds this person has been offered; new ones join the rotation once
+  recs: {
+    era: 'all' | 'recent'; // recent = 2000 and newer
+    kinds: ('movie' | 'show' | 'game')[];
+  };
   sound: {
     enabled: boolean;
     volume: number; // 0..1
@@ -94,6 +105,8 @@ export function defaultSettings(): Settings {
     rotateMinutes: 10,
     rotateOrder: 'random',
     rotation: [...THEME_IDS],
+    themesSeen: [...THEME_IDS],
+    recs: { era: 'all', kinds: ['movie', 'show', 'game'] },
     sound: { enabled: true, volume: 0.7, intro: true, ui: true, ambience: true, ambienceVolume: 0.35 },
     motion: 'full',
     intro: 'full',
@@ -120,7 +133,12 @@ export function normalizeSettings(raw: any): Settings {
         .map((r: any) => ({ key: r.key, dir: r.dir === 'asc' ? 'asc' : 'desc' }))
         .slice(0, 5)
     : d.archive.sort;
-  const rotation = Array.isArray(raw.rotation) ? raw.rotation.filter(isTheme) : d.rotation;
+  let rotation: ThemeId[] = Array.isArray(raw.rotation) ? raw.rotation.filter(isTheme) : d.rotation;
+  const seen: ThemeId[] = Array.isArray(raw.themesSeen) ? raw.themesSeen.filter(isTheme) : Array.isArray(raw.rotation) ? THEME_IDS.slice(0, 10) : [...THEME_IDS];
+  const fresh = THEME_IDS.filter((id) => !seen.includes(id));
+  if (fresh.length) rotation = [...rotation, ...fresh.filter((id) => !rotation.includes(id))];
+  const r = raw.recs && typeof raw.recs === 'object' ? raw.recs : {};
+  const kinds = Array.isArray(r.kinds) ? r.kinds.filter((k: any) => ['movie', 'show', 'game'].includes(k)) : d.recs.kinds;
   return {
     format: 'iris-settings',
     userName: typeof raw.userName === 'string' ? raw.userName.slice(0, 40) : '',
@@ -130,6 +148,8 @@ export function normalizeSettings(raw: any): Settings {
     rotateMinutes: num(raw.rotateMinutes, 0.5, 240, d.rotateMinutes),
     rotateOrder: raw.rotateOrder === 'sequence' ? 'sequence' : 'random',
     rotation: rotation.length >= 2 ? rotation : d.rotation,
+    themesSeen: [...THEME_IDS],
+    recs: { era: r.era === 'recent' ? 'recent' : 'all', kinds: kinds.length ? kinds : d.recs.kinds },
     sound: {
       enabled: s.enabled === undefined ? d.sound.enabled : !!s.enabled,
       volume: num(s.volume, 0, 1, d.sound.volume),

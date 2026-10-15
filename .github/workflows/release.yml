@@ -64,6 +64,11 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          TMDB_TOKEN: ${{ secrets.TMDB_TOKEN }}
+          IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
+          IGDB_CLIENT_SECRET: ${{ secrets.IGDB_CLIENT_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
       - name: Retina background for the disk image
         run: tiffutil -cathidpicheck build/background.png build/background@2x.png -out build/background.tiff
@@ -119,6 +124,11 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          TMDB_TOKEN: ${{ secrets.TMDB_TOKEN }}
+          IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
+          IGDB_CLIENT_SECRET: ${{ secrets.IGDB_CLIENT_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
       - name: Package
         run: |

@@ -10,7 +10,11 @@ export type ParticleKind =
   | 'meteors'
   | 'none'
   | 'dust'
-  | 'embers';
+  | 'embers'
+  | 'petals'
+  | 'fireflies'
+  | 'candles'
+  | 'drift';
 
 export type TransitionStyle =
   | 'lightning'
@@ -22,7 +26,10 @@ export type TransitionStyle =
   | 'warp'
   | 'scan'
   | 'burn'
-  | 'ember';
+  | 'ember'
+  | 'spell'
+  | 'bloom'
+  | 'mist';
 
 export const TRANSITION_INDEX: Record<TransitionStyle, number> = {
   lightning: 0,
@@ -35,6 +42,9 @@ export const TRANSITION_INDEX: Record<TransitionStyle, number> = {
   scan: 7,
   burn: 8,
   ember: 9,
+  spell: 10,
+  bloom: 11,
+  mist: 12,
 };
 
 export type AmbienceId =
@@ -47,13 +57,19 @@ export type AmbienceId =
   | 'void'
   | 'synth'
   | 'projector'
-  | 'hearth';
+  | 'hearth'
+  | 'prairie'
+  | 'keep'
+  | 'arcane'
+  | 'garden'
+  | 'surf'
+  | 'woods';
 
 export interface ThemeDef {
   id: ThemeId;
   name: string;
   mood: string;
-  inspiredBy: string;
+  vibe: string;
   dark: boolean;
   font: {
     family: string;
@@ -97,7 +113,7 @@ export const THEMES: ThemeDef[] = [
     id: 'vigil',
     name: 'Vigil',
     mood: 'Rain-slick rooftops, sodium-red light, a storm rolling in.',
-    inspiredBy: 'dark and moody, like The Batman',
+    vibe: 'Dark and moody',
     dark: true,
     font: { family: "'Big Shoulders Display Variable', 'Big Shoulders Display', sans-serif", weight: 800, tracking: '0.01em', upper: true, scale: 1.08 },
     c: {
@@ -125,7 +141,7 @@ export const THEMES: ThemeDef[] = [
     id: 'skyward',
     name: 'Skyward',
     mood: 'Open skies, golden sunlight, the feeling that anything is possible.',
-    inspiredBy: 'sunny and hopeful, like Superman',
+    vibe: 'Sunny and hopeful',
     dark: false,
     font: { family: "'Archivo Variable', 'Archivo', sans-serif", weight: 820, tracking: '-0.015em', upper: false, scale: 1, settings: "'wdth' 125" },
     c: {
@@ -152,7 +168,7 @@ export const THEMES: ThemeDef[] = [
     id: 'mirage',
     name: 'Mirage',
     mood: 'An endless desert, a burning sun, sand on the wind.',
-    inspiredBy: 'warm and dramatic, like Dune',
+    vibe: 'Warm and dramatic',
     dark: true,
     font: { family: "'Michroma', sans-serif", weight: 400, tracking: '0.06em', upper: true, scale: 0.78 },
     c: {
@@ -179,7 +195,7 @@ export const THEMES: ThemeDef[] = [
     id: 'glitchpop',
     name: 'Glitch Pop',
     mood: 'Halftone skies, spray-paint neon, a city glitching between worlds.',
-    inspiredBy: 'bright and colourful, like Across the Spider-Verse',
+    vibe: 'Bright and colourful',
     dark: true,
     font: { family: "'Bungee', sans-serif", weight: 400, tracking: '0.01em', upper: true, scale: 0.92 },
     c: {
@@ -207,7 +223,7 @@ export const THEMES: ThemeDef[] = [
     id: 'winedark',
     name: 'Wine-Dark Sea',
     mood: 'Bronze and storm on the wine-dark sea, a long way from home.',
-    inspiredBy: 'epic and intense, like The Odyssey',
+    vibe: 'Epic and intense',
     dark: true,
     font: { family: "'Cinzel Variable', 'Cinzel', serif", weight: 640, tracking: '0.05em', upper: false, scale: 0.98 },
     c: {
@@ -235,7 +251,7 @@ export const THEMES: ThemeDef[] = [
     id: 'fimbulwinter',
     name: 'Fimbulwinter',
     mood: 'The endless winter: aurora light over frozen peaks.',
-    inspiredBy: 'cold and mythic, like God of War Ragnarök',
+    vibe: 'Cold and mythic',
     dark: true,
     font: { family: "'Grenze Gotisch Variable', 'Grenze Gotisch', serif", weight: 620, tracking: '0.02em', upper: false, scale: 1.08 },
     c: {
@@ -262,7 +278,7 @@ export const THEMES: ThemeDef[] = [
     id: 'eventhorizon',
     name: 'Event Horizon',
     mood: 'Starlight bending around the dark. Deep space, deep time.',
-    inspiredBy: 'vast and cosmic, like Interstellar',
+    vibe: 'Vast and cosmic',
     dark: true,
     font: { family: "'Jost Variable', 'Jost', sans-serif", weight: 300, tracking: '0.28em', upper: true, scale: 0.86 },
     c: {
@@ -289,7 +305,7 @@ export const THEMES: ThemeDef[] = [
     id: 'midnightdrive',
     name: 'Midnight Drive',
     mood: 'Neon grid, chrome sunset, an endless highway at 2 a.m.',
-    inspiredBy: 'retro and electric, like Drive or Blade Runner',
+    vibe: 'Retro and electric',
     dark: true,
     font: { family: "'Tilt Neon Variable', 'Tilt Neon', sans-serif", weight: 400, tracking: '0.02em', upper: false, scale: 1.02 },
     c: {
@@ -316,7 +332,7 @@ export const THEMES: ThemeDef[] = [
     id: 'silverscreen',
     name: 'Silver Screen',
     mood: 'Black-and-white glamour, gold leaf and a projector’s flicker.',
-    inspiredBy: 'classic and glamorous, like old Hollywood',
+    vibe: 'Classic and glamorous',
     dark: true,
     font: { family: "'Limelight', serif", weight: 400, tracking: '0.03em', upper: false, scale: 0.96 },
     c: {
@@ -343,7 +359,7 @@ export const THEMES: ThemeDef[] = [
     id: 'emberrealm',
     name: 'Ember Realm',
     mood: 'Firelight, old forests and a golden glow beyond the mountains.',
-    inspiredBy: 'mythic and warm, like The Lord of the Rings',
+    vibe: 'Mythic and warm',
     dark: true,
     font: { family: "'Cormorant Garamond Variable', 'Cormorant Garamond', serif", weight: 640, tracking: '0.01em', upper: false, scale: 1.12 },
     c: {
@@ -365,6 +381,168 @@ export const THEMES: ThemeDef[] = [
     ambience: 'hearth',
     entrance: 'ember',
     preview: ['#0a0d0b', '#3f4a2e', '#f2a541'],
+  },
+  {
+    id: 'sundown',
+    name: 'Sundown',
+    mood: 'Red mesas, a sinking sun and telegraph wires humming across the plains.',
+    vibe: 'Dusty and wild',
+    dark: true,
+    font: { family: "'Rye', serif", weight: 400, tracking: '0.02em', upper: false, scale: 0.9 },
+    c: {
+      bg: '#1a0a0c',
+      ink: '#fbe9d7',
+      ink2: '#e2bfa0',
+      ink3: '#a8836a',
+      accent: '#f08a3c',
+      accentInk: '#1d0b02',
+      accent2: '#e8c26a',
+      glass: 'rgba(30, 12, 14, 0.6)',
+      glassHi: 'rgba(40, 17, 18, 0.84)',
+      line: 'rgba(240, 160, 100, 0.2)',
+      glow: '#ff9a4a',
+      shade: 'rgba(14, 5, 6, 0.74)',
+    },
+    ui: { radius: 6, blur: 20, grain: 0.07, vignette: 0.45, panel: 'glass' },
+    particles: 'drift',
+    ambience: 'prairie',
+    entrance: 'sandstorm',
+    preview: ['#2a0f1f', '#c4482a', '#ffb25e'],
+  },
+  {
+    id: 'frostkeep',
+    name: 'Frostkeep',
+    mood: 'A lone castle on a frozen peak, torchlight in its windows as the snow comes down.',
+    vibe: 'Cold and regal',
+    dark: true,
+    font: { family: "'Marcellus SC', serif", weight: 400, tracking: '0.08em', upper: false, scale: 0.96 },
+    c: {
+      bg: '#0b1018',
+      ink: '#eef3f8',
+      ink2: '#b9c6d4',
+      ink3: '#7f8c9b',
+      accent: '#e7b25a',
+      accentInk: '#1b1205',
+      accent2: '#9fc4e6',
+      glass: 'rgba(14, 20, 30, 0.58)',
+      glassHi: 'rgba(20, 28, 40, 0.84)',
+      line: 'rgba(180, 200, 225, 0.18)',
+      glow: '#ffc06a',
+      shade: 'rgba(6, 9, 14, 0.74)',
+    },
+    ui: { radius: 8, blur: 24, grain: 0.04, vignette: 0.4, panel: 'glass' },
+    particles: 'snow',
+    ambience: 'keep',
+    entrance: 'frost',
+    preview: ['#16202e', '#6d7f96', '#e7b25a'],
+  },
+  {
+    id: 'moonspire',
+    name: 'Moonspire',
+    mood: 'A castle of spires above a still lake, candles drifting through the night.',
+    vibe: 'Magical and mysterious',
+    dark: true,
+    font: { family: "'IM Fell English SC', serif", weight: 400, tracking: '0.03em', upper: false, scale: 1.08 },
+    c: {
+      bg: '#070818',
+      ink: '#f1ecdf',
+      ink2: '#c8c1d8',
+      ink3: '#8a84a3',
+      accent: '#e9b949',
+      accentInk: '#170f02',
+      accent2: '#8f7bff',
+      glass: 'rgba(12, 12, 32, 0.6)',
+      glassHi: 'rgba(18, 18, 44, 0.84)',
+      line: 'rgba(200, 180, 255, 0.18)',
+      glow: '#ffd27a',
+      shade: 'rgba(4, 4, 14, 0.76)',
+    },
+    ui: { radius: 10, blur: 22, grain: 0.05, vignette: 0.5, panel: 'glass' },
+    particles: 'candles',
+    ambience: 'arcane',
+    entrance: 'spell',
+    preview: ['#0a0a24', '#3a2f72', '#e9b949'],
+  },
+  {
+    id: 'hanami',
+    name: 'Hanami',
+    mood: 'Cherry blossoms drifting past a quiet temple at dusk.',
+    vibe: 'Calm and graceful',
+    dark: false,
+    font: { family: "'Shippori Mincho', serif", weight: 700, tracking: '0.04em', upper: false, scale: 1.02 },
+    c: {
+      bg: '#f6d3d6',
+      ink: '#2c1424',
+      ink2: '#5e3a50',
+      ink3: '#8b6a7c',
+      accent: '#c9283e',
+      accentInk: '#ffffff',
+      accent2: '#e989a8',
+      glass: 'rgba(255, 244, 246, 0.56)',
+      glassHi: 'rgba(255, 248, 250, 0.84)',
+      line: 'rgba(120, 50, 80, 0.16)',
+      glow: '#ff9fbf',
+      shade: 'rgba(255, 240, 244, 0.7)',
+    },
+    ui: { radius: 14, blur: 22, grain: 0.03, vignette: 0.12, panel: 'glass' },
+    particles: 'petals',
+    ambience: 'garden',
+    entrance: 'bloom',
+    preview: ['#7a6098', '#f4a6bd', '#fff1e6'],
+  },
+  {
+    id: 'lagoon',
+    name: 'Lagoon',
+    mood: 'Warm sand, turquoise water and palms swaying in the sea breeze.',
+    vibe: 'Bright and breezy',
+    dark: false,
+    font: { family: "'Fraunces Variable', 'Fraunces', serif", weight: 760, tracking: '-0.01em', upper: false, scale: 1, settings: "'SOFT' 100, 'WONK' 1" },
+    c: {
+      bg: '#9fe0e6',
+      ink: '#08303a',
+      ink2: '#245562',
+      ink3: '#4f7c86',
+      accent: '#ff6f59',
+      accentInk: '#ffffff',
+      accent2: '#ffc857',
+      glass: 'rgba(255, 255, 255, 0.5)',
+      glassHi: 'rgba(255, 255, 255, 0.8)',
+      line: 'rgba(8, 60, 72, 0.14)',
+      glow: '#fff1b8',
+      shade: 'rgba(240, 252, 252, 0.68)',
+    },
+    ui: { radius: 18, blur: 24, grain: 0.02, vignette: 0.1, panel: 'glass' },
+    particles: 'motes',
+    ambience: 'surf',
+    entrance: 'wave',
+    preview: ['#2f8fe8', '#3fd0c9', '#f6e3b4'],
+  },
+  {
+    id: 'hollowpines',
+    name: 'Hollow Pines',
+    mood: 'Fog between the trees, pale moonlight and fireflies where the path used to be.',
+    vibe: 'Quiet and eerie',
+    dark: true,
+    font: { family: "'Special Elite', monospace", weight: 400, tracking: '0.02em', upper: false, scale: 0.98 },
+    c: {
+      bg: '#070b0a',
+      ink: '#e4ebe6',
+      ink2: '#a9b7ae',
+      ink3: '#6f7d75',
+      accent: '#b8d977',
+      accentInk: '#0f1704',
+      accent2: '#d9c38a',
+      glass: 'rgba(10, 16, 14, 0.62)',
+      glassHi: 'rgba(15, 22, 20, 0.86)',
+      line: 'rgba(170, 200, 180, 0.16)',
+      glow: '#cfee8f',
+      shade: 'rgba(4, 7, 6, 0.78)',
+    },
+    ui: { radius: 6, blur: 22, grain: 0.08, vignette: 0.6, panel: 'glass' },
+    particles: 'fireflies',
+    ambience: 'woods',
+    entrance: 'mist',
+    preview: ['#0b1210', '#2f4540', '#b8d977'],
   },
 ];
 

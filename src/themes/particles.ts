@@ -72,6 +72,10 @@ export class ParticleField {
       none: 0,
       dust: 150,
       embers: 110,
+      petals: 70,
+      fireflies: 46,
+      candles: 26,
+      drift: 120,
     };
     return Math.round(base[this.kind] * Math.min(1.6, Math.max(0.5, area)) * this.density);
   }
@@ -155,11 +159,47 @@ export class ParticleField {
           p.x = Math.random() * w;
         }
         break;
+      case 'petals':
+        p.vx = 18 + Math.random() * 36;
+        p.vy = 22 + Math.random() * 34;
+        p.s = 4 + z * 8;
+        p.a = 0.55 + z * 0.4;
+        p.r = Math.random() * Math.PI * 2;
+        p.vr = (Math.random() - 0.5) * 2.2;
+        p.c = Math.floor(Math.random() * 3);
+        if (!initial) {
+          p.y = -20;
+          p.x = Math.random() * (w + 200) - 200;
+        }
+        break;
+      case 'fireflies':
+        p.vx = -8 + Math.random() * 16;
+        p.vy = -6 + Math.random() * 12;
+        p.s = 1.6 + z * 3;
+        p.a = 0.6 + z * 0.4;
+        p.y = h * (0.35 + Math.random() * 0.62);
+        break;
+      case 'candles':
+        p.vx = 0;
+        p.vy = -2 - Math.random() * 4;
+        p.s = 0.5 + z * 0.9;
+        p.a = 0.55 + z * 0.45;
+        p.y = h * (0.04 + Math.random() * 0.5);
+        break;
+      case 'drift':
+        p.vx = 14 + z * 40;
+        p.vy = -3 + Math.random() * 6;
+        p.s = 0.8 + z * 2;
+        p.a = 0.15 + z * 0.45;
+        break;
       default:
         break;
     }
     return p;
   }
+
+  private tumble: { x: number; y: number; r: number; s: number; v: number; t: number } | null = null;
+  private nextTumble = 6 + Math.random() * 10;
 
   private seed() {
     const n = this.count();
@@ -387,6 +427,126 @@ export class ParticleField {
         }
         ctx.globalAlpha = 1;
         ctx.globalCompositeOperation = 'source-over';
+        break;
+      }
+      case 'petals': {
+        const cols = ['#ffd3e2', '#ffb7cf', '#fff0f5'];
+        for (const p of this.items) {
+          p.t += dt;
+          p.x += (p.vx + Math.sin(p.t * 0.9 + p.z * 6) * 22) * dt;
+          p.y += (p.vy + Math.cos(p.t * 1.3 + p.z * 4) * 10) * dt;
+          p.r += p.vr * dt;
+          repel(p, 140, 120);
+          if (p.y > h + 20 || p.x > w + 30) Object.assign(p, this.make(false));
+          const flip = Math.abs(Math.sin(p.t * 2.1 + p.z * 9));
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.r);
+          ctx.scale(1, 0.35 + flip * 0.65);
+          ctx.globalAlpha = p.a * A;
+          ctx.fillStyle = cols[p.c];
+          ctx.beginPath();
+          ctx.moveTo(0, -p.s);
+          ctx.quadraticCurveTo(p.s * 0.9, -p.s * 0.2, 0, p.s);
+          ctx.quadraticCurveTo(-p.s * 0.9, -p.s * 0.2, 0, -p.s);
+          ctx.fill();
+          ctx.restore();
+        }
+        ctx.globalAlpha = 1;
+        break;
+      }
+      case 'fireflies': {
+        ctx.globalCompositeOperation = 'lighter';
+        const spr = glowSprite('rgba(214, 255, 140, 1)');
+        for (const p of this.items) {
+          p.t += dt;
+          p.x += (p.vx + Math.sin(p.t * 0.8 + p.z * 11) * 14) * dt;
+          p.y += (p.vy + Math.cos(p.t * 0.6 + p.z * 7) * 10) * dt;
+          repel(p, 120, -30);
+          if (p.x < -20) p.x = w + 10;
+          if (p.x > w + 20) p.x = -10;
+          if (p.y < h * 0.25) p.vy = Math.abs(p.vy);
+          if (p.y > h + 10) p.vy = -Math.abs(p.vy);
+          const blink = Math.max(0, Math.sin(p.t * (0.9 + p.z * 0.8) + p.z * 40));
+          ctx.globalAlpha = p.a * A * blink * blink;
+          ctx.drawImage(spr, p.x - p.s * 3, p.y - p.s * 3, p.s * 6, p.s * 6);
+        }
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = 'source-over';
+        break;
+      }
+      case 'candles': {
+        const glow = glowSprite('rgba(255, 196, 110, 1)');
+        for (const p of this.items) {
+          p.t += dt;
+          p.y += (p.vy * 0.2 + Math.sin(p.t * 0.7 + p.z * 9) * 3) * dt;
+          p.x += Math.sin(p.t * 0.33 + p.z * 5) * 2 * dt;
+          if (p.y < -30) Object.assign(p, this.make(false), { y: h * 0.55 });
+          const k = p.s;
+          const cw = 5 * k;
+          const ch = 22 * k;
+          ctx.globalAlpha = p.a * A * 0.9;
+          const g = ctx.createLinearGradient(p.x - cw / 2, 0, p.x + cw / 2, 0);
+          g.addColorStop(0, '#b9ad94');
+          g.addColorStop(0.45, '#fff6e2');
+          g.addColorStop(1, '#8d826d');
+          ctx.fillStyle = g;
+          ctx.fillRect(p.x - cw / 2, p.y, cw, ch);
+          const fl = 0.8 + 0.2 * Math.sin(p.t * 12 + p.z * 30);
+          ctx.globalCompositeOperation = 'lighter';
+          ctx.globalAlpha = p.a * A * fl;
+          ctx.drawImage(glow, p.x - 14 * k, p.y - 20 * k, 28 * k, 28 * k);
+          ctx.fillStyle = '#fff2c8';
+          ctx.beginPath();
+          ctx.ellipse(p.x, p.y - 4 * k, 1.8 * k, 4.2 * k * fl, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.globalCompositeOperation = 'source-over';
+        }
+        ctx.globalAlpha = 1;
+        break;
+      }
+      case 'drift': {
+        ctx.fillStyle = '#ffd9a8';
+        for (const p of this.items) {
+          p.t += dt;
+          p.x += p.vx * dt;
+          p.y += (p.vy + Math.sin(p.t * 0.9 + p.z * 5) * 6) * dt;
+          repel(p, 110, 60);
+          if (p.x > w + 6) p.x = -4;
+          if (p.y < -5) p.y = h + 4;
+          if (p.y > h + 5) p.y = -4;
+          ctx.globalAlpha = p.a * A;
+          ctx.fillRect(p.x, p.y, p.s, p.s);
+        }
+        ctx.globalAlpha = 1;
+        this.nextTumble -= dt;
+        if (!this.tumble && this.nextTumble <= 0) {
+          const s = 16 + Math.random() * 22;
+          this.tumble = { x: -60, y: h * (0.86 + Math.random() * 0.1), r: 0, s, v: 90 + Math.random() * 80, t: 0 };
+          this.nextTumble = 18 + Math.random() * 25;
+        }
+        const tb = this.tumble;
+        if (tb) {
+          tb.t += dt;
+          tb.x += tb.v * dt;
+          tb.r += (tb.v / tb.s) * dt;
+          const bounce = Math.abs(Math.sin(tb.t * 3.2)) * tb.s * 0.9;
+          ctx.save();
+          ctx.translate(tb.x, tb.y - bounce);
+          ctx.rotate(tb.r);
+          ctx.globalAlpha = 0.75 * A;
+          ctx.strokeStyle = '#3b2312';
+          ctx.lineWidth = 1.2;
+          for (let i = 0; i < 9; i++) {
+            const a = i * 0.7;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, tb.s, tb.s * (0.4 + (i % 3) * 0.2), a, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+          ctx.restore();
+          ctx.globalAlpha = 1;
+          if (tb.x > w + 80) this.tumble = null;
+        }
         break;
       }
       default:
