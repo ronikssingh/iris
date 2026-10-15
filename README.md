@@ -56,4 +56,4 @@ npm run dist:win   # Windows installer in release/ (run on Windows)
 npm run icons      # redraw the app icon and the disk image background
 ```
 
-Pushing a tag that starts with `v` builds the Mac and Windows versions on GitHub and publishes them as a release.
+When the version in `package.json` changes and the change reaches `main`, GitHub builds the Mac and Windows versions and publishes them as a new release.

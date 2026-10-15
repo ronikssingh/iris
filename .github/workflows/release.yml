@@ -1,21 +1,50 @@
 name: Build and release Iris
 
+# Every push to main checks the version in package.json. If there is no
+# finished release for that version yet, Iris is built on a Mac and on
+# Windows and published as release v<version>. Bump the version to ship
+# a new release; run the workflow by hand to rebuild the current one.
+
 on:
   push:
-    tags:
-      - 'v*'
+    branches: [main]
+    tags: ['v*']
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: release
   cancel-in-progress: false
 
 jobs:
+  plan:
+    name: Plan
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.plan.outputs.version }}
+      build: ${{ steps.plan.outputs.build }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: plan
+        name: Is a release needed?
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=$(node -p "require('./package.json').version")
+          assets=$(gh release view "v$version" --repo "$GITHUB_REPOSITORY" --json assets --jq '.assets | length' 2>/dev/null || echo 0)
+          build=false
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] || [ "$assets" -lt 4 ]; then build=true; fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "build=$build" >> "$GITHUB_OUTPUT"
+          echo "Version $version has $assets release files; build=$build"
+
   mac:
     name: Mac (Apple silicon)
+    needs: plan
+    if: needs.plan.outputs.build == 'true'
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,12 +69,24 @@ jobs:
         run: tiffutil -cathidpicheck build/background.png build/background@2x.png -out build/background.tiff
 
       - name: Package
-        run: npx electron-builder --mac --arm64 --publish never
+        run: |
+          set -o pipefail
+          npx electron-builder --mac --arm64 --publish never 2>&1 | tee package.log
 
       - name: Check the signature
         run: |
-          codesign --verify --deep --strict --verbose=2 release/mac-arm64/Iris.app
-          codesign -dv release/mac-arm64/Iris.app
+          set -o pipefail
+          {
+            codesign --verify --deep --strict --verbose=2 release/mac-arm64/Iris.app
+            codesign -dv release/mac-arm64/Iris.app
+          } 2>&1 | tee -a package.log
+
+      - name: Explain a failure
+        if: failure()
+        run: |
+          log=$(tail -n 60 package.log 2>/dev/null || echo "no log")
+          log="${log//'%'/'%25'}"; log="${log//$'\n'/'%0A'}"; log="${log//$'\r'/'%0D'}"
+          echo "::error title=Mac packaging failed::$log"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -57,7 +98,12 @@ jobs:
 
   windows:
     name: Windows
+    needs: plan
+    if: needs.plan.outputs.build == 'true'
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
 
@@ -75,7 +121,16 @@ jobs:
           NODE_ENV: production
 
       - name: Package
-        run: npx electron-builder --win --x64 --publish never
+        run: |
+          set -o pipefail
+          npx electron-builder --win --x64 --publish never 2>&1 | tee package.log
+
+      - name: Explain a failure
+        if: failure()
+        run: |
+          log=$(tail -n 60 package.log 2>/dev/null || echo "no log")
+          log="${log//'%'/'%25'}"; log="${log//$'\n'/'%0A'}"; log="${log//$'\r'/'%0D'}"
+          echo "::error title=Windows packaging failed::$log"
 
       - uses: actions/upload-artifact@v4
         with:
@@ -87,8 +142,7 @@ jobs:
 
   release:
     name: Publish
-    needs: [mac, windows]
-    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [plan, mac, windows]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -101,14 +155,17 @@ jobs:
       - name: Publish the release
         env:
           GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ needs.plan.outputs.version }}
         run: |
           ls -la out
-          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
-            gh release upload "$GITHUB_REF_NAME" out/* --repo "$GITHUB_REPOSITORY" --clobber
+          tag="v$VERSION"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release upload "$tag" out/* --repo "$GITHUB_REPOSITORY" --clobber
           else
-            gh release create "$GITHUB_REF_NAME" out/* \
+            gh release create "$tag" out/* \
               --repo "$GITHUB_REPOSITORY" \
-              --title "Iris ${GITHUB_REF_NAME#v}" \
+              --target "$GITHUB_SHA" \
+              --title "Iris $VERSION" \
               --notes-file .github/release-notes.md \
               --latest
           fi
