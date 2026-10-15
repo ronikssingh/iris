@@ -117,7 +117,8 @@ async function afterSignIn(me: { id: string; email: string }) {
     await get().refresh();
     void get().sync();
   } catch (e) {
-    set({ phase: 'ready', syncNote: explain(e) });
+    // most likely the database isn't set up yet, or there's no internet
+    set({ phase: get().profile ? 'ready' : 'needsProfile', syncNote: explain(e) });
   }
 }
 

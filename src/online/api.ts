@@ -122,6 +122,7 @@ export function explain(e: any): string {
   if (/rate limit|too many/i.test(m)) return 'Too many tries in a row. Wait a minute and try again.';
   if (/token has expired|invalid.*otp|otp.*invalid/i.test(m)) return 'That code didn’t work. Check it, or ask for a new one.';
   if (/failed to fetch|network|fetch failed/i.test(m)) return 'Iris can’t reach the internet right now.';
+  if (/relation .* does not exist|schema cache|could not find the (table|function)/i.test(m)) return 'The online database isn’t set up yet. Run supabase/setup.sql in Supabase’s SQL Editor, then try again.';
   if (/duplicate key.*username|profiles_username_key/i.test(m)) return 'That username is taken. Try another.';
   if (/check constraint.*username/i.test(m)) return 'Usernames use 3 to 20 lowercase letters, numbers, dots or underscores.';
   return m || 'Something went wrong. Try again.';
