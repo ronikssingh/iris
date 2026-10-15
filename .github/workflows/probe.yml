@@ -24,13 +24,14 @@ jobs:
           npm i --no-save --no-package-lock esbuild@0.28.2 > /dev/null
           npx esbuild catalog-probe.ts --bundle --platform=node --format=esm --target=node22 --alias:electron=./electron-stub.js --outfile=probe.mjs --log-level=warning
           node probe.mjs
+          node raw-probe.mjs
           # the keys must never appear in what gets published
           for v in "$TMDB_TOKEN" "$IGDB_CLIENT_ID" "$IGDB_CLIENT_SECRET"; do
-            if [ -n "$v" ] && grep -qF "$v" catalog-report.json catalog-calls.json; then echo "::error::a key leaked into the output"; exit 1; fi
+            if [ -n "$v" ] && grep -qF "$v" catalog-report.json catalog-calls.json raw-report.json; then echo "::error::a key leaked into the output"; exit 1; fi
           done
       - name: Publish the report
         run: |
-          mkdir -p /tmp/out && cp catalog-report.json catalog-calls.json /tmp/out/
+          mkdir -p /tmp/out && cp catalog-report.json catalog-calls.json raw-report.json /tmp/out/
           cd /tmp/out
           git init -q -b probe-results
           git config user.name "github-actions"
