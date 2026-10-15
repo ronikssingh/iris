@@ -20,6 +20,15 @@ note(
     .join(', '),
 );
 
+const alts = Object.keys(env)
+  .filter((k) => k.startsWith('ALT_') && env[k])
+  .map((k) => `${k.replace(/^ALT_/, '').replace(/^VAR_/, 'variable ').replace(/^SECRET_/, 'secret ')} (${env[k].trim().length} chars${/^eyJ/.test(env[k].trim()) ? ', starts like a read access token' : /^[0-9a-f]{32}$/i.test(env[k].trim()) ? ', looks like an API key' : ''})`);
+note('Keys found under other names', alts.length ? alts.join('; ') : 'none');
+if (env.TMDB_TOKEN) {
+  const v = env.TMDB_TOKEN.trim();
+  note('TMDB key shape', /^eyJ/.test(v) ? 'read access token' : /^[0-9a-f]{32}$/i.test(v) ? 'v3 API key' : 'unrecognised');
+}
+
 // Build the app's catalogue module for plain Node, swapping Electron's network stack for fetch.
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'iris-live-'));
 const shim = path.join(tmp, 'electron-shim.mjs');

@@ -33,4 +33,18 @@ jobs:
           IGDB_CLIENT_SECRET: ${{ secrets.IGDB_CLIENT_SECRET }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          # Places a key sometimes ends up by mistake; only their lengths are reported.
+          ALT_VAR_TMDB_TOKEN: ${{ vars.TMDB_TOKEN }}
+          ALT_SECRET_TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          ALT_SECRET_TMDB_READ_ACCESS_TOKEN: ${{ secrets.TMDB_READ_ACCESS_TOKEN }}
+          ALT_SECRET_TMDB_ACCESS_TOKEN: ${{ secrets.TMDB_ACCESS_TOKEN }}
+          ALT_SECRET_TMDB_KEY: ${{ secrets.TMDB_KEY }}
+          ALT_SECRET_TMDB: ${{ secrets.TMDB }}
+          ALT_SECRET_TMDB_TOKEN_: ${{ secrets.TMDB_TOKEN_ }}
+          ALT_SECRET_TMBD_TOKEN: ${{ secrets.TMBD_TOKEN }}
+          ALT_SECRET_TMDB_READ_TOKEN: ${{ secrets.TMDB_READ_TOKEN }}
+          ALT_SECRET_TMDB_API_TOKEN: ${{ secrets.TMDB_API_TOKEN }}
+          ALT_SECRET_TMDB_API_READ_ACCESS_TOKEN: ${{ secrets.TMDB_API_READ_ACCESS_TOKEN }}
+          ALT_VAR_IGDB_CLIENT_ID: ${{ vars.IGDB_CLIENT_ID }}
+          ALT_VAR_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
         run: node scripts/live-check.mjs
