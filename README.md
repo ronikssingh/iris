@@ -41,7 +41,7 @@ Run the installer. If SmartScreen says "Windows protected your PC", click **More
 
 ## Coming from Marquee
 
-Iris replaces Marquee. The first time it opens, it finds your Marquee critiques, watchlist and posters on the same computer and brings them across. Nothing in Marquee is changed. The last Marquee builds are kept under the [`marquee-1.0`](https://github.com/ronikssingh/marquee-desktop/tree/marquee-1.0) tag.
+Iris replaces Marquee. The first time it opens, it finds your Marquee critiques, watchlist and posters on the same computer and brings them across. Nothing in Marquee is changed. The last Marquee builds are still in this repository's history, at [commit 1ddddb1](https://github.com/ronikssingh/marquee-desktop/tree/1ddddb1dbef205220b937c4a653357e801da30ae).
 
 ## Building it yourself
 
