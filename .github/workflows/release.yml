@@ -60,6 +60,22 @@ jobs:
       - name: Unit tests
         run: npm test
 
+      - name: Check the keys are set
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_TOKEN }}
+          IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
+          IGDB_CLIENT_SECRET: ${{ secrets.IGDB_CLIENT_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          report=""
+          for name in TMDB_TOKEN IGDB_CLIENT_ID IGDB_CLIENT_SECRET SUPABASE_URL SUPABASE_ANON_KEY; do
+            value="${!name}"
+            if [ -z "$value" ]; then report="$report $name=missing"; else report="$report $name=set(${#value} chars)"; fi
+          done
+          case "$SUPABASE_URL" in https://*.supabase.co|https://*.supabase.co/) url=ok ;; *) url=unexpected ;; esac
+          echo "::warning title=Keys::$report SUPABASE_URL format=$url"
+
       - name: Build
         run: npm run build
         env:
