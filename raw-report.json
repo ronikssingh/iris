@@ -1,0 +1,6973 @@
+{
+ "game_types": {
+  "status": 200,
+  "body": [
+   {
+    "id": 3,
+    "type": "Bundle"
+   },
+   {
+    "id": 1,
+    "type": "DLC"
+   },
+   {
+    "id": 6,
+    "type": "Episode"
+   },
+   {
+    "id": 4,
+    "type": "Standalone Expansion"
+   },
+   {
+    "id": 5,
+    "type": "Mod"
+   },
+   {
+    "id": 8,
+    "type": "Remake"
+   },
+   {
+    "id": 11,
+    "type": "Port"
+   },
+   {
+    "id": 7,
+    "type": "Season"
+   },
+   {
+    "id": 12,
+    "type": "Fork"
+   },
+   {
+    "id": 14,
+    "type": "Update"
+   },
+   {
+    "id": 10,
+    "type": "Expanded Game"
+   },
+   {
+    "id": 13,
+    "type": "Pack / Addon"
+   },
+   {
+    "id": 9,
+    "type": "Remaster"
+   },
+   {
+    "id": 2,
+    "type": "Expansion"
+   },
+   {
+    "id": 0,
+    "type": "Main Game"
+   }
+  ]
+ },
+ "re4_search_nofilter": {
+  "status": 200,
+  "body": [
+   {
+    "id": 145201,
+    "cover": {
+     "id": 135617,
+     "image_id": "co2wn5"
+    },
+    "first_release_date": 1253145600,
+    "name": "Resident Evil 4 and Resident Evil Code: Veronica X Bundle",
+    "slug": "resident-evil-4-and-resident-evil-code-veronica-x-bundle",
+    "game_type": 3
+   },
+   {
+    "id": 20065,
+    "artworks": [
+     {
+      "id": 33026,
+      "image_id": "arphe"
+     },
+     {
+      "id": 259845,
+      "image_id": "ar5khx"
+     }
+    ],
+    "cover": {
+     "id": 550713,
+     "image_id": "cobsxl"
+    },
+    "first_release_date": 1315440000,
+    "name": "Resident Evil 4",
+    "parent_game": 21533,
+    "screenshots": [
+     {
+      "id": 39249,
+      "image_id": "o7dkhborzfbo6rm3oqa2"
+     },
+     {
+      "id": 39251,
+      "image_id": "osaszx5lyznvrghrhe38"
+     },
+     {
+      "id": 39250,
+      "image_id": "j1i4stmyl072ujec7czh"
+     },
+     {
+      "id": 39247,
+      "image_id": "wsgn2ojaeuenxcx23gnt"
+     },
+     {
+      "id": 39248,
+      "image_id": "qhrkmfctj47xu5k6m8ch"
+     },
+     {
+      "id": 1755190,
+      "image_id": "sc11mba"
+     },
+     {
+      "id": 1793445,
+      "image_id": "sc12ftx"
+     },
+     {
+      "id": 1793446,
+      "image_id": "sc12fty"
+     },
+     {
+      "id": 1793447,
+      "image_id": "sc12ftz"
+     },
+     {
+      "id": 1793444,
+      "image_id": "sc12ftw"
+     },
+     {
+      "id": 1793448,
+      "image_id": "sc12fu0"
+     }
+    ],
+    "slug": "resident-evil-4--3",
+    "total_rating": 86.19271557596042,
+    "total_rating_count": 219,
+    "game_type": 9
+   },
+   {
+    "id": 974,
+    "artworks": [
+     {
+      "id": 300431,
+      "image_id": "ar6ftb"
+     },
+     {
+      "id": 300432,
+      "image_id": "ar6ftc"
+     },
+     {
+      "id": 300433,
+      "image_id": "ar6ftd"
+     },
+     {
+      "id": 300434,
+      "image_id": "ar6fte"
+     },
+     {
+      "id": 300435,
+      "image_id": "ar6ftf"
+     },
+     {
+      "id": 300436,
+      "image_id": "ar6ftg"
+     },
+     {
+      "id": 300437,
+      "image_id": "ar6fth"
+     },
+     {
+      "id": 300438,
+      "image_id": "ar6fti"
+     },
+     {
+      "id": 300439,
+      "image_id": "ar6ftj"
+     },
+     {
+      "id": 4025,
+      "image_id": "g20ysltywpwgpxlzxb3l"
+     },
+     {
+      "id": 4024,
+      "image_id": "p9ivorv72xkazsuzifyo"
+     },
+     {
+      "id": 4018,
+      "image_id": "zjuapuzoe0ae1qymqee0"
+     }
+    ],
+    "cover": {
+     "id": 135512,
+     "image_id": "co2wk8"
+    },
+    "first_release_date": 1105401600,
+    "name": "Resident Evil 4",
+    "screenshots": [
+     {
+      "id": 859525,
+      "image_id": "scif7p"
+     },
+     {
+      "id": 859527,
+      "image_id": "scif7r"
+     },
+     {
+      "id": 859523,
+      "image_id": "scif7n"
+     },
+     {
+      "id": 859524,
+      "image_id": "scif7o"
+     },
+     {
+      "id": 859526,
+      "image_id": "scif7q"
+     }
+    ],
+    "slug": "resident-evil-4",
+    "total_rating": 84.44200654064575,
+    "total_rating_count": 1699,
+    "game_type": 0
+   },
+   {
+    "id": 132181,
+    "artworks": [
+     {
+      "id": 90066,
+      "image_id": "ar1xhu"
+     }
+    ],
+    "cover": {
+     "id": 295056,
+     "image_id": "co6bo0"
+    },
+    "first_release_date": 1679616000,
+    "name": "Resident Evil 4",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 883848,
+      "image_id": "scixzc"
+     },
+     {
+      "id": 803216,
+      "image_id": "sch7rk"
+     },
+     {
+      "id": 803217,
+      "image_id": "sch7rl"
+     },
+     {
+      "id": 803218,
+      "image_id": "sch7rm"
+     },
+     {
+      "id": 883849,
+      "image_id": "scixzd"
+     },
+     {
+      "id": 803219,
+      "image_id": "sch7rn"
+     }
+    ],
+    "slug": "resident-evil-4--1",
+    "total_rating": 92.34601223802962,
+    "total_rating_count": 693,
+    "game_type": 8
+   },
+   {
+    "id": 145191,
+    "artworks": [
+     {
+      "id": 45777,
+      "image_id": "arzbl"
+     }
+    ],
+    "cover": {
+     "id": 135522,
+     "image_id": "co2wki"
+    },
+    "first_release_date": 1130198400,
+    "name": "Resident Evil 4",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 428691,
+      "image_id": "sc96s3"
+     },
+     {
+      "id": 428694,
+      "image_id": "sc96s6"
+     },
+     {
+      "id": 428696,
+      "image_id": "sc96s8"
+     },
+     {
+      "id": 428695,
+      "image_id": "sc96s7"
+     },
+     {
+      "id": 428692,
+      "image_id": "sc96s4"
+     },
+     {
+      "id": 428693,
+      "image_id": "sc96s5"
+     }
+    ],
+    "slug": "resident-evil-4--2",
+    "total_rating": 87.57546544058535,
+    "total_rating_count": 187,
+    "game_type": 10
+   },
+   {
+    "id": 172560,
+    "artworks": [
+     {
+      "id": 54668,
+      "image_id": "ar166k"
+     }
+    ],
+    "cover": {
+     "id": 185699,
+     "image_id": "co3zab"
+    },
+    "first_release_date": 1634774400,
+    "name": "Resident Evil 4 VR",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 643153,
+      "image_id": "scds9d"
+     },
+     {
+      "id": 643154,
+      "image_id": "scds9e"
+     },
+     {
+      "id": 643538,
+      "image_id": "scdsk2"
+     },
+     {
+      "id": 643539,
+      "image_id": "scdsk3"
+     }
+    ],
+    "slug": "resident-evil-4-vr",
+    "total_rating": 84.70626836499045,
+    "total_rating_count": 11,
+    "game_type": 8
+   },
+   {
+    "id": 250644,
+    "cover": {
+     "id": 354196,
+     "image_id": "co7las"
+    },
+    "first_release_date": 1701993600,
+    "name": "Resident Evil 4: VR Mode",
+    "parent_game": 132181,
+    "screenshots": [
+     {
+      "id": 1056909,
+      "image_id": "scmnil"
+     },
+     {
+      "id": 1056910,
+      "image_id": "scmnim"
+     }
+    ],
+    "slug": "resident-evil-4-vr-mode",
+    "game_type": 14
+   },
+   {
+    "id": 356696,
+    "artworks": [
+     {
+      "id": 180995,
+      "image_id": "ar3vnn"
+     }
+    ],
+    "cover": {
+     "id": 474092,
+     "image_id": "coa5t8"
+    },
+    "first_release_date": 1705708800,
+    "name": "Resident Evil 4: Berserker",
+    "parent_game": 132181,
+    "screenshots": [
+     {
+      "id": 1590847,
+      "image_id": "scy3i7"
+     },
+     {
+      "id": 1590848,
+      "image_id": "scy3i8"
+     }
+    ],
+    "slug": "resident-evil-4-berserker",
+    "game_type": 5
+   },
+   {
+    "id": 262541,
+    "cover": {
+     "id": 325193,
+     "image_id": "co6yx5"
+    },
+    "first_release_date": 1643760000,
+    "name": "Resident Evil 4 HD Project",
+    "parent_game": 24223,
+    "screenshots": [
+     {
+      "id": 1121009,
+      "image_id": "sco0z5"
+     },
+     {
+      "id": 1121010,
+      "image_id": "sco0z6"
+     },
+     {
+      "id": 1121011,
+      "image_id": "sco0z7"
+     }
+    ],
+    "slug": "resident-evil-4-hd-project",
+    "game_type": 5
+   },
+   {
+    "id": 21533,
+    "artworks": [
+     {
+      "id": 70487,
+      "image_id": "ar1idz"
+     }
+    ],
+    "cover": {
+     "id": 93761,
+     "image_id": "co20ch"
+    },
+    "first_release_date": 1180569600,
+    "name": "Resident Evil 4: Wii Edition",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 170961,
+      "image_id": "z3fuethgqqx9thrriirq"
+     },
+     {
+      "id": 170962,
+      "image_id": "r88fmzspfywdx9zlpxru"
+     },
+     {
+      "id": 170952,
+      "image_id": "cg3tswzxq8fmpidcl5dt"
+     },
+     {
+      "id": 170955,
+      "image_id": "rnilyprpuunqbedpaouz"
+     },
+     {
+      "id": 1010725,
+      "image_id": "sclnvp"
+     },
+     {
+      "id": 170959,
+      "image_id": "cgx3nlgd5fnvzth982ju"
+     },
+     {
+      "id": 170957,
+      "image_id": "sfpyaabezpwisvrja8j0"
+     },
+     {
+      "id": 170960,
+      "image_id": "hk09gkz0uoi7ua5xxxtg"
+     },
+     {
+      "id": 170958,
+      "image_id": "skv8nk4ewzeuj3pjy0ta"
+     }
+    ],
+    "slug": "resident-evil-4-wii-edition",
+    "total_rating": 84.21653275148574,
+    "total_rating_count": 38,
+    "game_type": 11
+   },
+   {
+    "id": 284920,
+    "artworks": [
+     {
+      "id": 128311,
+      "image_id": "ar2r07"
+     }
+    ],
+    "cover": {
+     "id": 600578,
+     "image_id": "cocveq"
+    },
+    "first_release_date": 1707436800,
+    "name": "Resident Evil 4: Gold Edition",
+    "screenshots": [
+     {
+      "id": 1231438,
+      "image_id": "scqe6m"
+     },
+     {
+      "id": 1231439,
+      "image_id": "scqe6n"
+     },
+     {
+      "id": 1231440,
+      "image_id": "scqe6o"
+     },
+     {
+      "id": 1231441,
+      "image_id": "scqe6p"
+     },
+     {
+      "id": 1231442,
+      "image_id": "scqe6q"
+     },
+     {
+      "id": 1231443,
+      "image_id": "scqe6r"
+     },
+     {
+      "id": 1231444,
+      "image_id": "scqe6s"
+     },
+     {
+      "id": 1231445,
+      "image_id": "scqe6t"
+     }
+    ],
+    "slug": "resident-evil-4-gold-edition",
+    "version_parent": 132181,
+    "game_type": 3
+   },
+   {
+    "id": 227780,
+    "cover": {
+     "id": 272126,
+     "image_id": "co5tz2"
+    },
+    "first_release_date": 1249948800,
+    "name": "Resident Evil 4: Zeebo Edition",
+    "parent_game": 130004,
+    "screenshots": [
+     {
+      "id": 941972,
+      "image_id": "sck6tw"
+     },
+     {
+      "id": 941973,
+      "image_id": "sck6tx"
+     },
+     {
+      "id": 941971,
+      "image_id": "sck6tv"
+     }
+    ],
+    "slug": "resident-evil-4-zeebo-edition",
+    "game_type": 11
+   },
+   {
+    "id": 29145,
+    "artworks": [
+     {
+      "id": 165435,
+      "image_id": "ar3jnf"
+     }
+    ],
+    "cover": {
+     "id": 269091,
+     "image_id": "co5rmr"
+    },
+    "first_release_date": 1616371200,
+    "name": "Resident Evil 4: Otome Edition",
+    "screenshots": [
+     {
+      "id": 1020325,
+      "image_id": "sclvad"
+     },
+     {
+      "id": 1020326,
+      "image_id": "sclvae"
+     },
+     {
+      "id": 1020327,
+      "image_id": "sclvaf"
+     },
+     {
+      "id": 1020328,
+      "image_id": "sclvag"
+     },
+     {
+      "id": 1020329,
+      "image_id": "sclvah"
+     },
+     {
+      "id": 1020330,
+      "image_id": "sclvai"
+     },
+     {
+      "id": 1020331,
+      "image_id": "sclvaj"
+     },
+     {
+      "id": 1020332,
+      "image_id": "sclvak"
+     }
+    ],
+    "slug": "resident-evil-4-otome-edition",
+    "game_type": 0
+   },
+   {
+    "id": 266401,
+    "cover": {
+     "id": 330548,
+     "image_id": "co731w"
+    },
+    "first_release_date": 1679529600,
+    "name": "Resident Evil 4: Extra DLC Pack",
+    "parent_game": 132181,
+    "screenshots": [
+     {
+      "id": 1144920,
+      "image_id": "scojfc"
+     },
+     {
+      "id": 1144925,
+      "image_id": "scojfh"
+     },
+     {
+      "id": 1144924,
+      "image_id": "scojfg"
+     },
+     {
+      "id": 1144916,
+      "image_id": "scojf8"
+     },
+     {
+      "id": 1144915,
+      "image_id": "scojf7"
+     },
+     {
+      "id": 1144917,
+      "image_id": "scojf9"
+     },
+     {
+      "id": 1144918,
+      "image_id": "scojfa"
+     },
+     {
+      "id": 1144919,
+      "image_id": "scojfb"
+     },
+     {
+      "id": 1144921,
+      "image_id": "scojfd"
+     },
+     {
+      "id": 1144922,
+      "image_id": "scojfe"
+     },
+     {
+      "id": 1144923,
+      "image_id": "scojff"
+     }
+    ],
+    "slug": "resident-evil-4-extra-dlc-pack",
+    "game_type": 13
+   },
+   {
+    "id": 266717,
+    "artworks": [
+     {
+      "id": 126311,
+      "image_id": "ar2pgn"
+     },
+     {
+      "id": 275590,
+      "image_id": "ar5wna"
+     }
+    ],
+    "cover": {
+     "id": 354195,
+     "image_id": "co7lar"
+    },
+    "first_release_date": 1695254400,
+    "name": "Resident Evil 4: Separate Ways",
+    "parent_game": 132181,
+    "screenshots": [
+     {
+      "id": 1144903,
+      "image_id": "scojev"
+     },
+     {
+      "id": 1573684,
+      "image_id": "scxq9g"
+     },
+     {
+      "id": 1144899,
+      "image_id": "scojer"
+     },
+     {
+      "id": 1144898,
+      "image_id": "scojeq"
+     },
+     {
+      "id": 1144901,
+      "image_id": "scojet"
+     },
+     {
+      "id": 1144902,
+      "image_id": "scojeu"
+     },
+     {
+      "id": 1144900,
+      "image_id": "scojes"
+     },
+     {
+      "id": 1144897,
+      "image_id": "scojep"
+     }
+    ],
+    "slug": "resident-evil-4-separate-ways--1",
+    "total_rating": 88.11557744308226,
+    "total_rating_count": 67,
+    "game_type": 2
+   },
+   {
+    "id": 222557,
+    "artworks": [
+     {
+      "id": 104209,
+      "image_id": "ar28ep"
+     }
+    ],
+    "cover": {
+     "id": 295053,
+     "image_id": "co6bnx"
+    },
+    "first_release_date": 1679616000,
+    "name": "Resident Evil 4: Deluxe Edition",
+    "screenshots": [
+     {
+      "id": 1017188,
+      "image_id": "sclsv8"
+     },
+     {
+      "id": 1017197,
+      "image_id": "sclsvh"
+     },
+     {
+      "id": 1017189,
+      "image_id": "sclsv9"
+     },
+     {
+      "id": 1017192,
+      "image_id": "sclsvc"
+     },
+     {
+      "id": 1017193,
+      "image_id": "sclsvd"
+     },
+     {
+      "id": 1017194,
+      "image_id": "sclsve"
+     },
+     {
+      "id": 1017204,
+      "image_id": "sclsvo"
+     },
+     {
+      "id": 1017195,
+      "image_id": "sclsvf"
+     },
+     {
+      "id": 1017196,
+      "image_id": "sclsvg"
+     },
+     {
+      "id": 1017202,
+      "image_id": "sclsvm"
+     },
+     {
+      "id": 1017203,
+      "image_id": "sclsvn"
+     },
+     {
+      "id": 1017190,
+      "image_id": "sclsva"
+     },
+     {
+      "id": 1017198,
+      "image_id": "sclsvi"
+     },
+     {
+      "id": 1017199,
+      "image_id": "sclsvj"
+     },
+     {
+      "id": 1017201,
+      "image_id": "sclsvl"
+     },
+     {
+      "id": 1017191,
+      "image_id": "sclsvb"
+     },
+     {
+      "id": 1017200,
+      "image_id": "sclsvk"
+     }
+    ],
+    "slug": "resident-evil-4-deluxe-edition",
+    "version_parent": 132181,
+    "game_type": 3
+   },
+   {
+    "id": 130004,
+    "cover": {
+     "id": 133802,
+     "image_id": "co2v8q"
+    },
+    "first_release_date": 1135987200,
+    "name": "Resident Evil 4: Mobile Edition",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 372330,
+      "image_id": "sc7zai"
+     },
+     {
+      "id": 372332,
+      "image_id": "sc7zak"
+     },
+     {
+      "id": 372331,
+      "image_id": "sc7zaj"
+     },
+     {
+      "id": 372329,
+      "image_id": "sc7zah"
+     }
+    ],
+    "slug": "resident-evil-4-mobile-edition",
+    "game_type": 11
+   },
+   {
+    "id": 41861,
+    "cover": {
+     "id": 135040,
+     "image_id": "co2w74"
+    },
+    "first_release_date": 1130198400,
+    "name": "Resident Evil 4: Premium Edition",
+    "screenshots": [
+     {
+      "id": 149087,
+      "image_id": "tnddzsvbgo1aws6kau6w"
+     },
+     {
+      "id": 416356,
+      "image_id": "sc8x9g"
+     },
+     {
+      "id": 416357,
+      "image_id": "sc8x9h"
+     }
+    ],
+    "slug": "resident-evil-4-premium-edition",
+    "version_parent": 145191,
+    "game_type": 0
+   }
+  ]
+ },
+ "re4_slug": {
+  "status": 200,
+  "body": [
+   {
+    "id": 974,
+    "artworks": [
+     {
+      "id": 300431,
+      "image_id": "ar6ftb"
+     },
+     {
+      "id": 300432,
+      "image_id": "ar6ftc"
+     },
+     {
+      "id": 300433,
+      "image_id": "ar6ftd"
+     },
+     {
+      "id": 300434,
+      "image_id": "ar6fte"
+     },
+     {
+      "id": 300435,
+      "image_id": "ar6ftf"
+     },
+     {
+      "id": 300436,
+      "image_id": "ar6ftg"
+     },
+     {
+      "id": 300437,
+      "image_id": "ar6fth"
+     },
+     {
+      "id": 300438,
+      "image_id": "ar6fti"
+     },
+     {
+      "id": 300439,
+      "image_id": "ar6ftj"
+     },
+     {
+      "id": 4025,
+      "image_id": "g20ysltywpwgpxlzxb3l"
+     },
+     {
+      "id": 4024,
+      "image_id": "p9ivorv72xkazsuzifyo"
+     },
+     {
+      "id": 4018,
+      "image_id": "zjuapuzoe0ae1qymqee0"
+     }
+    ],
+    "cover": {
+     "id": 135512,
+     "image_id": "co2wk8"
+    },
+    "first_release_date": 1105401600,
+    "name": "Resident Evil 4",
+    "screenshots": [
+     {
+      "id": 859525,
+      "image_id": "scif7p"
+     },
+     {
+      "id": 859527,
+      "image_id": "scif7r"
+     },
+     {
+      "id": 859523,
+      "image_id": "scif7n"
+     },
+     {
+      "id": 859524,
+      "image_id": "scif7o"
+     },
+     {
+      "id": 859526,
+      "image_id": "scif7q"
+     }
+    ],
+    "slug": "resident-evil-4",
+    "total_rating": 84.44200654064575,
+    "total_rating_count": 1699,
+    "game_type": 0
+   },
+   {
+    "id": 132181,
+    "artworks": [
+     {
+      "id": 90066,
+      "image_id": "ar1xhu"
+     }
+    ],
+    "cover": {
+     "id": 295056,
+     "image_id": "co6bo0"
+    },
+    "first_release_date": 1679616000,
+    "name": "Resident Evil 4",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 883848,
+      "image_id": "scixzc"
+     },
+     {
+      "id": 803216,
+      "image_id": "sch7rk"
+     },
+     {
+      "id": 803217,
+      "image_id": "sch7rl"
+     },
+     {
+      "id": 803218,
+      "image_id": "sch7rm"
+     },
+     {
+      "id": 883849,
+      "image_id": "scixzd"
+     },
+     {
+      "id": 803219,
+      "image_id": "sch7rn"
+     }
+    ],
+    "slug": "resident-evil-4--1",
+    "total_rating": 92.34601223802962,
+    "total_rating_count": 693,
+    "game_type": 8
+   },
+   {
+    "id": 20065,
+    "artworks": [
+     {
+      "id": 33026,
+      "image_id": "arphe"
+     },
+     {
+      "id": 259845,
+      "image_id": "ar5khx"
+     }
+    ],
+    "cover": {
+     "id": 550713,
+     "image_id": "cobsxl"
+    },
+    "first_release_date": 1315440000,
+    "name": "Resident Evil 4",
+    "parent_game": 21533,
+    "screenshots": [
+     {
+      "id": 39249,
+      "image_id": "o7dkhborzfbo6rm3oqa2"
+     },
+     {
+      "id": 39251,
+      "image_id": "osaszx5lyznvrghrhe38"
+     },
+     {
+      "id": 39250,
+      "image_id": "j1i4stmyl072ujec7czh"
+     },
+     {
+      "id": 39247,
+      "image_id": "wsgn2ojaeuenxcx23gnt"
+     },
+     {
+      "id": 39248,
+      "image_id": "qhrkmfctj47xu5k6m8ch"
+     },
+     {
+      "id": 1755190,
+      "image_id": "sc11mba"
+     },
+     {
+      "id": 1793445,
+      "image_id": "sc12ftx"
+     },
+     {
+      "id": 1793446,
+      "image_id": "sc12fty"
+     },
+     {
+      "id": 1793447,
+      "image_id": "sc12ftz"
+     },
+     {
+      "id": 1793444,
+      "image_id": "sc12ftw"
+     },
+     {
+      "id": 1793448,
+      "image_id": "sc12fu0"
+     }
+    ],
+    "slug": "resident-evil-4--3",
+    "total_rating": 86.19271557596042,
+    "total_rating_count": 219,
+    "game_type": 9
+   },
+   {
+    "id": 145191,
+    "artworks": [
+     {
+      "id": 45777,
+      "image_id": "arzbl"
+     }
+    ],
+    "cover": {
+     "id": 135522,
+     "image_id": "co2wki"
+    },
+    "first_release_date": 1130198400,
+    "name": "Resident Evil 4",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 428691,
+      "image_id": "sc96s3"
+     },
+     {
+      "id": 428694,
+      "image_id": "sc96s6"
+     },
+     {
+      "id": 428696,
+      "image_id": "sc96s8"
+     },
+     {
+      "id": 428695,
+      "image_id": "sc96s7"
+     },
+     {
+      "id": 428692,
+      "image_id": "sc96s4"
+     },
+     {
+      "id": 428693,
+      "image_id": "sc96s5"
+     }
+    ],
+    "slug": "resident-evil-4--2",
+    "total_rating": 87.57546544058535,
+    "total_rating_count": 187,
+    "game_type": 10
+   },
+   {
+    "id": 266717,
+    "artworks": [
+     {
+      "id": 126311,
+      "image_id": "ar2pgn"
+     },
+     {
+      "id": 275590,
+      "image_id": "ar5wna"
+     }
+    ],
+    "cover": {
+     "id": 354195,
+     "image_id": "co7lar"
+    },
+    "first_release_date": 1695254400,
+    "name": "Resident Evil 4: Separate Ways",
+    "parent_game": 132181,
+    "screenshots": [
+     {
+      "id": 1144903,
+      "image_id": "scojev"
+     },
+     {
+      "id": 1573684,
+      "image_id": "scxq9g"
+     },
+     {
+      "id": 1144899,
+      "image_id": "scojer"
+     },
+     {
+      "id": 1144898,
+      "image_id": "scojeq"
+     },
+     {
+      "id": 1144901,
+      "image_id": "scojet"
+     },
+     {
+      "id": 1144902,
+      "image_id": "scojeu"
+     },
+     {
+      "id": 1144900,
+      "image_id": "scojes"
+     },
+     {
+      "id": 1144897,
+      "image_id": "scojep"
+     }
+    ],
+    "slug": "resident-evil-4-separate-ways--1",
+    "total_rating": 88.11557744308226,
+    "total_rating_count": 67,
+    "game_type": 2
+   },
+   {
+    "id": 24223,
+    "artworks": [
+     {
+      "id": 46672,
+      "image_id": "ar100g"
+     },
+     {
+      "id": 46671,
+      "image_id": "ar100f"
+     }
+    ],
+    "cover": {
+     "id": 124326,
+     "image_id": "co2nxi"
+    },
+    "first_release_date": 1393545600,
+    "name": "Resident Evil 4: Ultimate HD Edition",
+    "parent_game": 20065,
+    "screenshots": [
+     {
+      "id": 1925976,
+      "image_id": "sc15a3c"
+     },
+     {
+      "id": 428716,
+      "image_id": "sc96ss"
+     },
+     {
+      "id": 428714,
+      "image_id": "sc96sq"
+     },
+     {
+      "id": 428710,
+      "image_id": "sc96sm"
+     },
+     {
+      "id": 428715,
+      "image_id": "sc96sr"
+     },
+     {
+      "id": 428708,
+      "image_id": "sc96sk"
+     },
+     {
+      "id": 428712,
+      "image_id": "sc96so"
+     },
+     {
+      "id": 428711,
+      "image_id": "sc96sn"
+     },
+     {
+      "id": 428713,
+      "image_id": "sc96sp"
+     },
+     {
+      "id": 428709,
+      "image_id": "sc96sl"
+     }
+    ],
+    "slug": "resident-evil-4-ultimate-hd-edition",
+    "total_rating": 85.8703917396926,
+    "total_rating_count": 40,
+    "game_type": 11
+   },
+   {
+    "id": 21533,
+    "artworks": [
+     {
+      "id": 70487,
+      "image_id": "ar1idz"
+     }
+    ],
+    "cover": {
+     "id": 93761,
+     "image_id": "co20ch"
+    },
+    "first_release_date": 1180569600,
+    "name": "Resident Evil 4: Wii Edition",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 170961,
+      "image_id": "z3fuethgqqx9thrriirq"
+     },
+     {
+      "id": 170962,
+      "image_id": "r88fmzspfywdx9zlpxru"
+     },
+     {
+      "id": 170952,
+      "image_id": "cg3tswzxq8fmpidcl5dt"
+     },
+     {
+      "id": 170955,
+      "image_id": "rnilyprpuunqbedpaouz"
+     },
+     {
+      "id": 1010725,
+      "image_id": "sclnvp"
+     },
+     {
+      "id": 170959,
+      "image_id": "cgx3nlgd5fnvzth982ju"
+     },
+     {
+      "id": 170957,
+      "image_id": "sfpyaabezpwisvrja8j0"
+     },
+     {
+      "id": 170960,
+      "image_id": "hk09gkz0uoi7ua5xxxtg"
+     },
+     {
+      "id": 170958,
+      "image_id": "skv8nk4ewzeuj3pjy0ta"
+     }
+    ],
+    "slug": "resident-evil-4-wii-edition",
+    "total_rating": 84.21653275148574,
+    "total_rating_count": 38,
+    "game_type": 11
+   },
+   {
+    "id": 172560,
+    "artworks": [
+     {
+      "id": 54668,
+      "image_id": "ar166k"
+     }
+    ],
+    "cover": {
+     "id": 185699,
+     "image_id": "co3zab"
+    },
+    "first_release_date": 1634774400,
+    "name": "Resident Evil 4 VR",
+    "parent_game": 974,
+    "screenshots": [
+     {
+      "id": 643153,
+      "image_id": "scds9d"
+     },
+     {
+      "id": 643154,
+      "image_id": "scds9e"
+     },
+     {
+      "id": 643538,
+      "image_id": "scdsk2"
+     },
+     {
+      "id": 643539,
+      "image_id": "scdsk3"
+     }
+    ],
+    "slug": "resident-evil-4-vr",
+    "total_rating": 84.70626836499045,
+    "total_rating_count": 11,
+    "game_type": 8
+   },
+   {
+    "id": 242726,
+    "artworks": [
+     {
+      "id": 126313,
+      "image_id": "ar2pgp"
+     },
+     {
+      "id": 126312,
+      "image_id": "ar2pgo"
+     }
+    ],
+    "cover": {
+     "id": 293817,
+     "image_id": "co6apl"
+    },
+    "first_release_date": 1680825600,
+    "name": "Resident Evil 4: The Mercenaries",
+    "parent_game": 132181,
+    "screenshots": [
+     {
+      "id": 1221858,
+      "image_id": "scq6si"
+     },
+     {
+      "id": 1221859,
+      "image_id": "scq6sj"
+     },
+     {
+      "id": 1221863,
+      "image_id": "scq6sn"
+     },
+     {
+      "id": 1221865,
+      "image_id": "scq6sp"
+     },
+     {
+      "id": 1221861,
+      "image_id": "scq6sl"
+     },
+     {
+      "id": 1221860,
+      "image_id": "scq6sk"
+     },
+     {
+      "id": 1221862,
+      "image_id": "scq6sm"
+     },
+     {
+      "id": 1221864,
+      "image_id": "scq6so"
+     }
+    ],
+    "slug": "resident-evil-4-the-mercenaries",
+    "total_rating": 73.88314059646987,
+    "total_rating_count": 6,
+    "game_type": 1
+   },
+   {
+    "id": 24211,
+    "cover": {
+     "id": 124908,
+     "image_id": "co2odo"
+    },
+    "first_release_date": 1111622400,
+    "name": "Resident Evil 4: Collector's Edition",
+    "screenshots": [
+     {
+      "id": 416353,
+      "image_id": "sc8x9d"
+     },
+     {
+      "id": 416354,
+      "image_id": "sc8x9e"
+     },
+     {
+      "id": 416355,
+      "image_id": "sc8x9f"
+     }
+    ],
+    "slug": "resident-evil-4-collectors-edition",
+    "total_rating": 82.5,
+    "total_rating_count": 0,
+    "version_parent": 974,
+    "game_type": 0
+   }
+  ]
+ },
+ "pokemon_slug": {
+  "status": 200,
+  "body": [
+   {
+    "id": 1517,
+    "artworks": [
+     {
+      "id": 95839,
+      "image_id": "ar21y7"
+     }
+    ],
+    "cover": {
+     "id": 92655,
+     "image_id": "co1zhr"
+    },
+    "first_release_date": 1095292800,
+    "name": "Pokémon Emerald Version",
+    "parent_game": 1557,
+    "screenshots": [
+     {
+      "id": 24150,
+      "image_id": "pxxxldjjkkhtb3jznj9h"
+     },
+     {
+      "id": 24148,
+      "image_id": "uwzpqwjvmzcepd8jjxub"
+     },
+     {
+      "id": 24146,
+      "image_id": "c77bodnkwu73gs2jwhw4"
+     },
+     {
+      "id": 24147,
+      "image_id": "bafm66dp5k0lutvvzali"
+     },
+     {
+      "id": 24149,
+      "image_id": "vt40b0l2aqesb7qkpad8"
+     }
+    ],
+    "slug": "pokemon-emerald-version",
+    "total_rating": 73.06376787163737,
+    "total_rating_count": 634,
+    "game_type": 10
+   },
+   {
+    "id": 1561,
+    "artworks": [
+     {
+      "id": 263012,
+      "image_id": "ar5mxw"
+     },
+     {
+      "id": 263013,
+      "image_id": "ar5mxx"
+     },
+     {
+      "id": 263014,
+      "image_id": "ar5mxy"
+     },
+     {
+      "id": 263015,
+      "image_id": "ar5mxz"
+     },
+     {
+      "id": 263016,
+      "image_id": "ar5my0"
+     },
+     {
+      "id": 263017,
+      "image_id": "ar5my1"
+     },
+     {
+      "id": 263018,
+      "image_id": "ar5my2"
+     },
+     {
+      "id": 263019,
+      "image_id": "ar5my3"
+     },
+     {
+      "id": 263020,
+      "image_id": "ar5my4"
+     },
+     {
+      "id": 263021,
+      "image_id": "ar5my5"
+     },
+     {
+      "id": 263022,
+      "image_id": "ar5my6"
+     }
+    ],
+    "cover": {
+     "id": 266332,
+     "image_id": "co5pi4"
+    },
+    "first_release_date": 825379200,
+    "name": "Pokémon Red Version",
+    "screenshots": [
+     {
+      "id": 499634,
+      "image_id": "scapiq"
+     },
+     {
+      "id": 499637,
+      "image_id": "scapit"
+     },
+     {
+      "id": 499636,
+      "image_id": "scapis"
+     },
+     {
+      "id": 499633,
+      "image_id": "scapip"
+     },
+     {
+      "id": 499635,
+      "image_id": "scapir"
+     }
+    ],
+    "slug": "pokemon-red-version",
+    "total_rating": 79.86429336730971,
+    "total_rating_count": 604,
+    "game_type": 0
+   },
+   {
+    "id": 1559,
+    "artworks": [
+     {
+      "id": 306391,
+      "image_id": "ar6kev"
+     }
+    ],
+    "cover": {
+     "id": 92690,
+     "image_id": "co1ziq"
+    },
+    "first_release_date": 1075334400,
+    "name": "Pokémon FireRed Version",
+    "parent_game": 1561,
+    "screenshots": [
+     {
+      "id": 20118,
+      "image_id": "zy2diilz2prc6ridynml"
+     },
+     {
+      "id": 20117,
+      "image_id": "mjzthdvgstynlgqmqggd"
+     },
+     {
+      "id": 20119,
+      "image_id": "qsxdlfhke4g5tr7dpwur"
+     }
+    ],
+    "slug": "pokemon-firered-version",
+    "total_rating": 91.62553380569503,
+    "total_rating_count": 561,
+    "game_type": 8
+   },
+   {
+    "id": 1512,
+    "artworks": [
+     {
+      "id": 73582,
+      "image_id": "ar1kry"
+     }
+    ],
+    "cover": {
+     "id": 266345,
+     "image_id": "co5pih"
+    },
+    "first_release_date": 905558400,
+    "name": "Pokémon Yellow Version: Special Pikachu Edition",
+    "parent_game": 1561,
+    "screenshots": [
+     {
+      "id": 499835,
+      "image_id": "scapob"
+     },
+     {
+      "id": 499837,
+      "image_id": "scapod"
+     },
+     {
+      "id": 499838,
+      "image_id": "scapoe"
+     },
+     {
+      "id": 499836,
+      "image_id": "scapoc"
+     }
+    ],
+    "slug": "pokemon-yellow-version-special-pikachu-edition",
+    "total_rating": 81.32041044782869,
+    "total_rating_count": 535,
+    "game_type": 10
+   },
+   {
+    "id": 12515,
+    "artworks": [
+     {
+      "id": 6121,
+      "image_id": "ar4q1"
+     },
+     {
+      "id": 180910,
+      "image_id": "ar3vla"
+     }
+    ],
+    "cover": {
+     "id": 441443,
+     "image_id": "co9gmb"
+    },
+    "first_release_date": 1467763200,
+    "name": "Pokémon Go",
+    "screenshots": [
+     {
+      "id": 169328,
+      "image_id": "xmgey2eql0ixg0xu7iqp"
+     },
+     {
+      "id": 169324,
+      "image_id": "pzdrgrapccfsyd01vmix"
+     },
+     {
+      "id": 169327,
+      "image_id": "gka5esvv8dwsoghvd07o"
+     },
+     {
+      "id": 14416,
+      "image_id": "srea5vixa8wy2glmdfeu"
+     },
+     {
+      "id": 14415,
+      "image_id": "ayouyhibs15srhvynuce"
+     },
+     {
+      "id": 25186,
+      "image_id": "jsjk7isuiv41k3phhydb"
+     },
+     {
+      "id": 169323,
+      "image_id": "lximqndiltirm0zgupjl"
+     },
+     {
+      "id": 169325,
+      "image_id": "npdzchfdg5rkyeszw8dc"
+     },
+     {
+      "id": 169329,
+      "image_id": "rregvmvbd58vyfkzfcpv"
+     },
+     {
+      "id": 169331,
+      "image_id": "pmbcnvynxvae7g5jmjb9"
+     },
+     {
+      "id": 169330,
+      "image_id": "vtmykhvzfdt4tm2xfdg4"
+     },
+     {
+      "id": 169326,
+      "image_id": "b4b0e9gnpzqubkyzixmm"
+     }
+    ],
+    "slug": "pokemon-go",
+    "total_rating": 64.56025213562373,
+    "total_rating_count": 504,
+    "game_type": 0
+   },
+   {
+    "id": 1511,
+    "artworks": [
+     {
+      "id": 73581,
+      "image_id": "ar1krx"
+     }
+    ],
+    "cover": {
+     "id": 266335,
+     "image_id": "co5pi7"
+    },
+    "first_release_date": 845337600,
+    "name": "Pokémon Blue Version",
+    "screenshots": [
+     {
+      "id": 499832,
+      "image_id": "scapo8"
+     },
+     {
+      "id": 499834,
+      "image_id": "scapoa"
+     },
+     {
+      "id": 499830,
+      "image_id": "scapo6"
+     },
+     {
+      "id": 499831,
+      "image_id": "scapo7"
+     }
+    ],
+    "slug": "pokemon-blue-version",
+    "total_rating": 86.08317201400914,
+    "total_rating_count": 492,
+    "game_type": 0
+   },
+   {
+    "id": 1519,
+    "artworks": [
+     {
+      "id": 3876,
+      "image_id": "iywwv8kenwxb5ev44iic"
+     },
+     {
+      "id": 3877,
+      "image_id": "jafirpnpfp20yjcxc7x8"
+     },
+     {
+      "id": 3878,
+      "image_id": "folyfncmxt0zd9wwrhga"
+     }
+    ],
+    "cover": {
+     "id": 395125,
+     "image_id": "co8gvp"
+    },
+    "first_release_date": 1221264000,
+    "name": "Pokémon Platinum Version",
+    "parent_game": 1560,
+    "screenshots": [
+     {
+      "id": 24145,
+      "image_id": "j0q0wl52j9pa4xw2euh8"
+     },
+     {
+      "id": 21988,
+      "image_id": "ukoiwauxg0aojlmqvxoo"
+     },
+     {
+      "id": 24144,
+      "image_id": "jgqsjiygx6nc0grkzmp8"
+     },
+     {
+      "id": 169419,
+      "image_id": "ls4mb5uz2baw35npby67"
+     },
+     {
+      "id": 169420,
+      "image_id": "fguik28h6udtnfqntwgh"
+     },
+     {
+      "id": 169422,
+      "image_id": "iedkn3nfzjeetempwctg"
+     },
+     {
+      "id": 169421,
+      "image_id": "qytld0xjmhlqh6sx19jy"
+     },
+     {
+      "id": 169417,
+      "image_id": "gltzzyridzstjijsenfp"
+     },
+     {
+      "id": 1252375,
+      "image_id": "scquc7"
+     },
+     {
+      "id": 1252376,
+      "image_id": "scquc8"
+     },
+     {
+      "id": 24143,
+      "image_id": "wgxzsqmon8oym3vrvuob"
+     },
+     {
+      "id": 169416,
+      "image_id": "g9pcrx0ni0sjb95ucfvc"
+     },
+     {
+      "id": 169418,
+      "image_id": "abygbw3xwz4vgzigxgen"
+     }
+    ],
+    "slug": "pokemon-platinum-version",
+    "total_rating": 80.67993648545189,
+    "total_rating_count": 436,
+    "game_type": 10
+   },
+   {
+    "id": 1514,
+    "artworks": [
+     {
+      "id": 73456,
+      "image_id": "ar1kog"
+     },
+     {
+      "id": 78957,
+      "image_id": "ar1ox9"
+     },
+     {
+      "id": 78956,
+      "image_id": "ar1ox8"
+     },
+     {
+      "id": 78954,
+      "image_id": "ar1ox6"
+     },
+     {
+      "id": 78955,
+      "image_id": "ar1ox7"
+     },
+     {
+      "id": 78953,
+      "image_id": "ar1ox5"
+     }
+    ],
+    "cover": {
+     "id": 266349,
+     "image_id": "co5pil"
+    },
+    "first_release_date": 976752000,
+    "name": "Pokémon Crystal Version",
+    "parent_game": 1513,
+    "screenshots": [
+     {
+      "id": 818337,
+      "image_id": "schjfl"
+     },
+     {
+      "id": 818340,
+      "image_id": "schjfo"
+     },
+     {
+      "id": 818338,
+      "image_id": "schjfm"
+     },
+     {
+      "id": 818339,
+      "image_id": "schjfn"
+     },
+     {
+      "id": 818336,
+      "image_id": "schjfk"
+     },
+     {
+      "id": 818334,
+      "image_id": "schjfi"
+     },
+     {
+      "id": 818335,
+      "image_id": "schjfj"
+     }
+    ],
+    "slug": "pokemon-crystal-version",
+    "total_rating": 87.03000199249733,
+    "total_rating_count": 433,
+    "game_type": 10
+   },
+   {
+    "id": 1513,
+    "artworks": [
+     {
+      "id": 73454,
+      "image_id": "ar1koe"
+     }
+    ],
+    "cover": {
+     "id": 266341,
+     "image_id": "co5pid"
+    },
+    "first_release_date": 943142400,
+    "name": "Pokémon Silver Version",
+    "screenshots": [
+     {
+      "id": 499857,
+      "image_id": "scapox"
+     },
+     {
+      "id": 499858,
+      "image_id": "scapoy"
+     },
+     {
+      "id": 499859,
+      "image_id": "scapoz"
+     }
+    ],
+    "slug": "pokemon-silver-version",
+    "total_rating": 86.31445734771184,
+    "total_rating_count": 430,
+    "game_type": 0
+   },
+   {
+    "id": 1558,
+    "artworks": [
+     {
+      "id": 73455,
+      "image_id": "ar1kof"
+     }
+    ],
+    "cover": {
+     "id": 266338,
+     "image_id": "co5pia"
+    },
+    "first_release_date": 943142400,
+    "name": "Pokémon Gold Version",
+    "screenshots": [
+     {
+      "id": 499839,
+      "image_id": "scapof"
+     },
+     {
+      "id": 499840,
+      "image_id": "scapog"
+     },
+     {
+      "id": 499841,
+      "image_id": "scapoh"
+     },
+     {
+      "id": 499842,
+      "image_id": "scapoi"
+     },
+     {
+      "id": 499843,
+      "image_id": "scapoj"
+     }
+    ],
+    "slug": "pokemon-gold-version",
+    "total_rating": 87.13077898108182,
+    "total_rating_count": 404,
+    "game_type": 0
+   },
+   {
+    "id": 1520,
+    "cover": {
+     "id": 92205,
+     "image_id": "co1z59"
+    },
+    "first_release_date": 1252713600,
+    "name": "Pokémon SoulSilver Version",
+    "parent_game": 1513,
+    "screenshots": [
+     {
+      "id": 24156,
+      "image_id": "poikvxac3ktlsunuvtph"
+     },
+     {
+      "id": 24157,
+      "image_id": "khwap8bgh3pvpawfotye"
+     },
+     {
+      "id": 24158,
+      "image_id": "vduq22yygtj6pldllpwe"
+     },
+     {
+      "id": 21991,
+      "image_id": "q5x8llmxyjpk0voqmrxb"
+     },
+     {
+      "id": 24159,
+      "image_id": "tuje1di9abjmt69pvcjt"
+     }
+    ],
+    "slug": "pokemon-soulsilver-version",
+    "total_rating": 89.97115151931084,
+    "total_rating_count": 396,
+    "game_type": 8
+   },
+   {
+    "id": 1521,
+    "artworks": [
+     {
+      "id": 196841,
+      "image_id": "ar47vt"
+     },
+     {
+      "id": 193220,
+      "image_id": "ar4538"
+     },
+     {
+      "id": 193221,
+      "image_id": "ar4539"
+     }
+    ],
+    "cover": {
+     "id": 92085,
+     "image_id": "co1z1x"
+    },
+    "first_release_date": 1284768000,
+    "name": "Pokémon Black Version",
+    "screenshots": [
+     {
+      "id": 169262,
+      "image_id": "vtsxqhxlbnbv5mibvwbk"
+     },
+     {
+      "id": 22037,
+      "image_id": "ln8z4f5rae9kggt71pu2"
+     },
+     {
+      "id": 22038,
+      "image_id": "pbq0qh1otdav683ga9ko"
+     },
+     {
+      "id": 169258,
+      "image_id": "y7ouszozoswm46tnrxah"
+     },
+     {
+      "id": 169259,
+      "image_id": "ywn3xvr1b85vyr5nwbha"
+     },
+     {
+      "id": 169261,
+      "image_id": "wgtzpbscvb4aqmjtxzi1"
+     },
+     {
+      "id": 169266,
+      "image_id": "vbj6b0whormynkxyf4mr"
+     },
+     {
+      "id": 1630436,
+      "image_id": "scyy1w"
+     },
+     {
+      "id": 1630437,
+      "image_id": "scyy1x"
+     },
+     {
+      "id": 1630438,
+      "image_id": "scyy1y"
+     },
+     {
+      "id": 1630435,
+      "image_id": "scyy1v"
+     },
+     {
+      "id": 169265,
+      "image_id": "mlm8beddkmmds9xeob7x"
+     },
+     {
+      "id": 169264,
+      "image_id": "l4oahtixg7zrvfyleefj"
+     }
+    ],
+    "slug": "pokemon-black-version",
+    "total_rating": 84.56187748531416,
+    "total_rating_count": 376,
+    "game_type": 0
+   }
+  ]
+ },
+ "spiderman_slug": {
+  "status": 200,
+  "body": [
+   {
+    "id": 19565,
+    "artworks": [
+     {
+      "id": 154,
+      "image_id": "drtsnc0kypn8rzssuxpc"
+     },
+     {
+      "id": 156,
+      "image_id": "b3vsiy5aicbgqznlff8o"
+     },
+     {
+      "id": 153,
+      "image_id": "qdf6gzojgbyqywysnntm"
+     },
+     {
+      "id": 5025,
+      "image_id": "ukvwz28yd7tvokds2btf"
+     },
+     {
+      "id": 155,
+      "image_id": "nplsp5hfioqmqhv32shz"
+     },
+     {
+      "id": 152,
+      "image_id": "xyrkou2h4zxjnmitk8gi"
+     }
+    ],
+    "cover": {
+     "id": 81907,
+     "image_id": "co1r77"
+    },
+    "first_release_date": 1536278400,
+    "name": "Marvel's Spider-Man",
+    "screenshots": [
+     {
+      "id": 214089,
+      "image_id": "bjoksdiwvkatzql3gi95"
+     },
+     {
+      "id": 244025,
+      "image_id": "vfmpwxgrk6lubydwm4it"
+     },
+     {
+      "id": 44399,
+      "image_id": "fmjzieghsgjfks7akhhy"
+     },
+     {
+      "id": 209488,
+      "image_id": "pegynjc4fge2jzwkqoqi"
+     },
+     {
+      "id": 25151,
+      "image_id": "gc3cpzbpddhfxj4nvaq1"
+     },
+     {
+      "id": 44397,
+      "image_id": "o25kbk0jom2uvfm37l62"
+     },
+     {
+      "id": 214090,
+      "image_id": "nofld5l3txxuqhp7j8cc"
+     },
+     {
+      "id": 25152,
+      "image_id": "inft7cmgvqcionq0jtrn"
+     },
+     {
+      "id": 44398,
+      "image_id": "fozp4i9v0b1w0uucoii8"
+     },
+     {
+      "id": 209489,
+      "image_id": "ytkccnptotyzm9xuorks"
+     },
+     {
+      "id": 209487,
+      "image_id": "buzcfrd5g9umokl8eyy0"
+     },
+     {
+      "id": 214091,
+      "image_id": "kzjckffwuqaemo5rx6uu"
+     }
+    ],
+    "slug": "marvels-spider-man",
+    "total_rating": 88.41625035238583,
+    "total_rating_count": 2189,
+    "game_type": 0
+   },
+   {
+    "id": 134581,
+    "artworks": [
+     {
+      "id": 229130,
+      "image_id": "ar4wsq"
+     },
+     {
+      "id": 226763,
+      "image_id": "ar4uyz"
+     },
+     {
+      "id": 226764,
+      "image_id": "ar4uz0"
+     },
+     {
+      "id": 272700,
+      "image_id": "ar5uf0"
+     },
+     {
+      "id": 272677,
+      "image_id": "ar5ued"
+     }
+    ],
+    "cover": {
+     "id": 534007,
+     "image_id": "cobg1j"
+    },
+    "first_release_date": 1605139200,
+    "name": "Marvel's Spider-Man: Miles Morales",
+    "parent_game": 19565,
+    "screenshots": [
+     {
+      "id": 388179,
+      "image_id": "sc8bir"
+     },
+     {
+      "id": 388180,
+      "image_id": "sc8bis"
+     },
+     {
+      "id": 1380645,
+      "image_id": "sctlb9"
+     }
+    ],
+    "slug": "marvels-spider-man-miles-morales",
+    "total_rating": 84.16158672790655,
+    "total_rating_count": 600,
+    "game_type": 4
+   },
+   {
+    "id": 127044,
+    "artworks": [
+     {
+      "id": 110475,
+      "image_id": "ar2d8r"
+     },
+     {
+      "id": 226762,
+      "image_id": "ar4uyy"
+     },
+     {
+      "id": 226761,
+      "image_id": "ar4uyx"
+     }
+    ],
+    "cover": {
+     "id": 534008,
+     "image_id": "cobg1k"
+    },
+    "first_release_date": 1697760000,
+    "name": "Marvel's Spider-Man 2",
+    "screenshots": [
+     {
+      "id": 1068390,
+      "image_id": "scmwdi"
+     },
+     {
+      "id": 1068392,
+      "image_id": "scmwdk"
+     },
+     {
+      "id": 1068393,
+      "image_id": "scmwdl"
+     },
+     {
+      "id": 1068394,
+      "image_id": "scmwdm"
+     },
+     {
+      "id": 1153572,
+      "image_id": "scoq3o"
+     },
+     {
+      "id": 1153573,
+      "image_id": "scoq3p"
+     },
+     {
+      "id": 718620,
+      "image_id": "scfeho"
+     },
+     {
+      "id": 718621,
+      "image_id": "scfehp"
+     },
+     {
+      "id": 718622,
+      "image_id": "scfehq"
+     },
+     {
+      "id": 1068391,
+      "image_id": "scmwdj"
+     },
+     {
+      "id": 1153574,
+      "image_id": "scoq3q"
+     },
+     {
+      "id": 1153575,
+      "image_id": "scoq3r"
+     }
+    ],
+    "slug": "marvels-spider-man-2",
+    "total_rating": 83.40440188873637,
+    "total_rating_count": 399,
+    "game_type": 0
+   },
+   {
+    "id": 3603,
+    "artworks": [
+     {
+      "id": 233504,
+      "image_id": "ar5068"
+     },
+     {
+      "id": 233505,
+      "image_id": "ar5069"
+     },
+     {
+      "id": 233506,
+      "image_id": "ar506a"
+     }
+    ],
+    "cover": {
+     "id": 137294,
+     "image_id": "co2xxq"
+    },
+    "first_release_date": 967593600,
+    "name": "Spider-Man",
+    "screenshots": [
+     {
+      "id": 24528,
+      "image_id": "uwgtdo8gcopapq74jpab"
+     },
+     {
+      "id": 24530,
+      "image_id": "hew7hnaqumhhqnuxwhla"
+     },
+     {
+      "id": 24526,
+      "image_id": "jalajzvpftfp3ritbdka"
+     },
+     {
+      "id": 24527,
+      "image_id": "hwjwty8e3nzuk6m9rlrt"
+     },
+     {
+      "id": 24529,
+      "image_id": "yyeox8usesrf5jb9lgny"
+     }
+    ],
+    "slug": "spider-man--5",
+    "total_rating": 56.07903899957102,
+    "total_rating_count": 306,
+    "game_type": 0
+   },
+   {
+    "id": 138949,
+    "artworks": [
+     {
+      "id": 289550,
+      "image_id": "ar67f2"
+     },
+     {
+      "id": 226760,
+      "image_id": "ar4uyw"
+     },
+     {
+      "id": 226759,
+      "image_id": "ar4uyv"
+     }
+    ],
+    "cover": {
+     "id": 534009,
+     "image_id": "cobg1l"
+    },
+    "first_release_date": 1605139200,
+    "name": "Marvel's Spider-Man Remastered",
+    "parent_game": 19565,
+    "screenshots": [
+     {
+      "id": 402345,
+      "image_id": "sc8mg9"
+     },
+     {
+      "id": 402346,
+      "image_id": "sc8mga"
+     },
+     {
+      "id": 402343,
+      "image_id": "sc8mg7"
+     },
+     {
+      "id": 400336,
+      "image_id": "sc8kwg"
+     },
+     {
+      "id": 402344,
+      "image_id": "sc8mg8"
+     }
+    ],
+    "slug": "marvels-spider-man-remastered",
+    "total_rating": 81.7059400625601,
+    "total_rating_count": 304,
+    "game_type": 9
+   },
+   {
+    "id": 6285,
+    "cover": {
+     "id": 123558,
+     "image_id": "co2nc6"
+    },
+    "first_release_date": 1088380800,
+    "name": "Spider-Man 2",
+    "screenshots": [
+     {
+      "id": 291718,
+      "image_id": "sc693a"
+     },
+     {
+      "id": 291717,
+      "image_id": "sc6939"
+     },
+     {
+      "id": 291716,
+      "image_id": "sc6938"
+     },
+     {
+      "id": 1813683,
+      "image_id": "sc12vg3"
+     },
+     {
+      "id": 306493,
+      "image_id": "sc6khp"
+     },
+     {
+      "id": 1813682,
+      "image_id": "sc12vg2"
+     },
+     {
+      "id": 1813685,
+      "image_id": "sc12vg5"
+     },
+     {
+      "id": 1813684,
+      "image_id": "sc12vg4"
+     }
+    ],
+    "slug": "spider-man-2",
+    "total_rating": 72.04509010034693,
+    "total_rating_count": 275,
+    "game_type": 0
+   },
+   {
+    "id": 4225,
+    "cover": {
+     "id": 129310,
+     "image_id": "co2rry"
+    },
+    "first_release_date": 1127347200,
+    "name": "Ultimate Spider-Man",
+    "screenshots": [
+     {
+      "id": 1000945,
+      "image_id": "sclgc1"
+     },
+     {
+      "id": 395208,
+      "image_id": "sc8gy0"
+     },
+     {
+      "id": 1000944,
+      "image_id": "sclgc0"
+     },
+     {
+      "id": 1000946,
+      "image_id": "sclgc2"
+     },
+     {
+      "id": 1000947,
+      "image_id": "sclgc3"
+     }
+    ],
+    "slug": "ultimate-spider-man",
+    "total_rating": 74.64429148113295,
+    "total_rating_count": 183,
+    "game_type": 0
+   },
+   {
+    "id": 19114,
+    "artworks": [
+     {
+      "id": 302682,
+      "image_id": "ar6hju"
+     }
+    ],
+    "cover": {
+     "id": 79099,
+     "image_id": "co1p17"
+    },
+    "first_release_date": 1018828800,
+    "name": "Spider-Man",
+    "screenshots": [
+     {
+      "id": 23697,
+      "image_id": "dzz1joehqmxgo9olbgow"
+     },
+     {
+      "id": 704297,
+      "image_id": "scf3ft"
+     },
+     {
+      "id": 704299,
+      "image_id": "scf3fv"
+     },
+     {
+      "id": 704298,
+      "image_id": "scf3fu"
+     },
+     {
+      "id": 704300,
+      "image_id": "scf3fw"
+     }
+    ],
+    "slug": "spider-man--1",
+    "total_rating": 70.96204596534037,
+    "total_rating_count": 162,
+    "game_type": 0
+   },
+   {
+    "id": 553,
+    "artworks": [
+     {
+      "id": 4351,
+      "image_id": "lpmckmeigugci0o18sot"
+     },
+     {
+      "id": 4350,
+      "image_id": "vxuwiozj9s6fmsgo2xwr"
+     },
+     {
+      "id": 4353,
+      "image_id": "at1kixmf1psgb4djo0om"
+     },
+     {
+      "id": 4352,
+      "image_id": "fvrywavendbkexkudvnr"
+     },
+     {
+      "id": 4354,
+      "image_id": "dvg0auu7j6taooduttih"
+     }
+    ],
+    "cover": {
+     "id": 136759,
+     "image_id": "co2xiv"
+    },
+    "first_release_date": 1283817600,
+    "name": "Spider-Man: Shattered Dimensions",
+    "screenshots": [
+     {
+      "id": 173522,
+      "image_id": "au9njr51cyc65i1kulfz"
+     },
+     {
+      "id": 29042,
+      "image_id": "jreflkxz5vxixuecitl2"
+     },
+     {
+      "id": 173515,
+      "image_id": "qwfe5zs2yc5uw50venug"
+     },
+     {
+      "id": 173516,
+      "image_id": "m4dpw9lzc1j7jcx4o861"
+     },
+     {
+      "id": 173517,
+      "image_id": "eg62itrv2j6srii11f2o"
+     },
+     {
+      "id": 173519,
+      "image_id": "mdkhg5pfygklr9wnbn9s"
+     },
+     {
+      "id": 173520,
+      "image_id": "zxmmuuwzvqooxmkv0jgb"
+     },
+     {
+      "id": 173521,
+      "image_id": "c6sawpyd0xfxdlfotgdm"
+     },
+     {
+      "id": 173518,
+      "image_id": "covv30lpi5jsyxfu2got"
+     },
+     {
+      "id": 173524,
+      "image_id": "yfixbalpawxjp27z5p2n"
+     },
+     {
+      "id": 173523,
+      "image_id": "wfoble1el61orunec2yk"
+     },
+     {
+      "id": 173525,
+      "image_id": "hymce0qhbitqx7j4gle1"
+     }
+    ],
+    "slug": "spider-man-shattered-dimensions",
+    "total_rating": 73.34347276482147,
+    "total_rating_count": 152,
+    "game_type": 0
+   },
+   {
+    "id": 5181,
+    "cover": {
+     "id": 272879,
+     "image_id": "co5ujz"
+    },
+    "first_release_date": 1224547200,
+    "name": "Spider-Man: Web of Shadows",
+    "screenshots": [
+     {
+      "id": 26716,
+      "image_id": "ypxwfjaywszryvdesnse"
+     },
+     {
+      "id": 282644,
+      "image_id": "sc6238"
+     },
+     {
+      "id": 282646,
+      "image_id": "sc623a"
+     },
+     {
+      "id": 282645,
+      "image_id": "sc6239"
+     }
+    ],
+    "slug": "spider-man-web-of-shadows",
+    "total_rating": 72.13128578747722,
+    "total_rating_count": 137,
+    "game_type": 0
+   },
+   {
+    "id": 5178,
+    "cover": {
+     "id": 123556,
+     "image_id": "co2nc4"
+    },
+    "first_release_date": 1178236800,
+    "name": "Spider-Man 3",
+    "screenshots": [
+     {
+      "id": 182607,
+      "image_id": "p9joo7wx7plbzkm7di56"
+     },
+     {
+      "id": 182606,
+      "image_id": "x3giurr6jh3yv7muua4j"
+     },
+     {
+      "id": 182610,
+      "image_id": "faxz1hi3yl29utdxt0mi"
+     },
+     {
+      "id": 182602,
+      "image_id": "camkuj4pczkcgmxvnorh"
+     },
+     {
+      "id": 182603,
+      "image_id": "xqjpcd64ojqqieogznz6"
+     },
+     {
+      "id": 182601,
+      "image_id": "asfevlbdmopxtpjr1w3t"
+     },
+     {
+      "id": 182605,
+      "image_id": "snpr17lvpbt6a1cilpqw"
+     },
+     {
+      "id": 182604,
+      "image_id": "mzdtjdpxyuuw00sjb1er"
+     },
+     {
+      "id": 182609,
+      "image_id": "yfufem8tqcly0ah7i2h5"
+     },
+     {
+      "id": 182608,
+      "image_id": "gptjfjpsi4caxwjhsozl"
+     }
+    ],
+    "slug": "spider-man-3",
+    "total_rating": 60.54349870053353,
+    "total_rating_count": 129,
+    "game_type": 0
+   },
+   {
+    "id": 1376,
+    "artworks": [
+     {
+      "id": 297595,
+      "image_id": "ar6dmj"
+     },
+     {
+      "id": 297596,
+      "image_id": "ar6dmk"
+     },
+     {
+      "id": 297594,
+      "image_id": "ar6dmi"
+     }
+    ],
+    "cover": {
+     "id": 120592,
+     "image_id": "co2l1s"
+    },
+    "first_release_date": 1340668800,
+    "name": "The Amazing Spider-Man",
+    "screenshots": [
+     {
+      "id": 116951,
+      "image_id": "rmv3ettn6zgjjqmylexz"
+     },
+     {
+      "id": 116950,
+      "image_id": "ozsjylotfmgmwpqdg1kn"
+     },
+     {
+      "id": 116952,
+      "image_id": "ho3s7vihfis90qisxctu"
+     },
+     {
+      "id": 116953,
+      "image_id": "cmv2hjv7xw8dkxddiasq"
+     },
+     {
+      "id": 116954,
+      "image_id": "gxy7lnfgahzsck8tsxfd"
+     }
+    ],
+    "slug": "the-amazing-spider-man",
+    "total_rating": 65.8425942711954,
+    "total_rating_count": 121,
+    "game_type": 0
+   }
+  ]
+ },
+ "zelda_search": {
+  "status": 200,
+  "body": [
+   {
+    "id": 1022,
+    "artworks": [
+     {
+      "id": 52599,
+      "image_id": "ar14l3"
+     },
+     {
+      "id": 52597,
+      "image_id": "ar14l1"
+     },
+     {
+      "id": 52598,
+      "image_id": "ar14l2"
+     },
+     {
+      "id": 52596,
+      "image_id": "ar14l0"
+     },
+     {
+      "id": 172464,
+      "image_id": "ar3p2o"
+     },
+     {
+      "id": 172465,
+      "image_id": "ar3p2p"
+     }
+    ],
+    "cover": {
+     "id": 86202,
+     "image_id": "co1uii"
+    },
+    "first_release_date": 509328000,
+    "name": "The Legend of Zelda",
+    "screenshots": [
+     {
+      "id": 951198,
+      "image_id": "sckdy6"
+     },
+     {
+      "id": 951190,
+      "image_id": "sckdxy"
+     },
+     {
+      "id": 951192,
+      "image_id": "sckdy0"
+     },
+     {
+      "id": 951195,
+      "image_id": "sckdy3"
+     },
+     {
+      "id": 951196,
+      "image_id": "sckdy4"
+     },
+     {
+      "id": 951197,
+      "image_id": "sckdy5"
+     },
+     {
+      "id": 951189,
+      "image_id": "sckdxx"
+     },
+     {
+      "id": 951193,
+      "image_id": "sckdy1"
+     },
+     {
+      "id": 951194,
+      "image_id": "sckdy2"
+     },
+     {
+      "id": 951191,
+      "image_id": "sckdxz"
+     }
+    ],
+    "slug": "the-legend-of-zelda",
+    "total_rating": 80.51910061776223,
+    "total_rating_count": 737,
+    "game_type": 0
+   },
+   {
+    "id": 1025,
+    "artworks": [
+     {
+      "id": 52600,
+      "image_id": "ar14l4"
+     },
+     {
+      "id": 52602,
+      "image_id": "ar14l6"
+     },
+     {
+      "id": 52601,
+      "image_id": "ar14l5"
+     }
+    ],
+    "cover": {
+     "id": 86234,
+     "image_id": "co1uje"
+    },
+    "first_release_date": 537580800,
+    "name": "Zelda II: The Adventure of Link",
+    "screenshots": [
+     {
+      "id": 179229,
+      "image_id": "rmdhzefetito3kaewgmy"
+     },
+     {
+      "id": 19444,
+      "image_id": "hqhg84m1938opiactwvx"
+     },
+     {
+      "id": 179233,
+      "image_id": "xynfvbtkeymblhw7z0iz"
+     },
+     {
+      "id": 179234,
+      "image_id": "goiyxdnf6uov4nuwzh75"
+     },
+     {
+      "id": 179230,
+      "image_id": "ayfky3lub2r11kvoh5pp"
+     },
+     {
+      "id": 179235,
+      "image_id": "nnhx8ulbz4ozjubiwdng"
+     },
+     {
+      "id": 179236,
+      "image_id": "d1ho6mr2gmnb3okbhbsl"
+     },
+     {
+      "id": 179231,
+      "image_id": "cakoghkyhlvhprfkdtcw"
+     },
+     {
+      "id": 179232,
+      "image_id": "s88qvaejqozjfwvcvnr5"
+     }
+    ],
+    "slug": "zelda-ii-the-adventure-of-link",
+    "total_rating": 65.35685228506797,
+    "total_rating_count": 306,
+    "game_type": 0
+   },
+   {
+    "id": 1041,
+    "artworks": [
+     {
+      "id": 73463,
+      "image_id": "ar1kon"
+     },
+     {
+      "id": 142182,
+      "image_id": "ar31pi"
+     },
+     {
+      "id": 142181,
+      "image_id": "ar31ph"
+     }
+    ],
+    "cover": {
+     "id": 132049,
+     "image_id": "co2tw1"
+    },
+    "first_release_date": 983232000,
+    "name": "The Legend of Zelda: Oracle of Ages",
+    "screenshots": [
+     {
+      "id": 176309,
+      "image_id": "lrj9bbm9a3i2ivp0vn6c"
+     },
+     {
+      "id": 176307,
+      "image_id": "t7l71ajns1jk97ytkpks"
+     },
+     {
+      "id": 176308,
+      "image_id": "l8zvnxgmqhb3nnesg7e9"
+     },
+     {
+      "id": 176310,
+      "image_id": "vpaltrwlvwvfkvet6lzx"
+     },
+     {
+      "id": 176313,
+      "image_id": "jzuaecsuznl7ezp2mv0q"
+     },
+     {
+      "id": 176312,
+      "image_id": "mpaogl2848lhfsmo91ry"
+     },
+     {
+      "id": 176311,
+      "image_id": "cdx7sfogk2uasy23zirs"
+     },
+     {
+      "id": 176314,
+      "image_id": "ujhr706ik9ylq6yg9fil"
+     }
+    ],
+    "slug": "the-legend-of-zelda-oracle-of-ages",
+    "total_rating": 89.79132424841677,
+    "total_rating_count": 176,
+    "game_type": 0
+   },
+   {
+    "id": 1032,
+    "artworks": [
+     {
+      "id": 73462,
+      "image_id": "ar1kom"
+     },
+     {
+      "id": 142185,
+      "image_id": "ar31pl"
+     },
+     {
+      "id": 142183,
+      "image_id": "ar31pj"
+     },
+     {
+      "id": 142184,
+      "image_id": "ar31pk"
+     }
+    ],
+    "cover": {
+     "id": 132048,
+     "image_id": "co2tw0"
+    },
+    "first_release_date": 983232000,
+    "name": "The Legend of Zelda: Oracle of Seasons",
+    "screenshots": [
+     {
+      "id": 952111,
+      "image_id": "sckenj"
+     },
+     {
+      "id": 952116,
+      "image_id": "sckeno"
+     },
+     {
+      "id": 952113,
+      "image_id": "sckenl"
+     },
+     {
+      "id": 952115,
+      "image_id": "sckenn"
+     },
+     {
+      "id": 952117,
+      "image_id": "sckenp"
+     },
+     {
+      "id": 952112,
+      "image_id": "sckenk"
+     },
+     {
+      "id": 952114,
+      "image_id": "sckenm"
+     }
+    ],
+    "slug": "the-legend-of-zelda-oracle-of-seasons",
+    "total_rating": 87.1478904034507,
+    "total_rating_count": 202,
+    "game_type": 0
+   },
+   {
+    "id": 1026,
+    "artworks": [
+     {
+      "id": 84543,
+      "image_id": "ar1t8f"
+     },
+     {
+      "id": 84541,
+      "image_id": "ar1t8d"
+     },
+     {
+      "id": 84544,
+      "image_id": "ar1t8g"
+     },
+     {
+      "id": 84542,
+      "image_id": "ar1t8e"
+     },
+     {
+      "id": 84537,
+      "image_id": "ar1t89"
+     },
+     {
+      "id": 52607,
+      "image_id": "ar14lb"
+     },
+     {
+      "id": 84538,
+      "image_id": "ar1t8a"
+     },
+     {
+      "id": 84539,
+      "image_id": "ar1t8b"
+     },
+     {
+      "id": 84536,
+      "image_id": "ar1t88"
+     },
+     {
+      "id": 84545,
+      "image_id": "ar1t8h"
+     },
+     {
+      "id": 84540,
+      "image_id": "ar1t8c"
+     },
+     {
+      "id": 172473,
+      "image_id": "ar3p2x"
+     },
+     {
+      "id": 172474,
+      "image_id": "ar3p2y"
+     },
+     {
+      "id": 172475,
+      "image_id": "ar3p2z"
+     }
+    ],
+    "cover": {
+     "id": 181427,
+     "image_id": "co3vzn"
+    },
+    "first_release_date": 690681600,
+    "name": "The Legend of Zelda: A Link to the Past",
+    "screenshots": [
+     {
+      "id": 176243,
+      "image_id": "mussjiqbllmh1lxkavc4"
+     },
+     {
+      "id": 176249,
+      "image_id": "zsxzq9l0kl5l96mtm9c1"
+     },
+     {
+      "id": 176244,
+      "image_id": "tip6pqunpn88oufxkl05"
+     },
+     {
+      "id": 176248,
+      "image_id": "arzyywgcajea7r1bbjbt"
+     },
+     {
+      "id": 176245,
+      "image_id": "tgy8bav1xegsdkjcwce2"
+     },
+     {
+      "id": 176246,
+      "image_id": "lw052zlyygibyccnh8re"
+     },
+     {
+      "id": 176247,
+      "image_id": "kug1gjpomy43zthbms2q"
+     }
+    ],
+    "slug": "the-legend-of-zelda-a-link-to-the-past",
+    "total_rating": 95.96913601907968,
+    "total_rating_count": 1730,
+    "game_type": 0
+   },
+   {
+    "id": 163217,
+    "cover": {
+     "id": 312172,
+     "image_id": "co6ovg"
+    },
+    "name": "The Legend of Zelda: Shénqí de Màozi",
+    "screenshots": [
+     {
+      "id": 580324,
+      "image_id": "sccfs4"
+     },
+     {
+      "id": 580325,
+      "image_id": "sccfs5"
+     }
+    ],
+    "slug": "the-legend-of-zelda-shenqi-de-maozi",
+    "game_type": 0
+   },
+   {
+    "id": 150080,
+    "cover": {
+     "id": 164200,
+     "image_id": "co3ip4"
+    },
+    "first_release_date": 1336262400,
+    "name": "BS The Legend of Zelda \"MottZilla Patch\"",
+    "parent_game": 134500,
+    "screenshots": [
+     {
+      "id": 473136,
+      "image_id": "sca52o"
+     },
+     {
+      "id": 473137,
+      "image_id": "sca52p"
+     }
+    ],
+    "slug": "bs-the-legend-of-zelda-mottzilla-patch",
+    "game_type": 5
+   },
+   {
+    "id": 45142,
+    "cover": {
+     "id": 279139,
+     "image_id": "co5zdv"
+    },
+    "first_release_date": 1038441600,
+    "name": "The Legend of Zelda: Ocarina of Time - Master Quest",
+    "parent_game": 1029,
+    "screenshots": [
+     {
+      "id": 958731,
+      "image_id": "sckjrf"
+     },
+     {
+      "id": 958732,
+      "image_id": "sckjrg"
+     },
+     {
+      "id": 958733,
+      "image_id": "sckjrh"
+     },
+     {
+      "id": 958734,
+      "image_id": "sckjri"
+     },
+     {
+      "id": 958735,
+      "image_id": "sckjrj"
+     }
+    ],
+    "slug": "the-legend-of-zelda-ocarina-of-time-master-quest",
+    "total_rating": 89.99137033931464,
+    "total_rating_count": 36,
+    "game_type": 4
+   },
+   {
+    "id": 237895,
+    "artworks": [
+     {
+      "id": 101524,
+      "image_id": "ar26c4"
+     }
+    ],
+    "cover": {
+     "id": 289882,
+     "image_id": "co67oa"
+    },
+    "first_release_date": 1512691200,
+    "name": "The Legend of Zelda: Breath of the Wild and The Legend of Zelda: Breath of the Wild Expansion Pass Bundle",
+    "screenshots": [
+     {
+      "id": 995073,
+      "image_id": "sclbsx"
+     },
+     {
+      "id": 995074,
+      "image_id": "sclbsy"
+     },
+     {
+      "id": 995076,
+      "image_id": "sclbt0"
+     },
+     {
+      "id": 995077,
+      "image_id": "sclbt1"
+     },
+     {
+      "id": 995075,
+      "image_id": "sclbsz"
+     },
+     {
+      "id": 995078,
+      "image_id": "sclbt2"
+     }
+    ],
+    "slug": "the-legend-of-zelda-breath-of-the-wild-and-the-legend-of-zelda-breath-of-the-wild-expansion-pass-bundle",
+    "game_type": 3
+   },
+   {
+    "id": 38319,
+    "artworks": [
+     {
+      "id": 67883,
+      "image_id": "ar1gdn"
+     }
+    ],
+    "cover": {
+     "id": 133483,
+     "image_id": "co2uzv"
+    },
+    "first_release_date": 807667200,
+    "name": "BS Zelda no Densetsu",
+    "parent_game": 1022,
+    "screenshots": [
+     {
+      "id": 387018,
+      "image_id": "sc8ami"
+     },
+     {
+      "id": 387017,
+      "image_id": "sc8amh"
+     },
+     {
+      "id": 387019,
+      "image_id": "sc8amj"
+     }
+    ],
+    "slug": "bs-zelda-no-densetsu",
+    "game_type": 8
+   },
+   {
+    "id": 152362,
+    "artworks": [
+     {
+      "id": 172583,
+      "image_id": "ar3p5z"
+     },
+     {
+      "id": 172802,
+      "image_id": "ar3pc2"
+     }
+    ],
+    "cover": {
+     "id": 225082,
+     "image_id": "co4toa"
+    },
+    "first_release_date": 620092800,
+    "name": "Zelda",
+    "screenshots": [
+     {
+      "id": 489702,
+      "image_id": "scahuu"
+     },
+     {
+      "id": 489701,
+      "image_id": "scahut"
+     },
+     {
+      "id": 489700,
+      "image_id": "scahus"
+     },
+     {
+      "id": 489699,
+      "image_id": "scahur"
+     },
+     {
+      "id": 489698,
+      "image_id": "scahuq"
+     },
+     {
+      "id": 489697,
+      "image_id": "scahup"
+     },
+     {
+      "id": 489696,
+      "image_id": "scahuo"
+     },
+     {
+      "id": 489695,
+      "image_id": "scahun"
+     },
+     {
+      "id": 489694,
+      "image_id": "scahum"
+     }
+    ],
+    "slug": "zelda--1",
+    "game_type": 0
+   },
+   {
+    "id": 163216,
+    "cover": {
+     "id": 364302,
+     "image_id": "co7t3i"
+    },
+    "first_release_date": 1104451200,
+    "name": "Zelda Chuánshuō: Sān Shén zhī Lì",
+    "screenshots": [
+     {
+      "id": 580322,
+      "image_id": "sccfs2"
+     },
+     {
+      "id": 580323,
+      "image_id": "sccfs3"
+     }
+    ],
+    "slug": "zelda-chuanshuo-san-shen-zhi-li",
+    "game_type": 0
+   },
+   {
+    "id": 1029,
+    "artworks": [
+     {
+      "id": 84522,
+      "image_id": "ar1t7u"
+     },
+     {
+      "id": 84528,
+      "image_id": "ar1t80"
+     },
+     {
+      "id": 84529,
+      "image_id": "ar1t81"
+     },
+     {
+      "id": 84526,
+      "image_id": "ar1t7y"
+     },
+     {
+      "id": 84521,
+      "image_id": "ar1t7t"
+     },
+     {
+      "id": 84527,
+      "image_id": "ar1t7z"
+     },
+     {
+      "id": 84525,
+      "image_id": "ar1t7x"
+     },
+     {
+      "id": 84524,
+      "image_id": "ar1t7w"
+     },
+     {
+      "id": 84523,
+      "image_id": "ar1t7v"
+     },
+     {
+      "id": 172469,
+      "image_id": "ar3p2t"
+     },
+     {
+      "id": 172471,
+      "image_id": "ar3p2v"
+     },
+     {
+      "id": 172468,
+      "image_id": "ar3p2s"
+     },
+     {
+      "id": 172470,
+      "image_id": "ar3p2u"
+     }
+    ],
+    "cover": {
+     "id": 170637,
+     "image_id": "co3nnx"
+    },
+    "first_release_date": 911606400,
+    "name": "The Legend of Zelda: Ocarina of Time",
+    "screenshots": [
+     {
+      "id": 951643,
+      "image_id": "sckeaj"
+     },
+     {
+      "id": 951640,
+      "image_id": "sckeag"
+     },
+     {
+      "id": 951649,
+      "image_id": "sckeap"
+     },
+     {
+      "id": 951641,
+      "image_id": "sckeah"
+     },
+     {
+      "id": 951642,
+      "image_id": "sckeai"
+     },
+     {
+      "id": 951639,
+      "image_id": "sckeaf"
+     },
+     {
+      "id": 951644,
+      "image_id": "sckeak"
+     },
+     {
+      "id": 951645,
+      "image_id": "sckeal"
+     },
+     {
+      "id": 951646,
+      "image_id": "sckeam"
+     },
+     {
+      "id": 951650,
+      "image_id": "sckeaq"
+     },
+     {
+      "id": 951638,
+      "image_id": "sckeae"
+     },
+     {
+      "id": 951651,
+      "image_id": "sckear"
+     },
+     {
+      "id": 951648,
+      "image_id": "sckeao"
+     },
+     {
+      "id": 951647,
+      "image_id": "sckean"
+     }
+    ],
+    "slug": "the-legend-of-zelda-ocarina-of-time",
+    "total_rating": 91.52923223388255,
+    "total_rating_count": 2178,
+    "game_type": 0
+   },
+   {
+    "id": 77336,
+    "artworks": [
+     {
+      "id": 84546,
+      "image_id": "ar1t8i"
+     },
+     {
+      "id": 84549,
+      "image_id": "ar1t8l"
+     },
+     {
+      "id": 84547,
+      "image_id": "ar1t8j"
+     },
+     {
+      "id": 84548,
+      "image_id": "ar1t8k"
+     },
+     {
+      "id": 84550,
+      "image_id": "ar1t8m"
+     }
+    ],
+    "cover": {
+     "id": 170801,
+     "image_id": "co3nsh"
+    },
+    "first_release_date": 1038787200,
+    "name": "The Legend of Zelda: A Link to the Past & Four Swords",
+    "screenshots": [
+     {
+      "id": 953531,
+      "image_id": "sckfqz"
+     },
+     {
+      "id": 953521,
+      "image_id": "sckfqp"
+     },
+     {
+      "id": 953527,
+      "image_id": "sckfqv"
+     },
+     {
+      "id": 953528,
+      "image_id": "sckfqw"
+     },
+     {
+      "id": 953529,
+      "image_id": "sckfqx"
+     },
+     {
+      "id": 953533,
+      "image_id": "sckfr1"
+     },
+     {
+      "id": 953523,
+      "image_id": "sckfqr"
+     },
+     {
+      "id": 953524,
+      "image_id": "sckfqs"
+     },
+     {
+      "id": 953525,
+      "image_id": "sckfqt"
+     },
+     {
+      "id": 953526,
+      "image_id": "sckfqu"
+     },
+     {
+      "id": 953530,
+      "image_id": "sckfqy"
+     },
+     {
+      "id": 953522,
+      "image_id": "sckfqq"
+     },
+     {
+      "id": 953532,
+      "image_id": "sckfr0"
+     }
+    ],
+    "slug": "the-legend-of-zelda-a-link-to-the-past-and-four-swords",
+    "total_rating": 91.11114848706623,
+    "total_rating_count": 34,
+    "game_type": 3
+   },
+   {
+    "id": 199421,
+    "cover": {
+     "id": 300576,
+     "image_id": "co6fxc"
+    },
+    "name": "Unreal Engine The Legend of Zelda: Ocarina of Time",
+    "screenshots": [
+     {
+      "id": 787014,
+      "image_id": "scgv9i"
+     },
+     {
+      "id": 787019,
+      "image_id": "scgv9n"
+     },
+     {
+      "id": 787020,
+      "image_id": "scgv9o"
+     },
+     {
+      "id": 787018,
+      "image_id": "scgv9m"
+     },
+     {
+      "id": 787021,
+      "image_id": "scgv9p"
+     },
+     {
+      "id": 790443,
+      "image_id": "scgxwr"
+     }
+    ],
+    "slug": "unreal-engine-the-legend-of-zelda-ocarina-of-time",
+    "game_type": 0
+   },
+   {
+    "id": 116419,
+    "artworks": [
+     {
+      "id": 6798,
+      "image_id": "ar58u"
+     },
+     {
+      "id": 6805,
+      "image_id": "ar591"
+     },
+     {
+      "id": 6806,
+      "image_id": "ar592"
+     },
+     {
+      "id": 11730,
+      "image_id": "ar91u"
+     },
+     {
+      "id": 6807,
+      "image_id": "ar593"
+     }
+    ],
+    "cover": {
+     "id": 523900,
+     "image_id": "cob88s"
+    },
+    "first_release_date": 1560384000,
+    "name": "Cadence of Hyrule: Crypt of the NecroDancer Featuring the Legend of Zelda",
+    "screenshots": [
+     {
+      "id": 489542,
+      "image_id": "scahqe"
+     },
+     {
+      "id": 489545,
+      "image_id": "scahqh"
+     },
+     {
+      "id": 489543,
+      "image_id": "scahqf"
+     },
+     {
+      "id": 489540,
+      "image_id": "scahqc"
+     },
+     {
+      "id": 489539,
+      "image_id": "scahqb"
+     },
+     {
+      "id": 489548,
+      "image_id": "scahqk"
+     },
+     {
+      "id": 489541,
+      "image_id": "scahqd"
+     },
+     {
+      "id": 489544,
+      "image_id": "scahqg"
+     },
+     {
+      "id": 489546,
+      "image_id": "scahqi"
+     },
+     {
+      "id": 489547,
+      "image_id": "scahqj"
+     }
+    ],
+    "slug": "cadence-of-hyrule-crypt-of-the-necrodancer-featuring-the-legend-of-zelda",
+    "total_rating": 78.34307648857929,
+    "total_rating_count": 61,
+    "game_type": 0
+   },
+   {
+    "id": 286619,
+    "cover": {
+     "id": 411257,
+     "image_id": "co8tbt"
+    },
+    "name": "Zelda 64 1997",
+    "parent_game": 1029,
+    "screenshots": [
+     {
+      "id": 1240056,
+      "image_id": "scqku0"
+     },
+     {
+      "id": 1240058,
+      "image_id": "scqku2"
+     },
+     {
+      "id": 1240059,
+      "image_id": "scqku3"
+     },
+     {
+      "id": 1240060,
+      "image_id": "scqku4"
+     },
+     {
+      "id": 1240061,
+      "image_id": "scqku5"
+     },
+     {
+      "id": 1240057,
+      "image_id": "scqku1"
+     }
+    ],
+    "slug": "zelda-64-1997",
+    "game_type": 5
+   },
+   {
+    "id": 268684,
+    "cover": {
+     "id": 338284,
+     "image_id": "co790s"
+    },
+    "name": "The Legend of Zelda: Zelda's Eternal Youth",
+    "parent_game": 1029,
+    "screenshots": [
+     {
+      "id": 1153553,
+      "image_id": "scoq35"
+     },
+     {
+      "id": 1153554,
+      "image_id": "scoq36"
+     }
+    ],
+    "slug": "the-legend-of-zelda-zeldas-eternal-youth",
+    "game_type": 5
+   },
+   {
+    "id": 176087,
+    "cover": {
+     "id": 274585,
+     "image_id": "co5vvd"
+    },
+    "first_release_date": 1038441600,
+    "name": "The Legend of Zelda: Ocarina of Time + The Legend of Zelda: Ocarina of Time - Master Quest: Two-game Bonus Disc!",
+    "screenshots": [
+     {
+      "id": 664967,
+      "image_id": "sce93b"
+     },
+     {
+      "id": 664968,
+      "image_id": "sce93c"
+     },
+     {
+      "id": 664969,
+      "image_id": "sce93d"
+     },
+     {
+      "id": 664970,
+      "image_id": "sce93e"
+     },
+     {
+      "id": 664971,
+      "image_id": "sce93f"
+     },
+     {
+      "id": 664972,
+      "image_id": "sce93g"
+     }
+    ],
+    "slug": "the-legend-of-zelda-ocarina-of-time-plus-the-legend-of-zelda-ocarina-of-time-master-quest-two-game-bonus-disc",
+    "game_type": 3
+   },
+   {
+    "id": 8533,
+    "cover": {
+     "id": 281013,
+     "image_id": "co60tx"
+    },
+    "first_release_date": 750211200,
+    "name": "Zelda: The Wand of Gamelon",
+    "screenshots": [
+     {
+      "id": 959535,
+      "image_id": "sckkdr"
+     },
+     {
+      "id": 959536,
+      "image_id": "sckkds"
+     },
+     {
+      "id": 959537,
+      "image_id": "sckkdt"
+     },
+     {
+      "id": 959538,
+      "image_id": "sckkdu"
+     },
+     {
+      "id": 959539,
+      "image_id": "sckkdv"
+     }
+    ],
+    "slug": "zelda-the-wand-of-gamelon",
+    "total_rating": 39.90835595290698,
+    "total_rating_count": 11,
+    "game_type": 0
+   },
+   {
+    "id": 134500,
+    "cover": {
+     "id": 133484,
+     "image_id": "co2uzw"
+    },
+    "first_release_date": 820281600,
+    "name": "BS Zelda no Densetsu Map 2",
+    "parent_game": 1022,
+    "screenshots": [
+     {
+      "id": 387564,
+      "image_id": "sc8b1o"
+     },
+     {
+      "id": 387565,
+      "image_id": "sc8b1p"
+     },
+     {
+      "id": 671617,
+      "image_id": "scee81"
+     }
+    ],
+    "slug": "bs-zelda-no-densetsu-map-2",
+    "game_type": 8
+   },
+   {
+    "id": 298870,
+    "cover": {
+     "id": 380504,
+     "image_id": "co85lk"
+    },
+    "first_release_date": 1079568000,
+    "name": "Zelda no Densetsu: 4-tsu no Tsurugi +",
+    "slug": "zelda-no-densetsu-4-tsu-no-tsurugi-plus",
+    "game_type": 3
+   },
+   {
+    "id": 178050,
+    "cover": {
+     "id": 187588,
+     "image_id": "co40qs"
+    },
+    "first_release_date": 808272000,
+    "name": "BS Zelda no Densetsu: Dai-2-wa",
+    "parent_game": 38319,
+    "screenshots": [
+     {
+      "id": 671033,
+      "image_id": "scedrt"
+     }
+    ],
+    "slug": "bs-zelda-no-densetsu-dai-2-wa",
+    "game_type": 6
+   },
+   {
+    "id": 178051,
+    "cover": {
+     "id": 188079,
+     "image_id": "co414f"
+    },
+    "first_release_date": 808876800,
+    "name": "BS Zelda no Densetsu: Dai-3-wa",
+    "parent_game": 38319,
+    "screenshots": [
+     {
+      "id": 671037,
+      "image_id": "scedrx"
+     }
+    ],
+    "slug": "bs-zelda-no-densetsu-dai-3-wa",
+    "game_type": 6
+   },
+   {
+    "id": 178049,
+    "cover": {
+     "id": 187587,
+     "image_id": "co40qr"
+    },
+    "first_release_date": 807667200,
+    "name": "BS Zelda no Densetsu: Dai-1-wa",
+    "parent_game": 38319,
+    "screenshots": [
+     {
+      "id": 671030,
+      "image_id": "scedrq"
+     }
+    ],
+    "slug": "bs-zelda-no-densetsu-dai-1-wa",
+    "game_type": 6
+   }
+  ]
+ },
+ "witcher_search": {
+  "status": 200,
+  "body": [
+   {
+    "id": 1942,
+    "artworks": [
+     {
+      "id": 303975,
+      "image_id": "ar6ijr"
+     },
+     {
+      "id": 168458,
+      "image_id": "ar3lze"
+     },
+     {
+      "id": 168459,
+      "image_id": "ar3lzf"
+     },
+     {
+      "id": 168463,
+      "image_id": "ar3lzj"
+     },
+     {
+      "id": 168460,
+      "image_id": "ar3lzg"
+     },
+     {
+      "id": 168465,
+      "image_id": "ar3lzl"
+     },
+     {
+      "id": 168461,
+      "image_id": "ar3lzh"
+     },
+     {
+      "id": 168464,
+      "image_id": "ar3lzk"
+     },
+     {
+      "id": 168457,
+      "image_id": "ar3lzd"
+     },
+     {
+      "id": 168455,
+      "image_id": "ar3lzb"
+     },
+     {
+      "id": 168466,
+      "image_id": "ar3lzm"
+     },
+     {
+      "id": 168456,
+      "image_id": "ar3lzc"
+     },
+     {
+      "id": 168467,
+      "image_id": "ar3lzn"
+     },
+     {
+      "id": 168462,
+      "image_id": "ar3lzi"
+     },
+     {
+      "id": 168533,
+      "image_id": "ar3m1h"
+     },
+     {
+      "id": 168532,
+      "image_id": "ar3m1g"
+     }
+    ],
+    "cover": {
+     "id": 480513,
+     "image_id": "coaarl"
+    },
+    "first_release_date": 1431993600,
+    "name": "The Witcher 3: Wild Hunt",
+    "screenshots": [
+     {
+      "id": 1377966,
+      "image_id": "sctj8u"
+     },
+     {
+      "id": 21107,
+      "image_id": "farvemmmxav0bgt6wx7t"
+     },
+     {
+      "id": 9743,
+      "image_id": "em1y2ugcwy2myuhvb9db"
+     },
+     {
+      "id": 9744,
+      "image_id": "usxccsncekxg0wd1v6ee"
+     },
+     {
+      "id": 853179,
+      "image_id": "sciabf"
+     },
+     {
+      "id": 1377965,
+      "image_id": "sctj8t"
+     },
+     {
+      "id": 853177,
+      "image_id": "sciabd"
+     },
+     {
+      "id": 853181,
+      "image_id": "sciabh"
+     },
+     {
+      "id": 853178,
+      "image_id": "sciabe"
+     },
+     {
+      "id": 9745,
+      "image_id": "z5t0yuhyiiui1ickwhgj"
+     },
+     {
+      "id": 9742,
+      "image_id": "mnljdjtrh44x4snmierh"
+     },
+     {
+      "id": 853180,
+      "image_id": "sciabg"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt",
+    "total_rating": 92.75220585693964,
+    "total_rating_count": 5521,
+    "game_type": 0
+   },
+   {
+    "id": 141472,
+    "cover": {
+     "id": 372851,
+     "image_id": "co7zoz"
+    },
+    "first_release_date": 1540512000,
+    "name": "The Witcher 3: Wild Hunt + Dark Souls III",
+    "screenshots": [
+     {
+      "id": 923139,
+      "image_id": "scjsar"
+     },
+     {
+      "id": 923140,
+      "image_id": "scjsas"
+     },
+     {
+      "id": 923141,
+      "image_id": "scjsat"
+     },
+     {
+      "id": 923142,
+      "image_id": "scjsau"
+     },
+     {
+      "id": 923143,
+      "image_id": "scjsav"
+     },
+     {
+      "id": 923144,
+      "image_id": "scjsaw"
+     },
+     {
+      "id": 923145,
+      "image_id": "scjsax"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-plus-dark-souls-iii",
+    "game_type": 3
+   },
+   {
+    "id": 415005,
+    "artworks": [
+     {
+      "id": 302811,
+      "image_id": "ar6hnf"
+     },
+     {
+      "id": 302812,
+      "image_id": "ar6hng"
+     }
+    ],
+    "cover": {
+     "id": 595561,
+     "image_id": "cocrjd"
+    },
+    "first_release_date": 1790640000,
+    "name": "The Witcher 3: Wild Hunt Remastered",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 1908698,
+      "image_id": "sc14wre"
+     },
+     {
+      "id": 1908693,
+      "image_id": "sc14wr9"
+     },
+     {
+      "id": 1908706,
+      "image_id": "sc14wrm"
+     },
+     {
+      "id": 1908691,
+      "image_id": "sc14wr7"
+     },
+     {
+      "id": 1908697,
+      "image_id": "sc14wrd"
+     },
+     {
+      "id": 1908692,
+      "image_id": "sc14wr8"
+     },
+     {
+      "id": 1908702,
+      "image_id": "sc14wri"
+     },
+     {
+      "id": 1908700,
+      "image_id": "sc14wrg"
+     },
+     {
+      "id": 1908703,
+      "image_id": "sc14wrj"
+     },
+     {
+      "id": 1908704,
+      "image_id": "sc14wrk"
+     },
+     {
+      "id": 1908705,
+      "image_id": "sc14wrl"
+     },
+     {
+      "id": 1908699,
+      "image_id": "sc14wrf"
+     },
+     {
+      "id": 1908701,
+      "image_id": "sc14wrh"
+     },
+     {
+      "id": 1908690,
+      "image_id": "sc14wr6"
+     },
+     {
+      "id": 1908694,
+      "image_id": "sc14wra"
+     },
+     {
+      "id": 1908695,
+      "image_id": "sc14wrb"
+     },
+     {
+      "id": 1908696,
+      "image_id": "sc14wrc"
+     },
+     {
+      "id": 1908707,
+      "image_id": "sc14wrn"
+     },
+     {
+      "id": 1908708,
+      "image_id": "sc14wro"
+     },
+     {
+      "id": 1910121,
+      "image_id": "sc14xux"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-remastered",
+    "total_rating": 98.28058040489681,
+    "total_rating_count": 17,
+    "game_type": 14
+   },
+   {
+    "id": 22439,
+    "artworks": [
+     {
+      "id": 47102,
+      "image_id": "ar10ce"
+     },
+     {
+      "id": 47101,
+      "image_id": "ar10cd"
+     }
+    ],
+    "cover": {
+     "id": 89392,
+     "image_id": "co1wz4"
+    },
+    "first_release_date": 1472428800,
+    "name": "The Witcher 3: Wild Hunt - Game of the Year Edition",
+    "screenshots": [
+     {
+      "id": 117438,
+      "image_id": "pziw7giojvmp8baw617b"
+     },
+     {
+      "id": 117440,
+      "image_id": "zvijqp04apwmzqvlgxej"
+     },
+     {
+      "id": 117439,
+      "image_id": "a4tiz3sfoblnau6olx10"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-game-of-the-year-edition",
+    "total_rating": 97.64679695604279,
+    "total_rating_count": 572,
+    "version_parent": 1942,
+    "game_type": 3
+   },
+   {
+    "id": 13166,
+    "artworks": [
+     {
+      "id": 170546,
+      "image_id": "ar3nle"
+     },
+     {
+      "id": 170545,
+      "image_id": "ar3nld"
+     },
+     {
+      "id": 170547,
+      "image_id": "ar3nlf"
+     }
+    ],
+    "cover": {
+     "id": 121128,
+     "image_id": "co2lgo"
+    },
+    "first_release_date": 1464566400,
+    "name": "The Witcher 3: Wild Hunt - Blood and Wine",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 25592,
+      "image_id": "iuzxf8iboeyxkggywbsj"
+     },
+     {
+      "id": 25595,
+      "image_id": "ixuz3ti1kiqnlzrtodnf"
+     },
+     {
+      "id": 25593,
+      "image_id": "gynhuum2yb8imujgjlxn"
+     },
+     {
+      "id": 25594,
+      "image_id": "k6zrdwofvuccfkkj6qus"
+     },
+     {
+      "id": 25591,
+      "image_id": "bhvtikx5as53awacxlac"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-blood-and-wine",
+    "total_rating": 94.20229475577315,
+    "total_rating_count": 488,
+    "game_type": 2
+   },
+   {
+    "id": 403150,
+    "artworks": [
+     {
+      "id": 303829,
+      "image_id": "ar6ifp"
+     },
+     {
+      "id": 277184,
+      "image_id": "ar5xvk"
+     },
+     {
+      "id": 277183,
+      "image_id": "ar5xvj"
+     },
+     {
+      "id": 277258,
+      "image_id": "ar5xxm"
+     }
+    ],
+    "cover": {
+     "id": 565688,
+     "image_id": "coc4hk"
+    },
+    "first_release_date": 1830211200,
+    "name": "The Witcher 3: Wild Hunt - Songs of the Past",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 1908566,
+      "image_id": "sc14wnq"
+     },
+     {
+      "id": 1908560,
+      "image_id": "sc14wnk"
+     },
+     {
+      "id": 1908561,
+      "image_id": "sc14wnl"
+     },
+     {
+      "id": 1908562,
+      "image_id": "sc14wnm"
+     },
+     {
+      "id": 1908563,
+      "image_id": "sc14wnn"
+     },
+     {
+      "id": 1908564,
+      "image_id": "sc14wno"
+     },
+     {
+      "id": 1908565,
+      "image_id": "sc14wnp"
+     },
+     {
+      "id": 1908568,
+      "image_id": "sc14wns"
+     },
+     {
+      "id": 1908567,
+      "image_id": "sc14wnr"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-songs-of-the-past",
+    "game_type": 2
+   },
+   {
+    "id": 283715,
+    "cover": {
+     "id": 357620,
+     "image_id": "co7nxw"
+    },
+    "first_release_date": 1624579200,
+    "name": "The Witcher 3: Enhanced Edition - Redux",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 1487804,
+      "image_id": "scvvzw"
+     }
+    ],
+    "slug": "the-witcher-3-enhanced-edition-redux",
+    "game_type": 5
+   },
+   {
+    "id": 12503,
+    "artworks": [
+     {
+      "id": 170551,
+      "image_id": "ar3nlj"
+     },
+     {
+      "id": 1971,
+      "image_id": "jzhdplqbzx4vnywl7tpa"
+     },
+     {
+      "id": 170550,
+      "image_id": "ar3nli"
+     }
+    ],
+    "cover": {
+     "id": 84518,
+     "image_id": "co1t7q"
+    },
+    "first_release_date": 1444608000,
+    "name": "The Witcher 3: Wild Hunt - Hearts of Stone",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 15000,
+      "image_id": "lz3gmntnjo5fojxzvrg5"
+     },
+     {
+      "id": 14998,
+      "image_id": "wrke9dxtduvuubfrm0kq"
+     },
+     {
+      "id": 14995,
+      "image_id": "rzpm2ms8e15uekzlwrvy"
+     },
+     {
+      "id": 15001,
+      "image_id": "wiw1xlpfihxbe1xlft3t"
+     },
+     {
+      "id": 14999,
+      "image_id": "wv5bxefrjdgzxkdufqjg"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-hearts-of-stone",
+    "total_rating": 91.83558911530395,
+    "total_rating_count": 561,
+    "game_type": 2
+   },
+   {
+    "id": 119402,
+    "artworks": [
+     {
+      "id": 7515,
+      "image_id": "ar5sr"
+     },
+     {
+      "id": 168534,
+      "image_id": "ar3m1i"
+     }
+    ],
+    "cover": {
+     "id": 272621,
+     "image_id": "co5uct"
+    },
+    "first_release_date": 1472428800,
+    "name": "The Witcher 3: Wild Hunt - Complete Edition",
+    "screenshots": [
+     {
+      "id": 308167,
+      "image_id": "sc6ls7"
+     },
+     {
+      "id": 308166,
+      "image_id": "sc6ls6"
+     },
+     {
+      "id": 308168,
+      "image_id": "sc6ls8"
+     },
+     {
+      "id": 308160,
+      "image_id": "sc6ls0"
+     },
+     {
+      "id": 308163,
+      "image_id": "sc6ls3"
+     },
+     {
+      "id": 308162,
+      "image_id": "sc6ls2"
+     },
+     {
+      "id": 308164,
+      "image_id": "sc6ls4"
+     },
+     {
+      "id": 308161,
+      "image_id": "sc6ls1"
+     },
+     {
+      "id": 308165,
+      "image_id": "sc6ls5"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-complete-edition--1",
+    "total_rating": 92.3537399967065,
+    "total_rating_count": 204,
+    "version_parent": 1942,
+    "game_type": 3
+   },
+   {
+    "id": 44549,
+    "cover": {
+     "id": 121127,
+     "image_id": "co2lgn"
+    },
+    "first_release_date": 1434672000,
+    "name": "The Witcher 3: Wild Hunt - Collector's Edition",
+    "screenshots": [
+     {
+      "id": 112847,
+      "image_id": "y8caw9l1xoy5ucqoz2ge"
+     },
+     {
+      "id": 1487803,
+      "image_id": "scvvzv"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-collectors-edition",
+    "version_parent": 1942,
+    "game_type": 0
+   },
+   {
+    "id": 170450,
+    "cover": {
+     "id": 262954,
+     "image_id": "co5mwa"
+    },
+    "first_release_date": 1433808000,
+    "name": "The Witcher 3: Wild Hunt - New Quest 'Fool's Gold'",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 628664,
+      "image_id": "scdh2w"
+     },
+     {
+      "id": 1342593,
+      "image_id": "scsry9"
+     },
+     {
+      "id": 1342594,
+      "image_id": "scsrya"
+     },
+     {
+      "id": 1342595,
+      "image_id": "scsryb"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-new-quest-fools-gold",
+    "total_rating": 87.41189831934716,
+    "total_rating_count": 7,
+    "game_type": 1
+   },
+   {
+    "id": 230102,
+    "cover": {
+     "id": 277635,
+     "image_id": "co5y83"
+    },
+    "first_release_date": 1670976000,
+    "name": "The Witcher 3: Wild Hunt - Free Next-Gen Update",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 952339,
+      "image_id": "scketv"
+     },
+     {
+      "id": 952340,
+      "image_id": "scketw"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-free-next-gen-update",
+    "total_rating": 87.69503546099291,
+    "total_rating_count": 10,
+    "game_type": 14
+   },
+   {
+    "id": 170449,
+    "cover": {
+     "id": 265414,
+     "image_id": "co5osm"
+    },
+    "first_release_date": 1435622400,
+    "name": "The Witcher 3: Wild Hunt - New Quest 'Where the Cat and Wolf Play...'",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 628663,
+      "image_id": "scdh2v"
+     },
+     {
+      "id": 1342611,
+      "image_id": "scsryr"
+     },
+     {
+      "id": 1342612,
+      "image_id": "scsrys"
+     },
+     {
+      "id": 1342613,
+      "image_id": "scsryt"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-new-quest-where-the-cat-and-wolf-play-dot-dot-dot",
+    "total_rating": 88.20270991863094,
+    "total_rating_count": 8,
+    "game_type": 1
+   },
+   {
+    "id": 170451,
+    "cover": {
+     "id": 262955,
+     "image_id": "co5mwb"
+    },
+    "first_release_date": 1432598400,
+    "name": "The Witcher 3: Wild Hunt - New Quest 'Contract: Missing Miners'",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 628674,
+      "image_id": "scdh36"
+     },
+     {
+      "id": 1342591,
+      "image_id": "scsry7"
+     },
+     {
+      "id": 1342592,
+      "image_id": "scsry8"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-new-quest-contract-missing-miners",
+    "total_rating": 68.50553505535055,
+    "total_rating_count": 7,
+    "game_type": 1
+   },
+   {
+    "id": 226413,
+    "cover": {
+     "id": 270594,
+     "image_id": "co5ssi"
+    },
+    "first_release_date": 1434412800,
+    "name": "The Witcher 3: Wild Hunt - New Quest: Scavenger Hunt: Wolf School Gear",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 997952,
+      "image_id": "scle0w"
+     },
+     {
+      "id": 1342603,
+      "image_id": "scsryj"
+     },
+     {
+      "id": 1342604,
+      "image_id": "scsryk"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-new-quest-scavenger-hunt-wolf-school-gear",
+    "total_rating": 60,
+    "total_rating_count": 5,
+    "game_type": 1
+   },
+   {
+    "id": 372654,
+    "cover": {
+     "id": 497213,
+     "image_id": "coannh"
+    },
+    "first_release_date": 1760054400,
+    "name": "The Witcher 3: Wild Hunt - Complete Edition: 10th Anniversary Edition",
+    "slug": "the-witcher-3-wild-hunt-complete-edition-10th-anniversary-edition",
+    "version_parent": 119402,
+    "game_type": 0
+   },
+   {
+    "id": 157580,
+    "cover": {
+     "id": 262953,
+     "image_id": "co5mw9"
+    },
+    "first_release_date": 1435017600,
+    "name": "The Witcher 3: Wild Hunt - New Quest 'Contract: Skellige's Most Wanted'",
+    "parent_game": 1942,
+    "screenshots": [
+     {
+      "id": 538797,
+      "image_id": "scbjql"
+     },
+     {
+      "id": 1342606,
+      "image_id": "scsrym"
+     },
+     {
+      "id": 1342607,
+      "image_id": "scsryn"
+     },
+     {
+      "id": 1342605,
+      "image_id": "scsryl"
+     }
+    ],
+    "slug": "the-witcher-3-wild-hunt-new-quest-contract-skelliges-most-wanted",
+    "total_rating": 72.17303822937626,
+    "total_rating_count": 7,
+    "game_type": 1
+   }
+  ]
+ },
+ "lastofus_search": {
+  "status": 200,
+  "body": [
+   {
+    "id": 26192,
+    "artworks": [
+     {
+      "id": 168689,
+      "image_id": "ar3m5t"
+     },
+     {
+      "id": 168690,
+      "image_id": "ar3m5u"
+     },
+     {
+      "id": 301220,
+      "image_id": "ar6gf8"
+     },
+     {
+      "id": 168687,
+      "image_id": "ar3m5r"
+     },
+     {
+      "id": 168688,
+      "image_id": "ar3m5s"
+     }
+    ],
+    "cover": {
+     "id": 279320,
+     "image_id": "co5ziw"
+    },
+    "first_release_date": 1592524800,
+    "name": "The Last of Us Part II",
+    "screenshots": [
+     {
+      "id": 396903,
+      "image_id": "sc8i93"
+     },
+     {
+      "id": 396904,
+      "image_id": "sc8i94"
+     },
+     {
+      "id": 396905,
+      "image_id": "sc8i95"
+     },
+     {
+      "id": 34673,
+      "image_id": "oh8a5shtmdbqx73cv765"
+     },
+     {
+      "id": 214556,
+      "image_id": "dbqn4wax78tgvplrpf1m"
+     },
+     {
+      "id": 396907,
+      "image_id": "sc8i97"
+     },
+     {
+      "id": 34674,
+      "image_id": "rqr5dxxw97zikyhdn2tq"
+     },
+     {
+      "id": 214555,
+      "image_id": "rdonk4uvyh8ijanrbs46"
+     },
+     {
+      "id": 214557,
+      "image_id": "mmenctgbvassqs1uepax"
+     },
+     {
+      "id": 396906,
+      "image_id": "sc8i96"
+     },
+     {
+      "id": 34677,
+      "image_id": "kazgjykzu18dhqjpspko"
+     },
+     {
+      "id": 34675,
+      "image_id": "mobc8z5fnxljhadccvy6"
+     }
+    ],
+    "slug": "the-last-of-us-part-ii",
+    "total_rating": 92.78903526953125,
+    "total_rating_count": 1824,
+    "game_type": 0
+   },
+   {
+    "id": 1009,
+    "artworks": [
+     {
+      "id": 168634,
+      "image_id": "ar3m4a"
+     },
+     {
+      "id": 168639,
+      "image_id": "ar3m4f"
+     },
+     {
+      "id": 259433,
+      "image_id": "ar5k6h"
+     },
+     {
+      "id": 259431,
+      "image_id": "ar5k6f"
+     },
+     {
+      "id": 168633,
+      "image_id": "ar3m49"
+     },
+     {
+      "id": 168641,
+      "image_id": "ar3m4h"
+     },
+     {
+      "id": 168637,
+      "image_id": "ar3m4d"
+     },
+     {
+      "id": 168642,
+      "image_id": "ar3m4i"
+     },
+     {
+      "id": 168636,
+      "image_id": "ar3m4c"
+     },
+     {
+      "id": 259432,
+      "image_id": "ar5k6g"
+     },
+     {
+      "id": 168638,
+      "image_id": "ar3m4e"
+     },
+     {
+      "id": 168635,
+      "image_id": "ar3m4b"
+     },
+     {
+      "id": 258405,
+      "image_id": "ar5jdx"
+     },
+     {
+      "id": 258406,
+      "image_id": "ar5jdy"
+     }
+    ],
+    "cover": {
+     "id": 81915,
+     "image_id": "co1r7f"
+    },
+    "first_release_date": 1371168000,
+    "name": "The Last of Us",
+    "screenshots": [
+     {
+      "id": 1570246,
+      "image_id": "scxnly"
+     },
+     {
+      "id": 1570247,
+      "image_id": "scxnlz"
+     },
+     {
+      "id": 1570248,
+      "image_id": "scxnm0"
+     },
+     {
+      "id": 1570249,
+      "image_id": "scxnm1"
+     },
+     {
+      "id": 1570250,
+      "image_id": "scxnm2"
+     },
+     {
+      "id": 1570251,
+      "image_id": "scxnm3"
+     },
+     {
+      "id": 1570252,
+      "image_id": "scxnm4"
+     }
+    ],
+    "slug": "the-last-of-us",
+    "total_rating": 92.20126644945543,
+    "total_rating_count": 3621,
+    "game_type": 0
+   },
+   {
+    "id": 204350,
+    "artworks": [
+     {
+      "id": 216782,
+      "image_id": "ar4n9q"
+     },
+     {
+      "id": 78416,
+      "image_id": "ar1oi8"
+     },
+     {
+      "id": 258404,
+      "image_id": "ar5jdw"
+     },
+     {
+      "id": 258403,
+      "image_id": "ar5jdv"
+     }
+    ],
+    "cover": {
+     "id": 468458,
+     "image_id": "coa1gq"
+    },
+    "first_release_date": 1662076800,
+    "name": "The Last of Us Part I",
+    "parent_game": 1009,
+    "screenshots": [
+     {
+      "id": 809286,
+      "image_id": "schcg6"
+     },
+     {
+      "id": 1213781,
+      "image_id": "scq0k5"
+     },
+     {
+      "id": 809287,
+      "image_id": "schcg7"
+     }
+    ],
+    "slug": "the-last-of-us-part-i",
+    "total_rating": 85.0868637330333,
+    "total_rating_count": 822,
+    "game_type": 8
+   },
+   {
+    "id": 340213,
+    "artworks": [
+     {
+      "id": 160704,
+      "image_id": "ar3g00"
+     },
+     {
+      "id": 160705,
+      "image_id": "ar3g01"
+     }
+    ],
+    "cover": {
+     "id": 451589,
+     "image_id": "co9og5"
+    },
+    "first_release_date": 1744243200,
+    "name": "The Last of Us Complete",
+    "screenshots": [
+     {
+      "id": 1506825,
+      "image_id": "scwao9"
+     },
+     {
+      "id": 1506828,
+      "image_id": "scwaoc"
+     },
+     {
+      "id": 1506831,
+      "image_id": "scwaof"
+     },
+     {
+      "id": 1506832,
+      "image_id": "scwaog"
+     },
+     {
+      "id": 1506826,
+      "image_id": "scwaoa"
+     },
+     {
+      "id": 1506829,
+      "image_id": "scwaod"
+     },
+     {
+      "id": 1506830,
+      "image_id": "scwaoe"
+     },
+     {
+      "id": 1506827,
+      "image_id": "scwaob"
+     },
+     {
+      "id": 1506833,
+      "image_id": "scwaoh"
+     },
+     {
+      "id": 1506834,
+      "image_id": "scwaoi"
+     }
+    ],
+    "slug": "the-last-of-us-complete",
+    "game_type": 3
+   },
+   {
+    "id": 6036,
+    "artworks": [
+     {
+      "id": 6200,
+      "image_id": "ar4s8"
+     },
+     {
+      "id": 6199,
+      "image_id": "ar4s7"
+     },
+     {
+      "id": 6201,
+      "image_id": "ar4s9"
+     }
+    ],
+    "cover": {
+     "id": 279388,
+     "image_id": "co5zks"
+    },
+    "first_release_date": 1406332800,
+    "name": "The Last of Us Remastered",
+    "parent_game": 1009,
+    "screenshots": [
+     {
+      "id": 9467,
+      "image_id": "iqzfweidhwepz0bf4fhr"
+     },
+     {
+      "id": 9464,
+      "image_id": "oz4rxwu528bmckp1qqzt"
+     },
+     {
+      "id": 9463,
+      "image_id": "wdzisarwedjsqeg5iah4"
+     },
+     {
+      "id": 9465,
+      "image_id": "d64boffz2tkso1cuj1lk"
+     },
+     {
+      "id": 9466,
+      "image_id": "lqz37tmv2r4lcjaxczwx"
+     }
+    ],
+    "slug": "the-last-of-us-remastered",
+    "total_rating": 95.37472062351294,
+    "total_rating_count": 1708,
+    "game_type": 9
+   },
+   {
+    "id": 11790,
+    "artworks": [
+     {
+      "id": 45494,
+      "image_id": "arz3q"
+     }
+    ],
+    "cover": {
+     "id": 276632,
+     "image_id": "co5xg8"
+    },
+    "first_release_date": 1392336000,
+    "name": "The Last of Us: Left Behind",
+    "parent_game": 1009,
+    "screenshots": [
+     {
+      "id": 117015,
+      "image_id": "aodvuizxdwovqzkz9lru"
+     },
+     {
+      "id": 117016,
+      "image_id": "obkj1tuicwitq4gl499p"
+     },
+     {
+      "id": 117018,
+      "image_id": "jfwgdapcizvytbglit60"
+     },
+     {
+      "id": 117017,
+      "image_id": "bqxf1b33uriybf9kjsef"
+     },
+     {
+      "id": 117019,
+      "image_id": "a5quab0lieijiexrdz0s"
+     }
+    ],
+    "slug": "the-last-of-us-left-behind",
+    "total_rating": 85.69898047569743,
+    "total_rating_count": 353,
+    "game_type": 4
+   },
+   {
+    "id": 277143,
+    "artworks": [
+     {
+      "id": 150608,
+      "image_id": "ar387k"
+     }
+    ],
+    "cover": {
+     "id": 468459,
+     "image_id": "coa1gr"
+    },
+    "first_release_date": 1705622400,
+    "name": "The Last of Us Part II Remastered",
+    "parent_game": 26192,
+    "screenshots": [
+     {
+      "id": 1192953,
+      "image_id": "scpkhl"
+     },
+     {
+      "id": 1192954,
+      "image_id": "scpkhm"
+     },
+     {
+      "id": 1192962,
+      "image_id": "scpkhu"
+     },
+     {
+      "id": 1192963,
+      "image_id": "scpkhv"
+     },
+     {
+      "id": 1192965,
+      "image_id": "scpkhx"
+     },
+     {
+      "id": 1192966,
+      "image_id": "scpkhy"
+     },
+     {
+      "id": 1192964,
+      "image_id": "scpkhw"
+     },
+     {
+      "id": 1192967,
+      "image_id": "scpkhz"
+     },
+     {
+      "id": 1192952,
+      "image_id": "scpkhk"
+     },
+     {
+      "id": 1192950,
+      "image_id": "scpkhi"
+     },
+     {
+      "id": 1192951,
+      "image_id": "scpkhj"
+     },
+     {
+      "id": 1192958,
+      "image_id": "scpkhq"
+     },
+     {
+      "id": 1192959,
+      "image_id": "scpkhr"
+     },
+     {
+      "id": 1192960,
+      "image_id": "scpkhs"
+     },
+     {
+      "id": 1192961,
+      "image_id": "scpkht"
+     },
+     {
+      "id": 1192957,
+      "image_id": "scpkhp"
+     },
+     {
+      "id": 1192955,
+      "image_id": "scpkhn"
+     },
+     {
+      "id": 1192968,
+      "image_id": "scpki0"
+     },
+     {
+      "id": 1192969,
+      "image_id": "scpki1"
+     },
+     {
+      "id": 1192956,
+      "image_id": "scpkho"
+     }
+    ],
+    "slug": "the-last-of-us-part-ii-remastered",
+    "total_rating": 89.62484756982167,
+    "total_rating_count": 214,
+    "game_type": 9
+   },
+   {
+    "id": 386719,
+    "artworks": [
+     {
+      "id": 240057,
+      "image_id": "ar5589"
+     },
+     {
+      "id": 240056,
+      "image_id": "ar5588"
+     }
+    ],
+    "name": "The Last of Us Online",
+    "screenshots": [
+     {
+      "id": 1746185,
+      "image_id": "sc11fd5"
+     }
+    ],
+    "slug": "the-last-of-us-online",
+    "game_type": 0
+   },
+   {
+    "id": 288169,
+    "cover": {
+     "id": 429373,
+     "image_id": "co97b1"
+    },
+    "name": "The Last of Us Part III",
+    "slug": "the-last-of-us-part-iii",
+    "game_type": 0
+   },
+   {
+    "id": 279776,
+    "artworks": [
+     {
+      "id": 124779,
+      "image_id": "ar2oa3"
+     }
+    ],
+    "cover": {
+     "id": 350920,
+     "image_id": "co7irs"
+    },
+    "first_release_date": 1705622400,
+    "name": "The Last of Us Part II Remastered: W.L.F. Edition",
+    "screenshots": [
+     {
+      "id": 1218664,
+      "image_id": "scq4bs"
+     },
+     {
+      "id": 1218665,
+      "image_id": "scq4bt"
+     }
+    ],
+    "slug": "the-last-of-us-part-ii-remastered-wlf-edition",
+    "version_parent": 277143,
+    "game_type": 0
+   },
+   {
+    "id": 395050,
+    "artworks": [
+     {
+      "id": 259952,
+      "image_id": "ar5kkw"
+     },
+     {
+      "id": 259953,
+      "image_id": "ar5kkx"
+     }
+    ],
+    "cover": {
+     "id": 550075,
+     "image_id": "cobsfv"
+    },
+    "name": "The Last Kich Of Us",
+    "screenshots": [
+     {
+      "id": 1803145,
+      "image_id": "sc12nbd"
+     },
+     {
+      "id": 1803146,
+      "image_id": "sc12nbe"
+     },
+     {
+      "id": 1803147,
+      "image_id": "sc12nbf"
+     },
+     {
+      "id": 1803148,
+      "image_id": "sc12nbg"
+     },
+     {
+      "id": 1803149,
+      "image_id": "sc12nbh"
+     },
+     {
+      "id": 1803150,
+      "image_id": "sc12nbi"
+     },
+     {
+      "id": 1803151,
+      "image_id": "sc12nbj"
+     },
+     {
+      "id": 1803152,
+      "image_id": "sc12nbk"
+     }
+    ],
+    "slug": "the-last-kich-of-us",
+    "game_type": 0
+   },
+   {
+    "id": 101462,
+    "cover": {
+     "id": 272587,
+     "image_id": "co5ubv"
+    },
+    "first_release_date": 1371168000,
+    "name": "The Last of Us: Ellie Edition",
+    "slug": "the-last-of-us-ellie-edition",
+    "version_parent": 1009,
+    "game_type": 0
+   },
+   {
+    "id": 102081,
+    "cover": {
+     "id": 272588,
+     "image_id": "co5ubw"
+    },
+    "first_release_date": 1371168000,
+    "name": "The Last of Us: Joel Edition",
+    "slug": "the-last-of-us-joel-edition",
+    "version_parent": 1009,
+    "game_type": 0
+   },
+   {
+    "id": 305372,
+    "artworks": [
+     {
+      "id": 141375,
+      "image_id": "ar3133"
+     }
+    ],
+    "cover": {
+     "id": 442653,
+     "image_id": "co9hjx"
+    },
+    "name": "The Last of Us: Between The Years",
+    "screenshots": [
+     {
+      "id": 1339315,
+      "image_id": "scspf7"
+     },
+     {
+      "id": 1339316,
+      "image_id": "scspf8"
+     },
+     {
+      "id": 1339317,
+      "image_id": "scspf9"
+     },
+     {
+      "id": 1339318,
+      "image_id": "scspfa"
+     }
+    ],
+    "slug": "the-last-of-us-between-the-years",
+    "game_type": 0
+   },
+   {
+    "id": 102082,
+    "cover": {
+     "id": 468452,
+     "image_id": "coa1gk"
+    },
+    "first_release_date": 1371168000,
+    "name": "The Last of Us: Survival Edition",
+    "screenshots": [
+     {
+      "id": 1572829,
+      "image_id": "scxplp"
+     }
+    ],
+    "slug": "the-last-of-us-survival-edition",
+    "version_parent": 1009,
+    "game_type": 0
+   },
+   {
+    "id": 102083,
+    "cover": {
+     "id": 468453,
+     "image_id": "coa1gl"
+    },
+    "first_release_date": 1371168000,
+    "name": "The Last of Us: Post-Pandemic Edition",
+    "screenshots": [
+     {
+      "id": 1572830,
+      "image_id": "scxplq"
+     }
+    ],
+    "slug": "the-last-of-us-post-pandemic-edition",
+    "version_parent": 1009,
+    "game_type": 0
+   },
+   {
+    "id": 135986,
+    "cover": {
+     "id": 291529,
+     "image_id": "co68y1"
+    },
+    "first_release_date": 1592524800,
+    "name": "The Last of Us Part II: Ellie Edition",
+    "screenshots": [
+     {
+      "id": 1010925,
+      "image_id": "sclo19"
+     }
+    ],
+    "slug": "the-last-of-us-part-ii-ellie-edition",
+    "version_parent": 26192,
+    "game_type": 0
+   },
+   {
+    "id": 219027,
+    "artworks": [
+     {
+      "id": 300555,
+      "image_id": "ar6fwr"
+     }
+    ],
+    "cover": {
+     "id": 348991,
+     "image_id": "co7ha7"
+    },
+    "first_release_date": 1406592000,
+    "name": "The Last of Us: Left Behind - Remastered",
+    "parent_game": 11790,
+    "slug": "the-last-of-us-left-behind-remastered",
+    "total_rating": 90.1056678540158,
+    "total_rating_count": 20,
+    "game_type": 9
+   },
+   {
+    "id": 251381,
+    "cover": {
+     "id": 310240,
+     "image_id": "co6nds"
+    },
+    "first_release_date": 1597276800,
+    "name": "The Last of Us Part II: Grounded Update",
+    "parent_game": 26192,
+    "screenshots": [
+     {
+      "id": 1061167,
+      "image_id": "scmqsv"
+     },
+     {
+      "id": 1061168,
+      "image_id": "scmqsw"
+     },
+     {
+      "id": 1061169,
+      "image_id": "scmqsx"
+     }
+    ],
+    "slug": "the-last-of-us-part-ii-grounded-update",
+    "game_type": 14
+   },
+   {
+    "id": 215089,
+    "artworks": [
+     {
+      "id": 208151,
+      "image_id": "ar4glz"
+     }
+    ],
+    "cover": {
+     "id": 350891,
+     "image_id": "co7iqz"
+    },
+    "first_release_date": 1662076800,
+    "name": "The Last of Us Part I: Firefly Edition",
+    "parent_game": 1009,
+    "slug": "the-last-of-us-part-i-firefly-edition",
+    "version_parent": 204350,
+    "game_type": 8
+   },
+   {
+    "id": 135956,
+    "cover": {
+     "id": 348989,
+     "image_id": "co7ha5"
+    },
+    "first_release_date": 1592524800,
+    "name": "The Last of Us Part II: Special Edition",
+    "screenshots": [
+     {
+      "id": 1061137,
+      "image_id": "scmqs1"
+     }
+    ],
+    "slug": "the-last-of-us-part-ii-special-edition",
+    "version_parent": 26192,
+    "game_type": 0
+   },
+   {
+    "id": 89931,
+    "cover": {
+     "id": 272582,
+     "image_id": "co5ubq"
+    },
+    "first_release_date": 1406592000,
+    "name": "The Last of Us Remastered: Day 1 Edition",
+    "screenshots": [
+     {
+      "id": 428799,
+      "image_id": "sc96v3"
+     },
+     {
+      "id": 428800,
+      "image_id": "sc96v4"
+     },
+     {
+      "id": 428801,
+      "image_id": "sc96v5"
+     }
+    ],
+    "slug": "the-last-of-us-remastered-day-1-edition",
+    "version_parent": 6036,
+    "game_type": 0
+   },
+   {
+    "id": 382537,
+    "cover": {
+     "id": 517856,
+     "image_id": "cob3kw"
+    },
+    "first_release_date": 1743638400,
+    "name": "The Last of Us Part II Remastered: Patch 2.0.0",
+    "parent_game": 277143,
+    "slug": "the-last-of-us-part-ii-remastered-patch-2-dot-0-0",
+    "game_type": 14
+   },
+   {
+    "id": 340226,
+    "cover": {
+     "id": 451991,
+     "image_id": "co9orb"
+    },
+    "first_release_date": 1752105600,
+    "name": "The Last of Us Complete: Collector's Edition",
+    "slug": "the-last-of-us-complete-collectors-edition",
+    "version_parent": 340213,
+    "game_type": 0
+   },
+   {
+    "id": 135955,
+    "cover": {
+     "id": 348996,
+     "image_id": "co7hac"
+    },
+    "first_release_date": 1592524800,
+    "name": "The Last of Us Part II: Collector's Edition",
+    "screenshots": [
+     {
+      "id": 1061136,
+      "image_id": "scmqs0"
+     }
+    ],
+    "slug": "the-last-of-us-part-ii-collectors-edition",
+    "version_parent": 26192,
+    "game_type": 0
+   }
+  ]
+ },
+ "popular_recent": {
+  "status": 200,
+  "body": [
+   {
+    "id": 119133,
+    "first_release_date": 1645747200,
+    "name": "Elden Ring",
+    "total_rating": 95.1827585064674,
+    "total_rating_count": 2326,
+    "game_type": 0
+   },
+   {
+    "id": 119171,
+    "first_release_date": 1691020800,
+    "name": "Baldur's Gate III",
+    "total_rating": 94.7646400323807,
+    "total_rating_count": 1647,
+    "game_type": 0
+   },
+   {
+    "id": 112875,
+    "first_release_date": 1667952000,
+    "name": "God of War Ragnarök",
+    "total_rating": 92.76182074082786,
+    "total_rating_count": 1187,
+    "game_type": 0
+   },
+   {
+    "id": 135243,
+    "first_release_date": 1616630400,
+    "name": "It Takes Two",
+    "total_rating": 89.32942123437661,
+    "total_rating_count": 1182,
+    "game_type": 0
+   },
+   {
+    "id": 305152,
+    "first_release_date": 1745452800,
+    "name": "Clair Obscur: Expedition 33",
+    "total_rating": 89.40511178982484,
+    "total_rating_count": 986,
+    "game_type": 0
+   },
+   {
+    "id": 119388,
+    "first_release_date": 1683849600,
+    "name": "The Legend of Zelda: Tears of the Kingdom",
+    "total_rating": 94.09493130351245,
+    "total_rating_count": 936,
+    "game_type": 0
+   },
+   {
+    "id": 204350,
+    "first_release_date": 1662076800,
+    "name": "The Last of Us Part I",
+    "total_rating": 85.0868637330333,
+    "total_rating_count": 822,
+    "game_type": 8
+   },
+   {
+    "id": 110248,
+    "first_release_date": 1658188800,
+    "name": "Stray",
+    "total_rating": 83.18062922114235,
+    "total_rating_count": 759,
+    "game_type": 0
+   },
+   {
+    "id": 136625,
+    "first_release_date": 1675987200,
+    "name": "Hogwarts Legacy",
+    "total_rating": 81.80798079633854,
+    "total_rating_count": 700,
+    "game_type": 0
+   },
+   {
+    "id": 132181,
+    "first_release_date": 1679616000,
+    "name": "Resident Evil 4",
+    "total_rating": 92.34601223802962,
+    "total_rating_count": 693,
+    "game_type": 8
+   },
+   {
+    "id": 55163,
+    "first_release_date": 1620259200,
+    "name": "Resident Evil Village",
+    "total_rating": 85.35423375566832,
+    "total_rating_count": 619,
+    "game_type": 0
+   },
+   {
+    "id": 115289,
+    "first_release_date": 1756944000,
+    "name": "Hollow Knight: Silksong",
+    "total_rating": 90.98511713058973,
+    "total_rating_count": 521,
+    "game_type": 0
+   },
+   {
+    "id": 125174,
+    "first_release_date": 1691625600,
+    "name": "Overwatch",
+    "total_rating": 76.32878654096834,
+    "total_rating_count": 438,
+    "game_type": 0
+   },
+   {
+    "id": 251833,
+    "first_release_date": 1708387200,
+    "name": "Balatro",
+    "total_rating": 88.68000047043967,
+    "total_rating_count": 408,
+    "game_type": 0
+   },
+   {
+    "id": 152249,
+    "first_release_date": 1635206400,
+    "name": "Marvel's Guardians of the Galaxy",
+    "total_rating": 81.2706059258352,
+    "total_rating_count": 405,
+    "game_type": 0
+   },
+   {
+    "id": 139090,
+    "first_release_date": 1634601600,
+    "name": "Inscryption",
+    "total_rating": 83.92266317130239,
+    "total_rating_count": 400,
+    "game_type": 0
+   },
+   {
+    "id": 127044,
+    "first_release_date": 1697760000,
+    "name": "Marvel's Spider-Man 2",
+    "total_rating": 83.40440188873637,
+    "total_rating_count": 399,
+    "game_type": 0
+   },
+   {
+    "id": 186725,
+    "first_release_date": 1643673600,
+    "name": "Vampire Survivors",
+    "total_rating": 86.0650292963233,
+    "total_rating_count": 395,
+    "game_type": 0
+   },
+   {
+    "id": 112874,
+    "first_release_date": 1645142400,
+    "name": "Horizon Forbidden West",
+    "total_rating": 88.61042967457928,
+    "total_rating_count": 394,
+    "game_type": 0
+   },
+   {
+    "id": 125165,
+    "first_release_date": 1686009600,
+    "name": "Diablo IV",
+    "total_rating": 83.4157492944819,
+    "total_rating_count": 385,
+    "game_type": 0
+   },
+   {
+    "id": 140839,
+    "first_release_date": 1620950400,
+    "name": "Mass Effect Legendary Edition",
+    "total_rating": 88.5860021451368,
+    "total_rating_count": 380,
+    "game_type": 3
+   },
+   {
+    "id": 141503,
+    "first_release_date": 1636416000,
+    "name": "Forza Horizon 5",
+    "total_rating": 89.2981681301051,
+    "total_rating_count": 370,
+    "game_type": 0
+   },
+   {
+    "id": 242408,
+    "first_release_date": 1695772800,
+    "name": "Counter-Strike 2",
+    "total_rating": 68.06884694305018,
+    "total_rating_count": 366,
+    "game_type": 0
+   },
+   {
+    "id": 294041,
+    "first_release_date": 1733443200,
+    "name": "Marvel Rivals",
+    "total_rating": 77.11493135144374,
+    "total_rating_count": 362,
+    "game_type": 0
+   },
+   {
+    "id": 96437,
+    "first_release_date": 1693958400,
+    "name": "Starfield",
+    "total_rating": 78.3675585558317,
+    "total_rating_count": 358,
+    "game_type": 0
+   },
+   {
+    "id": 148241,
+    "first_release_date": 1694995200,
+    "name": "Lies of P",
+    "total_rating": 84.94359532898798,
+    "total_rating_count": 350,
+    "game_type": 0
+   },
+   {
+    "id": 121760,
+    "first_release_date": 1612915200,
+    "name": "Little Nightmares II",
+    "total_rating": 82.02965420713781,
+    "total_rating_count": 350,
+    "game_type": 0
+   },
+   {
+    "id": 347668,
+    "first_release_date": 1772150400,
+    "name": "Resident Evil Requiem",
+    "total_rating": 89.82298587625986,
+    "total_rating_count": 349,
+    "game_type": 0
+   },
+   {
+    "id": 185246,
+    "first_release_date": 1698364800,
+    "name": "Alan Wake II",
+    "total_rating": 89.85790011566529,
+    "total_rating_count": 337,
+    "game_type": 0
+   },
+   {
+    "id": 201156,
+    "first_release_date": 1682640000,
+    "name": "Star Wars Jedi: Survivor",
+    "total_rating": 83.34179868227173,
+    "total_rating_count": 333,
+    "game_type": 0
+   }
+  ]
+ },
+ "hyped": {
+  "status": 200,
+  "body": [
+   {
+    "id": 52189,
+    "first_release_date": 1795046400,
+    "hypes": 1102,
+    "name": "Grand Theft Auto VI"
+   },
+   {
+    "id": 92550,
+    "first_release_date": 1803340800,
+    "hypes": 429,
+    "name": "Fable"
+   },
+   {
+    "id": 168667,
+    "first_release_date": 1789430400,
+    "hypes": 292,
+    "name": "Marvel's Wolverine",
+    "total_rating_count": 47
+   },
+   {
+    "id": 194662,
+    "first_release_date": 1861833600,
+    "hypes": 279,
+    "name": "The Witcher IV"
+   },
+   {
+    "id": 282831,
+    "first_release_date": 1788393600,
+    "hypes": 272,
+    "name": "The Blood of Dawnwalker",
+    "total_rating_count": 37
+   },
+   {
+    "id": 225582,
+    "first_release_date": 1790208000,
+    "hypes": 242,
+    "name": "Control Resonant",
+    "total_rating_count": 31
+   },
+   {
+    "id": 250618,
+    "first_release_date": 1793232000,
+    "hypes": 219,
+    "name": "Phantom Blade Zero"
+   },
+   {
+    "id": 325602,
+    "first_release_date": 1788480000,
+    "hypes": 187,
+    "name": "Onimusha: Way of the Sword",
+    "total_rating_count": 20
+   },
+   {
+    "id": 279621,
+    "first_release_date": 1807056000,
+    "hypes": 152,
+    "name": "Exodus"
+   },
+   {
+    "id": 381235,
+    "first_release_date": 1802390400,
+    "hypes": 146,
+    "name": "Tomb Raider: Legacy of Atlantis"
+   },
+   {
+    "id": 51523,
+    "first_release_date": 1830211200,
+    "hypes": 146,
+    "name": "The Wolf Among Us 2"
+   },
+   {
+    "id": 325611,
+    "first_release_date": 1830211200,
+    "hypes": 135,
+    "name": "Intergalactic: The Heretic Prophet"
+   },
+   {
+    "id": 142520,
+    "first_release_date": 1830211200,
+    "hypes": 133,
+    "name": "Ill"
+   },
+   {
+    "id": 348168,
+    "first_release_date": 1787788800,
+    "hypes": 128,
+    "name": "Resonance: A Plague Tale Legacy",
+    "total_rating_count": 50
+   },
+   {
+    "id": 337738,
+    "first_release_date": 1783555200,
+    "hypes": 123,
+    "name": "Assassin's Creed Black Flag Resynced",
+    "total_rating_count": 44
+   }
+  ]
+ },
+ "popularity_types": {
+  "status": 200,
+  "body": [
+   {
+    "id": 1,
+    "popularity_source": 121,
+    "name": "Visits"
+   },
+   {
+    "id": 3,
+    "popularity_source": 121,
+    "name": "Playing"
+   },
+   {
+    "id": 2,
+    "popularity_source": 121,
+    "name": "Want to Play"
+   },
+   {
+    "id": 4,
+    "popularity_source": 121,
+    "name": "Played"
+   },
+   {
+    "id": 8,
+    "popularity_source": 1,
+    "name": "Total Reviews"
+   },
+   {
+    "id": 7,
+    "popularity_source": 1,
+    "name": "Negative Reviews"
+   },
+   {
+    "id": 5,
+    "popularity_source": 1,
+    "name": "24hr Peak Players"
+   },
+   {
+    "id": 6,
+    "popularity_source": 1,
+    "name": "Postitive Reviews"
+   },
+   {
+    "id": 10,
+    "popularity_source": 1,
+    "name": "Most Wishlisted Upcoming"
+   },
+   {
+    "id": 9,
+    "popularity_source": 1,
+    "name": "Global Top Sellers"
+   },
+   {
+    "id": 34,
+    "popularity_source": 14,
+    "name": "24hr Hours Watched"
+   }
+  ]
+ },
+ "popscore": {
+  "status": 200,
+  "body": [
+   {
+    "id": 3890284,
+    "game_id": 117297,
+    "popularity_type": 1,
+    "value": 0.003604655937872
+   },
+   {
+    "id": 3880027,
+    "game_id": 17269,
+    "popularity_type": 1,
+    "value": 0.002931634734282
+   },
+   {
+    "id": 3905038,
+    "game_id": 307223,
+    "popularity_type": 1,
+    "value": 0.002447972038821
+   },
+   {
+    "id": 3888006,
+    "game_id": 87622,
+    "popularity_type": 1,
+    "value": 0.002377247776749
+   },
+   {
+    "id": 3892064,
+    "game_id": 135400,
+    "popularity_type": 1,
+    "value": 0.001857082236347
+   },
+   {
+    "id": 5984758,
+    "game_id": 418295,
+    "popularity_type": 1,
+    "value": 0.001667723728218
+   },
+   {
+    "id": 3874917,
+    "game_id": 1020,
+    "popularity_type": 1,
+    "value": 0.001471520936663
+   },
+   {
+    "id": 3908455,
+    "game_id": 341660,
+    "popularity_type": 1,
+    "value": 0.001136151048772
+   },
+   {
+    "id": 4698396,
+    "game_id": 395525,
+    "popularity_type": 1,
+    "value": 0.001115618198493
+   },
+   {
+    "id": 5113491,
+    "game_id": 340570,
+    "popularity_type": 1,
+    "value": 0.001095085348214
+   },
+   {
+    "id": 5709793,
+    "game_id": 413849,
+    "popularity_type": 1,
+    "value": 0.001067708214509
+   },
+   {
+    "id": 3915448,
+    "game_id": 305160,
+    "popularity_type": 1,
+    "value": 0.000994702524628
+   }
+  ]
+ },
+ "tmdb_top_rated_movie": {
+  "status": 200,
+  "results": [
+   [
+    "Batman: Knightfall Part 1: Knightfall",
+    "2026-06-23",
+    461,
+    9.091,
+    43.6784
+   ],
+   [
+    "Avatar Aang: The Last Airbender",
+    "2026-07-24",
+    1323,
+    9.089,
+    87.9026
+   ],
+   [
+    "Swapped",
+    "2026-05-01",
+    2250,
+    8.86,
+    49.4469
+   ],
+   [
+    "Accidental Partners",
+    "2026-03-12",
+    396,
+    8.821,
+    16.7497
+   ],
+   [
+    "Demon Slayer: Kimetsu no Yaiba Infinity Castle",
+    "2025-07-18",
+    2291,
+    8.8,
+    56.9059
+   ],
+   [
+    "Facing El Chapo",
+    "2026-08-21",
+    925,
+    8.776,
+    59.669
+   ],
+   [
+    "The Shawshank Redemption",
+    "1994-09-23",
+    31581,
+    8.733,
+    55.5243
+   ],
+   [
+    "The Godfather",
+    "1972-03-14",
+    23761,
+    8.7,
+    65.6183
+   ],
+   [
+    "Project Hail Mary",
+    "2026-03-15",
+    8305,
+    8.635,
+    102.1997
+   ],
+   [
+    "Michael",
+    "2026-04-22",
+    4565,
+    8.611,
+    56.0588
+   ],
+   [
+    "Young Hearts",
+    "2024-10-26",
+    328,
+    8.588,
+    27.5794
+   ],
+   [
+    "12 Angry Men",
+    "1957-04-10",
+    10478,
+    8.575,
+    39.707
+   ],
+   [
+    "The Godfather Part II",
+    "1974-12-20",
+    14467,
+    8.573,
+    38.233
+   ],
+   [
+    "Schindler's List",
+    "1993-12-15",
+    18038,
+    8.569,
+    52.2571
+   ],
+   [
+    "My Dearest Assassin",
+    "2026-05-06",
+    311,
+    8.559,
+    21.3344
+   ],
+   [
+    "Chainsaw Man - The Movie: Reze Arc",
+    "2025-09-19",
+    1242,
+    8.539,
+    28.7394
+   ],
+   [
+    "The Dark Knight",
+    "2008-07-16",
+    36972,
+    8.537,
+    55.5545
+   ],
+   [
+    "Spirited Away",
+    "2001-07-20",
+    19046,
+    8.5,
+    105.8318
+   ],
+   [
+    "The Green Mile",
+    "1999-12-10",
+    19963,
+    8.506,
+    64.0006
+   ],
+   [
+    "The Lord of the Rings: The Return of the King",
+    "2003-12-17",
+    27578,
+    8.505,
+    130.3763
+   ]
+  ]
+ },
+ "tmdb_discover_classics": {
+  "status": 200,
+  "results": [
+   [
+    "Fight Club",
+    "1999-10-15",
+    33031,
+    8.437,
+    43.0703
+   ],
+   [
+    "The Shawshank Redemption",
+    "1994-09-23",
+    31583,
+    8.732,
+    55.5243
+   ],
+   [
+    "Pulp Fiction",
+    "1994-09-10",
+    31087,
+    8.48,
+    69.2937
+   ],
+   [
+    "Forrest Gump",
+    "1994-06-23",
+    30665,
+    8.461,
+    57.1687
+   ],
+   [
+    "The Matrix",
+    "1999-03-31",
+    28964,
+    8.26,
+    45.9052
+   ],
+   [
+    "Titanic",
+    "1997-12-18",
+    27903,
+    7.901,
+    65.2492
+   ],
+   [
+    "Se7en",
+    "1995-09-22",
+    23982,
+    8.382,
+    36.6082
+   ],
+   [
+    "The Godfather",
+    "1972-03-14",
+    23762,
+    8.689,
+    65.6183
+   ],
+   [
+    "Star Wars",
+    "1977-05-25",
+    23011,
+    8.207,
+    118.5796
+   ],
+   [
+    "Back to the Future",
+    "1985-07-03",
+    22577,
+    8.332,
+    48.8312
+   ],
+   [
+    "The Truman Show",
+    "1998-06-04",
+    21032,
+    8.16,
+    46.0681
+   ],
+   [
+    "Toy Story",
+    "1995-11-22",
+    20668,
+    8,
+    63.9054
+   ],
+   [
+    "The Lion King",
+    "1994-06-15",
+    20275,
+    8.251,
+    40.233
+   ],
+   [
+    "The Green Mile",
+    "1999-12-10",
+    19966,
+    8.506,
+    64.0006
+   ],
+   [
+    "The Shining",
+    "1980-05-23",
+    19522,
+    8.2,
+    28.5635
+   ],
+   [
+    "The Empire Strikes Back",
+    "1980-05-20",
+    18978,
+    8.393,
+    34.5141
+   ],
+   [
+    "The Silence of the Lambs",
+    "1991-02-14",
+    18654,
+    8.345,
+    9.979
+   ],
+   [
+    "Jurassic Park",
+    "1993-06-11",
+    18469,
+    7.977,
+    29.6566
+   ],
+   [
+    "Schindler's List",
+    "1993-12-15",
+    18039,
+    8.569,
+    52.2571
+   ],
+   [
+    "Saving Private Ryan",
+    "1998-07-24",
+    17918,
+    8.233,
+    56.3591
+   ]
+  ]
+ },
+ "tmdb_tv_top": {
+  "status": 200,
+  "results": [
+   [
+    "Game of Thrones",
+    "2011-04-17",
+    27946,
+    8.474,
+    245.49
+   ],
+   [
+    "Stranger Things",
+    "2016-07-15",
+    21976,
+    8.5,
+    165.4553
+   ],
+   [
+    "Money Heist",
+    "2017-05-02",
+    19734,
+    8.23,
+    48.8777
+   ],
+   [
+    "Breaking Bad",
+    "2008-01-20",
+    18850,
+    8.955,
+    263.8041
+   ],
+   [
+    "The Walking Dead",
+    "2010-10-31",
+    18270,
+    8.079,
+    203.851
+   ],
+   [
+    "Squid Game",
+    "2021-09-17",
+    17843,
+    7.853,
+    137.4678
+   ],
+   [
+    "Lucifer",
+    "2016-01-25",
+    15727,
+    8.429,
+    121.1445
+   ],
+   [
+    "Riverdale",
+    "2017-01-26",
+    13808,
+    8.4,
+    94.1926
+   ],
+   [
+    "The Boys",
+    "2019-07-25",
+    13550,
+    8.425,
+    157.7952
+   ],
+   [
+    "WandaVision",
+    "2021-01-15",
+    12958,
+    8.2,
+    74.0313
+   ],
+   [
+    "The Good Doctor",
+    "2017-09-25",
+    12947,
+    8.5,
+    167.044
+   ],
+   [
+    "The Big Bang Theory",
+    "2007-09-24",
+    12871,
+    7.927,
+    85.4624
+   ],
+   [
+    "Loki",
+    "2021-06-09",
+    12810,
+    8.2,
+    89.7963
+   ],
+   [
+    "The Flash",
+    "2014-10-07",
+    11812,
+    7.744,
+    199.2198
+   ],
+   [
+    "Rick and Morty",
+    "2013-12-02",
+    11475,
+    8.68,
+    277.3158
+   ],
+   [
+    "Peaky Blinders",
+    "2013-09-12",
+    11449,
+    8.524,
+    92.9471
+   ],
+   [
+    "The Mandalorian",
+    "2019-11-12",
+    11307,
+    8.4,
+    99.7032
+   ],
+   [
+    "Euphoria",
+    "2019-06-16",
+    11125,
+    8.272,
+    78.4343
+   ],
+   [
+    "Grey's Anatomy",
+    "2005-03-27",
+    11080,
+    8.205,
+    380.7156
+   ],
+   [
+    "The Simpsons",
+    "1989-12-17",
+    11074,
+    8.023,
+    502.3816
+   ]
+  ]
+ },
+ "tmdb_rec_interstellar_p1": {
+  "status": 200,
+  "results": [
+   [
+    "Stargate: The Ark of Truth",
+    "2008-03-11",
+    614,
+    7.063,
+    7.7129
+   ],
+   [
+    "The Creator",
+    "2023-09-27",
+    4233,
+    7.023,
+    35.6399
+   ],
+   [
+    "Stowaway",
+    "2021-06-24",
+    739,
+    6,
+    14.3557
+   ],
+   [
+    "Star Trek",
+    "2009-05-06",
+    10787,
+    7.438,
+    17.61
+   ],
+   [
+    "After Yang",
+    "2022-03-04",
+    557,
+    6.406,
+    9.2302
+   ],
+   [
+    "Solaris",
+    "2002-11-27",
+    1536,
+    5.957,
+    5.1701
+   ],
+   [
+    "The Electric State",
+    "2025-02-24",
+    1849,
+    6.478,
+    48.5233
+   ],
+   [
+    "Primer",
+    "2004-10-08",
+    2578,
+    6.747,
+    4.8049
+   ],
+   [
+    "Oblivion",
+    "2013-04-10",
+    11913,
+    6.697,
+    26.0884
+   ],
+   [
+    "Project Hail Mary",
+    "2026-03-15",
+    8305,
+    8.635,
+    102.1997
+   ],
+   [
+    "A.I. Artificial Intelligence",
+    "2001-06-29",
+    6927,
+    7.072,
+    40.6979
+   ],
+   [
+    "Valerian and the City of a Thousand Planets",
+    "2017-07-19",
+    8264,
+    6.655,
+    18.0935
+   ],
+   [
+    "Planet of the Apes",
+    "1968-02-07",
+    4143,
+    7.656,
+    38.4443
+   ],
+   [
+    "Stargate: Continuum",
+    "2008-07-29",
+    630,
+    7.125,
+    5.974
+   ],
+   [
+    "Stargate",
+    "1994-10-28",
+    4003,
+    7.035,
+    13.1818
+   ],
+   [
+    "Ad Astra",
+    "2019-09-17",
+    7481,
+    6.141,
+    14.7486
+   ],
+   [
+    "TRON: Legacy",
+    "2010-12-14",
+    8214,
+    6.55,
+    16.7167
+   ],
+   [
+    "Divergent",
+    "2014-03-14",
+    13799,
+    6.899,
+    50.3185
+   ],
+   [
+    "Allegiant",
+    "2016-03-09",
+    7138,
+    6.1,
+    27.0786
+   ],
+   [
+    "Star Trek Beyond",
+    "2016-07-07",
+    7307,
+    6.792,
+    16.863
+   ]
+  ]
+ },
+ "tmdb_similar_interstellar": {
+  "status": 200,
+  "results": [
+   [
+    "No Nest",
+    "2021-11-17",
+    1,
+    10,
+    0.8981
+   ],
+   [
+    "Cadet",
+    "2021-03-14",
+    0,
+    0,
+    1.8543
+   ],
+   [
+    "A History of Violence",
+    "2005-09-23",
+    3918,
+    7.164,
+    9.6735
+   ],
+   [
+    "The Elementary Particles",
+    "2006-02-10",
+    153,
+    6.2,
+    4.3343
+   ],
+   [
+    "Indiana Jones and the Last Crusade",
+    "1989-05-24",
+    11438,
+    7.857,
+    24.3244
+   ],
+   [
+    "Run Lola Run",
+    "1998-08-20",
+    2701,
+    7.303,
+    9.3334
+   ],
+   [
+    "Back to the Future",
+    "1985-07-03",
+    22576,
+    8.332,
+    48.8312
+   ],
+   [
+    "The Jungle Fool",
+    "1929-09-15",
+    2,
+    7.5,
+    0.7389
+   ],
+   [
+    "The Beyond",
+    "2018-01-09",
+    215,
+    5.5,
+    3.1243
+   ],
+   [
+    "Terminator 3: Rise of the Machines",
+    "2003-07-02",
+    7555,
+    6.212,
+    28.8755
+   ],
+   [
+    "Rome, Open City",
+    "1945-10-08",
+    1011,
+    8.012,
+    4.7206
+   ],
+   [
+    "Alien",
+    "1979-05-25",
+    16974,
+    8.175,
+    31.0284
+   ],
+   [
+    "Terminator 2: Judgment Day",
+    "1991-07-03",
+    15023,
+    8.174,
+    47.9611
+   ],
+   [
+    "Strange Days",
+    "1995-10-13",
+    1632,
+    7.02,
+    6.749
+   ],
+   [
+    "Time Traveler",
+    "",
+    0,
+    0,
+    1.3597
+   ],
+   [
+    "War of the Worlds",
+    "2005-06-28",
+    9626,
+    6.577,
+    36.1278
+   ],
+   [
+    "Blade Runner",
+    "1982-06-25",
+    15512,
+    7.937,
+    23.4922
+   ],
+   [
+    "Absolute Power",
+    "1997-02-14",
+    1306,
+    6.662,
+    12.1817
+   ],
+   [
+    "Brazil",
+    "1985-02-20",
+    3860,
+    7.656,
+    8.1056
+   ],
+   [
+    "Dirty Dancing",
+    "1987-08-21",
+    6711,
+    7.325,
+    32.2294
+   ]
+  ]
+ },
+ "tmdb_now_playing": {
+  "status": 200,
+  "results": [
+   [
+    "Matchbox the Movie",
+    "2026-10-05",
+    324,
+    7.87,
+    408.7678
+   ],
+   [
+    "Resident Evil",
+    "2026-09-16",
+    949,
+    7.33,
+    379.6986
+   ],
+   [
+    "The Odyssey",
+    "2026-07-15",
+    4137,
+    8,
+    379.5091
+   ],
+   [
+    "Animals",
+    "2026-10-09",
+    371,
+    7.229,
+    269.6434
+   ],
+   [
+    "Runner",
+    "2026-09-07",
+    566,
+    8.302,
+    265.0429
+   ],
+   [
+    "The Fix",
+    "2026-09-10",
+    63,
+    6.8,
+    248.4615
+   ],
+   [
+    "Fall 2: Deadpoint",
+    "2026-09-01",
+    543,
+    7.283,
+    239.7621
+   ],
+   [
+    "Hope",
+    "2026-07-15",
+    184,
+    7.114,
+    191.1737
+   ],
+   [
+    "Obsession",
+    "2026-05-13",
+    6129,
+    8.179,
+    175.5056
+   ],
+   [
+    "Other Mommy",
+    "2026-10-07",
+    116,
+    5.957,
+    150.8613
+   ],
+   [
+    "After Impact",
+    "2026-09-15",
+    27,
+    5.833,
+    143.7825
+   ],
+   [
+    "Coyote vs. Acme",
+    "2026-08-20",
+    746,
+    7.499,
+    140.3705
+   ],
+   [
+    "Practical Magic 2",
+    "2026-09-09",
+    166,
+    6.4,
+    139.895
+   ],
+   [
+    "Onslaught",
+    "2026-09-02",
+    110,
+    5.745,
+    129.7146
+   ],
+   [
+    "Reporting Live",
+    "2026-10-09",
+    4,
+    8.1,
+    128.2849
+   ],
+   [
+    "Pinocchio: Unstrung",
+    "2026-07-22",
+    134,
+    6.511,
+    127.7629
+   ],
+   [
+    "Digger",
+    "2026-09-28",
+    371,
+    7.492,
+    114.9217
+   ],
+   [
+    "Buddy",
+    "2026-08-27",
+    110,
+    7.291,
+    111.5068
+   ],
+   [
+    "Mutiny",
+    "2026-08-19",
+    888,
+    7.566,
+    111.429
+   ],
+   [
+    "V/H/S/Mixtape",
+    "2026-10-09",
+    21,
+    4.452,
+    109.0193
+   ]
+  ]
+ },
+ "tmdb_movie_images": {
+  "status": 200,
+  "backdrops": 176,
+  "logos": [
+   {
+    "aspect_ratio": 3.53,
+    "height": 834,
+    "iso_3166_1": "US",
+    "iso_639_1": "en",
+    "file_path": "/4Hu4w5p0mwL2Wvyk3gqu2JRDGHl.png",
+    "vote_average": 1.75,
+    "vote_count": 3,
+    "width": 2944
+   },
+   {
+    "aspect_ratio": 15.154,
+    "height": 208,
+    "iso_3166_1": "US",
+    "iso_639_1": "en",
+    "file_path": "/gRq44e92u1EynfFLjhPF3o2Cjgm.png",
+    "vote_average": 1.75,
+    "vote_count": 2,
+    "width": 3152
+   }
+  ]
+ },
+ "tmdb_batman_companies": [
+  {
+   "id": 101405,
+   "logo_path": "/iusVPF9AJD1DiHEWbZEXgn1hpOf.png",
+   "name": "6th & Idaho Motion Picture Company",
+   "origin_country": "US"
+  },
+  {
+   "id": 119245,
+   "logo_path": "/6F45uVsKpNYANcWvplyhgIFezFU.png",
+   "name": "Dylan Clark Productions",
+   "origin_country": "US"
+  },
+  {
+   "id": 128064,
+   "logo_path": "/13F3Jf7EFAcREU0xzZqJnVnyGXu.png",
+   "name": "DC Films",
+   "origin_country": "US"
+  },
+  {
+   "id": 174,
+   "logo_path": "/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png",
+   "name": "Warner Bros. Pictures",
+   "origin_country": "US"
+  }
+ ]
+}

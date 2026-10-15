@@ -1,0 +1,4235 @@
+{
+ "status": {
+  "tmdb": true,
+  "igdb": true
+ },
+ "search": {
+  "Interstellar | any": [
+   {
+    "title": "Interstellar",
+    "type": "movie",
+    "year": "2014",
+    "source": "tmdb",
+    "popularity": 41492,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "157336"
+    },
+    "thumb": true,
+    "desc": "2014 Film"
+   },
+   {
+    "title": "Interstellar",
+    "type": "game",
+    "year": "1983",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "24505"
+    },
+    "thumb": true,
+    "desc": "1983 Video game"
+   },
+   {
+    "title": "Interstellar Wars",
+    "type": "movie",
+    "year": "2016",
+    "source": "tmdb",
+    "popularity": 15,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "398188"
+    },
+    "thumb": true,
+    "desc": "2016 Film"
+   },
+   {
+    "title": "Inside 'Interstellar'",
+    "type": "movie",
+    "year": "2015",
+    "source": "tmdb",
+    "popularity": 12,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "529107"
+    },
+    "thumb": true,
+    "desc": "2015 Film"
+   },
+   {
+    "title": "Interstellar Ella",
+    "type": "show",
+    "year": "2022",
+    "source": "tmdb",
+    "popularity": 2,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "212171"
+    },
+    "thumb": true,
+    "desc": "2022 TV series"
+   },
+   {
+    "title": "Interstellar Wandering",
+    "type": "movie",
+    "year": "2019",
+    "source": "tmdb",
+    "popularity": 1,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "649745"
+    },
+    "thumb": true,
+    "desc": "2019 Film"
+   },
+   {
+    "title": "Interstellar Prime",
+    "type": "game",
+    "year": "2019",
+    "source": "igdb",
+    "popularity": 1,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "74289"
+    },
+    "thumb": true,
+    "desc": "2019 Video game"
+   },
+   {
+    "title": "Interstellar Wanderer",
+    "type": "show",
+    "year": "2022",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "198237"
+    },
+    "thumb": true,
+    "desc": "2022 TV series"
+   }
+  ],
+  "The Batman | movie": [
+   {
+    "title": "The Batman",
+    "type": "movie",
+    "year": "2022",
+    "source": "tmdb",
+    "popularity": 12676,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "414906"
+    },
+    "thumb": true,
+    "desc": "2022 Film"
+   },
+   {
+    "title": "The Lego Batman Movie",
+    "type": "movie",
+    "year": "2017",
+    "source": "tmdb",
+    "popularity": 5608,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "324849"
+    },
+    "thumb": true,
+    "desc": "2017 Film"
+   },
+   {
+    "title": "Batman: The Killing Joke",
+    "type": "movie",
+    "year": "2016",
+    "source": "tmdb",
+    "popularity": 1992,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "382322"
+    },
+    "thumb": true,
+    "desc": "2016 Film"
+   },
+   {
+    "title": "The Batman: Part II",
+    "type": "movie",
+    "year": "2028",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "806704"
+    },
+    "thumb": true,
+    "desc": "2028 Film"
+   },
+   {
+    "title": "Batman: Mask of the Phantasm",
+    "type": "movie",
+    "year": "1993",
+    "source": "tmdb",
+    "popularity": 1314,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "14919"
+    },
+    "thumb": true,
+    "desc": "1993 Film"
+   },
+   {
+    "title": "The Batman vs. Dracula",
+    "type": "movie",
+    "year": "2005",
+    "source": "tmdb",
+    "popularity": 432,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "20077"
+    },
+    "thumb": true,
+    "desc": "2005 Film"
+   },
+   {
+    "title": "Batman: Under the Red Hood",
+    "type": "movie",
+    "year": "2010",
+    "source": "tmdb",
+    "popularity": 1798,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "40662"
+    },
+    "thumb": true,
+    "desc": "2010 Film"
+   },
+   {
+    "title": "Batman Beyond: The Movie",
+    "type": "movie",
+    "year": "1999",
+    "source": "tmdb",
+    "popularity": 208,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "64202"
+    },
+    "thumb": true,
+    "desc": "1999 Film"
+   }
+  ],
+  "Breaking Bad | any": [
+   {
+    "title": "Breaking Bad",
+    "type": "show",
+    "year": "2008",
+    "source": "tmdb",
+    "popularity": 18848,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "1396"
+    },
+    "thumb": true,
+    "desc": "2008 TV series"
+   },
+   {
+    "title": "El Camino: A Breaking Bad Movie",
+    "type": "movie",
+    "year": "2019",
+    "source": "tmdb",
+    "popularity": 5912,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "559969"
+    },
+    "thumb": true,
+    "desc": "2019 Film"
+   },
+   {
+    "title": "ISMO – Breaking Bad English",
+    "type": "movie",
+    "year": "2024",
+    "source": "tmdb",
+    "popularity": 6,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1309626"
+    },
+    "thumb": true,
+    "desc": "2024 Film"
+   },
+   {
+    "title": "Daniel Brühl: Breaking Bad",
+    "type": "movie",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 3,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1089398"
+    },
+    "thumb": true,
+    "desc": "2023 Film"
+   },
+   {
+    "title": "Breaking Bad Wolf",
+    "type": "movie",
+    "year": "",
+    "source": "tmdb",
+    "popularity": 2,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "635602"
+    },
+    "thumb": true,
+    "desc": "Film"
+   },
+   {
+    "title": "Breaking Bad Fortune Teller",
+    "type": "show",
+    "year": "2016",
+    "source": "tmdb",
+    "popularity": 1,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "232533"
+    },
+    "thumb": true,
+    "desc": "2016 TV series"
+   },
+   {
+    "title": "Breaking Bad DS",
+    "type": "game",
+    "year": "2023",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "277201"
+    },
+    "thumb": true,
+    "desc": "2023 Video game"
+   },
+   {
+    "title": "Breaking Bad: VR Experience",
+    "type": "game",
+    "year": "",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "36757"
+    },
+    "thumb": true,
+    "desc": "Video game"
+   }
+  ],
+  "The Office | show": [
+   {
+    "title": "The Office",
+    "type": "show",
+    "year": "2005",
+    "source": "tmdb",
+    "popularity": 5580,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "2316"
+    },
+    "thumb": true,
+    "desc": "2005 TV series"
+   },
+   {
+    "title": "The Office",
+    "type": "show",
+    "year": "2001",
+    "source": "tmdb",
+    "popularity": 1010,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "2996"
+    },
+    "thumb": true,
+    "desc": "2001 TV series"
+   },
+   {
+    "title": "The Office PL",
+    "type": "show",
+    "year": "2021",
+    "source": "tmdb",
+    "popularity": 11,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "128822"
+    },
+    "thumb": true,
+    "desc": "2021 TV series"
+   },
+   {
+    "title": "The Office",
+    "type": "show",
+    "year": "2024",
+    "source": "tmdb",
+    "popularity": 42,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "256480"
+    },
+    "thumb": true,
+    "desc": "2024 TV series"
+   },
+   {
+    "title": "The Office",
+    "type": "show",
+    "year": "2019",
+    "source": "tmdb",
+    "popularity": 10,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "90762"
+    },
+    "thumb": true,
+    "desc": "2019 TV series"
+   },
+   {
+    "title": "The Office",
+    "type": "show",
+    "year": "1995",
+    "source": "tmdb",
+    "popularity": 2,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "24876"
+    },
+    "thumb": true,
+    "desc": "1995 TV series"
+   },
+   {
+    "title": "Phantom of the Office",
+    "type": "show",
+    "year": "2008",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "249145"
+    },
+    "thumb": true,
+    "desc": "2008 TV series"
+   },
+   {
+    "title": "The Office",
+    "type": "show",
+    "year": "2017",
+    "source": "tmdb",
+    "popularity": 2,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "70633"
+    },
+    "thumb": true,
+    "desc": "2017 TV series"
+   }
+  ],
+  "God of War Ragnarok | game": [
+   {
+    "title": "God of War Ragnarök",
+    "type": "game",
+    "year": "2022",
+    "source": "igdb",
+    "popularity": 1187,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "112875"
+    },
+    "thumb": true,
+    "desc": "2022 Video game"
+   },
+   {
+    "title": "Ragnarok: War of Gods",
+    "type": "game",
+    "year": "2013",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "323174"
+    },
+    "thumb": true,
+    "desc": "2013 Video game"
+   }
+  ],
+  "god of war ragnarok | any": [
+   {
+    "title": "God of War Ragnarök",
+    "type": "game",
+    "year": "2022",
+    "source": "igdb",
+    "popularity": 1187,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "112875"
+    },
+    "thumb": true,
+    "desc": "2022 Video game"
+   },
+   {
+    "title": "Ragnarok: War of Gods",
+    "type": "game",
+    "year": "2013",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "323174"
+    },
+    "thumb": true,
+    "desc": "2013 Video game"
+   }
+  ],
+  "Red Dead Redemption 2 | any": [
+   {
+    "title": "Red Dead Redemption 2",
+    "type": "game",
+    "year": "2018",
+    "source": "igdb",
+    "popularity": 3903,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "25076"
+    },
+    "thumb": true,
+    "desc": "2018 Video game"
+   },
+   {
+    "title": "Red Dead Redemption 2",
+    "type": "show",
+    "year": "2018",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "338704"
+    },
+    "thumb": true,
+    "desc": "2018 TV series"
+   },
+   {
+    "title": "Red Dead Redemption",
+    "type": "game",
+    "year": "2010",
+    "source": "igdb",
+    "popularity": 2570,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "434"
+    },
+    "thumb": true,
+    "desc": "2010 Video game"
+   },
+   {
+    "title": "Red Dead Redemption & Red Dead Redemption 2 Bundle",
+    "type": "game",
+    "year": "2023",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "262052"
+    },
+    "thumb": true,
+    "desc": "2023 Video game"
+   }
+  ],
+  "Elden Ring | game": [
+   {
+    "title": "Elden Ring",
+    "type": "game",
+    "year": "2022",
+    "source": "igdb",
+    "popularity": 2326,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "119133"
+    },
+    "thumb": true,
+    "desc": "2022 Video game"
+   },
+   {
+    "title": "Elden Ring Nightreign",
+    "type": "game",
+    "year": "2025",
+    "source": "igdb",
+    "popularity": 109,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "325591"
+    },
+    "thumb": true,
+    "desc": "2025 Video game"
+   },
+   {
+    "title": "Elden Ring GB",
+    "type": "game",
+    "year": "2022",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "206519"
+    },
+    "thumb": true,
+    "desc": "2022 Video game"
+   },
+   {
+    "title": "Elden Ring Demake",
+    "type": "game",
+    "year": "",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "408334"
+    },
+    "thumb": true,
+    "desc": "Video game"
+   },
+   {
+    "title": "Elden Shell: Mortal Ring",
+    "type": "game",
+    "year": "",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "194075"
+    },
+    "thumb": false,
+    "desc": "Video game"
+   }
+  ],
+  "The Last of Us | any": [
+   {
+    "title": "The Last of Us",
+    "type": "show",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 7418,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "100088"
+    },
+    "thumb": true,
+    "desc": "2023 TV series"
+   },
+   {
+    "title": "The Last of Us",
+    "type": "game",
+    "year": "2013",
+    "source": "igdb",
+    "popularity": 3621,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "1009"
+    },
+    "thumb": true,
+    "desc": "2013 Video game"
+   },
+   {
+    "title": "The Last of Us Part II",
+    "type": "game",
+    "year": "2020",
+    "source": "igdb",
+    "popularity": 1824,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "26192"
+    },
+    "thumb": true,
+    "desc": "2020 Video game"
+   },
+   {
+    "title": "Grounded: Making The Last of Us",
+    "type": "movie",
+    "year": "2013",
+    "source": "tmdb",
+    "popularity": 42,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "211707"
+    },
+    "thumb": true,
+    "desc": "2013 Film"
+   },
+   {
+    "title": "Making of The Last of Us",
+    "type": "movie",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 31,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1100287"
+    },
+    "thumb": true,
+    "desc": "2023 Film"
+   },
+   {
+    "title": "The Last of Us: One Night Live",
+    "type": "movie",
+    "year": "2014",
+    "source": "tmdb",
+    "popularity": 11,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "284329"
+    },
+    "thumb": true,
+    "desc": "2014 Film"
+   },
+   {
+    "title": "The Last of Us Development Series",
+    "type": "show",
+    "year": "2013",
+    "source": "tmdb",
+    "popularity": 1,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "62141"
+    },
+    "thumb": false,
+    "desc": "2013 TV series"
+   },
+   {
+    "title": "The Last Of Us (Bon Anniversaire)",
+    "type": "movie",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 1,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1755508"
+    },
+    "thumb": true,
+    "desc": "2023 Film"
+   }
+  ],
+  "Dune | movie": [
+   {
+    "title": "Dune",
+    "type": "movie",
+    "year": "2021",
+    "source": "tmdb",
+    "popularity": 15716,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "438631"
+    },
+    "thumb": true,
+    "desc": "2021 Film"
+   },
+   {
+    "title": "Dune: Part Two",
+    "type": "movie",
+    "year": "2024",
+    "source": "tmdb",
+    "popularity": 8737,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "693134"
+    },
+    "thumb": true,
+    "desc": "2024 Film"
+   },
+   {
+    "title": "Dune",
+    "type": "movie",
+    "year": "1984",
+    "source": "tmdb",
+    "popularity": 3576,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "841"
+    },
+    "thumb": true,
+    "desc": "1984 Film"
+   },
+   {
+    "title": "Dune: Part Three",
+    "type": "movie",
+    "year": "2026",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1170608"
+    },
+    "thumb": true,
+    "desc": "2026 Film"
+   },
+   {
+    "title": "Dune",
+    "type": "movie",
+    "year": "2020",
+    "source": "tmdb",
+    "popularity": 37,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "697620"
+    },
+    "thumb": true,
+    "desc": "2020 Film"
+   },
+   {
+    "title": "Anatomy of a Fall",
+    "type": "movie",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 3523,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "915935"
+    },
+    "thumb": true,
+    "desc": "2023 Film"
+   },
+   {
+    "title": "The Dune",
+    "type": "movie",
+    "year": "2014",
+    "source": "tmdb",
+    "popularity": 21,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "271683"
+    },
+    "thumb": true,
+    "desc": "2014 Film"
+   },
+   {
+    "title": "Dune",
+    "type": "movie",
+    "year": "1989",
+    "source": "tmdb",
+    "popularity": 3,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "627150"
+    },
+    "thumb": true,
+    "desc": "1989 Film"
+   }
+  ],
+  "Arcane | any": [
+   {
+    "title": "Arcane",
+    "type": "show",
+    "year": "2021",
+    "source": "tmdb",
+    "popularity": 6236,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "94605"
+    },
+    "thumb": true,
+    "desc": "2021 TV series"
+   },
+   {
+    "title": "Arcane",
+    "type": "game",
+    "year": "2016",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "31163"
+    },
+    "thumb": true,
+    "desc": "2016 Video game"
+   },
+   {
+    "title": "Arcane Sorcerer",
+    "type": "movie",
+    "year": "1996",
+    "source": "tmdb",
+    "popularity": 52,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "59857"
+    },
+    "thumb": true,
+    "desc": "1996 Film"
+   },
+   {
+    "title": "Arcane: Bridging the Rift",
+    "type": "show",
+    "year": "2022",
+    "source": "tmdb",
+    "popularity": 13,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "203701"
+    },
+    "thumb": true,
+    "desc": "2022 TV series"
+   },
+   {
+    "title": "Arcane Golf",
+    "type": "game",
+    "year": "2018",
+    "source": "igdb",
+    "popularity": 1,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "105176"
+    },
+    "thumb": true,
+    "desc": "2018 Video game"
+   },
+   {
+    "title": "Arcane Headshots",
+    "type": "movie",
+    "year": "2022",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "982067"
+    },
+    "thumb": true,
+    "desc": "2022 Film"
+   },
+   {
+    "title": "Arcane Bloom",
+    "type": "movie",
+    "year": "2022",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "925115"
+    },
+    "thumb": false,
+    "desc": "2022 Film"
+   },
+   {
+    "title": "The Arcane Arts",
+    "type": "movie",
+    "year": "",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1600999"
+    },
+    "thumb": false,
+    "desc": "Film"
+   }
+  ],
+  "spider-man | game": [
+   {
+    "title": "Spider-Man",
+    "type": "game",
+    "year": "2000",
+    "source": "igdb",
+    "popularity": 306,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "3603"
+    },
+    "thumb": true,
+    "desc": "2000 Video game"
+   },
+   {
+    "title": "Spider-Man",
+    "type": "game",
+    "year": "2002",
+    "source": "igdb",
+    "popularity": 162,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "19114"
+    },
+    "thumb": true,
+    "desc": "2002 Video game"
+   },
+   {
+    "title": "Spider-Man",
+    "type": "game",
+    "year": "1995",
+    "source": "igdb",
+    "popularity": 8,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "4500"
+    },
+    "thumb": true,
+    "desc": "1995 Video game"
+   },
+   {
+    "title": "Spider-Man",
+    "type": "game",
+    "year": "2003",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "403060"
+    },
+    "thumb": true,
+    "desc": "2003 Video game"
+   },
+   {
+    "title": "Spider-Man",
+    "type": "game",
+    "year": "2004",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "220109"
+    },
+    "thumb": true,
+    "desc": "2004 Video game"
+   },
+   {
+    "title": "Marvel's Spider-Man",
+    "type": "game",
+    "year": "2018",
+    "source": "igdb",
+    "popularity": 2189,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "19565"
+    },
+    "thumb": true,
+    "desc": "2018 Video game"
+   },
+   {
+    "title": "Spider-Man 2",
+    "type": "game",
+    "year": "2004",
+    "source": "igdb",
+    "popularity": 275,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "6285"
+    },
+    "thumb": true,
+    "desc": "2004 Video game"
+   },
+   {
+    "title": "Spider-Man: Web of Shadows",
+    "type": "game",
+    "year": "2008",
+    "source": "igdb",
+    "popularity": 137,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "5181"
+    },
+    "thumb": true,
+    "desc": "2008 Video game"
+   }
+  ],
+  "Oppenheimer | any": [
+   {
+    "title": "Oppenheimer",
+    "type": "movie",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 12691,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "872585"
+    },
+    "thumb": true,
+    "desc": "2023 Film"
+   },
+   {
+    "title": "Oppenheimer",
+    "type": "show",
+    "year": "1980",
+    "source": "tmdb",
+    "popularity": 13,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "8771"
+    },
+    "thumb": true,
+    "desc": "1980 TV series"
+   },
+   {
+    "title": "Oppenheimer",
+    "type": "movie",
+    "year": "2024",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1634345"
+    },
+    "thumb": true,
+    "desc": "2024 Film"
+   },
+   {
+    "title": "The Oppenheimer Case",
+    "type": "movie",
+    "year": "2025",
+    "source": "tmdb",
+    "popularity": 4,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1521971"
+    },
+    "thumb": true,
+    "desc": "2025 Film"
+   },
+   {
+    "title": "Oppenheimer After Trinity",
+    "type": "movie",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 3,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1143770"
+    },
+    "thumb": true,
+    "desc": "2023 Film"
+   },
+   {
+    "title": "Oppenheimer und die Bombe",
+    "type": "show",
+    "year": "2025",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "297315"
+    },
+    "thumb": false,
+    "desc": "2025 TV series"
+   }
+  ],
+  "The Odyssey | movie": [
+   {
+    "title": "The Odyssey",
+    "type": "movie",
+    "year": "2026",
+    "source": "tmdb",
+    "popularity": 4137,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1368337"
+    },
+    "thumb": true,
+    "desc": "2026 Film"
+   },
+   {
+    "title": "The Odyssey",
+    "type": "movie",
+    "year": "2026",
+    "source": "tmdb",
+    "popularity": 706,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1698863"
+    },
+    "thumb": true,
+    "desc": "2026 Film"
+   },
+   {
+    "title": "The Odyssey",
+    "type": "movie",
+    "year": "2016",
+    "source": "tmdb",
+    "popularity": 440,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "332794"
+    },
+    "thumb": true,
+    "desc": "2016 Film"
+   },
+   {
+    "title": "Ultraman Tiga: The Final Odyssey",
+    "type": "movie",
+    "year": "2000",
+    "source": "tmdb",
+    "popularity": 28,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "113094"
+    },
+    "thumb": true,
+    "desc": "2000 Film"
+   },
+   {
+    "title": "The Odyssey",
+    "type": "movie",
+    "year": "2026",
+    "source": "tmdb",
+    "popularity": 0,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1756234"
+    },
+    "thumb": true,
+    "desc": "2026 Film"
+   },
+   {
+    "title": "Troy: The Odyssey",
+    "type": "movie",
+    "year": "2017",
+    "source": "tmdb",
+    "popularity": 33,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "493416"
+    },
+    "thumb": true,
+    "desc": "2017 Film"
+   },
+   {
+    "title": "The Odyssey",
+    "type": "movie",
+    "year": "1991",
+    "source": "tmdb",
+    "popularity": 3,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "219197"
+    },
+    "thumb": true,
+    "desc": "1991 Film"
+   },
+   {
+    "title": "The Wire Odyssey",
+    "type": "movie",
+    "year": "2007",
+    "source": "tmdb",
+    "popularity": 5,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "239450"
+    },
+    "thumb": true,
+    "desc": "2007 Film"
+   }
+  ],
+  "Zelda breath of the wild | game": [
+   {
+    "title": "The Legend of Zelda: Breath of the Wild",
+    "type": "game",
+    "year": "2017",
+    "source": "igdb",
+    "popularity": 3021,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "7346"
+    },
+    "thumb": true,
+    "desc": "2017 Video game"
+   },
+   {
+    "title": "The Legend of Zelda: Breath of the Wild - Expansion Pass",
+    "type": "game",
+    "year": "2017",
+    "source": "igdb",
+    "popularity": 20,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "41829"
+    },
+    "thumb": true,
+    "desc": "2017 Video game"
+   },
+   {
+    "title": "The Legend of Zelda: Breath of the Wild and The Legend of Zelda: Breath of the Wild Expansion Pass Bundle",
+    "type": "game",
+    "year": "2017",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "237895"
+    },
+    "thumb": true,
+    "desc": "2017 Video game"
+   }
+  ],
+  "Pokemon | game": [
+   {
+    "title": "Pokémon Stadium 2",
+    "type": "game",
+    "year": "2000",
+    "source": "igdb",
+    "popularity": 181,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "2290"
+    },
+    "thumb": true,
+    "desc": "2000 Video game"
+   },
+   {
+    "title": "Pokémon White Version 2",
+    "type": "game",
+    "year": "2012",
+    "source": "igdb",
+    "popularity": 182,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "8353"
+    },
+    "thumb": true,
+    "desc": "2012 Video game"
+   },
+   {
+    "title": "Pokemon Topaz",
+    "type": "game",
+    "year": "",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "383058"
+    },
+    "thumb": true,
+    "desc": "Video game"
+   },
+   {
+    "title": "Name That Pokemon",
+    "type": "game",
+    "year": "2010",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "338933"
+    },
+    "thumb": true,
+    "desc": "2010 Video game"
+   },
+   {
+    "title": "Pokemon II",
+    "type": "game",
+    "year": "2002",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "403895"
+    },
+    "thumb": true,
+    "desc": "2002 Video game"
+   },
+   {
+    "title": "Pokemon Flux",
+    "type": "game",
+    "year": "",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "250199"
+    },
+    "thumb": true,
+    "desc": "Video game"
+   },
+   {
+    "title": "Pokemon Bois",
+    "type": "game",
+    "year": "2023",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "250467"
+    },
+    "thumb": true,
+    "desc": "2023 Video game"
+   },
+   {
+    "title": "Pokemon Ryen",
+    "type": "game",
+    "year": "",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "323879"
+    },
+    "thumb": false,
+    "desc": "Video game"
+   }
+  ],
+  "Severance | show": [
+   {
+    "title": "Severance",
+    "type": "show",
+    "year": "2022",
+    "source": "tmdb",
+    "popularity": 3035,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "95396"
+    },
+    "thumb": true,
+    "desc": "2022 TV series"
+   }
+  ],
+  "Shogun | any": [
+   {
+    "title": "Shogun",
+    "type": "movie",
+    "year": "1980",
+    "source": "tmdb",
+    "popularity": 3,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1699150"
+    },
+    "thumb": true,
+    "desc": "1980 Film"
+   },
+   {
+    "title": "Shogun",
+    "type": "game",
+    "year": "1987",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "400720"
+    },
+    "thumb": true,
+    "desc": "1987 Video game"
+   },
+   {
+    "title": "Shogun",
+    "type": "game",
+    "year": "2024",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "298095"
+    },
+    "thumb": true,
+    "desc": "2024 Video game"
+   },
+   {
+    "title": "Shogun",
+    "type": "game",
+    "year": "2024",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "306534"
+    },
+    "thumb": true,
+    "desc": "2024 Video game"
+   },
+   {
+    "title": "Shōgun",
+    "type": "show",
+    "year": "2024",
+    "source": "tmdb",
+    "popularity": 1936,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "126308"
+    },
+    "thumb": true,
+    "desc": "2024 TV series"
+   },
+   {
+    "title": "Shōgun",
+    "type": "show",
+    "year": "1980",
+    "source": "tmdb",
+    "popularity": 250,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "13862"
+    },
+    "thumb": true,
+    "desc": "1980 TV series"
+   },
+   {
+    "title": "Shogun Assassin",
+    "type": "movie",
+    "year": "1980",
+    "source": "tmdb",
+    "popularity": 197,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "15119"
+    },
+    "thumb": true,
+    "desc": "1980 Film"
+   },
+   {
+    "title": "Shogun: Total War",
+    "type": "game",
+    "year": "2000",
+    "source": "igdb",
+    "popularity": 66,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "436"
+    },
+    "thumb": true,
+    "desc": "2000 Video game"
+   }
+  ],
+  "Resident Evil 4 | game": [
+   {
+    "title": "Resident Evil 4",
+    "type": "game",
+    "year": "2005",
+    "source": "igdb",
+    "popularity": 1699,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "974"
+    },
+    "thumb": true,
+    "desc": "2005 Video game"
+   },
+   {
+    "title": "Resident Evil: Dead Aim",
+    "type": "game",
+    "year": "2003",
+    "source": "igdb",
+    "popularity": 44,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "971"
+    },
+    "thumb": true,
+    "desc": "2003 Video game"
+   },
+   {
+    "title": "Resident Evil 4 and Resident Evil Code: Veronica X Bundle",
+    "type": "game",
+    "year": "2009",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "145201"
+    },
+    "thumb": true,
+    "desc": "2009 Video game"
+   },
+   {
+    "title": "Resident Evil 4: Otome Edition",
+    "type": "game",
+    "year": "2021",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "29145"
+    },
+    "thumb": true,
+    "desc": "2021 Video game"
+   },
+   {
+    "title": "Pack Horreur I Resident Evil 7 + Resident Evil 4 + The Evil Within 2",
+    "type": "game",
+    "year": "2018",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "145339"
+    },
+    "thumb": true,
+    "desc": "2018 Video game"
+   }
+  ],
+  "Avatar | any": [
+   {
+    "title": "Avatar",
+    "type": "movie",
+    "year": "2009",
+    "source": "tmdb",
+    "popularity": 34845,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "19995"
+    },
+    "thumb": true,
+    "desc": "2009 Film"
+   },
+   {
+    "title": "Avatar",
+    "type": "game",
+    "year": "1991",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "228749"
+    },
+    "thumb": true,
+    "desc": "1991 Video game"
+   },
+   {
+    "title": "Avatar",
+    "type": "game",
+    "year": "1979",
+    "source": "igdb",
+    "popularity": 0,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "80928"
+    },
+    "thumb": true,
+    "desc": "1979 Video game"
+   },
+   {
+    "title": "Avatar: The Way of Water",
+    "type": "movie",
+    "year": "2022",
+    "source": "tmdb",
+    "popularity": 14767,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "76600"
+    },
+    "thumb": true,
+    "desc": "2022 Film"
+   },
+   {
+    "title": "Avatar: Fire and Ash",
+    "type": "movie",
+    "year": "2025",
+    "source": "tmdb",
+    "popularity": 4509,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "83533"
+    },
+    "thumb": true,
+    "desc": "2025 Film"
+   },
+   {
+    "title": "Avatar: The Last Airbender",
+    "type": "show",
+    "year": "2024",
+    "source": "tmdb",
+    "popularity": 1388,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "82452"
+    },
+    "thumb": true,
+    "desc": "2024 TV series"
+   },
+   {
+    "title": "Avatar Aang: The Last Airbender",
+    "type": "movie",
+    "year": "2026",
+    "source": "tmdb",
+    "popularity": 1323,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "980431"
+    },
+    "thumb": true,
+    "desc": "2026 Film"
+   },
+   {
+    "title": "James Cameron's Avatar: The Game",
+    "type": "game",
+    "year": "2009",
+    "source": "igdb",
+    "popularity": 70,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "4211"
+    },
+    "thumb": true,
+    "desc": "2009 Video game"
+   }
+  ],
+  "Amelie | movie": [
+   {
+    "title": "Amélie",
+    "type": "movie",
+    "year": "2001",
+    "source": "tmdb",
+    "popularity": 12735,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "194"
+    },
+    "thumb": true,
+    "desc": "2001 Film"
+   },
+   {
+    "title": "Little Amélie or the Character of Rain",
+    "type": "movie",
+    "year": "2025",
+    "source": "tmdb",
+    "popularity": 220,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "682012"
+    },
+    "thumb": true,
+    "desc": "2025 Film"
+   },
+   {
+    "title": "Mountain Miracle",
+    "type": "movie",
+    "year": "2017",
+    "source": "tmdb",
+    "popularity": 51,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "433763"
+    },
+    "thumb": true,
+    "desc": "2017 Film"
+   },
+   {
+    "title": "Liebe Amelie",
+    "type": "movie",
+    "year": "2005",
+    "source": "tmdb",
+    "popularity": 3,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "76614"
+    },
+    "thumb": false,
+    "desc": "2005 Film"
+   },
+   {
+    "title": "Take Care of Amelie",
+    "type": "movie",
+    "year": "1932",
+    "source": "tmdb",
+    "popularity": 1,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "540446"
+    },
+    "thumb": true,
+    "desc": "1932 Film"
+   },
+   {
+    "title": "Romance with Amelie",
+    "type": "movie",
+    "year": "1982",
+    "source": "tmdb",
+    "popularity": 1,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "263560"
+    },
+    "thumb": false,
+    "desc": "1982 Film"
+   },
+   {
+    "title": "Amélie",
+    "type": "movie",
+    "year": "2021",
+    "source": "tmdb",
+    "popularity": 2,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "891850"
+    },
+    "thumb": true,
+    "desc": "2021 Film"
+   },
+   {
+    "title": "Amélie: The Real Story",
+    "type": "movie",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 4,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "1076411"
+    },
+    "thumb": true,
+    "desc": "2023 Film"
+   }
+  ],
+  "Pokémon | any": [
+   {
+    "title": "Pokémon",
+    "type": "show",
+    "year": "1997",
+    "source": "tmdb",
+    "popularity": 2281,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "60572"
+    },
+    "thumb": true,
+    "desc": "1997 TV series"
+   },
+   {
+    "title": "Pokémon Detective Pikachu",
+    "type": "movie",
+    "year": "2019",
+    "source": "tmdb",
+    "popularity": 7554,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "447404"
+    },
+    "thumb": true,
+    "desc": "2019 Film"
+   },
+   {
+    "title": "Pokémon 4Ever",
+    "type": "movie",
+    "year": "2001",
+    "source": "tmdb",
+    "popularity": 485,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "12600"
+    },
+    "thumb": true,
+    "desc": "2001 Film"
+   },
+   {
+    "title": "Pokémon Heroes",
+    "type": "movie",
+    "year": "2002",
+    "source": "tmdb",
+    "popularity": 410,
+    "ext": {
+     "source": "tmdb",
+     "kind": "movie",
+     "id": "33875"
+    },
+    "thumb": true,
+    "desc": "2002 Film"
+   },
+   {
+    "title": "Pokémon White Version 2",
+    "type": "game",
+    "year": "2012",
+    "source": "igdb",
+    "popularity": 182,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "8353"
+    },
+    "thumb": true,
+    "desc": "2012 Video game"
+   },
+   {
+    "title": "Pokémon Stadium 2",
+    "type": "game",
+    "year": "2000",
+    "source": "igdb",
+    "popularity": 181,
+    "ext": {
+     "source": "igdb",
+     "kind": "game",
+     "id": "2290"
+    },
+    "thumb": true,
+    "desc": "2000 Video game"
+   },
+   {
+    "title": "Pokémon Horizons",
+    "type": "show",
+    "year": "2023",
+    "source": "tmdb",
+    "popularity": 116,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "220150"
+    },
+    "thumb": true,
+    "desc": "2023 TV series"
+   },
+   {
+    "title": "Pokémon Evolutions",
+    "type": "show",
+    "year": "2021",
+    "source": "tmdb",
+    "popularity": 29,
+    "ext": {
+     "source": "tmdb",
+     "kind": "tv",
+     "id": "132636"
+    },
+    "thumb": true,
+    "desc": "2021 TV series"
+   }
+  ]
+ },
+ "details": {
+  "tmdb:movie:157336": {
+   "title": "Interstellar",
+   "type": "movie",
+   "year": "2014",
+   "director": "Christopher Nolan",
+   "studio": "Legendary Pictures, Syncopy",
+   "cast": "Matthew McConaughey, Anne Hathaway, Michael Caine, Jessica Chastain, Casey Affleck, Wes Bentley, Topher Grace, Mackenzie Foy",
+   "description": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distanc",
+   "image": "https://image.tmdb.org/t/p/w780/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "movie",
+    "id": "157336"
+   },
+   "genres": [
+    "Adventure",
+    "Drama",
+    "Science Fiction"
+   ]
+  },
+  "tmdb:movie:414906": {
+   "title": "The Batman",
+   "type": "movie",
+   "year": "2022",
+   "director": "Matt Reeves",
+   "studio": "6th & Idaho Motion Picture Company, Dylan Clark Productions",
+   "cast": "Robert Pattinson, Zoë Kravitz, Jeffrey Wright, Colin Farrell, Paul Dano, John Turturro, Andy Serkis, Peter Sarsgaard",
+   "description": "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddle",
+   "image": "https://image.tmdb.org/t/p/w780/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "movie",
+    "id": "414906"
+   },
+   "genres": [
+    "Crime",
+    "Mystery",
+    "Thriller"
+   ]
+  },
+  "tmdb:tv:1396": {
+   "title": "Breaking Bad",
+   "type": "show",
+   "year": "2008",
+   "director": "Vince Gilligan",
+   "studio": "Sony Pictures Television, High Bridge Productions",
+   "cast": "Bryan Cranston, Aaron Paul, Anna Gunn, RJ Mitte, Dean Norris, Betsy Brandt, Bob Odenkirk, Jonathan Banks",
+   "description": "Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live. He becomes filled with a ",
+   "image": "https://image.tmdb.org/t/p/w780/anFx9aTOOYqgS3v7x3R84Kz67ly.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "tv",
+    "id": "1396"
+   },
+   "genres": [
+    "Drama",
+    "Crime"
+   ]
+  },
+  "tmdb:tv:2316": {
+   "title": "The Office",
+   "type": "show",
+   "year": "2005",
+   "director": "Greg Daniels",
+   "studio": "Universal Television, Deedle-Dee Productions",
+   "cast": "Rainn Wilson, John Krasinski, Jenna Fischer, Leslie David Baker, Brian Baumgartner, Angela Kinsey, Kate Flannery, Phyllis Smith",
+   "description": "The everyday lives of office employees in the Scranton, Pennsylvania branch of the fictional Dunder Mifflin Paper Company.",
+   "image": "https://image.tmdb.org/t/p/w780/7DJKHzAi83BmQrWLrYYOqcoKfhR.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "tv",
+    "id": "2316"
+   },
+   "genres": [
+    "Comedy"
+   ]
+  },
+  "igdb:game:112875": {
+   "title": "God of War Ragnarök",
+   "type": "game",
+   "year": "2022",
+   "director": "",
+   "studio": "Santa Monica Studio",
+   "cast": "",
+   "description": "God of War: Ragnarök is the ninth installment in the God of War series and the sequel to 2018's God of War. Continuing with the Norse mythology theme, the game ",
+   "image": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/coba3d.jpg",
+   "ext": {
+    "source": "igdb",
+    "kind": "game",
+    "id": "112875"
+   },
+   "genres": [
+    "Role-playing (RPG)",
+    "Hack and slash/Beat 'em up",
+    "Adventure"
+   ]
+  },
+  "igdb:game:25076": {
+   "title": "Red Dead Redemption 2",
+   "type": "game",
+   "year": "2018",
+   "director": "",
+   "studio": "Rockstar Games",
+   "cast": "",
+   "description": "Red Dead Redemption 2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age.",
+   "image": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co1q1f.jpg",
+   "ext": {
+    "source": "igdb",
+    "kind": "game",
+    "id": "25076"
+   },
+   "genres": [
+    "Shooter",
+    "Role-playing (RPG)",
+    "Adventure"
+   ]
+  },
+  "igdb:game:119133": {
+   "title": "Elden Ring",
+   "type": "game",
+   "year": "2022",
+   "director": "",
+   "studio": "FromSoftware",
+   "cast": "",
+   "description": "Elden Ring is an action RPG developed by FromSoftware and published by Bandai Namco Entertainment, released in February 2022. Directed by Hidetaka Miyazaki, wit",
+   "image": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co4jni.jpg",
+   "ext": {
+    "source": "igdb",
+    "kind": "game",
+    "id": "119133"
+   },
+   "genres": [
+    "Role-playing (RPG)",
+    "Adventure"
+   ]
+  },
+  "tmdb:tv:100088": {
+   "title": "The Last of Us",
+   "type": "show",
+   "year": "2023",
+   "director": "Neil Druckmann, Craig Mazin",
+   "studio": "PlayStation Productions, Sony Pictures Television",
+   "cast": "Bella Ramsey, Pedro Pascal, Gabriel Luna, Isabela Merced, Young Mazino, Rutina Wesley, Samuel Hoeksema, Danny Ramirez",
+   "description": "Twenty years after modern civilization has been destroyed, Joel, a hardened survivor, is hired to smuggle Ellie, a 14-year-old girl, out of an oppressive quaran",
+   "image": "https://image.tmdb.org/t/p/w780/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "tv",
+    "id": "100088"
+   },
+   "genres": [
+    "Drama"
+   ]
+  },
+  "tmdb:movie:438631": {
+   "title": "Dune",
+   "type": "movie",
+   "year": "2021",
+   "director": "Denis Villeneuve",
+   "studio": "Legendary Pictures",
+   "cast": "Timothée Chalamet, Rebecca Ferguson, Oscar Isaac, Jason Momoa, Stellan Skarsgård, Stephen McKinley Henderson, Josh Brolin, Javier Bardem",
+   "description": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ",
+   "image": "https://image.tmdb.org/t/p/w780/v1tRXZ4JtD2Iv6fjkPvT4GiwslV.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "movie",
+    "id": "438631"
+   },
+   "genres": [
+    "Science Fiction",
+    "Adventure"
+   ]
+  },
+  "tmdb:tv:94605": {
+   "title": "Arcane",
+   "type": "show",
+   "year": "2021",
+   "director": "Christian Linke, Alex Yee",
+   "studio": "Fortiche Production, Riot Games",
+   "cast": "Hailee Steinfeld, Ella Purnell, Kevin Alejandro, Toks Olagundoye, Harry Lloyd, Katie Leung, Jason Spisak, JB Blanc",
+   "description": "Amid the stark discord of twin cities Piltover and Zaun, two sisters fight on rival sides of a war between magic technologies and clashing convictions.",
+   "image": "https://image.tmdb.org/t/p/w780/fqldf2t8ztc9aiwn3k6mlX3tvRT.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "tv",
+    "id": "94605"
+   },
+   "genres": [
+    "Animation",
+    "Action & Adventure",
+    "Sci-Fi & Fantasy"
+   ]
+  },
+  "igdb:game:3603": {
+   "title": "Spider-Man",
+   "type": "game",
+   "year": "2000",
+   "director": "",
+   "studio": "Neversoft Entertainment, Westlake Interactive",
+   "cast": "",
+   "description": "Spider-Man is an action-adventure game developed by Neversoft. Players control Spider-Man as he navigates levels using web-swinging, combat, and stealth mechani",
+   "image": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co2xxq.jpg",
+   "ext": {
+    "source": "igdb",
+    "kind": "game",
+    "id": "3603"
+   },
+   "genres": [
+    "Hack and slash/Beat 'em up",
+    "Adventure"
+   ]
+  },
+  "tmdb:movie:872585": {
+   "title": "Oppenheimer",
+   "type": "movie",
+   "year": "2023",
+   "director": "Christopher Nolan",
+   "studio": "Syncopy, Universal Pictures",
+   "cast": "Cillian Murphy, Emily Blunt, Matt Damon, Robert Downey Jr., Florence Pugh, Josh Hartnett, Casey Affleck, Rami Malek",
+   "description": "The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II.",
+   "image": "https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "movie",
+    "id": "872585"
+   },
+   "genres": [
+    "Drama",
+    "History"
+   ]
+  },
+  "tmdb:movie:1368337": {
+   "title": "The Odyssey",
+   "type": "movie",
+   "year": "2026",
+   "director": "Christopher Nolan",
+   "studio": "Universal Pictures, Syncopy",
+   "cast": "Matt Damon, Tom Holland, Anne Hathaway, Robert Pattinson, Himesh Patel, Charlize Theron, John Leguizamo, Travis Scott",
+   "description": "Odysseus, the legendary King of Ithaca, embarks on a long and perilous journey home following the Trojan War. Throughout his voyage, he is forced to confront th",
+   "image": "https://image.tmdb.org/t/p/w780/5rhTDKUhPYvpdQIijFIs5VoWsON.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "movie",
+    "id": "1368337"
+   },
+   "genres": [
+    "Adventure",
+    "Action",
+    "Fantasy"
+   ]
+  },
+  "igdb:game:7346": {
+   "title": "The Legend of Zelda: Breath of the Wild",
+   "type": "game",
+   "year": "2017",
+   "director": "",
+   "studio": "Nintendo EPD Production Group No. 3",
+   "cast": "",
+   "description": "The Legend of Zelda: Breath of the Wild is the first 3D open-world game in the Zelda series. Link can travel anywhere and be equipped with weapons and armor fou",
+   "image": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co3p2d.jpg",
+   "ext": {
+    "source": "igdb",
+    "kind": "game",
+    "id": "7346"
+   },
+   "genres": [
+    "Puzzle",
+    "Adventure"
+   ]
+  },
+  "igdb:game:2290": {
+   "title": "Pokémon Stadium 2",
+   "type": "game",
+   "year": "2000",
+   "director": "",
+   "studio": "HAL Laboratory, Nintendo Entertainment Analysis & Development",
+   "cast": "",
+   "description": "While Pokémon Stadium 2 does have a storyline, progress in the game can be made by winning Cups in the Stadium and completing the Gym Leader Castle. When all Cu",
+   "image": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co4w07.jpg",
+   "ext": {
+    "source": "igdb",
+    "kind": "game",
+    "id": "2290"
+   },
+   "genres": [
+    "Simulator",
+    "Strategy",
+    "Turn-based strategy (TBS)"
+   ]
+  },
+  "tmdb:tv:95396": {
+   "title": "Severance",
+   "type": "show",
+   "year": "2022",
+   "director": "Dan Erickson",
+   "studio": "Endeavor Content, Red Hour",
+   "cast": "Adam Scott, Britt Lower, Tramell Tillman, Zach Cherry, Patricia Arquette, Jen Tullock, Dichen Lachman, John Turturro",
+   "description": "Mark leads a team of office workers whose memories have been surgically divided between their work and personal lives. When a mysterious colleague appears outsi",
+   "image": "https://image.tmdb.org/t/p/w780/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "tv",
+    "id": "95396"
+   },
+   "genres": [
+    "Drama",
+    "Mystery",
+    "Sci-Fi & Fantasy"
+   ]
+  },
+  "tmdb:movie:1699150": {
+   "title": "Shogun",
+   "type": "movie",
+   "year": "1980",
+   "director": "Jerry London",
+   "studio": "TV Asahi Holdings Corporation, Jardine Matheson",
+   "cast": "Richard Chamberlain, Toshirō Mifune, Yoko Shimada, John Rhys-Davies, Damien Thomas, Frankie Sakai, Yūki Meguro",
+   "description": "Englishman John Blackthorne, serving the Netherlands as navigator of the \"Erasmus,\" is sailing a merchant fleet bound for uncharted Japan. In Asian waters, the ",
+   "image": "https://image.tmdb.org/t/p/w780/jP3lCVd5TLIT6TEGQ6MB6EWuK3z.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "movie",
+    "id": "1699150"
+   },
+   "genres": [
+    "Adventure",
+    "History"
+   ]
+  },
+  "igdb:game:974": {
+   "title": "Resident Evil 4",
+   "type": "game",
+   "year": "2005",
+   "director": "",
+   "studio": "Capcom Production Studio 4",
+   "cast": "",
+   "description": "Resident Evil 4 is the sixth installment in the Resident Evil series and is often noted for its departure from the fixed camera angles of earlier titles. It int",
+   "image": "https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co2wk8.jpg",
+   "ext": {
+    "source": "igdb",
+    "kind": "game",
+    "id": "974"
+   },
+   "genres": [
+    "Shooter",
+    "Adventure"
+   ]
+  },
+  "tmdb:movie:19995": {
+   "title": "Avatar",
+   "type": "movie",
+   "year": "2009",
+   "director": "James Cameron",
+   "studio": "Dune Entertainment, Lightstorm Entertainment",
+   "cast": "Sam Worthington, Zoe Saldaña, Sigourney Weaver, Stephen Lang, Michelle Rodriguez, Giovanni Ribisi, Joel David Moore, CCH Pounder",
+   "description": "In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora on a unique mission, but becomes torn between following orders and protecting an alie",
+   "image": "https://image.tmdb.org/t/p/w780/gKY6q7SjCkAU6FqvqWybDYgUKIF.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "movie",
+    "id": "19995"
+   },
+   "genres": [
+    "Science Fiction",
+    "Action",
+    "Adventure"
+   ]
+  },
+  "tmdb:movie:194": {
+   "title": "Amélie",
+   "type": "movie",
+   "year": "2001",
+   "director": "Jean-Pierre Jeunet",
+   "studio": "Victoires Productions, Tapioca Films",
+   "cast": "Audrey Tautou, Mathieu Kassovitz, Rufus, Serge Merlin, Jamel Debbouze, Clotilde Mollet, Claire Maurier, Isabelle Nanty",
+   "description": "At a tiny Parisian café, the adorable yet painfully shy Amélie accidentally discovers a gift for helping others. Soon Amelie is spending her days as a matchmake",
+   "image": "https://image.tmdb.org/t/p/w780/nSxDa3M9aMvGVLoItzWTepQ5h5d.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "movie",
+    "id": "194"
+   },
+   "genres": [
+    "Comedy",
+    "Romance"
+   ]
+  },
+  "tmdb:tv:60572": {
+   "title": "Pokémon",
+   "type": "show",
+   "year": "1997",
+   "director": "",
+   "studio": "Shogakukan Production, TV Tokyo",
+   "cast": "Rica Matsumoto, Ikue Otani, Megumi Hayashibara, Shin-ichiro Miki, Inuko Inuyama, Unsho Ishizuka, Yuji Ueda, Mayumi Izuka",
+   "description": "Join Ash accompanied by his partner Pikachu, as he travels through many regions, meets new friends and faces new challenges on his quest to become a Pokémon Mas",
+   "image": "https://image.tmdb.org/t/p/w780/lP4zwr0F7hWTbAFltfoFTc2AxRG.jpg",
+   "ext": {
+    "source": "tmdb",
+    "kind": "tv",
+    "id": "60572"
+   },
+   "genres": [
+    "Animation",
+    "Action & Adventure",
+    "Sci-Fi & Fantasy"
+   ]
+  }
+ },
+ "recommend": {
+  "movie/all": [
+   [
+    "Allegiant",
+    "2016",
+    7138,
+    61,
+    "Because you gave Interstellar 980",
+    "Adventure/Science Fiction/Action",
+    true,
+    true
+   ],
+   [
+    "Star Trek Beyond",
+    "2016",
+    7307,
+    68,
+    "Because you gave Interstellar 980",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "The Lord of the Rings: The Return of the King",
+    "2003",
+    27580,
+    85,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Fantasy/Action",
+    true,
+    true
+   ],
+   [
+    "The Lord of the Rings: The Two Towers",
+    "2002",
+    24755,
+    84,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Fantasy/Action",
+    true,
+    true
+   ],
+   [
+    "Dune",
+    "2021",
+    15716,
+    78,
+    "Because you gave Dune: Part Two 900",
+    "Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "Star Trek",
+    "2009",
+    10787,
+    74,
+    "Because you gave Interstellar 980",
+    "Science Fiction/Action/Adventure",
+    true,
+    true
+   ],
+   [
+    "Spider-Man 3",
+    "2007",
+    15887,
+    65,
+    "Because you gave Dune: Part Two 900",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Project Hail Mary",
+    "2026",
+    8305,
+    86,
+    "Because you gave Interstellar 980",
+    "Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "Batman Begins",
+    "2005",
+    23338,
+    77,
+    "Because you gave The Dark Knight 940",
+    "Drama/Crime/Action",
+    true,
+    true
+   ],
+   [
+    "Batman",
+    "1989",
+    8867,
+    72,
+    "Because you gave The Dark Knight 940",
+    "Fantasy/Action/Crime",
+    true,
+    true
+   ],
+   [
+    "The Matrix Reloaded",
+    "2003",
+    12419,
+    71,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Action/Thriller",
+    true,
+    true
+   ],
+   [
+    "Valerian and the City of a Thousand Planets",
+    "2017",
+    8264,
+    67,
+    "Because you gave Interstellar 980",
+    "Adventure/Science Fiction/Action",
+    true,
+    true
+   ],
+   [
+    "Divergent",
+    "2014",
+    13799,
+    69,
+    "Because you gave Interstellar 980",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Rush Hour 2",
+    "2001",
+    4823,
+    68,
+    "Because you gave The Dark Knight 940",
+    "Action/Comedy/Crime",
+    true,
+    true
+   ],
+   [
+    "Insurgent",
+    "2015",
+    10636,
+    64,
+    "Because you gave The Dark Knight 940",
+    "Action/Science Fiction/Thriller",
+    true,
+    true
+   ],
+   [
+    "X-Men: Days of Future Past",
+    "2014",
+    16774,
+    75,
+    "Because you gave Dune: Part Two 900",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "A.I. Artificial Intelligence",
+    "2001",
+    6927,
+    71,
+    "Because you gave Interstellar 980",
+    "Drama/Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "Avatar: Fire and Ash",
+    "2025",
+    4512,
+    77,
+    "Because you gave Dune: Part Two 900",
+    "Science Fiction/Adventure/Fantasy",
+    true,
+    true
+   ],
+   [
+    "Jack the Giant Slayer",
+    "2013",
+    5383,
+    59,
+    "Because you gave Dune: Part Two 900",
+    "Fantasy/Action/Adventure",
+    true,
+    true
+   ],
+   [
+    "TRON: Legacy",
+    "2010",
+    8214,
+    66,
+    "Because you gave Interstellar 980",
+    "Adventure/Action/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "The Creator",
+    "2023",
+    4233,
+    70,
+    "Because you gave Interstellar 980",
+    "Science Fiction/Action/Adventure",
+    true,
+    true
+   ],
+   [
+    "Oblivion",
+    "2013",
+    11913,
+    67,
+    "Because you gave Interstellar 980",
+    "Action/Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "Ad Astra",
+    "2019",
+    7481,
+    61,
+    "Because you gave Interstellar 980",
+    "Science Fiction/Drama",
+    true,
+    true
+   ],
+   [
+    "Guardians of the Galaxy Vol. 3",
+    "2023",
+    8952,
+    79,
+    "Because you gave Dune: Part Two 900",
+    "Science Fiction/Adventure/Action",
+    true,
+    true
+   ],
+   [
+    "The Batman",
+    "2022",
+    12678,
+    77,
+    "Because you gave The Dark Knight 940",
+    "Crime/Mystery/Thriller",
+    true,
+    true
+   ],
+   [
+    "Star Wars: Episode III - Revenge of the Sith",
+    "2005",
+    15407,
+    75,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Action/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Chaos Walking",
+    "2021",
+    2720,
+    65,
+    "Because you gave Dune: Part Two 900",
+    "Fantasy/Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "Star Wars: The Rise of Skywalker",
+    "2019",
+    11230,
+    62,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Action/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Rush Hour 3",
+    "2007",
+    3896,
+    65,
+    "Because you gave The Dark Knight 940",
+    "Action/Comedy/Crime",
+    true,
+    true
+   ],
+   [
+    "Stargate",
+    "1994",
+    4003,
+    70,
+    "Because you gave Interstellar 980",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ]
+  ],
+  "movie/recent": [
+   [
+    "Allegiant",
+    "2016",
+    7138,
+    61,
+    "Because you gave Interstellar 980",
+    "Adventure/Science Fiction/Action",
+    true,
+    true
+   ],
+   [
+    "Star Trek Beyond",
+    "2016",
+    7307,
+    68,
+    "Because you gave Interstellar 980",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "The Lord of the Rings: The Return of the King",
+    "2003",
+    27580,
+    85,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Fantasy/Action",
+    true,
+    true
+   ],
+   [
+    "The Lord of the Rings: The Two Towers",
+    "2002",
+    24755,
+    84,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Fantasy/Action",
+    true,
+    true
+   ],
+   [
+    "Batman Begins",
+    "2005",
+    23338,
+    77,
+    "Because you gave The Dark Knight 940",
+    "Drama/Crime/Action",
+    true,
+    true
+   ],
+   [
+    "Oblivion",
+    "2013",
+    11913,
+    67,
+    "Because you gave Interstellar 980",
+    "Action/Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "The Batman",
+    "2022",
+    12678,
+    77,
+    "Because you gave The Dark Knight 940",
+    "Crime/Mystery/Thriller",
+    true,
+    true
+   ],
+   [
+    "Spider-Man 3",
+    "2007",
+    15887,
+    65,
+    "Because you gave Dune: Part Two 900",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Dune",
+    "2021",
+    15716,
+    78,
+    "Because you gave Dune: Part Two 900",
+    "Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "Divergent",
+    "2014",
+    13799,
+    69,
+    "Because you gave Interstellar 980",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Project Hail Mary",
+    "2026",
+    8305,
+    86,
+    "Because you gave Interstellar 980",
+    "Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "Star Wars: The Rise of Skywalker",
+    "2019",
+    11230,
+    62,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Action/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Valerian and the City of a Thousand Planets",
+    "2017",
+    8264,
+    67,
+    "Because you gave Interstellar 980",
+    "Adventure/Science Fiction/Action",
+    true,
+    true
+   ],
+   [
+    "Star Wars: Episode III - Revenge of the Sith",
+    "2005",
+    15407,
+    75,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Action/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "TRON: Legacy",
+    "2010",
+    8214,
+    66,
+    "Because you gave Interstellar 980",
+    "Adventure/Action/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Star Trek",
+    "2009",
+    10787,
+    74,
+    "Because you gave Interstellar 980",
+    "Science Fiction/Action/Adventure",
+    true,
+    true
+   ],
+   [
+    "Ad Astra",
+    "2019",
+    7481,
+    61,
+    "Because you gave Interstellar 980",
+    "Science Fiction/Drama",
+    true,
+    true
+   ],
+   [
+    "Ender's Game",
+    "2013",
+    6465,
+    66,
+    "Because you gave Dune: Part Two 900",
+    "Science Fiction/Action/Adventure",
+    true,
+    true
+   ],
+   [
+    "Rush Hour 2",
+    "2001",
+    4823,
+    68,
+    "Because you gave The Dark Knight 940",
+    "Action/Comedy/Crime",
+    true,
+    true
+   ],
+   [
+    "Prince of Persia: The Sands of Time",
+    "2010",
+    7370,
+    63,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Fantasy/Action",
+    true,
+    true
+   ],
+   [
+    "The Matrix Reloaded",
+    "2003",
+    12419,
+    71,
+    "Because you gave Dune: Part Two 900",
+    "Adventure/Action/Thriller",
+    true,
+    true
+   ],
+   [
+    "Insurgent",
+    "2015",
+    10636,
+    64,
+    "Because you gave The Dark Knight 940",
+    "Action/Science Fiction/Thriller",
+    true,
+    true
+   ],
+   [
+    "X-Men: Days of Future Past",
+    "2014",
+    16774,
+    75,
+    "Because you gave Dune: Part Two 900",
+    "Action/Adventure/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "The 5th Wave",
+    "2016",
+    6189,
+    60,
+    "Because you gave Dune: Part Two 900",
+    "Science Fiction/Adventure/Action",
+    true,
+    true
+   ],
+   [
+    "Primer",
+    "2004",
+    2578,
+    67,
+    "Because you gave Interstellar 980",
+    "Science Fiction/Drama/Thriller",
+    true,
+    true
+   ],
+   [
+    "Guardians of the Galaxy Vol. 3",
+    "2023",
+    8952,
+    79,
+    "Because you gave Dune: Part Two 900",
+    "Science Fiction/Adventure/Action",
+    true,
+    true
+   ],
+   [
+    "I Am Number Four",
+    "2011",
+    5157,
+    62,
+    "Because you gave The Dark Knight 940",
+    "Action/Thriller/Science Fiction",
+    true,
+    true
+   ],
+   [
+    "Chaos Walking",
+    "2021",
+    2720,
+    65,
+    "Because you gave Dune: Part Two 900",
+    "Fantasy/Science Fiction/Adventure",
+    true,
+    true
+   ],
+   [
+    "Jack the Giant Slayer",
+    "2013",
+    5383,
+    59,
+    "Because you gave Dune: Part Two 900",
+    "Fantasy/Action/Adventure",
+    true,
+    true
+   ],
+   [
+    "A.I. Artificial Intelligence",
+    "2001",
+    6927,
+    71,
+    "Because you gave Interstellar 980",
+    "Drama/Science Fiction/Adventure",
+    true,
+    true
+   ]
+  ],
+  "show/all": [
+   [
+    "The Umbrella Academy",
+    "2019",
+    10164,
+    85,
+    "Because you gave Arcane 930",
+    "Action & Adventure/Sci-Fi & Fantasy/Drama",
+    true,
+    true
+   ],
+   [
+    "Better Call Saul",
+    "2015",
+    6981,
+    87,
+    "Because you gave Breaking Bad 970",
+    "Crime/Drama",
+    true,
+    true
+   ],
+   [
+    "Narcos: Mexico",
+    "2018",
+    1552,
+    79,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "See",
+    "2019",
+    2950,
+    81,
+    "Because you gave Arcane 930",
+    "Drama/Sci-Fi & Fantasy/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "Narcos",
+    "2015",
+    3497,
+    81,
+    "Because you gave Breaking Bad 970",
+    "Crime/Drama",
+    true,
+    true
+   ],
+   [
+    "Hannibal",
+    "2013",
+    3094,
+    83,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "Snowfall",
+    "2017",
+    820,
+    84,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "Good Girls",
+    "2018",
+    722,
+    78,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "The Legend of Vox Machina",
+    "2022",
+    723,
+    82,
+    "Because you gave Arcane 930",
+    "Animation/Sci-Fi & Fantasy/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "The Penguin",
+    "2024",
+    1536,
+    84,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "Wynonna Earp",
+    "2016",
+    831,
+    78,
+    "Because you gave Arcane 930",
+    "Action & Adventure/Sci-Fi & Fantasy/Western",
+    true,
+    true
+   ],
+   [
+    "Secret Level",
+    "2024",
+    605,
+    74,
+    "Because you gave Arcane 930",
+    "Animation/Sci-Fi & Fantasy/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "Into the Badlands",
+    "2015",
+    848,
+    76,
+    "Because you gave Arcane 930",
+    "Action & Adventure/Drama/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "SAINT SEIYA: Knights of the Zodiac",
+    "2019",
+    672,
+    74,
+    "Because you gave Arcane 930",
+    "Animation/Action & Adventure/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Happy Tree Friends",
+    "2000",
+    667,
+    78,
+    "Because you gave Arcane 930",
+    "Animation/Comedy/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Solar Opposites",
+    "2020",
+    682,
+    78,
+    "Because you gave Arcane 930",
+    "Comedy/Animation/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Game of Thrones",
+    "2011",
+    27946,
+    85,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Sci-Fi & Fantasy/Drama/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "The Walking Dead",
+    "2010",
+    18270,
+    81,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Action & Adventure/Drama/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Wednesday",
+    "2022",
+    10886,
+    83,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Sci-Fi & Fantasy/Mystery/Comedy",
+    true,
+    true
+   ],
+   [
+    "Grey's Anatomy",
+    "2005",
+    11080,
+    82,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama",
+    true,
+    true
+   ],
+   [
+    "The Good Doctor",
+    "2017",
+    12947,
+    85,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama",
+    true,
+    true
+   ],
+   [
+    "Loki",
+    "2021",
+    12810,
+    82,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Money Heist",
+    "2017",
+    19734,
+    82,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Crime/Drama",
+    true,
+    true
+   ],
+   [
+    "Riverdale",
+    "2017",
+    13808,
+    84,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Crime/Drama/Mystery",
+    true,
+    true
+   ],
+   [
+    "Lucifer",
+    "2016",
+    15727,
+    84,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Crime/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Stranger Things",
+    "2016",
+    21976,
+    85,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Action & Adventure/Mystery/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Peaky Blinders",
+    "2013",
+    11449,
+    85,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "The Flash",
+    "2014",
+    11812,
+    77,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Squid Game",
+    "2021",
+    17843,
+    79,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Action & Adventure/Mystery/Drama",
+    true,
+    true
+   ],
+   [
+    "Euphoria",
+    "2019",
+    11125,
+    83,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama",
+    true,
+    true
+   ]
+  ],
+  "show/recent": [
+   [
+    "The Umbrella Academy",
+    "2019",
+    10164,
+    85,
+    "Because you gave Arcane 930",
+    "Action & Adventure/Sci-Fi & Fantasy/Drama",
+    true,
+    true
+   ],
+   [
+    "Better Call Saul",
+    "2015",
+    6981,
+    87,
+    "Because you gave Breaking Bad 970",
+    "Crime/Drama",
+    true,
+    true
+   ],
+   [
+    "Hannibal",
+    "2013",
+    3094,
+    83,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "Narcos: Mexico",
+    "2018",
+    1552,
+    79,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "See",
+    "2019",
+    2950,
+    81,
+    "Because you gave Arcane 930",
+    "Drama/Sci-Fi & Fantasy/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "Narcos",
+    "2015",
+    3497,
+    81,
+    "Because you gave Breaking Bad 970",
+    "Crime/Drama",
+    true,
+    true
+   ],
+   [
+    "The Legend of Vox Machina",
+    "2022",
+    723,
+    82,
+    "Because you gave Arcane 930",
+    "Animation/Sci-Fi & Fantasy/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "SAINT SEIYA: Knights of the Zodiac",
+    "2019",
+    672,
+    74,
+    "Because you gave Arcane 930",
+    "Animation/Action & Adventure/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Wynonna Earp",
+    "2016",
+    831,
+    78,
+    "Because you gave Arcane 930",
+    "Action & Adventure/Sci-Fi & Fantasy/Western",
+    true,
+    true
+   ],
+   [
+    "The Penguin",
+    "2024",
+    1536,
+    84,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "Secret Level",
+    "2024",
+    605,
+    74,
+    "Because you gave Arcane 930",
+    "Animation/Sci-Fi & Fantasy/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "Into the Badlands",
+    "2015",
+    848,
+    76,
+    "Because you gave Arcane 930",
+    "Action & Adventure/Drama/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Solar Opposites",
+    "2020",
+    682,
+    78,
+    "Because you gave Arcane 930",
+    "Comedy/Animation/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Happy Tree Friends",
+    "2000",
+    667,
+    78,
+    "Because you gave Arcane 930",
+    "Animation/Comedy/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Good Girls",
+    "2018",
+    722,
+    78,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "Snowfall",
+    "2017",
+    820,
+    84,
+    "Because you gave Breaking Bad 970",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "Lucifer",
+    "2016",
+    15727,
+    84,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Crime/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Squid Game",
+    "2021",
+    17843,
+    79,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Action & Adventure/Mystery/Drama",
+    true,
+    true
+   ],
+   [
+    "WandaVision",
+    "2021",
+    12958,
+    82,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Sci-Fi & Fantasy/Mystery/Drama",
+    true,
+    true
+   ],
+   [
+    "The Boys",
+    "2019",
+    13550,
+    84,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Sci-Fi & Fantasy/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "Riverdale",
+    "2017",
+    13808,
+    84,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Crime/Drama/Mystery",
+    true,
+    true
+   ],
+   [
+    "Rick and Morty",
+    "2013",
+    11475,
+    87,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Animation/Comedy/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "The Mandalorian",
+    "2019",
+    11307,
+    84,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Sci-Fi & Fantasy/Action & Adventure",
+    true,
+    true
+   ],
+   [
+    "Grey's Anatomy",
+    "2005",
+    11080,
+    82,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama",
+    true,
+    true
+   ],
+   [
+    "The Walking Dead",
+    "2010",
+    18270,
+    81,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Action & Adventure/Drama/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Stranger Things",
+    "2016",
+    21976,
+    85,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Action & Adventure/Mystery/Sci-Fi & Fantasy",
+    true,
+    true
+   ],
+   [
+    "Peaky Blinders",
+    "2013",
+    11449,
+    85,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama/Crime",
+    true,
+    true
+   ],
+   [
+    "The Good Doctor",
+    "2017",
+    12947,
+    85,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Drama",
+    true,
+    true
+   ],
+   [
+    "Money Heist",
+    "2017",
+    19734,
+    82,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Crime/Drama",
+    true,
+    true
+   ],
+   [
+    "Game of Thrones",
+    "2011",
+    27946,
+    85,
+    "Big in Drama and Sci-Fi & Fantasy, which you rate highly",
+    "Sci-Fi & Fantasy/Drama/Action & Adventure",
+    true,
+    true
+   ]
+  ],
+  "game/all": [
+   [
+    "Marvel's Spider-Man",
+    "2018",
+    2189,
+    88,
+    "Because you gave Red Dead Redemption 2 990",
+    "Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "The Last of Us Part II",
+    "2020",
+    1824,
+    93,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Adventure",
+    true,
+    false
+   ],
+   [
+    "The Legend of Zelda: Tears of the Kingdom",
+    "2023",
+    936,
+    94,
+    "Because you gave Red Dead Redemption 2 990",
+    "Puzzle/Adventure",
+    true,
+    false
+   ],
+   [
+    "Death Stranding",
+    "2019",
+    921,
+    85,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "The Witcher 3: Wild Hunt",
+    "2015",
+    5521,
+    93,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "God of War",
+    "2018",
+    3627,
+    94,
+    "Because you gave God of War Ragnarök 960",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Horizon Zero Dawn",
+    "2017",
+    2485,
+    88,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Dark Souls",
+    "2011",
+    1739,
+    89,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Middle-earth: Shadow of Mordor",
+    "2014",
+    1412,
+    82,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Ghost of Tsushima",
+    "2020",
+    1154,
+    90,
+    "Because you gave Red Dead Redemption 2 990",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Control",
+    "2019",
+    978,
+    83,
+    "Because you gave Elden Ring 880",
+    "Shooter/Adventure",
+    true,
+    false
+   ],
+   [
+    "Borderlands 3",
+    "2019",
+    606,
+    79,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Dark Souls II",
+    "2014",
+    870,
+    85,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Demon's Souls",
+    "2009",
+    408,
+    87,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Dragon Age: Inquisition",
+    "2014",
+    1096,
+    85,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Strategy/Tactical",
+    true,
+    false
+   ],
+   [
+    "Final Fantasy XVI",
+    "2023",
+    225,
+    87,
+    "Because you gave God of War Ragnarök 960",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Hollow Knight: Silksong",
+    "2025",
+    521,
+    91,
+    "Because you gave Elden Ring 880",
+    "Platform/Adventure/Indie",
+    true,
+    false
+   ],
+   [
+    "Marvel's Spider-Man 2",
+    "2023",
+    399,
+    83,
+    "Because you gave God of War Ragnarök 960",
+    "Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Monster Hunter: World",
+    "2018",
+    596,
+    88,
+    "Because you gave Red Dead Redemption 2 990",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Horizon Forbidden West",
+    "2022",
+    394,
+    89,
+    "Because you gave God of War Ragnarök 960",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Mafia III",
+    "2016",
+    512,
+    67,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Racing/Adventure",
+    true,
+    false
+   ],
+   [
+    "Hades II",
+    "2025",
+    177,
+    91,
+    "Because you gave God of War Ragnarök 960",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Tunic",
+    "2022",
+    259,
+    87,
+    "Because you gave Elden Ring 880",
+    "Puzzle/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Portal",
+    "2007",
+    4050,
+    83,
+    "One of the most played and loved games",
+    "Platform/Puzzle/Adventure",
+    true,
+    false
+   ],
+   [
+    "Hollow Knight",
+    "2017",
+    2266,
+    92,
+    "One of the most played and loved games",
+    "Platform/Adventure/Indie",
+    true,
+    false
+   ],
+   [
+    "Red Dead Redemption",
+    "2010",
+    2570,
+    90,
+    "One of the most played and loved games",
+    "Shooter/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "BioShock",
+    "2007",
+    3237,
+    90,
+    "One of the most played and loved games",
+    "Shooter/Puzzle/Role-playing (RPG)",
+    true,
+    false
+   ],
+   [
+    "Undertale",
+    "2015",
+    1906,
+    91,
+    "One of the most played and loved games",
+    "Puzzle/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Grand Theft Auto: Vice City",
+    "2002",
+    3175,
+    91,
+    "One of the most played and loved games",
+    "Shooter/Racing/Adventure",
+    true,
+    false
+   ],
+   [
+    "Assassin's Creed II",
+    "2009",
+    3236,
+    88,
+    "One of the most played and loved games",
+    "Platform/Adventure",
+    true,
+    false
+   ]
+  ],
+  "game/recent": [
+   [
+    "Marvel's Spider-Man",
+    "2018",
+    2189,
+    88,
+    "Because you gave Red Dead Redemption 2 990",
+    "Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "The Last of Us Part II",
+    "2020",
+    1824,
+    93,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Adventure",
+    true,
+    false
+   ],
+   [
+    "Death Stranding",
+    "2019",
+    921,
+    85,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "The Legend of Zelda: Tears of the Kingdom",
+    "2023",
+    936,
+    94,
+    "Because you gave Red Dead Redemption 2 990",
+    "Puzzle/Adventure",
+    true,
+    false
+   ],
+   [
+    "The Witcher 3: Wild Hunt",
+    "2015",
+    5521,
+    93,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "God of War",
+    "2018",
+    3627,
+    94,
+    "Because you gave God of War Ragnarök 960",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Horizon Zero Dawn",
+    "2017",
+    2485,
+    88,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Middle-earth: Shadow of Mordor",
+    "2014",
+    1412,
+    82,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Dragon Age: Inquisition",
+    "2014",
+    1096,
+    85,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Strategy/Tactical",
+    true,
+    false
+   ],
+   [
+    "Dark Souls",
+    "2011",
+    1739,
+    89,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Dark Souls II",
+    "2014",
+    870,
+    85,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Ghost of Tsushima",
+    "2020",
+    1154,
+    90,
+    "Because you gave Red Dead Redemption 2 990",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Horizon Forbidden West",
+    "2022",
+    394,
+    89,
+    "Because you gave God of War Ragnarök 960",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Monster Hunter: World",
+    "2018",
+    596,
+    88,
+    "Because you gave Red Dead Redemption 2 990",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Control",
+    "2019",
+    978,
+    83,
+    "Because you gave Elden Ring 880",
+    "Shooter/Adventure",
+    true,
+    false
+   ],
+   [
+    "Tunic",
+    "2022",
+    259,
+    87,
+    "Because you gave Elden Ring 880",
+    "Puzzle/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Borderlands 3",
+    "2019",
+    606,
+    79,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Final Fantasy XVI",
+    "2023",
+    225,
+    87,
+    "Because you gave God of War Ragnarök 960",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Hollow Knight: Silksong",
+    "2025",
+    521,
+    91,
+    "Because you gave Elden Ring 880",
+    "Platform/Adventure/Indie",
+    true,
+    false
+   ],
+   [
+    "Hades II",
+    "2025",
+    177,
+    91,
+    "Because you gave God of War Ragnarök 960",
+    "Role-playing (RPG)/Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Marvel's Spider-Man 2",
+    "2023",
+    399,
+    83,
+    "Because you gave God of War Ragnarök 960",
+    "Hack and slash/Beat 'em up/Adventure",
+    true,
+    false
+   ],
+   [
+    "Mafia III",
+    "2016",
+    512,
+    67,
+    "Because you gave Red Dead Redemption 2 990",
+    "Shooter/Racing/Adventure",
+    true,
+    false
+   ],
+   [
+    "Demon's Souls",
+    "2009",
+    408,
+    87,
+    "Because you gave Elden Ring 880",
+    "Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "Portal",
+    "2007",
+    4050,
+    83,
+    "One of the most played and loved games",
+    "Platform/Puzzle/Adventure",
+    true,
+    false
+   ],
+   [
+    "Grand Theft Auto V",
+    "2013",
+    6017,
+    89,
+    "One of the most played and loved games",
+    "Shooter/Racing/Adventure",
+    true,
+    false
+   ],
+   [
+    "Undertale",
+    "2015",
+    1906,
+    91,
+    "One of the most played and loved games",
+    "Puzzle/Role-playing (RPG)/Adventure",
+    true,
+    false
+   ],
+   [
+    "BioShock Infinite",
+    "2013",
+    2709,
+    89,
+    "One of the most played and loved games",
+    "Shooter/Adventure",
+    true,
+    false
+   ],
+   [
+    "Uncharted 2: Among Thieves",
+    "2009",
+    2239,
+    92,
+    "One of the most played and loved games",
+    "Shooter/Platform/Adventure",
+    true,
+    false
+   ],
+   [
+    "Uncharted 4: A Thief's End",
+    "2016",
+    2685,
+    92,
+    "One of the most played and loved games",
+    "Shooter/Adventure",
+    true,
+    false
+   ],
+   [
+    "Assassin's Creed II",
+    "2009",
+    3236,
+    88,
+    "One of the most played and loved games",
+    "Platform/Adventure",
+    true,
+    false
+   ]
+  ]
+ }
+}
