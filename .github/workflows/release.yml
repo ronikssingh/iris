@@ -1,0 +1,114 @@
+name: Build and release Iris
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  mac:
+    name: Mac (Apple silicon)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Retina background for the disk image
+        run: tiffutil -cathidpicheck build/background.png build/background@2x.png -out build/background.tiff
+
+      - name: Package
+        run: npx electron-builder --mac --arm64 --publish never
+
+      - name: Check the signature
+        run: |
+          codesign --verify --deep --strict --verbose=2 release/mac-arm64/Iris.app
+          codesign -dv release/mac-arm64/Iris.app
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: mac
+          path: |
+            release/Iris-mac-arm64.dmg
+            release/Iris-mac-arm64.zip
+          if-no-files-found: error
+
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Package
+        run: npx electron-builder --win --x64 --publish never
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: |
+            release/Iris-Setup-win-x64.exe
+            release/Iris-Portable-win-x64.exe
+          if-no-files-found: error
+
+  release:
+    name: Publish
+    needs: [mac, windows]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: out
+          merge-multiple: true
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ls -la out
+          if gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" out/* --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" out/* \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "Iris ${GITHUB_REF_NAME#v}" \
+              --notes-file .github/release-notes.md \
+              --latest
+          fi

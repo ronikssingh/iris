@@ -1,0 +1,166 @@
+{
+  "name": "iris",
+  "version": "1.0.0",
+  "description": "Your personal archive of movie, show and game critiques.",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "build:main": "node scripts/build-main.mjs",
+    "build:renderer": "vite build",
+    "build": "npm run build:main && npm run build:renderer",
+    "start": "npm run build && electron .",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "icons": "node scripts/build-icons.mjs",
+    "dist:mac": "npm run build && electron-builder --mac --arm64 --publish never",
+    "dist:win": "npm run build && electron-builder --win --x64 --publish never"
+  },
+  "author": "Ronik",
+  "license": "UNLICENSED",
+  "productName": "Iris",
+  "private": true,
+  "devDependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/big-shoulders-display": "^5.3.0",
+    "@fontsource-variable/cinzel": "^5.3.0",
+    "@fontsource-variable/cormorant-garamond": "^5.3.0",
+    "@fontsource-variable/grenze-gotisch": "^5.3.0",
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "@fontsource-variable/jost": "^5.3.0",
+    "@fontsource-variable/tilt-neon": "^5.3.0",
+    "@fontsource/bungee": "^5.3.0",
+    "@fontsource/limelight": "^5.3.0",
+    "@fontsource/michroma": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3",
+    "esbuild": "^0.28.2",
+    "fflate": "^0.8.3",
+    "motion": "^14.2.0",
+    "playwright-core": "^1.64.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.4",
+    "zustand": "^5.0.15"
+  },
+  "homepage": "https://github.com/ronikssingh/marquee-desktop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ronikssingh/marquee-desktop.git"
+  },
+  "build": {
+    "appId": "com.ronik.iris",
+    "productName": "Iris",
+    "copyright": "Copyright © 2026 Ronik",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**",
+      "dist-electron/**",
+      "package.json"
+    ],
+    "asar": true,
+    "electronLanguages": [
+      "en",
+      "en-GB",
+      "en_GB",
+      "en-US"
+    ],
+    "fileAssociations": [
+      {
+        "ext": "irisbackup",
+        "name": "Iris Backup",
+        "description": "Iris library backup",
+        "role": "Viewer",
+        "icon": "icon",
+        "mimeType": "application/x-iris-backup"
+      }
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "category": "public.app-category.entertainment",
+      "icon": "build/icon.icns",
+      "identity": "-",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "darkModeSupport": true,
+      "minimumSystemVersion": "12.0",
+      "artifactName": "Iris-mac-${arch}.${ext}",
+      "extendInfo": {
+        "NSHumanReadableCopyright": "Copyright © 2026 Ronik"
+      }
+    },
+    "dmg": {
+      "title": "Iris",
+      "iconSize": 104,
+      "window": {
+        "width": 540,
+        "height": 380
+      },
+      "contents": [
+        {
+          "x": 140,
+          "y": 196,
+          "type": "file"
+        },
+        {
+          "x": 400,
+          "y": 196,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "artifactName": "Iris-mac-${arch}.${ext}"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Iris",
+      "artifactName": "Iris-Setup-win-x64.${ext}"
+    },
+    "portable": {
+      "artifactName": "Iris-Portable-win-x64.${ext}"
+    },
+    "publish": null
+  }
+}

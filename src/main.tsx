@@ -1,0 +1,20 @@
+import { createRoot } from 'react-dom/client';
+import '@fontsource-variable/instrument-sans/wdth.css';
+import '@fontsource-variable/big-shoulders-display';
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource/michroma';
+import '@fontsource/bungee';
+import '@fontsource-variable/cinzel';
+import '@fontsource-variable/grenze-gotisch';
+import '@fontsource-variable/jost';
+import '@fontsource-variable/tilt-neon';
+import '@fontsource/limelight';
+import '@fontsource-variable/cormorant-garamond';
+import './styles/base.css';
+import './styles/components.css';
+import './styles/pages.css';
+import './styles/editor.css';
+import './styles/themes.css';
+import { App } from './App';
+
+createRoot(document.getElementById('root')!).render(<App />);
