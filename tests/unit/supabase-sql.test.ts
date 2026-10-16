@@ -181,6 +181,9 @@ describe('supabase/setup.sql', () => {
     // accepting a request can't backdate it, and a profile can't change its id
     expect(await as(B, () => fails(`update public.friendships set created_at = now() - interval '1 year'`))).toBe(true);
     expect(await as(B, () => fails(`update public.profiles set id = $1 where id = $2`, [C, B]))).toBe(true);
+    // the app's own profile update (no id in it) goes through
+    await as(B, () => q(`update public.profiles set username = 'sam.k', display_name = 'Sam', avatar = 'world:fold', bio = '', updated_at = now() where id = $1`, [B]));
+    expect((await q(`select avatar from public.profiles where id = $1`, [B]))[0].avatar).toBe('world:fold');
   });
 
   it('gives people who are not signed in nothing', async () => {

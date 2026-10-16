@@ -194,9 +194,17 @@ html.theme-swap .shell { animation: swapdip 0.52s var(--ease); }
 .tool-theme-name { font-size: 13px; font-weight: 600; white-space: nowrap; }
 .swatch { width: 24px; height: 24px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 0 14px -2px var(--glow); }
 
-@media (max-width: 1320px) {
-  .tab-label { display: none; }
+.tab-badge {
+  position: relative; z-index: 1; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px;
+  display: inline-grid; place-items: center; font-size: 11px; font-weight: 750;
+  background: var(--accent); color: var(--accent-ink); margin-left: -2px;
+}
+@media (max-width: 1640px) {
+  .tab:not(.on) .tab-label { display: none; }
   .tab { padding: 8px 13px; }
+}
+@media (max-width: 1240px) {
+  .tab-label { display: none; }
 }
 @media (max-width: 1180px) {
   .tool-theme-name { display: none; }

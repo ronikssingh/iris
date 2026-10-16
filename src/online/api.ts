@@ -359,8 +359,9 @@ export class SupabaseApi implements OnlineApi {
     return rows.map((r) => fromProfile({ ...r, ...(byId.get(r.id) ?? {}) }));
   }
   async saveProfile(p: Profile, isNew: boolean) {
-    const row = { id: p.id, username: p.username.toLowerCase(), display_name: p.displayName, avatar: p.avatar, bio: p.bio, updated_at: new Date().toISOString() };
-    if (isNew) check(await this.sb.from('profiles').insert(row));
+    const row = { username: p.username.toLowerCase(), display_name: p.displayName, avatar: p.avatar, bio: p.bio, updated_at: new Date().toISOString() };
+    // an update names only the columns a person may change (the database refuses anything else)
+    if (isNew) check(await this.sb.from('profiles').insert({ id: p.id, ...row }));
     else check(await this.sb.from('profiles').update(row).eq('id', p.id));
   }
   async usernameTaken(name: string, exceptId: string) {

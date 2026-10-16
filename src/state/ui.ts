@@ -21,9 +21,12 @@ export type Route =
   | { name: 'write'; draftId?: string }
   | { name: 'masterpieces' }
   | { name: 'upnext' }
+  | { name: 'foryou' }
+  | { name: 'friends'; tab?: 'feed' | 'people' | 'suggested' }
+  | { name: 'friend'; id: string; critique?: string }
   | { name: 'settings'; section?: string };
 
-export const TAB_ORDER: Route['name'][] = ['lobby', 'archive', 'write', 'masterpieces', 'upnext', 'settings'];
+export const TAB_ORDER: Route['name'][] = ['lobby', 'archive', 'write', 'masterpieces', 'upnext', 'foryou', 'friends', 'settings'];
 
 export interface Toast {
   id: number;
@@ -68,7 +71,7 @@ interface UiState {
 let toastId = 1;
 
 function idx(r: Route): number {
-  const n = r.name === 'detail' ? 'archive' : r.name;
+  const n = r.name === 'detail' ? 'archive' : r.name === 'friend' ? 'friends' : r.name;
   return TAB_ORDER.indexOf(n);
 }
 

@@ -14,7 +14,9 @@ import { mediaUrl } from '../lib/images';
 import { longDate, splitCast } from '../lib/format';
 import { groupCritiques, matches } from '../lib/sorting';
 import { sound } from '../lib/sound';
-import { CLASS_BY_KEY, SCORES, TYPE_LABEL, classOf, draftFromCritique, newId, ratingOf, suggestClass, type Critique } from '../shared/model';
+import { CLASS_BY_KEY, SCORES, TYPE_LABEL, classOf, draftFromCritique, extKey, newId, ratingOf, suggestClass, type Critique } from '../shared/model';
+import { useOnline } from '../state/online';
+import { openSuggest } from '../components/social';
 
 export function Detail({ id }: { id: string }) {
   const crits = useLibrary((s) => s.lib.critiques);
@@ -23,6 +25,7 @@ export function Detail({ id }: { id: string }) {
   const filters = useUi((s) => s.filters);
   const go = useUi((s) => s.go);
   const [moreOpen, setMoreOpen] = useState(false);
+  const onlineReady = useOnline((s) => s.phase === 'ready');
   const moreBtn = useRef<HTMLButtonElement>(null);
 
   const order = useMemo(() => {
@@ -115,6 +118,17 @@ export function Detail({ id }: { id: string }) {
           <span className="detail-pos">{pos >= 0 ? `${pos + 1} of ${order.length}` : ''}</span>
           <Button variant="glass" icon="left" disabled={!prev} title={prev ? `Previous: ${prev.title}` : undefined} onClick={() => prev && go({ name: 'detail', id: prev.id }, { replace: true })} />
           <Button variant="glass" icon="right" disabled={!next} title={next ? `Next: ${next.title}` : undefined} onClick={() => next && go({ name: 'detail', id: next.id }, { replace: true })} />
+          <Button
+            variant="glass"
+            icon={c.favourite ? 'starfill' : 'star'}
+            className={c.favourite ? 'fav-on' : ''}
+            aria-label={c.favourite ? 'Remove from favourites' : 'Add to favourites'}
+            title={c.favourite ? 'One of your favourites' : 'Add to favourites'}
+            onClick={() => {
+              useLibrary.getState().upsertCritique({ ...c, favourite: !c.favourite, updatedAt: Date.now() });
+              sound.toggle(!c.favourite);
+            }}
+          />
           <Button variant="glass" icon="edit" onClick={() => edit(c)}>
             Edit
           </Button>
@@ -123,6 +137,30 @@ export function Detail({ id }: { id: string }) {
             <div className="menu">
               <button type="button" className="menu-item" onClick={duplicate}>
                 <Icon name="copy" size={15} /> Duplicate as a new draft
+              </button>
+              {onlineReady && (
+                <button
+                  type="button"
+                  className="menu-item"
+                  onClick={() => {
+                    setMoreOpen(false);
+                    const url = c.poster ? (useLibrary.getState().lib.meta.posterUploads[c.poster] ?? null) : null;
+                    openSuggest({ title: c.title, type: c.type, year: c.year, extKey: extKey(c.ext), posterUrl: url });
+                  }}
+                >
+                  <Icon name="send" size={15} /> Suggest to a friend
+                </button>
+              )}
+              <button
+                type="button"
+                className="menu-item"
+                onClick={() => {
+                  setMoreOpen(false);
+                  useLibrary.getState().upsertCritique({ ...c, hidden: !c.hidden, updatedAt: Date.now() });
+                  useUi.getState().toast({ text: c.hidden ? `Friends can see ${c.title} again` : `${c.title} is hidden from friends` });
+                }}
+              >
+                <Icon name={c.hidden ? 'eye' : 'lock'} size={15} /> {c.hidden ? 'Show to friends' : 'Hide from friends'}
               </button>
               <button type="button" className="menu-item danger" onClick={remove}>
                 <Icon name="trash" size={15} /> Delete
