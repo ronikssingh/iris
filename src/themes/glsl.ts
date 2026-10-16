@@ -8,6 +8,7 @@ import { gloamwood } from './worlds/gloamwood';
 import { velocity } from './worlds/velocity';
 import { fimbulwinter } from './worlds/fimbulwinter';
 import { windsweep } from './worlds/windsweep';
+import { ringworld } from './worlds/ringworld';
 
 export const VERT = /* glsl */ `#version 300 es
 void main() {
@@ -514,6 +515,7 @@ const SCENES: Partial<Record<ThemeId, string>> = {
   gloamwood,
   velocity,
   windsweep,
+  ringworld,
   vigil,
   skyward,
   mirage,
