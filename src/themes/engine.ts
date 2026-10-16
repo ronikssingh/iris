@@ -20,6 +20,21 @@ export interface StageQuality {
   timeScale: number;
 }
 
+interface CompileJob {
+  prog: WebGLProgram;
+  vs: WebGLShader;
+  fs: WebGLShader;
+}
+
+/** What the engine has learned about how heavy each world is on this computer. */
+interface Adapt {
+  mult: number; // resolution multiplier on top of the motion setting's scale
+  fpsCap: number; // frame-rate ceiling, for worlds that stay heavy even at the lowest resolution
+}
+
+const ADAPT_KEY = 'iris.stage.adapt.v1';
+const MULT_MIN = 0.45;
+
 interface FlashEvent {
   t0: number;
   strength: number;
@@ -33,6 +48,10 @@ export class StageEngine {
   private gl: WebGL2RenderingContext;
   private progs = new Map<ThemeId, Prog>();
   private failed = new Set<ThemeId>();
+  private pending = new Map<ThemeId, CompileJob>();
+  private parallel: { COMPLETION_STATUS_KHR: number } | null = null;
+  private adapt: Record<string, Adapt> = {};
+  private perf = { last: 0, since: 0, n: 0, sum: 0, goodRuns: 0, raisedAt: 0, cooldownUntil: 0 };
   private trans: Prog | null = null;
   private targets: [Target, Target] | null = null;
   private vao: WebGLVertexArrayObject | null = null;
@@ -77,6 +96,12 @@ export class StageEngine {
     });
     if (!gl) throw new Error('WebGL2 is not available');
     this.gl = gl;
+    this.parallel = gl.getExtension('KHR_parallel_shader_compile');
+    try {
+      this.adapt = JSON.parse(localStorage.getItem(ADAPT_KEY) || '{}') || {};
+    } catch {
+      this.adapt = {};
+    }
     this.current = initial;
     this.vao = gl.createVertexArray();
     canvas.addEventListener('webglcontextlost', this.onLost, false);
@@ -92,6 +117,7 @@ export class StageEngine {
 
   private onRestored = () => {
     this.progs.clear();
+    this.pending.clear();
     this.trans = null;
     this.targets = null;
     this.vao = this.gl.createVertexArray();
@@ -129,12 +155,45 @@ export class StageEngine {
     return { prog, u };
   }
 
+  /** Starts compiling a world without waiting for it; with KHR_parallel_shader_compile the driver does it on its own threads. */
+  private startCompile(fragSrc: string): CompileJob {
+    const gl = this.gl;
+    const vs = gl.createShader(gl.VERTEX_SHADER)!;
+    gl.shaderSource(vs, VERT);
+    gl.compileShader(vs);
+    const fs = gl.createShader(gl.FRAGMENT_SHADER)!;
+    gl.shaderSource(fs, fragSrc);
+    gl.compileShader(fs);
+    const prog = gl.createProgram()!;
+    gl.attachShader(prog, vs);
+    gl.attachShader(prog, fs);
+    gl.linkProgram(prog);
+    return { prog, vs, fs };
+  }
+
+  private finishCompile(job: CompileJob, uniforms: string[]): Prog {
+    const gl = this.gl;
+    const ok = gl.getProgramParameter(job.prog, gl.LINK_STATUS);
+    const log = ok ? '' : gl.getShaderInfoLog(job.fs) || gl.getProgramInfoLog(job.prog) || 'link failed';
+    gl.deleteShader(job.vs);
+    gl.deleteShader(job.fs);
+    if (!ok) {
+      gl.deleteProgram(job.prog);
+      throw new Error(log);
+    }
+    const u: Record<string, WebGLUniformLocation | null> = {};
+    for (const name of uniforms) u[name] = gl.getUniformLocation(job.prog, name);
+    return { prog: job.prog, u };
+  }
+
   private program(id: ThemeId): Prog | null {
     if (this.failed.has(id)) return null;
     let p = this.progs.get(id);
     if (!p) {
+      const job = this.pending.get(id) ?? this.startCompile(sceneSource(id));
+      this.pending.delete(id);
       try {
-        p = this.compile(sceneSource(id), SCENE_UNIFORMS);
+        p = this.finishCompile(job, SCENE_UNIFORMS);
         this.progs.set(id, p);
       } catch (e: any) {
         this.failed.add(id);
@@ -145,9 +204,33 @@ export class StageEngine {
     return p;
   }
 
-  /** Compiles the other themes in idle time so the first switch to each one doesn't stutter. */
+  /** Compiles the other themes ahead of time so the first switch to each one doesn't stutter. */
   warmUp(ids: ThemeId[]) {
-    const queue = ids.filter((i) => !this.progs.has(i));
+    const queue = ids.filter((i) => !this.progs.has(i) && !this.pending.has(i));
+    const par = this.parallel;
+    if (par) {
+      // hand the driver a few at a time and collect each one once it reports it's done
+      const kick = () => {
+        while (queue.length && this.pending.size < 4) {
+          const id = queue.shift()!;
+          if (!this.progs.has(id)) this.pending.set(id, this.startCompile(sceneSource(id)));
+        }
+      };
+      const poll = () => {
+        if (this.destroyed) return;
+        for (const [id, job] of [...this.pending]) {
+          if (this.gl.getProgramParameter(job.prog, par.COMPLETION_STATUS_KHR)) this.program(id);
+        }
+        kick();
+        if (this.pending.size || queue.length) setTimeout(poll, 160);
+      };
+      setTimeout(() => {
+        if (this.destroyed) return;
+        kick();
+        setTimeout(poll, 160);
+      }, 1500);
+      return;
+    }
     const step = () => {
       if (this.destroyed || !queue.length) return;
       const id = queue.shift()!;
@@ -187,10 +270,82 @@ export class StageEngine {
     this.targets = [mk(), mk()];
   }
 
+  private adaptOf(id: ThemeId): Adapt {
+    return this.adapt[id] ?? { mult: 1, fpsCap: 60 };
+  }
+
+  /** The resolution multiplier in force: during a transition both worlds draw, so the lighter setting of the two. */
+  private multNow(): number {
+    const a = this.adaptOf(this.current).mult;
+    return this.next ? Math.min(a, this.adaptOf(this.next).mult) : a;
+  }
+
+  private fpsNow(): number {
+    const cap = this.next ? Math.min(this.adaptOf(this.current).fpsCap, this.adaptOf(this.next).fpsCap) : this.adaptOf(this.current).fpsCap;
+    return Math.min(this.quality.fps, cap);
+  }
+
+  private saveAdapt() {
+    try {
+      localStorage.setItem(ADAPT_KEY, JSON.stringify(this.adapt));
+    } catch {
+      /* private mode or full storage: the engine simply relearns next time */
+    }
+  }
+
+  /**
+   * Watches how long frames actually take and trades resolution (then frame rate) for smoothness, per world.
+   * Heavier worlds settle at a lower resolution on slower GPUs; after a while of easy running it tries a step back up.
+   */
+  private measure(now: number) {
+    const pf = this.perf;
+    const interval = pf.last ? now - pf.last : 0;
+    pf.last = now;
+    if (!interval || this.next || !this.focused || document.hidden || interval > 5000) {
+      pf.n = 0;
+      pf.sum = 0;
+      pf.since = now;
+      return;
+    }
+    pf.n++;
+    pf.sum += interval;
+    if (now - pf.since < 1500 || pf.n < 6) return;
+    const avg = pf.sum / pf.n;
+    pf.n = 0;
+    pf.sum = 0;
+    pf.since = now;
+    const target = 1000 / this.fpsNow();
+    const id = this.current;
+    const a = { ...this.adaptOf(id) };
+    const floor = Math.max(MULT_MIN, 0.3 / this.quality.scale);
+    if (avg > target * 1.22) {
+      pf.goodRuns = 0;
+      if (now - pf.raisedAt < 4000) pf.cooldownUntil = now + 90000; // the last step up was too far: stay put a while
+      if (a.mult > floor + 0.001) a.mult = Math.max(floor, a.mult * (avg > target * 2 ? 0.7 : 0.85));
+      else if (a.fpsCap > 30) a.fpsCap = 30;
+      else return;
+      this.adapt[id] = a;
+      this.saveAdapt();
+      this.resize();
+    } else if (avg < target * 1.06) {
+      pf.goodRuns++;
+      if (pf.goodRuns >= 8 && now > pf.cooldownUntil && (a.mult < 1 || a.fpsCap < 60)) {
+        pf.goodRuns = 0;
+        pf.raisedAt = now;
+        if (a.fpsCap < 60 && a.mult <= floor + 0.001) a.fpsCap = 60;
+        else a.mult = Math.min(1, a.mult / 0.85);
+        this.adapt[id] = a;
+        this.saveAdapt();
+        this.resize();
+      }
+    } else pf.goodRuns = 0;
+  }
+
   resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = Math.max(64, Math.round(window.innerWidth * dpr * this.quality.scale));
-    const h = Math.max(64, Math.round(window.innerHeight * dpr * this.quality.scale));
+    const k = this.quality.scale * this.multNow();
+    const w = Math.max(64, Math.round(window.innerWidth * dpr * k));
+    const h = Math.max(64, Math.round(window.innerHeight * dpr * k));
     if (this.canvas.width !== w || this.canvas.height !== h) {
       this.canvas.width = w;
       this.canvas.height = h;
@@ -295,7 +450,7 @@ export class StageEngine {
   private frame = (now: number) => {
     if (!this.running) return;
     this.raf = requestAnimationFrame(this.frame);
-    const fps = this.focused ? this.quality.fps : Math.min(this.quality.fps, 20);
+    const fps = this.focused ? this.fpsNow() : Math.min(this.fpsNow(), 20);
     if (now - this.lastFrame < 1000 / fps - 2) return;
     const dt = Math.min(0.1, (now - (this.lastTick || now)) / 1000);
     this.lastFrame = now;
@@ -306,6 +461,7 @@ export class StageEngine {
     this.mouse[1] += (this.mouseTarget[1] - this.mouse[1]) * k;
     this.onFrame?.(dt, this.time);
     this.render(now);
+    this.measure(now);
   };
 
   render(now = performance.now()) {
@@ -369,6 +525,7 @@ export class StageEngine {
     if (this.running || this.destroyed) return;
     this.running = true;
     this.lastTick = 0;
+    this.perf.last = 0;
     this.raf = requestAnimationFrame(this.frame);
   }
 

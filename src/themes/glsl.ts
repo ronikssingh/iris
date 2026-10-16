@@ -613,12 +613,120 @@ void main(){
     float t = p * 1.3 - 0.15;
     float m = smoothstep(t, t - 0.06, n);
     col = mix(a, b, m) + vec3(1.0, 0.58, 0.18) * exp(-abs(n - t) * 50.0) * 1.4 * s + vec3(1.0, 0.95, 0.8) * exp(-abs(n - t) * 160.0) * s;
-  } else {
+  } else if (uStyle == 9) {
     float n = fbm(vec2(uv.x * 4.0, uv.y * 3.0 - p * 2.5));
     float v = uv.y * 0.7 + n * 0.5;
     float t = p * 1.5 - 0.25;
     float m = 1.0 - smoothstep(t - 0.05, t + 0.05, v);
     col = mix(a, b, m) + vec3(1.0, 0.6, 0.22) * exp(-abs(v - t) * 34.0) * s * 1.1;
+  } else if (uStyle == 10) {
+    // dusk: the new world comes down from the sky behind a line of heat shimmer and golden light
+    float edge = 1.12 - p * 1.3 + (fbm(vec2(uv.x * 3.0, uTime * 0.5)) - 0.5) * 0.10;
+    float near = exp(-abs(uv.y - edge) * 9.0);
+    vec2 off = vec2(sin(uv.y * 90.0 + uTime * 14.0) * 0.006 * near * s, 0.0);
+    float m = smoothstep(edge - 0.03, edge + 0.03, uv.y);
+    col = mix(texture(uA, uv + off).rgb, texture(uB, uv + off).rgb, m);
+    col += vec3(1.0, 0.60, 0.26) * exp(-abs(uv.y - edge) * 24.0) * s * 0.9 + vec3(1.0, 0.82, 0.55) * near * s * 0.14;
+  } else if (uStyle == 11) {
+    // mist: fog rolls in across everything, and clears on the other world
+    float n = fbm(vec2(uv.x * 2.4 - uTime * 0.12 - p * 1.6, uv.y * 3.0));
+    float m = smoothstep(0.36, 0.64, p + (n - 0.5) * 0.35);
+    float fog = clamp(s * 1.35 * (0.55 + 0.65 * n), 0.0, 1.0);
+    col = mix(mix(a, b, m), vec3(0.70, 0.76, 0.84) * (0.45 + 0.45 * n), fog * 0.88);
+  } else if (uStyle == 12) {
+    // ripple: rings spreading from where you clicked, the other world inside them
+    vec2 d = (uv - uOrigin) * vec2(asp, 1.0);
+    float r = length(d);
+    float ring = r - p * 2.3;
+    float wave = sin(ring * 62.0) * exp(-abs(ring) * 9.0) * s;
+    vec2 off = d / max(r, 1e-4) * wave * 0.012 / vec2(asp, 1.0);
+    float m = smoothstep(0.02, -0.02, ring);
+    col = mix(texture(uA, uv + off).rgb, texture(uB, uv + off).rgb, m) + vec3(0.80, 0.88, 1.0) * max(wave, 0.0) * 0.32;
+  } else if (uStyle == 13) {
+    // sunbeam: shafts of hazy light flood the screen, then thin out on the other world
+    vec2 d = (uv - vec2(0.5, 0.64)) * vec2(asp, 1.0);
+    float rays = fbm(vec2(atan(d.y, d.x) * 6.0, uTime * 0.2));
+    float haze = s * (0.5 + 0.7 * rays) * exp(-length(d) * 1.1);
+    col = mix(a, b, smoothstep(0.42, 0.58, p));
+    col = mix(col, vec3(1.0, 0.88, 0.62), clamp(haze * 1.25 + s * s * 0.35, 0.0, 0.92));
+  } else if (uStyle == 14) {
+    // speed: everything streaks toward the centre, splitting into colour, and snaps through
+    vec2 c = vec2(0.5);
+    vec3 acc = vec3(0.0);
+    float mixAB = smoothstep(0.4, 0.6, p);
+    for (int i = 0; i < 10; i++){
+      float k = float(i) / 9.0;
+      vec2 suv = c + (uv - c) * (1.0 - s * 0.5 * k);
+      vec2 sp = (suv - c) * 0.012 * s;
+      vec3 ca = vec3(texture(uA, suv + sp).r, texture(uA, suv).g, texture(uA, suv - sp).b);
+      vec3 cb = vec3(texture(uB, suv + sp).r, texture(uB, suv).g, texture(uB, suv - sp).b);
+      acc += mix(ca, cb, mixAB);
+    }
+    col = acc / 10.0 + vec3(1.0, 0.62, 0.22) * s * s * 0.5 * max(0.0, 1.0 - length((uv - c) * vec2(asp, 1.0)));
+  } else if (uStyle == 15) {
+    // bloom: lights open here and there and the other world grows inside them
+    vec2 g = uv * vec2(asp, 1.0) * 5.0;
+    vec2 id = floor(g);
+    float m = 0.0, edge = 0.0;
+    for (int j = -1; j <= 1; j++) for (int i = -1; i <= 1; i++){
+      vec2 cid = id + vec2(float(i), float(j));
+      float rr = min(max(p - hash21(cid + 7.0) * 0.5, 0.0) * 3.4, 1.6);
+      float d = length(g - cid - hash22(cid)) - rr;
+      m = max(m, smoothstep(0.05, -0.05, d));
+      edge = max(edge, exp(-abs(d) * 9.0) * step(0.001, rr) * (1.0 - smoothstep(1.2, 1.6, rr)));
+    }
+    m = max(m, smoothstep(0.86, 1.0, p));
+    col = mix(a, b, m) + vec3(0.55, 1.0, 0.90) * edge * s * 0.75;
+  } else if (uStyle == 16) {
+    // fold: the old world creases into panels and folds away to the left
+    float W = 1.0 - smoothstep(0.0, 1.0, p);
+    if (uv.x < W) {
+      float x0 = uv.x / max(W, 1e-3);
+      float f = fract(x0 * 6.0);
+      float odd = mod(floor(x0 * 6.0), 2.0);
+      float fold = 1.0 - W;
+      float recede = (odd > 0.5 ? f : 1.0 - f) * fold * 0.08;
+      vec3 c = texture(uA, vec2(x0, 0.5 + (uv.y - 0.5) / (1.0 - recede))).rgb;
+      float shade = odd > 0.5 ? 1.0 - 0.55 * fold * (0.6 + 0.4 * f) : 1.0 + 0.14 * fold * (1.0 - f);
+      col = c * shade * step(abs(uv.y - 0.5), 0.5 * (1.0 - recede));
+    } else {
+      col = b * (1.0 - exp(-(uv.x - W) * 14.0) * 0.5 * s);
+    }
+  } else if (uStyle == 17) {
+    // gust: a wind front sweeps across, smearing the world into the next
+    float n = fbm(vec2(uv.y * 6.0, p * 2.0));
+    float edge = p * 1.45 - 0.22 + (n - 0.5) * 0.25 + (uv.y - 0.5) * 0.15;
+    float near = exp(-abs(uv.x - edge) * 8.0) * s;
+    vec3 acc = vec3(0.0);
+    for (int i = 0; i < 6; i++){
+      vec2 suv = uv - vec2(float(i) / 5.0 * 0.05 * near, 0.0);
+      acc += mix(texture(uA, suv).rgb, texture(uB, suv).rgb, smoothstep(0.02, -0.02, suv.x - edge));
+    }
+    col = acc / 6.0 + vec3(1.0, 0.93, 0.78) * smoothstep(0.75, 1.0, vnoise(vec2(uv.x * 4.0 - p * 9.0, uv.y * 90.0))) * near * 0.25;
+  } else if (uStyle == 18) {
+    // drip: the other world runs down the glass like rain, refracting at the drops
+    float cols = 46.0 * asp;
+    float cx = floor(uv.x * cols);
+    float front = 1.02 - max(p - hash11(cx * 3.1) * 0.35, 0.0) * (0.6 + hash11(cx * 1.7) * 0.9) * 1.9;
+    float fx = fract(uv.x * cols) - 0.5;
+    float head = front - 0.012 * sqrt(max(1.0 - 4.0 * fx * fx, 0.0));
+    float m = max(step(head, uv.y), smoothstep(0.9, 1.0, p));
+    float near = exp(-abs(uv.y - head) * 60.0);
+    vec3 b2 = texture(uB, uv + vec2(fx * 0.02, 0.01) * near).rgb;
+    col = mix(a, b2, m) + (vec3(0.9, 0.4, 1.0) * 0.25 + vec3(0.3, 0.9, 1.0) * 0.15) * near * s;
+  } else if (uStyle == 19) {
+    // nebula: the world swirls into a cloud of cosmic colour and out again as the next
+    vec2 d = (uv - 0.5) * vec2(asp, 1.0);
+    float r = length(d);
+    float ang = atan(d.y, d.x) + p * 2.5 * exp(-r * 1.2);
+    vec2 q = vec2(cos(ang), sin(ang)) * r;
+    float v = fbm(q * 3.0 + 7.0) * 0.7 + r * 0.5;
+    float t = p * 1.5 - 0.15;
+    float e = exp(-abs(v - t) * 30.0) * s;
+    vec3 neb = mix(vec3(0.95, 0.25, 0.60), vec3(0.20, 0.85, 1.0), smoothstep(0.3, 0.7, fbm(q * 5.0)));
+    col = mix(a, b, smoothstep(t + 0.04, t - 0.04, v)) + neb * e * 1.2 + vec3(0.5, 0.4, 1.0) * s * 0.08;
+  } else {
+    col = mix(a, b, p);
   }
   fragColor = vec4(max(col, 0.0), 1.0);
 }`;

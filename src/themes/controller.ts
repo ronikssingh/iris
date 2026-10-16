@@ -27,7 +27,14 @@ export function attachEngine(e: StageEngine | null) {
   engine = e;
 }
 
+/** A world stops being "New" once it has been on screen. */
+function markVisited(id: ThemeId) {
+  const st = useSettings.getState();
+  if (st.s.newWorlds.includes(id)) st.set({ newWorlds: st.s.newWorlds.filter((w) => w !== id) });
+}
+
 export function initTheme(id: ThemeId) {
+  markVisited(id);
   current = id;
   const def = THEME_BY_ID[id];
   applyThemeTokens(def);
@@ -43,6 +50,7 @@ export function changeTheme(id: ThemeId, opts: { origin?: [number, number]; save
   busy = true;
   lastChange = Date.now();
   if (opts.save !== false) useSettings.getState().set({ theme: id });
+  markVisited(id);
   listeners.forEach((l) => l(def, 'start'));
   const mid = () => {
     applyThemeTokens(def);

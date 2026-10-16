@@ -7,6 +7,7 @@ import { Icon } from '../components/Icon';
 import { Button, Segmented, Slider, Toggle } from '../components/ui';
 import { Poster } from '../components/Poster';
 import { THEMES } from '../themes/themes';
+import { WorldThumb, capFirst, worldFont } from '../components/WorldThumb';
 import { changeTheme, randomTheme, resetRotationClock } from '../themes/controller';
 import { originOf } from '../app/TopBar';
 import { backupNow, exportBackup, exportCsv, runImportFlow } from '../lib/actions';
@@ -83,22 +84,33 @@ function ThemesSection() {
           Surprise me
         </Button>
       </div>
+      <div className="theme-grid-bar">
+        <span>
+          {s.rotation.length === THEMES.length ? `All ${THEMES.length} worlds are in the rotation.` : `${s.rotation.length} of ${THEMES.length} worlds are in the rotation.`}
+        </span>
+        {s.rotation.length < THEMES.length && (
+          <Button size="sm" variant="quiet" icon="check" onClick={() => set({ rotation: THEMES.map((t) => t.id) })}>
+            Add them all
+          </Button>
+        )}
+      </div>
       <div className="theme-grid">
         {THEMES.map((t) => (
           <div key={t.id} className={'theme-card' + (s.theme === t.id ? ' on' : '')}>
             <button type="button" className="theme-card-main" onPointerEnter={() => sound.hover()} onClick={(e) => changeTheme(t.id, { origin: originOf(e.currentTarget) })}>
-              <span className="theme-card-swatch" style={{ background: `linear-gradient(140deg, ${t.preview[0]} 0%, ${t.preview[1]} 55%, ${t.preview[2]} 100%)` }}>
-                <span className="theme-card-name" style={{ fontFamily: t.font.family, fontWeight: t.font.weight, letterSpacing: t.font.tracking, textTransform: t.font.upper ? 'uppercase' : 'none', fontVariationSettings: t.font.settings, color: t.dark ? '#fff' : '#0d2140' }}>
+              <WorldThumb t={t} className="theme-card-swatch">
+                <span className="world-name theme-card-name" style={worldFont(t)}>
                   {t.name}
                 </span>
+                {s.newWorlds.includes(t.id) && <span className="world-badge new">New</span>}
                 {s.theme === t.id && (
                   <span className="theme-card-now">
                     <Icon name="eye" size={13} /> Showing now
                   </span>
                 )}
-              </span>
+              </WorldThumb>
               <span className="theme-card-mood">{t.mood}</span>
-              <span className="theme-card-insp">{t.inspiredBy.replace(/^./, (c) => c.toUpperCase())}</span>
+              <span className="theme-card-insp">{capFirst(t.vibe)}</span>
             </button>
             <label className="theme-card-rot">
               <input type="checkbox" checked={s.rotation.includes(t.id)} onChange={() => toggleRot(t.id)} />

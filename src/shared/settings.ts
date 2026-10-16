@@ -73,6 +73,8 @@ export interface Settings {
   rotateMinutes: number;
   rotateOrder: 'random' | 'sequence';
   rotation: ThemeId[];
+  themesSeen: ThemeId[]; // every world this person's copy of Iris has known; anything new joins the rotation once
+  newWorlds: ThemeId[]; // worlds that arrived in an update and haven't been visited yet, marked "New" in the pickers
   sound: {
     enabled: boolean;
     volume: number; // 0..1
@@ -107,6 +109,8 @@ export function defaultSettings(): Settings {
     rotateMinutes: 10,
     rotateOrder: 'random',
     rotation: [...THEME_IDS],
+    themesSeen: [...THEME_IDS],
+    newWorlds: [],
     sound: { enabled: true, volume: 0.7, intro: true, ui: true, ambience: true, ambienceVolume: 0.35 },
     motion: 'full',
     intro: 'full',
@@ -133,7 +137,12 @@ export function normalizeSettings(raw: any): Settings {
         .map((r: any) => ({ key: r.key, dir: r.dir === 'asc' ? 'asc' : 'desc' }))
         .slice(0, 5)
     : d.archive.sort;
-  const rotation = Array.isArray(raw.rotation) ? raw.rotation.filter(isTheme) : d.rotation;
+  const rotation: ThemeId[] = Array.isArray(raw.rotation) ? raw.rotation.filter(isTheme) : [...d.rotation];
+  // Settings saved before themesSeen existed come from Iris 1.0/1.1, which knew only the original ten worlds.
+  const seen: ThemeId[] = Array.isArray(raw.themesSeen) ? raw.themesSeen.filter(isTheme) : Array.isArray(raw.rotation) ? [...ORIGINAL_THEMES] : [...THEME_IDS];
+  const arrived = THEME_IDS.filter((t) => !seen.includes(t));
+  for (const t of arrived) if (!rotation.includes(t)) rotation.push(t);
+  const newWorlds = [...new Set([...(Array.isArray(raw.newWorlds) ? raw.newWorlds.filter(isTheme) : []), ...arrived])];
   return {
     format: 'iris-settings',
     userName: typeof raw.userName === 'string' ? raw.userName.slice(0, 40) : '',
@@ -143,6 +152,8 @@ export function normalizeSettings(raw: any): Settings {
     rotateMinutes: num(raw.rotateMinutes, 0.5, 240, d.rotateMinutes),
     rotateOrder: raw.rotateOrder === 'sequence' ? 'sequence' : 'random',
     rotation: rotation.length >= 2 ? rotation : d.rotation,
+    themesSeen: [...THEME_IDS],
+    newWorlds,
     sound: {
       enabled: s.enabled === undefined ? d.sound.enabled : !!s.enabled,
       volume: num(s.volume, 0, 1, d.sound.volume),

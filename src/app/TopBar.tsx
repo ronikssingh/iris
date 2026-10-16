@@ -6,6 +6,7 @@ import { useUi, type Route } from '../state/ui';
 import { useSettings } from '../state/settings';
 import { sound } from '../lib/sound';
 import { THEMES, THEME_BY_ID } from '../themes/themes';
+import { WorldThumb, capFirst, worldFont } from '../components/WorldThumb';
 import { changeTheme, msUntilRotation, randomTheme, resetRotationClock } from '../themes/controller';
 import type { ThemeId } from '../shared/settings';
 
@@ -125,11 +126,14 @@ function ThemePicker({ open, onClose, anchor }: { open: boolean; onClose: () => 
     sound.click();
     changeTheme(id, { origin: originOf(el) });
   };
+  const width = Math.min(800, window.innerWidth - 24);
   return (
-    <Popover open={open} onClose={onClose} anchor={anchor} align="end" width={560}>
+    <Popover open={open} onClose={onClose} anchor={anchor} align="end" width={width}>
       <div className="picker">
         <div className="picker-head">
-          <h3>Choose a world</h3>
+          <h3>
+            Choose a world <span className="picker-count">{THEMES.length}</span>
+          </h3>
           <Button
             size="sm"
             icon="shuffle"
@@ -141,22 +145,29 @@ function ThemePicker({ open, onClose, anchor }: { open: boolean; onClose: () => 
           </Button>
         </div>
         <div className="picker-grid">
-          {THEMES.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              className={'picker-card' + (s.theme === t.id ? ' on' : '')}
-              onPointerEnter={() => sound.hover()}
-              onClick={(e) => pick(t.id, e.currentTarget)}
-            >
-              <span className="picker-swatch" style={{ background: `linear-gradient(135deg, ${t.preview[0]} 0%, ${t.preview[1]} 55%, ${t.preview[2]} 100%)` }}>
-                <span className="picker-glyph" style={{ fontFamily: t.font.family, fontWeight: t.font.weight, letterSpacing: t.font.tracking, textTransform: t.font.upper ? 'uppercase' : 'none', fontVariationSettings: t.font.settings }}>
-                  {t.name}
-                </span>
-              </span>
-              <span className="picker-mood">{t.inspiredBy}</span>
-            </button>
-          ))}
+          {THEMES.map((t) => {
+            const on = s.theme === t.id;
+            return (
+              <button
+                key={t.id}
+                type="button"
+                className={'picker-card' + (on ? ' on' : '')}
+                title={t.mood}
+                aria-current={on ? 'true' : undefined}
+                onPointerEnter={() => sound.hover()}
+                onClick={(e) => pick(t.id, e.currentTarget)}
+              >
+                <WorldThumb t={t} className="picker-thumb">
+                  {s.newWorlds.includes(t.id) && <span className="world-badge new">New</span>}
+                  {on && <span className="world-badge now">Now</span>}
+                  <span className="world-name" style={worldFont(t)}>
+                    {t.name}
+                  </span>
+                </WorldThumb>
+                <span className="picker-mood">{capFirst(t.vibe)}</span>
+              </button>
+            );
+          })}
         </div>
         <div className="picker-foot">
           <Toggle

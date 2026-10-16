@@ -6,6 +6,7 @@ import { useUi } from '../state/ui';
 import { Button, ApertureMark } from '../components/ui';
 import { Icon } from '../components/Icon';
 import { THEMES } from '../themes/themes';
+import { WorldThumb, worldFont } from '../components/WorldThumb';
 import { changeTheme } from '../themes/controller';
 import { originOf } from './TopBar';
 import { runImportFlow } from '../lib/actions';
@@ -101,10 +102,14 @@ export function Onboarding() {
                       key={t.id}
                       type="button"
                       className={'ob-theme' + (s.theme === t.id ? ' on' : '')}
-                      style={{ background: `linear-gradient(140deg, ${t.preview.join(', ')})` }}
+                      title={t.mood}
                       onClick={(e) => changeTheme(t.id, { origin: originOf(e.currentTarget) })}
                     >
-                      <span style={{ fontFamily: t.font.family, fontWeight: t.font.weight, textTransform: t.font.upper ? 'uppercase' : 'none', fontVariationSettings: t.font.settings, color: t.dark ? '#fff' : '#0d2140' }}>{t.name}</span>
+                      <WorldThumb t={t} className="ob-thumb">
+                        <span className="world-name" style={worldFont(t)}>
+                          {t.name}
+                        </span>
+                      </WorldThumb>
                     </button>
                   ))}
                 </div>

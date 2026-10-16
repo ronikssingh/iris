@@ -35,6 +35,7 @@ export function Stage() {
       engine.setQuality(QUALITY[motionRef.current]);
       engineRef.current = engine;
       attachEngine(engine);
+      (window as any).__irisStage = engine; // for automated checks
       engine.warmUp(THEMES.map((t) => t.id).filter((t) => t !== initial));
     } catch (e) {
       console.warn('WebGL unavailable, using a still background', e);
@@ -110,7 +111,7 @@ export function Stage() {
     let stormTimer = 0;
     const scheduleStorm = () => {
       const t = currentTheme();
-      const wait = t.storms ? 9000 + Math.random() * 16000 : t.glitches ? 5000 + Math.random() * 8000 : 6000;
+      const wait = t.storms ? 9000 + Math.random() * 16000 : t.glitches ? 5000 + Math.random() * 8000 : t.sparks ? 4000 + Math.random() * 9000 : 6000;
       stormTimer = window.setTimeout(() => {
         const th = currentTheme();
         if (!document.hidden && engine && !engine.transitioning) {
@@ -121,6 +122,10 @@ export function Stage() {
             sound.thunder(0.4 + Math.random() * 2.2, Math.min(1, strength));
           } else if (th.glitches) {
             engine.flash(0.85);
+          } else if (th.sparks) {
+            const strength = 0.45 + Math.random() * 0.55;
+            engine.flash(strength);
+            sound.zap(strength);
           }
         }
         scheduleStorm();

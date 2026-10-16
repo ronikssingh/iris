@@ -37,10 +37,14 @@ for (const spec of frames) {
   const [idTime, ...rest] = spec.split(',');
   const [id, t] = idTime.split('@');
   const [mx = 0, my = 0, flash = 0] = rest.map(Number);
+  // "a>b~style~progress@t" draws a transition frame between two worlds
+  const tr = id.includes('>') ? (() => { const [ab, style, prog] = id.split('~'); const [a, b] = ab.split('>'); return { a, b, style: Number(style), prog: Number(prog) }; })() : null;
   let r;
   let best = Infinity;
   for (let k = 0; k < Number(opts.reps || 1); k++) {
-    r = await page.evaluate(([id, t, mx, my, flash]) => window.Lab.render(id, t, mx, my, flash), [id, Number(t || 0), mx, my, flash]);
+    r = tr
+      ? await page.evaluate(([a, b, st, pg, t]) => window.Lab.transition(a, b, st, pg, t), [tr.a, tr.b, tr.style, tr.prog, Number(t || 0)])
+      : await page.evaluate(([id, t, mx, my, flash]) => window.Lab.render(id, t, mx, my, flash), [id, Number(t || 0), mx, my, flash]);
     if (r.error) break;
     best = Math.min(best, r.ms);
   }
@@ -49,7 +53,7 @@ for (const spec of frames) {
     console.log(`ERROR ${id}: ${r.error.slice(0, 3000)}`);
     continue;
   }
-  const file = path.join(outDir, `${id}-${String(t).replace('.', '_')}${rest.length ? '-' + rest.join('_') : ''}.png`);
+  const file = path.join(outDir, `${id.replace(/[>~]/g, '_')}-${String(t).replace('.', '_')}${rest.length ? '-' + rest.join('_') : ''}.png`);
   fs.writeFileSync(file, Buffer.from(r.url.split(',')[1], 'base64'));
   written.push({ file, label: `${id} t=${t}${rest.length ? ' ' + rest.join(',') : ''}  ${Math.round(r.ms)}ms` });
   console.log(`${file}  ${Math.round(r.ms)}ms`);
