@@ -3,6 +3,12 @@ import type { ThemeId } from '../shared/settings';
 import { WLIB } from './worlds/lib';
 import { moonwake } from './worlds/moonwake';
 import { sundown } from './worlds/sundown';
+import { dragonwatch } from './worlds/dragonwatch';
+import { lanternmere } from './worlds/lanternmere';
+import { hanami } from './worlds/hanami';
+import { gloamwood } from './worlds/gloamwood';
+import { velocity } from './worlds/velocity';
+import { fimbulwinter as fimbulwinterNew } from './worlds/fimbulwinter';
 
 export const VERT = /* glsl */ `#version 300 es
 void main() {
@@ -551,12 +557,17 @@ vec3 scene(vec2 uv){
 const SCENES: Partial<Record<ThemeId, string>> = {
   moonwake,
   sundown,
+  dragonwatch,
+  lanternmere,
+  hanami,
+  gloamwood,
+  velocity,
   vigil,
   skyward,
   mirage,
   glitchpop,
   winedark,
-  fimbulwinter,
+  fimbulwinter: fimbulwinterNew,
   eventhorizon,
   midnightdrive,
   silverscreen,
