@@ -403,11 +403,11 @@ vec3 scene(vec2 uv){
   }
 
   // pines heavy with snow along the left shore
-  for (int i = 0; i < 9; i++){
+  for (int i = 0; i < 5; i++){
     float fi = float(i);
-    float tx = i < 5 ? -0.92 + fi * 0.055 + 0.02 * sin(fi * 3.7) : 0.30 + (fi - 5.0) * 0.075;
-    float th = (i < 5 ? 0.24 : 0.15) + 0.10 * hash11(fi * 2.3);
-    float ground = (i < 5 ? -0.36 + 0.04 * smoothstep(-0.62, -0.88, tx) : -0.37) - 0.004;
+    float tx = -0.92 + fi * 0.055 + 0.02 * sin(fi * 3.7);
+    float th = 0.24 + 0.10 * hash11(fi * 2.3);
+    float ground = -0.36 + 0.04 * smoothstep(-0.62, -0.88, tx) - 0.004;
     vec2 tq = (p2 - vec2(tx, ground)) / th;
     if (abs(tq.x) > 0.4 || tq.y < -0.1 || tq.y > 1.05) continue;
     vec2 sp = fwSpruce(tq, fi);

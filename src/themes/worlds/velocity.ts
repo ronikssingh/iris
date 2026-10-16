@@ -23,8 +23,12 @@ vec3 scene(vec2 uv){
   float u = (a + spin) / 6.28318 + z * 0.035;        // the tunnel twists as it goes
 
   // the tunnel wall: crimson energy streaming past, swirling, streaked by speed
-  float flow = fbm4(vec2(u * 8.0, v * 0.45)) * 0.6 + fbm3(vec2(u * 22.0 + v * 0.1, v * 1.1)) * 0.4;
-  float streak = pow(fbm3(vec2(u * 54.0, v * 0.22 - t * 0.3)), 3.0);
+  // all the way round the tunnel the pattern has to meet itself: blend each noise with its copy one turn on
+  float x = fract(u), x1 = x - 1.0;
+  float flow0 = fbm4(vec2(x * 8.0, v * 0.45)) * 0.6 + fbm3(vec2(x * 22.0 + v * 0.1, v * 1.1)) * 0.4;
+  float flow1 = fbm4(vec2(x1 * 8.0, v * 0.45)) * 0.6 + fbm3(vec2(x1 * 22.0 + v * 0.1, v * 1.1)) * 0.4;
+  float flow = mix(flow0, flow1, x);
+  float streak = pow(mix(fbm3(vec2(x * 54.0, v * 0.22 - t * 0.3)), fbm3(vec2(x1 * 54.0, v * 0.22 - t * 0.3)), x), 3.0);
   float ribs = pow(0.5 + 0.5 * sin(v * 5.0 + u * 6.28318 * 3.0), 6.0);
   vec3 wall = mix(vec3(0.10, 0.005, 0.012), vec3(0.62, 0.035, 0.035), smoothstep(0.38, 0.72, flow));
   wall += vec3(1.0, 0.45, 0.08) * smoothstep(0.64, 0.86, flow) * 0.9;
