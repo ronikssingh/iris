@@ -5,7 +5,7 @@ import { TopBar } from './app/TopBar';
 import { Intro } from './app/Intro';
 import { Onboarding } from './app/Onboarding';
 import { CelebrationHost } from './app/Celebration';
-import { ForYou } from './pages/ForYou';
+import { Discover } from './pages/Discover';
 import { Friends } from './pages/Friends';
 import { FriendProfile } from './pages/FriendProfile';
 import { useOnline } from './state/online';
@@ -52,8 +52,8 @@ function Page({ route }: { route: Route }) {
       return <Masterpieces />;
     case 'upnext':
       return <UpNext />;
-    case 'foryou':
-      return <ForYou />;
+    case 'discover':
+      return <Discover />;
     case 'friends':
       return <Friends tab={route.tab} />;
     case 'friend':

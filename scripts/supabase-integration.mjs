@@ -104,7 +104,7 @@ async function join(tag, username, displayName) {
   const s = await api.session();
   expect(s?.email === email, 'confirmed and signed in');
   expect((await api.profiles([s.id])).length === 0, 'no profile yet');
-  await api.saveProfile({ id: s.id, username, displayName, avatar: 'preset:5', bio: `${displayName} likes big films`, createdAt: Date.now() }, true);
+  await api.saveProfile({ id: s.id, username, displayName, avatar: 'world:fold', bio: `${displayName} likes big films`, createdAt: Date.now() }, true);
   people[tag] = { api, id: s.id, email, username };
   return `${username} created`;
 }

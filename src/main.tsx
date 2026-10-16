@@ -25,6 +25,7 @@ import './styles/base.css';
 import './styles/components.css';
 import './styles/pages.css';
 import './styles/editor.css';
+import './styles/social.css';
 import './styles/themes.css';
 import { App } from './App';
 

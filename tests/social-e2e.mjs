@@ -1,4 +1,4 @@
-// Drives For You, Friends and the catalogue lookup against a pretend server and canned catalogue answers.
+// Drives Discover, Friends and the catalogue lookup against a pretend server and canned catalogue answers.
 import { _electron as electron } from 'playwright-core';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -41,11 +41,11 @@ const lib = () => JSON.parse(fs.readFileSync(path.join(dataDir, 'library.json'),
 await win.waitForSelector('.lobby', { timeout: 60000 });
 await win.waitForTimeout(1500);
 
-await step('for you shows a deck', async () => {
-  await win.click('.tab[title="For You"]');
+await step('discover shows a deck', async () => {
+  await win.click('.tab[title="Discover"]');
   await win.waitForSelector('.swipe.top', { timeout: 30000 });
   await win.waitForTimeout(1800);
-  await shot('foryou');
+  await shot("discover");
 });
 await step('swipe right adds to Up Next, up marks watched, left skips, rewind undoes', async () => {
   const first = await win.textContent('.swipe.top .swipe-title');
@@ -70,7 +70,7 @@ await step('games deck', async () => {
   await win.click('.seg-opt >> text=Games');
   await win.waitForSelector('.swipe.top', { timeout: 30000 });
   await win.waitForTimeout(1500);
-  await shot('foryou-games');
+  await shot('discover-games');
 });
 await step('friends asks you to sign in', async () => {
   await win.click('.tab[title="Friends"]');

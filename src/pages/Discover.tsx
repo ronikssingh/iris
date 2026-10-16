@@ -4,7 +4,7 @@ import { create } from 'zustand';
 import { useLibrary } from '../state/library';
 import { useSettings } from '../state/settings';
 import { useUi } from '../state/ui';
-import { useOnline, nameOf } from '../state/online';
+import { useOnline, nameOf, onlineActions } from '../state/online';
 import { Icon } from '../components/Icon';
 import { Button, Empty, Segmented, Toggle } from '../components/ui';
 import { Poster } from '../components/Poster';
@@ -76,7 +76,7 @@ async function topUp(type: MediaType) {
   }
 }
 
-export function ForYou() {
+export function Discover() {
   const [type, setType] = useState<MediaType>('movie');
   const [status, setStatus] = useState<{ tmdb: boolean; igdb: boolean } | null>(null);
   const cards = useDeck((s) => s.cards[type]);
@@ -122,6 +122,7 @@ export function ForYou() {
     const last = st.history[st.history.length - 1];
     if (!last) return;
     useLibrary.getState().undoSwipe(last.card.key);
+    void onlineActions.forgetSwipe(last.card.key);
     if (last.watchId) useLibrary.getState().removeWatch(last.watchId);
     useDeck.setState({
       history: st.history.slice(0, -1),
@@ -148,18 +149,18 @@ export function ForYou() {
 
   const top = cards[0];
   return (
-    <div className="page foryou">
+    <div className="page discover">
       <AnimatePresence>
         {top?.backdrop && (
-          <motion.div key={top.key} className="foryou-backdrop" style={{ backgroundImage: `url("${top.backdrop}")` }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} />
+          <motion.div key={top.key} className="discover-backdrop" style={{ backgroundImage: `url("${top.backdrop}")` }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} />
         )}
       </AnimatePresence>
-      <header className="page-head foryou-head">
+      <header className="page-head discover-head">
         <div>
-          <h1 className="page-title display">For You</h1>
+          <h1 className="page-title display">Discover</h1>
           <p className="page-sub">Well-known picks based on what you rate highly. Swipe right for Up Next, left to skip, up if you’ve already seen it.</p>
         </div>
-        <div className="foryou-controls">
+        <div className="discover-controls">
           <Segmented
             id="fytype"
             value={type}
@@ -170,7 +171,7 @@ export function ForYou() {
               { value: 'game', label: 'Games', icon: 'game' },
             ]}
           />
-          <div className="foryou-era">
+          <div className="discover-era">
             <Toggle
               on={era === 'recent'}
               onChange={(on) => {

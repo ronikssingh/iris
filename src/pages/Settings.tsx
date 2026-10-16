@@ -16,12 +16,17 @@ import { sound } from '../lib/sound';
 import { appInfo } from '../lib/appInfo';
 import type { BackupStatus } from '../shared/ipc';
 import type { ThemeId } from '../shared/settings';
+import { useOnline, onlineActions } from '../state/online';
+import { Avatar } from '../components/social';
+import { editProfile } from './Friends';
+import { explain } from '../online/api';
 
 const SECTIONS = [
   { id: 'themes', label: 'Worlds', icon: 'aperture' },
   { id: 'sound', label: 'Sound', icon: 'volume' },
   { id: 'startup', label: 'Startup and motion', icon: 'sparkle' },
   { id: 'backups', label: 'Backups', icon: 'shield' },
+  { id: 'account', label: 'Friends and account', icon: 'people' },
   { id: 'deleted', label: 'Recently deleted', icon: 'trash' },
   { id: 'about', label: 'About', icon: 'info' },
 ];
@@ -59,6 +64,7 @@ export function SettingsPage({ section }: { section?: string }) {
           {sec === 'sound' && <SoundSection />}
           {sec === 'startup' && <StartupSection />}
           {sec === 'backups' && <BackupsSection />}
+          {sec === 'account' && <AccountSection />}
           {sec === 'deleted' && <DeletedSection />}
           {sec === 'about' && <AboutSection />}
         </motion.div>
@@ -432,6 +438,106 @@ function reasonText(r: string): string {
   if (r.startsWith('before-import')) return 'Before an import';
   if (r.startsWith('before-restore')) return 'Before a restore';
   return 'Snapshot';
+}
+
+function AccountSection() {
+  const phase = useOnline((x) => x.phase);
+  const me = useOnline((x) => x.me);
+  const profile = useOnline((x) => x.profile);
+  const lastSync = useOnline((x) => x.lastSync);
+  const hidden = useLibrary((x) => x.lib.critiques.filter((c) => c.hidden).length);
+  const go = useUi((x) => x.go);
+  useEffect(() => {
+    void useOnline.getState().start();
+  }, []);
+  return (
+    <div className="set-section">
+      <div className="set-head">
+        <h2>Friends and account</h2>
+      </div>
+      {phase === 'off' && <p className="set-note">This copy of Iris was built without online features.</p>}
+      {(phase === 'signedOut' || phase === 'loading') && (
+        <div className="set-card glass">
+          <p>You’re not signed in. Everything you write stays on this computer.</p>
+          <Button variant="primary" icon="people" onClick={() => go({ name: 'friends' })}>
+            Sign in or create an account
+          </Button>
+        </div>
+      )}
+      {(phase === 'ready' || phase === 'needsProfile') && me && (
+        <>
+          <div className="set-card glass account-card">
+            {profile && <Avatar src={profile.avatar} size={56} ring />}
+            <div>
+              <p className="account-name">{profile ? profile.displayName || profile.username : 'Profile not finished'}</p>
+              <p className="set-note">
+                {profile ? `@${profile.username}, ` : ''}signed in as {me.email}
+              </p>
+            </div>
+            <div className="file-actions">
+              {profile && (
+                <Button size="sm" icon="edit" onClick={editProfile}>
+                  Edit profile
+                </Button>
+              )}
+              <Button size="sm" onClick={() => void onlineActions.signOut()}>
+                Sign out
+              </Button>
+            </div>
+          </div>
+          <div className="set-card glass">
+            <h3>What friends can see</h3>
+            <p className="set-note">
+              Friends see every critique except the ones you hide. To hide one, open it and choose More, then Hide from friends.{' '}
+              {hidden ? `${hidden} critique${hidden === 1 ? ' is' : 's are'} hidden right now.` : 'Nothing is hidden right now.'}
+            </p>
+            <p className="set-note">
+              Your critiques are also kept in your account, so signing in on another computer brings them along.
+              {lastSync ? ` Last shared ${relTime(lastSync)}.` : ''}
+            </p>
+            <div className="file-actions">
+              <Button size="sm" icon="refresh" onClick={() => void useOnline.getState().sync()}>
+                Share now
+              </Button>
+            </div>
+          </div>
+          <div className="set-card glass danger-zone">
+            <h3>Delete your online account</h3>
+            <p className="set-note">This removes your profile, friends and everything you’ve shared online. The critiques on this computer stay exactly as they are.</p>
+            <Button
+              size="sm"
+              variant="danger"
+              icon="trash"
+              onClick={() =>
+                useUi.getState().openModal({
+                  title: 'Delete your online account?',
+                  body: <p>Your profile, friends, likes, replies and shared critiques will be deleted for good. Nothing on this computer changes.</p>,
+                  actions: [
+                    { label: 'Cancel' },
+                    {
+                      label: 'Delete account',
+                      tone: 'danger',
+                      run: async () => {
+                        try {
+                          await onlineActions.deleteAccount();
+                          useUi.getState().toast({ text: 'Your online account was deleted' });
+                        } catch (e) {
+                          useUi.getState().toast({ text: explain(e), tone: 'bad' });
+                          return false;
+                        }
+                      },
+                    },
+                  ],
+                })
+              }
+            >
+              Delete online account
+            </Button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
 function DeletedSection() {

@@ -8,7 +8,7 @@ export interface Profile {
   id: string;
   username: string;
   displayName: string;
-  avatar: string; // 'preset:N' or an https address
+  avatar: string; // 'world:<id>' for a world picture, an https address for an uploaded one ('preset:N' from 1.1 still works)
   bio: string;
   createdAt: number;
 }
@@ -149,6 +149,7 @@ export interface OnlineApi {
   removeWatch(owner: string, ids: string[]): Promise<void>;
   swipes(owner: string): Promise<SyncedSwipe[]>;
   pushSwipes(owner: string, rows: SyncedSwipe[]): Promise<void>;
+  removeSwipes(owner: string, keys: string[]): Promise<void>;
 }
 
 /** Turns service errors into a sentence a person can act on. */
@@ -179,7 +180,7 @@ const fromProfile = (r: any): Profile => ({
   id: r.id,
   username: String(r.username),
   displayName: r.display_name ?? '',
-  avatar: r.avatar ?? 'preset:1',
+  avatar: r.avatar ?? 'world:winedark',
   bio: r.bio ?? '',
   createdAt: t(r.created_at),
 });
@@ -483,6 +484,9 @@ export class SupabaseApi implements OnlineApi {
     const body = rows.map((w) => ({ user_id: owner, key: w.key.slice(0, 80), title: w.title.slice(0, 300), type: w.type, verdict: w.verdict, at: new Date(w.at).toISOString() }));
     for (let i = 0; i < body.length; i += 200) check(await this.sb.from('swipes').upsert(body.slice(i, i + 200), { onConflict: 'user_id,key' }));
   }
+  async removeSwipes(owner: string, keys: string[]) {
+    for (let i = 0; i < keys.length; i += 100) check(await this.sb.from('swipes').delete().eq('user_id', owner).in('key', keys.slice(i, i + 100)));
+  }
 }
 
 /* ------------------------------------------------- Pretend server for tests */
@@ -502,10 +506,10 @@ class FakeApi implements OnlineApi {
   constructor() {
     const now = Date.now();
     const people: Profile[] = [
-      { id: 'u-sam', username: 'sam.k', displayName: 'Sam', avatar: 'preset:4', bio: 'Will watch anything with a heist in it.', createdAt: now - 9e9 },
-      { id: 'u-maya', username: 'maya_reels', displayName: 'Maya', avatar: 'preset:9', bio: 'Slow cinema, loud soundtracks.', createdAt: now - 8e9 },
-      { id: 'u-jo', username: 'jo.plays', displayName: 'Jo', avatar: 'preset:14', bio: 'Mostly games. Some anime.', createdAt: now - 7e9 },
-      { id: 'u-lee', username: 'leewatches', displayName: 'Lee', avatar: 'preset:2', bio: '', createdAt: now - 6e9 },
+      { id: 'u-sam', username: 'sam.k', displayName: 'Sam', avatar: 'world:sundown', bio: 'Will watch anything with a heist in it.', createdAt: now - 9e9 },
+      { id: 'u-maya', username: 'maya_reels', displayName: 'Maya', avatar: 'world:spiritgrove', bio: 'Slow cinema, loud soundtracks.', createdAt: now - 8e9 },
+      { id: 'u-jo', username: 'jo.plays', displayName: 'Jo', avatar: 'world:megacity', bio: 'Mostly games. Some anime.', createdAt: now - 7e9 },
+      { id: 'u-lee', username: 'leewatches', displayName: 'Lee', avatar: 'world:moonwake', bio: '', createdAt: now - 6e9 },
     ];
     for (const p of people) this.profilesById.set(p.id, p);
     const mk = (owner: string, id: string, title: string, type: MediaType, base: number, ago: number, extra: Partial<SharedCritique> = {}): SharedCritique => {
@@ -685,6 +689,9 @@ class FakeApi implements OnlineApi {
       this.swipeRows.push({ ...r, owner });
     }
   }
+  async removeSwipes(owner: string, keys: string[]) {
+    this.swipeRows = this.swipeRows.filter((x) => !(x.owner === owner && keys.includes(x.key)));
+  }
 }
 
 class OfflineApi implements OnlineApi {
@@ -730,6 +737,7 @@ class OfflineApi implements OnlineApi {
   removeWatch = this.no;
   swipes = this.no;
   pushSwipes = this.no;
+  removeSwipes = this.no;
 }
 
 let api: OnlineApi | null = null;

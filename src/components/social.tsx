@@ -14,72 +14,55 @@ import type { MediaType } from '../shared/model';
 
 /* --------------------------------------------------------- Profile pictures */
 
-const EMBLEMS: string[] = [
-  // one little emblem per world, drawn on a 48 x 48 grid
-  '<path d="M10 40V24l4-6 3 4 4-8 4 6 3-3 4 5v18z" fill="rgba(0,0,0,.45)"/><circle cx="33" cy="13" r="5" fill="#ffb199"/>', // Vigil
-  '<circle cx="24" cy="21" r="9" fill="#fff6c8"/><path d="M6 36c6-4 11-4 18 0s12 4 18 0v12H6z" fill="rgba(255,255,255,.7)"/>', // Skyward
-  '<circle cx="31" cy="17" r="7" fill="#ffe2a8"/><path d="M0 34c10-6 18-6 26-2s16 4 22 0v14H0z" fill="rgba(70,30,10,.55)"/>', // Mirage
-  '<path d="M24 8l4 10 11 1-8 7 3 11-10-6-10 6 3-11-8-7 11-1z" fill="#fff36b" stroke="#120a2b" stroke-width="2"/>', // Glitch Pop
-  '<path d="M4 30c5-4 9-4 14 0s9 4 14 0 9-4 14 0v18H4z" fill="rgba(10,40,60,.7)"/><path d="M14 30l10-18 10 18z" fill="rgba(255,225,170,.85)"/>', // Wine-Dark Sea
-  '<path d="M24 8v32M10 16l28 16M38 16L10 32" stroke="#e8fbff" stroke-width="3" stroke-linecap="round"/>', // Fimbulwinter
-  '<circle cx="24" cy="24" r="8" fill="#000"/><ellipse cx="24" cy="24" rx="17" ry="5" fill="none" stroke="#ffcf8a" stroke-width="2.5"/>', // Event Horizon
-  '<circle cx="24" cy="22" r="10" fill="#ff7ac3"/><path d="M8 26h32M10 30h28M12 34h24" stroke="#1a0730" stroke-width="2.5"/>', // Midnight Drive
-  '<rect x="13" y="10" width="22" height="28" rx="2" fill="none" stroke="#f3e2a8" stroke-width="2.5"/><path d="M13 16h22M13 32h22" stroke="#f3e2a8" stroke-width="2"/>', // Silver Screen
-  '<path d="M24 8c6 8 10 12 10 19a10 10 0 0 1-20 0c0-4 2-7 4-10 1 3 3 4 4 4-1-5 0-9 2-13z" fill="#ffb65c"/>', // Ember Realm
-  '<circle cx="30" cy="16" r="7" fill="#ffd38a"/><path d="M4 40V30h8v-6h10v6h6v-10h14v20z" fill="rgba(60,15,20,.75)"/>', // Sundown
-  '<path d="M8 40l16-26 16 26z" fill="rgba(235,242,250,.9)"/><path d="M20 22v-8h3v-3h2v3h3v8z" fill="rgba(20,25,35,.8)"/>', // Frostkeep
-  '<circle cx="14" cy="14" r="5" fill="#f4f0dc"/><path d="M26 40V24l3-6 3 6v16zM34 40V28l2.5-5 2.5 5v12zM18 40V30l2.5-4 2.5 4v10z" fill="rgba(10,10,30,.75)"/>', // Moonspire
-  '<path d="M10 18h28M12 22h24M15 22v18M33 22v18" stroke="#d6332a" stroke-width="3.5" stroke-linecap="round"/><circle cx="34" cy="10" r="3" fill="#ffd1df"/><circle cx="12" cy="9" r="2" fill="#ffd1df"/>', // Hanami
-  '<path d="M20 40c2-9 3-16 2-24" stroke="#1b3d2a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M22 16c-6-3-11-1-14 3M22 16c5-4 11-3 15 1M22 16c-2-5-1-9 3-11M22 16c-5 1-8 5-8 9M22 16c5 1 8 5 8 9" stroke="#1b3d2a" stroke-width="2.5" fill="none" stroke-linecap="round"/>', // Lagoon
-  '<path d="M14 40V6M24 40V10M34 40V4" stroke="rgba(0,0,0,.55)" stroke-width="4"/><circle cx="29" cy="24" r="1.6" fill="#d9ff8a"/><circle cx="18" cy="31" r="1.3" fill="#d9ff8a"/>', // Hollow Pines
-];
+/* A circle cut from each world, rendered from its shader. Stored on a profile as 'world:<id>'. */
+const WORLD_PICS = import.meta.glob('./avatars/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const worldPic = (id: string): string | null => WORLD_PICS[`./avatars/${id}.webp`] ?? null;
 
-export const PRESET_COUNT = EMBLEMS.length;
+/* Iris 1.1 stored its sixteen emblems as 'preset:N', in the order of its worlds; each maps to the nearest 1.2 world. */
+const PRESET_WORLDS = ['vigil', 'skyward', 'mirage', 'glitchpop', 'winedark', 'fimbulwinter', 'eventhorizon', 'midnightdrive', 'silverscreen', 'emberrealm', 'sundown', 'fimbulwinter', 'lanternmere', 'spiritgrove', 'moonwake', 'gloamwood'];
 
-function presetSvg(n: number): string {
-  const i = ((n - 1) % EMBLEMS.length + EMBLEMS.length) % EMBLEMS.length;
-  const t = THEMES[i];
-  const [a, b, c] = t.preview;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><linearGradient id="g${i}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset=".6" stop-color="${b}"/><stop offset="1" stop-color="${c}"/></linearGradient></defs><rect width="48" height="48" fill="url(#g${i})"/>${EMBLEMS[i]}</svg>`;
+/** The picture to show for a stored avatar value: a world, an uploaded picture's address, or the default. */
+export function avatarSrc(v: string | null | undefined): string | null {
+  if (v && /^https?:\/\/|^blob:/.test(v)) return v;
+  if (v?.startsWith('world:')) return worldPic(v.slice(6)) ?? worldPic('winedark');
+  if (v?.startsWith('preset:')) return worldPic(PRESET_WORLDS[(Number(v.slice(7)) - 1 + 64) % PRESET_WORLDS.length] ?? 'winedark');
+  return worldPic('winedark');
 }
 
 export function Avatar({ src, size = 40, name, ring }: { src: string | null | undefined; size?: number; name?: string; ring?: boolean }) {
-  const preset = !src || src.startsWith('preset:') ? Number((src ?? 'preset:1').split(':')[1]) || 1 : null;
+  const [broken, setBroken] = useState(false);
+  const url = broken ? avatarSrc('world:winedark') : avatarSrc(src);
   return (
     <span className={'avatar' + (ring ? ' ring' : '')} style={{ width: size, height: size }} title={name}>
-      {preset !== null ? <span className="avatar-art" dangerouslySetInnerHTML={{ __html: presetSvg(preset) }} /> : <img src={src!} alt="" draggable={false} referrerPolicy="no-referrer" />}
+      {url && <img src={url} alt="" draggable={false} referrerPolicy="no-referrer" onError={() => setBroken(true)} />}
     </span>
   );
 }
 
 export function AvatarPicker({ value, onChange }: { value: string; onChange: (v: string, file?: Blob) => void }) {
   const fileRef = useRef<HTMLInputElement>(null);
-  const [busy, setBusy] = useState(false);
+  const own = !!value && !value.startsWith('world:') && !value.startsWith('preset:');
   const pick = async (f: File) => {
-    setBusy(true);
-    try {
-      const blob = await squareCrop(f, 512);
-      onChange(URL.createObjectURL(blob), blob);
-    } catch {
+    const blob = await cropPicture(f).catch(() => {
       useUi.getState().toast({ text: 'That picture couldn’t be opened. Try a JPEG or PNG.', tone: 'bad' });
-    } finally {
-      setBusy(false);
-    }
+      return null;
+    });
+    if (blob) onChange(URL.createObjectURL(blob), blob);
   };
   return (
     <div className="avatar-picker">
-      {Array.from({ length: PRESET_COUNT }, (_, i) => {
-        const v = 'preset:' + (i + 1);
+      <button type="button" className={'avatar-choice upload' + (own ? ' on' : '')} onClick={() => fileRef.current?.click()} title="Use a picture of your own">
+        {own ? <Avatar src={value} size={52} /> : <Icon name="upload" size={20} />}
+        <span>Your own</span>
+      </button>
+      {THEMES.map((t) => {
+        const v = 'world:' + t.id;
         return (
-          <button key={v} type="button" className={'avatar-choice' + (value === v ? ' on' : '')} onClick={() => onChange(v)} aria-label={`Picture ${i + 1}, ${THEMES[i].name}`}>
+          <button key={v} type="button" className={'avatar-choice' + (value === v ? ' on' : '')} onClick={() => onChange(v)} title={t.name} aria-label={`${t.name} picture`}>
             <Avatar src={v} size={52} />
           </button>
         );
       })}
-      <button type="button" className={'avatar-choice upload' + (!value.startsWith('preset:') ? ' on' : '')} onClick={() => fileRef.current?.click()} disabled={busy}>
-        {!value.startsWith('preset:') ? <Avatar src={value} size={52} /> : <Icon name="upload" size={20} />}
-        <span>{busy ? 'Opening…' : 'Your own'}</span>
-      </button>
       <input
         ref={fileRef}
         type="file"
@@ -95,17 +78,102 @@ export function AvatarPicker({ value, onChange }: { value: string; onChange: (v:
   );
 }
 
-/** Crops the middle square of a picture and shrinks it to `size` pixels. */
-async function squareCrop(f: Blob, size: number): Promise<Blob> {
+/** Opens a picture and lets the person move and zoom it inside a circle. Resolves with a 512 px square, or null. */
+export async function cropPicture(f: Blob): Promise<Blob | null> {
   const bmp = await createImageBitmap(f);
-  const s = Math.min(bmp.width, bmp.height);
-  const c = document.createElement('canvas');
-  c.width = c.height = size;
-  const g = c.getContext('2d')!;
-  g.imageSmoothingQuality = 'high';
-  g.drawImage(bmp, (bmp.width - s) / 2, (bmp.height - s) / 2, s, s, 0, 0, size, size);
-  bmp.close?.();
-  return await new Promise<Blob>((res, rej) => c.toBlob((b) => (b ? res(b) : rej(new Error('crop failed'))), 'image/jpeg', 0.88));
+  return new Promise<Blob | null>((resolve) => {
+    let done = false;
+    const finish = (b: Blob | null) => {
+      if (done) return;
+      done = true;
+      bmp.close?.();
+      resolve(b);
+    };
+    useUi.getState().openModal({
+      title: 'Fit your picture in the circle',
+      body: <CropBody bmp={bmp} onDone={(b) => { finish(b); useUi.getState().closeModal(); }} />,
+      actions: [],
+      onClose: () => finish(null),
+    });
+  });
+}
+
+const STAGE = 300;
+
+function CropBody({ bmp, onDone }: { bmp: ImageBitmap; onDone: (b: Blob | null) => void }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const base = Math.max(STAGE / bmp.width, STAGE / bmp.height); // the picture just covers the circle at zoom 1
+  const [zoom, setZoom] = useState(1);
+  const [off, setOff] = useState({ x: 0, y: 0 }); // the picture's centre, from the circle's centre, in stage pixels
+  const drag = useRef<{ x: number; y: number; ox: number; oy: number } | null>(null);
+  const k = base * zoom;
+  // keep the circle covered whatever the zoom
+  const clamp = (o: { x: number; y: number }, z = zoom) => {
+    const mx = Math.max(0, (bmp.width * base * z - STAGE) / 2);
+    const my = Math.max(0, (bmp.height * base * z - STAGE) / 2);
+    return { x: Math.min(mx, Math.max(-mx, o.x)), y: Math.min(my, Math.max(-my, o.y)) };
+  };
+  useEffect(() => {
+    const c = canvasRef.current!;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    c.width = c.height = STAGE * dpr;
+    const g = c.getContext('2d')!;
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, STAGE, STAGE);
+    g.imageSmoothingQuality = 'high';
+    const w = bmp.width * k;
+    const h = bmp.height * k;
+    g.drawImage(bmp, STAGE / 2 + off.x - w / 2, STAGE / 2 + off.y - h / 2, w, h);
+  }, [bmp, k, off]);
+  const setZoomClamped = (z: number) => {
+    const nz = Math.min(4, Math.max(1, z));
+    setZoom(nz);
+    setOff((o) => clamp(o, nz));
+  };
+  const save = () => {
+    const out = document.createElement('canvas');
+    out.width = out.height = 512;
+    const g = out.getContext('2d')!;
+    g.imageSmoothingQuality = 'high';
+    // the stage square, in the picture's own pixels
+    const sx = bmp.width / 2 - (STAGE / 2 + off.x) / k;
+    const sy = bmp.height / 2 - (STAGE / 2 + off.y) / k;
+    g.drawImage(bmp, sx, sy, STAGE / k, STAGE / k, 0, 0, 512, 512);
+    out.toBlob((b) => onDone(b), 'image/jpeg', 0.9);
+  };
+  return (
+    <div className="crop">
+      <div
+        className="crop-stage"
+        style={{ width: STAGE, height: STAGE }}
+        onPointerDown={(e) => {
+          (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+          drag.current = { x: e.clientX, y: e.clientY, ox: off.x, oy: off.y };
+        }}
+        onPointerMove={(e) => {
+          const d = drag.current;
+          if (d) setOff(clamp({ x: d.ox + e.clientX - d.x, y: d.oy + e.clientY - d.y }));
+        }}
+        onPointerUp={() => (drag.current = null)}
+        onWheel={(e) => setZoomClamped(zoom * Math.exp(-e.deltaY * 0.0015))}
+      >
+        <canvas ref={canvasRef} style={{ width: STAGE, height: STAGE }} />
+        <span className="crop-ring" />
+      </div>
+      <label className="crop-zoom">
+        <Icon name="image" size={14} />
+        <input type="range" min={1} max={4} step={0.01} value={zoom} onChange={(e) => setZoomClamped(Number(e.target.value))} aria-label="Zoom" />
+        <Icon name="image" size={20} />
+      </label>
+      <p className="crop-hint">Drag to move it, scroll or use the slider to zoom.</p>
+      <div className="modal-actions">
+        <Button onClick={() => onDone(null)}>Cancel</Button>
+        <Button variant="primary" icon="check" onClick={save}>
+          Use this picture
+        </Button>
+      </div>
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ Likes */

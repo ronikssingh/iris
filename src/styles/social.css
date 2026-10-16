@@ -192,17 +192,17 @@
 .fc-text p { margin: 0; white-space: pre-wrap; line-height: 1.6; }
 
 /* ------------------------------------------------------------------ */
-/* For You                                                              */
+/* Discover                                                             */
 /* ------------------------------------------------------------------ */
-.page.foryou { max-width: 1180px; }
-.foryou-backdrop { position: fixed; inset: -60px; z-index: -1; background-size: cover; background-position: center; filter: blur(46px) saturate(1.2) brightness(0.55); opacity: 0.7; pointer-events: none; }
-.foryou-head { align-items: flex-end; }
-.foryou-controls { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
-.foryou-era .toggle-row { gap: 12px; }
+.page.discover { max-width: 1180px; }
+.discover-backdrop { position: fixed; inset: -60px; z-index: -1; background-size: cover; background-position: center; filter: blur(46px) saturate(1.2) brightness(0.55); opacity: 0.7; pointer-events: none; }
+.discover-head { align-items: flex-end; }
+.discover-controls { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.discover-era .toggle-row { gap: 12px; }
 .deck-wrap { display: flex; flex-direction: column; align-items: center; gap: 22px; padding-top: 6px; }
 .deck { position: relative; height: clamp(360px, calc(100vh - 410px), 640px); aspect-ratio: 2 / 3; }
 .swipe .pg-text { display: none; }
-.page.foryou .page-head { margin-bottom: 14px; }
+.page.discover .page-head { margin-bottom: 14px; }
 .swipe {
   position: absolute; inset: 0 0 auto 0; border-radius: calc(var(--radius) + 10px); overflow: hidden;
   background: var(--glass-hi); border: 1px solid var(--line); backdrop-filter: blur(var(--blur));
@@ -254,3 +254,14 @@
   .fc-body { grid-template-columns: 1fr; }
   .fc-score { grid-template-columns: 180px 1fr 34px; }
 }
+
+/* Fitting an uploaded picture into the circle */
+.crop { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.crop-stage { position: relative; border-radius: var(--r-md); overflow: hidden; cursor: grab; touch-action: none; background: #000; }
+.crop-stage:active { cursor: grabbing; }
+.crop-ring { position: absolute; inset: 0; pointer-events: none; border-radius: 50%; box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.58), inset 0 0 0 2px rgba(255, 255, 255, 0.85); }
+.crop-zoom { display: flex; align-items: center; gap: 10px; color: var(--ink-3); width: 260px; }
+.crop-zoom input { flex: 1; accent-color: var(--accent); }
+.crop-hint { color: var(--ink-3); font-size: 12.5px; margin: 0; }
+.crop .modal-actions { align-self: stretch; }
+.pe-ideas { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }

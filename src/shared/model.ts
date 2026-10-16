@@ -267,6 +267,7 @@ export interface LibraryMeta {
   legacyCheckedAt: number | null;
   legacyImported: number;
   syncedIds: string[]; // critiques that have been shared online from this computer
+  syncedWatchIds: string[]; // Up Next items this computer has kept in step with the account
   posterUploads: Record<string, string>; // local poster file -> its online address
   onlineOwner: string | null; // the online account this library is shared from
 }
@@ -500,7 +501,7 @@ export function emptyLibrary(): Library {
     drafts: [],
     trash: [],
     swipes: [],
-    meta: { createdAt: Date.now(), legacyCheckedAt: null, legacyImported: 0, syncedIds: [], posterUploads: {}, onlineOwner: null },
+    meta: { createdAt: Date.now(), legacyCheckedAt: null, legacyImported: 0, syncedIds: [], syncedWatchIds: [], posterUploads: {}, onlineOwner: null },
   };
 }
 
@@ -567,6 +568,7 @@ export function normalizeLibrary(raw: any): Library {
     legacyCheckedAt: Number.isFinite(Number(m.legacyCheckedAt)) && m.legacyCheckedAt ? Number(m.legacyCheckedAt) : null,
     legacyImported: Number(m.legacyImported) || 0,
     syncedIds: Array.isArray(m.syncedIds) ? m.syncedIds.filter((x: any) => typeof x === 'string').slice(0, 20000) : [],
+    syncedWatchIds: Array.isArray(m.syncedWatchIds) ? m.syncedWatchIds.filter((x: any) => typeof x === 'string').slice(0, 20000) : [],
     posterUploads:
       m.posterUploads && typeof m.posterUploads === 'object'
         ? (Object.fromEntries(Object.entries(m.posterUploads).filter(([k, v]) => MEDIA_NAME.test(k) && typeof v === 'string' && /^https:\/\//.test(v as string))) as Record<string, string>)

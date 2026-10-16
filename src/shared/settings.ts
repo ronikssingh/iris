@@ -73,8 +73,12 @@ export interface Settings {
   rotateMinutes: number;
   rotateOrder: 'random' | 'sequence';
   rotation: ThemeId[];
-  themesSeen: ThemeId[]; // every world this person's copy of Iris has known; anything new joins the rotation once
+  worldsSeen: ThemeId[]; // every world this person's copy of Iris has known; anything new joins the rotation once
   newWorlds: ThemeId[]; // worlds that arrived in an update and haven't been visited yet, marked "New" in the pickers
+  recs: {
+    era: 'all' | 'recent'; // recent = 2000 and newer
+    kinds: ('movie' | 'show' | 'game')[];
+  };
   sound: {
     enabled: boolean;
     volume: number; // 0..1
@@ -109,8 +113,9 @@ export function defaultSettings(): Settings {
     rotateMinutes: 10,
     rotateOrder: 'random',
     rotation: [...THEME_IDS],
-    themesSeen: [...THEME_IDS],
+    worldsSeen: [...THEME_IDS],
     newWorlds: [],
+    recs: { era: 'all', kinds: ['movie', 'show', 'game'] },
     sound: { enabled: true, volume: 0.7, intro: true, ui: true, ambience: true, ambienceVolume: 0.35 },
     motion: 'full',
     intro: 'full',
@@ -138,11 +143,14 @@ export function normalizeSettings(raw: any): Settings {
         .slice(0, 5)
     : d.archive.sort;
   const rotation: ThemeId[] = Array.isArray(raw.rotation) ? raw.rotation.filter(isTheme) : [...d.rotation];
-  // Settings saved before themesSeen existed come from Iris 1.0/1.1, which knew only the original ten worlds.
-  const seen: ThemeId[] = Array.isArray(raw.themesSeen) ? raw.themesSeen.filter(isTheme) : Array.isArray(raw.rotation) ? [...ORIGINAL_THEMES] : [...THEME_IDS];
+  // Settings saved before worldsSeen existed come from Iris 1.0 or 1.1. Every 1.2 world is new to them, including
+  // Sundown, which 1.1 had in a different form; 1.1's own record of seen worlds (themesSeen) is set aside.
+  const seen: ThemeId[] = Array.isArray(raw.worldsSeen) ? raw.worldsSeen.filter(isTheme) : Array.isArray(raw.rotation) ? [...ORIGINAL_THEMES] : [...THEME_IDS];
   const arrived = THEME_IDS.filter((t) => !seen.includes(t));
   for (const t of arrived) if (!rotation.includes(t)) rotation.push(t);
   const newWorlds = [...new Set([...(Array.isArray(raw.newWorlds) ? raw.newWorlds.filter(isTheme) : []), ...arrived])];
+  const r = raw.recs && typeof raw.recs === 'object' ? raw.recs : {};
+  const kinds = Array.isArray(r.kinds) ? r.kinds.filter((k: any) => ['movie', 'show', 'game'].includes(k)) : d.recs.kinds;
   return {
     format: 'iris-settings',
     userName: typeof raw.userName === 'string' ? raw.userName.slice(0, 40) : '',
@@ -152,8 +160,9 @@ export function normalizeSettings(raw: any): Settings {
     rotateMinutes: num(raw.rotateMinutes, 0.5, 240, d.rotateMinutes),
     rotateOrder: raw.rotateOrder === 'sequence' ? 'sequence' : 'random',
     rotation: rotation.length >= 2 ? rotation : d.rotation,
-    themesSeen: [...THEME_IDS],
+    worldsSeen: [...THEME_IDS],
     newWorlds,
+    recs: { era: r.era === 'recent' ? 'recent' : 'all', kinds: kinds.length ? kinds : d.recs.kinds },
     sound: {
       enabled: s.enabled === undefined ? d.sound.enabled : !!s.enabled,
       volume: num(s.volume, 0, 1, d.sound.volume),

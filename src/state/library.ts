@@ -32,6 +32,8 @@ interface LibState {
   undoSwipe: (key: string) => void;
   patchMeta: (m: Partial<Library['meta']>) => void;
   mergeCritiques: (incoming: Critique[]) => void;
+  mergeWatch: (incoming: WatchItem[], removeIds: string[]) => void;
+  mergeSwipes: (incoming: Swipe[]) => void;
 }
 
 const TRASH_DAYS = 30;
@@ -100,12 +102,14 @@ export const useLibrary = create<LibState>((set, get) => ({
     const others = lib.watchlist.filter((w) => w.id !== id);
     const col = others.filter((w) => w.status === status).sort((a, b) => a.order - b.order);
     const rest = others.filter((w) => w.status !== status);
-    const moved = { ...item, status, updatedAt: Date.now() };
+    const now = Date.now();
+    const moved = { ...item, status, updatedAt: now };
     const at = beforeId ? col.findIndex((w) => w.id === beforeId) : -1;
     if (at >= 0) col.splice(at, 0, moved);
     else col.push(moved);
-    col.forEach((w, i) => (w.order = i));
-    set({ lib: { ...lib, watchlist: [...rest, ...col.map((w) => ({ ...w }))] } });
+    // every item whose place changed gets a fresh time, so the new order reaches your other computers
+    const ordered = col.map((w, i) => (w.order === i ? w : { ...w, order: i, updatedAt: now }));
+    set({ lib: { ...lib, watchlist: [...rest, ...ordered] } });
     scheduleSave();
   },
 
@@ -177,6 +181,39 @@ export const useLibrary = create<LibState>((set, get) => ({
       else if (c.updatedAt > critiques[i].updatedAt) critiques[i] = c;
     }
     set({ lib: { ...lib, critiques } });
+    scheduleSave();
+  },
+
+  /** Up Next items changed or added on another computer, and ones deleted there. */
+  mergeWatch: (incoming, removeIds) => {
+    if (!incoming.length && !removeIds.length) return;
+    const lib = get().lib;
+    const gone = new Set(removeIds);
+    const watchlist = lib.watchlist.filter((w) => !gone.has(w.id));
+    for (const w of incoming) {
+      const i = watchlist.findIndex((x) => x.id === w.id);
+      if (i < 0) watchlist.push(w);
+      else if (w.updatedAt > watchlist[i].updatedAt) watchlist[i] = w;
+    }
+    set({ lib: { ...lib, watchlist } });
+    scheduleSave();
+  },
+
+  /** Discover verdicts made on another computer; the latest verdict for a title wins. */
+  mergeSwipes: (incoming) => {
+    if (!incoming.length) return;
+    const lib = get().lib;
+    const byKey = new Map(lib.swipes.map((w) => [w.key, w]));
+    let changed = false;
+    for (const w of incoming) {
+      const cur = byKey.get(w.key);
+      if (!cur || w.at > cur.at) {
+        byKey.set(w.key, w);
+        changed = true;
+      }
+    }
+    if (!changed) return;
+    set({ lib: { ...lib, swipes: [...byKey.values()].sort((a, b) => a.at - b.at).slice(-3000) } });
     scheduleSave();
   },
 }));

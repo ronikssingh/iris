@@ -111,15 +111,15 @@ function AuthCard() {
       }}
     >
       <div className="auth-art">
-        {[3, 12, 9, 14, 6].map((n, i) => (
-          <motion.span key={n} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 + i * 0.06 }}>
-            <Avatar src={'preset:' + n} size={46} />
+        {['sundown', 'moonwake', 'spiritgrove', 'eventhorizon', 'megacity'].map((w, i) => (
+          <motion.span key={w} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 + i * 0.06 }}>
+            <Avatar src={'world:' + w} size={46} />
           </motion.span>
         ))}
       </div>
       <h2 className="auth-title display">{titles[mode]}</h2>
       <p className="auth-sub">
-        {mode === 'in' && 'Your critiques stay on this computer. Signing in shares them with the friends you add, unless you hide them.'}
+        {mode === 'in' && 'Signing in shares your critiques with the friends you add, unless you hide them, and keeps your critiques and Up Next the same on every computer you use.'}
         {mode === 'up' && 'Use an email you can check. You’ll pick a username and a picture next.'}
         {mode === 'code' && `Iris sent an email to ${email}. Type the code from it here, or just click the link in it and Iris will sign you in. If it hasn’t arrived in a minute, check your spam folder.`}
         {mode === 'forgot' && 'Iris will email you a code so you can choose a new password.'}
@@ -181,7 +181,29 @@ function ProfileEditor({ initial, submitLabel, onSubmit }: { initial: Partial<Pr
   const [username, setUsername] = useState(initial.username ?? '');
   const [displayName, setDisplayName] = useState(initial.displayName ?? useUiName());
   const [bio, setBio] = useState(initial.bio ?? '');
-  const [avatar, setAvatar] = useState(initial.avatar ?? 'preset:' + (1 + Math.floor(Math.random() * 16)));
+  const [avatar, setAvatar] = useState(initial.avatar ?? 'world:' + useSettings.getState().s.theme);
+  const [ideas, setIdeas] = useState<string[]>([]);
+  // a few usernames that are free right now; the first fills the field for a brand-new profile
+  useEffect(() => {
+    if (initial.username) return;
+    const first = (useUiName() || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    const wanted = [...new Set(['projectionist', first, first && first + '.reels', first && 'the.' + first, 'final.cut', 'reel.talk'].filter((x) => x && USERNAME.test(x)))];
+    let alive = true;
+    void (async () => {
+      const free: string[] = [];
+      for (const w of wanted) {
+        if (free.length >= 3) break;
+        const taken = await import('../online/api').then((m) => m.online().usernameTaken(w, '')).catch(() => true);
+        if (!taken) free.push(w);
+      }
+      if (!alive) return;
+      setIdeas(free);
+      setUsername((u) => u || free[0] || '');
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [initial.username]);
   const [file, setFile] = useState<Blob | undefined>();
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -223,6 +245,15 @@ function ProfileEditor({ initial, submitLabel, onSubmit }: { initial: Partial<Pr
           <span className="field-label">Username</span>
           <input className="input" value={username} maxLength={20} placeholder="ronik" onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_.]/g, ''))} autoFocus required />
           <span className={'field-hint' + (username && !valid ? ' bad' : '')}>3 to 20 lowercase letters, numbers, dots or underscores. Friends search for this.</span>
+          {ideas.length > 1 && (
+            <span className="pe-ideas">
+              {ideas.map((i) => (
+                <button key={i} type="button" className={'chip' + (username === i ? ' on' : '')} onClick={() => setUsername(i)}>
+                  @{i}
+                </button>
+              ))}
+            </span>
+          )}
         </label>
         <label className="field">
           <span className="field-label">Name friends see</span>
@@ -248,7 +279,7 @@ function useUiName() {
 }
 
 async function avatarValue(avatar: string, file?: Blob) {
-  if (avatar.startsWith('preset:') || !file) return avatar.startsWith('blob:') ? 'preset:1' : avatar;
+  if (avatar.startsWith('world:') || avatar.startsWith('preset:') || !file) return avatar.startsWith('blob:') ? 'world:winedark' : avatar;
   return onlineActions.uploadAvatar(file);
 }
 

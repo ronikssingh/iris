@@ -1,10 +1,10 @@
 /* Signed-in state, friends, the feed and keeping your shared critiques up to date online. */
 import { create } from 'zustand';
-import { online, explain, type Friendship, type Like, type Profile, type SharedCritique, type Suggestion } from '../online/api';
+import { online, explain, type Friendship, type Like, type Profile, type SharedCritique, type Suggestion, type SyncedWatch } from '../online/api';
 import { useLibrary } from './library';
 import { useUi } from './ui';
 import { mediaUrl, savePosterFromUrl } from '../lib/images';
-import { classOf, extKey, normalizeCritique, ratingOf, type Critique } from '../shared/model';
+import { classOf, extKey, normalizeCritique, normalizeExt, ratingOf, type Critique, type WatchItem } from '../shared/model';
 
 export type Phase = 'off' | 'loading' | 'signedOut' | 'needsProfile' | 'ready';
 
@@ -81,12 +81,15 @@ export function toShared(c: Critique, owner: string, posterUrl: string | null): 
     comments: c.comments,
     finalRemarks: c.finalRemarks,
     scores: c.scores,
+    scoreNotes: c.scoreNotes,
     total: ratingOf(c),
     cls: classOf(c),
+    classOverride: c.classOverride,
     recommend: c.recommend,
     favourite: c.favourite,
     hidden: c.hidden,
     genres: c.genres,
+    posterColor: c.posterColor,
     createdAt: c.createdAt,
     updatedAt: c.updatedAt,
   };
@@ -95,7 +98,124 @@ export function toShared(c: Critique, owner: string, posterUrl: string | null): 
 function extFromKey(k: string | null) {
   if (!k) return null;
   const [source, kind, id] = k.split(':');
-  return { source, kind, id };
+  return normalizeExt({ source, kind, id });
+}
+
+function toWatchRow(w: WatchItem, owner: string, posterUrl: string | null): SyncedWatch {
+  return {
+    owner,
+    id: w.id,
+    title: w.title,
+    type: w.type,
+    status: w.status,
+    note: w.note,
+    year: w.year,
+    extKey: extKey(w.ext),
+    posterUrl,
+    director: w.director,
+    studio: w.studio,
+    cast: w.cast,
+    description: w.description,
+    genres: w.genres,
+    from: w.from,
+    order: w.order,
+    addedAt: w.addedAt,
+    updatedAt: w.updatedAt,
+  };
+}
+
+/** Uploads a local poster once and remembers its address, so a picture travels with the item. */
+async function posterAddress(file: string | null, uploads: Record<string, string>, me: string): Promise<string | null> {
+  if (!file) return null;
+  if (uploads[file]) return uploads[file];
+  try {
+    const blob = await (await fetch(mediaUrl(file)!)).blob();
+    uploads[file] = await online().uploadImage('posters', `${me}/${file}`, blob);
+    return uploads[file];
+  } catch {
+    return null; // the item still goes up, just without its picture
+  }
+}
+
+/** A poster for something coming down from the account: one already on this computer, or downloaded. */
+async function localPoster(url: string | null, uploads: Record<string, string>): Promise<{ name: string | null; color: string | null }> {
+  if (!url) return { name: null, color: null };
+  const known = Object.entries(uploads).find(([, u]) => u === url)?.[0];
+  if (known) return { name: known, color: null };
+  const p = await savePosterFromUrl(url).catch(() => null);
+  if (!p) return { name: null, color: null };
+  uploads[p.name] = url;
+  return { name: p.name, color: p.color };
+}
+
+/** Up Next, kept the same on every computer: newest change wins, deletions travel too. */
+async function syncWatchlist(me: string, uploads: Record<string, string>): Promise<{ pulled: number }> {
+  const api = online();
+  const lib = useLibrary.getState().lib;
+  const remote = new Map((await api.watchItems(me)).map((w) => [w.id, w]));
+  const knew = new Set(lib.meta.syncedWatchIds);
+  const local = new Map(lib.watchlist.map((w) => [w.id, w]));
+  const vanished = lib.watchlist.filter((w) => knew.has(w.id) && !remote.has(w.id)).map((w) => w.id);
+  // if most of what this computer shared vanished at once, the account was more likely reset than emptied
+  const deletedElsewhere = vanished.length >= 3 && vanished.length > knew.size / 2 ? [] : vanished;
+  const toPush: SyncedWatch[] = [];
+  const toPull: SyncedWatch[] = [];
+  for (const w of lib.watchlist) {
+    if (deletedElsewhere.includes(w.id)) continue;
+    const r = remote.get(w.id);
+    if (r && r.updatedAt > w.updatedAt + 1000) toPull.push(r);
+    else if (!r || Math.abs(r.updatedAt - w.updatedAt) >= 1000 || (w.poster && !uploads[w.poster])) toPush.push(toWatchRow(w, me, await posterAddress(w.poster, uploads, me)));
+  }
+  const gone: string[] = [];
+  for (const [id, r] of remote) {
+    if (local.has(id)) continue;
+    if (knew.has(id)) gone.push(id); // deleted on this computer
+    else toPull.push(r); // added on another one
+  }
+  if (toPush.length) await api.pushWatch(toPush);
+  if (gone.length) await api.removeWatch(me, gone);
+  const pulled: WatchItem[] = [];
+  for (const r of toPull) {
+    const mine = local.get(r.id);
+    const pic = mine?.poster && uploads[mine.poster] === r.posterUrl ? { name: mine.poster, color: mine.posterColor } : await localPoster(r.posterUrl, uploads);
+    pulled.push({
+      id: r.id,
+      title: r.title,
+      type: r.type,
+      status: r.status,
+      note: r.note,
+      poster: pic.name,
+      posterColor: pic.color,
+      year: r.year,
+      director: r.director,
+      studio: r.studio,
+      cast: r.cast,
+      description: r.description,
+      ext: extFromKey(r.extKey),
+      genres: r.genres,
+      from: r.from,
+      order: r.order,
+      addedAt: r.addedAt,
+      updatedAt: r.updatedAt,
+    });
+  }
+  useLibrary.getState().mergeWatch(pulled, deletedElsewhere);
+  useLibrary.getState().patchMeta({ syncedWatchIds: useLibrary.getState().lib.watchlist.map((w) => w.id) });
+  return { pulled: pulled.filter((w) => !local.has(w.id)).length };
+}
+
+/** Discover verdicts: a union of every computer's, latest verdict per title. */
+async function syncSwipes(me: string) {
+  const api = online();
+  const lib = useLibrary.getState().lib;
+  const remote = new Map((await api.swipes(me)).map((w) => [w.key, w]));
+  const push = lib.swipes.filter((w) => {
+    const r = remote.get(w.key);
+    return !r || r.verdict !== w.verdict || w.at > r.at + 1000;
+  });
+  if (push.length) await api.pushSwipes(me, push);
+  const mine = new Map(lib.swipes.map((w) => [w.key, w]));
+  useLibrary.getState().mergeSwipes([...remote.values()].filter((r) => !mine.has(r.key) || r.at > mine.get(r.key)!.at + 1000));
 }
 
 /* ------------------------------------------------------------- lifecycle */
@@ -141,7 +261,7 @@ useOnline.setState({
     else set({ phase: 'signedOut' });
     // keep shared critiques current as you write
     useLibrary.subscribe((st, prev) => {
-      if (st.lib.critiques === prev.lib.critiques || get().phase !== 'ready') return;
+      if ((st.lib.critiques === prev.lib.critiques && st.lib.watchlist === prev.lib.watchlist && st.lib.swipes === prev.lib.swipes) || get().phase !== 'ready') return;
       if (syncTimer) clearTimeout(syncTimer);
       syncTimer = window.setTimeout(() => void get().sync(), 4000);
     });
@@ -254,9 +374,9 @@ useOnline.setState({
               uploads[p.name] = r.posterUrl;
             }
           }
-          const c = normalizeCritique({ ...r, poster, posterColor, ext: extFromKey(r.extKey), classOverride: null });
-          // keep the class exactly as it was written
-          if (classOf(c) !== r.cls) c.classOverride = r.cls;
+          const c = normalizeCritique({ ...r, poster, posterColor: posterColor ?? r.posterColor, ext: extFromKey(r.extKey), classOverride: r.classOverride, scoreNotes: r.scoreNotes });
+          // rows shared by Iris 1.1 have no chosen class: keep the class exactly as it was written
+          if (!r.classOverride && classOf(c) !== r.cls) c.classOverride = r.cls;
           pulled.push(c);
         }
         useLibrary.getState().mergeCritiques(pulled);
@@ -265,6 +385,11 @@ useOnline.setState({
       for (const id of deletedElsewhere) useLibrary.getState().removeCritique(id);
       const now = useLibrary.getState().lib;
       useLibrary.getState().patchMeta({ posterUploads: uploads, syncedIds: [...new Set(now.critiques.map((c) => c.id))] });
+      // Up Next and Discover verdicts follow you between computers too
+      const { pulled: watchPulled } = await syncWatchlist(me.id, uploads);
+      await syncSwipes(me.id);
+      useLibrary.getState().patchMeta({ posterUploads: uploads });
+      if (watchPulled) useUi.getState().toast({ text: `Brought ${watchPulled} Up Next item${watchPulled === 1 ? '' : 's'} over from your account`, tone: 'good' });
       set({ lastSync: Date.now(), syncNote: null });
       if (pulledCount) useUi.getState().toast({ text: `Brought ${pulledCount} critique${pulledCount === 1 ? '' : 's'} over from your account`, tone: 'good' });
       if (deletedElsewhere.length)
@@ -367,9 +492,15 @@ export const onlineActions = {
     await online().signOut();
     set({ phase: 'signedOut', me: null, profile: null });
   },
+  /** Rewinding a Discover card takes the verdict back on every computer. */
+  async forgetSwipe(key: string) {
+    const me = get().me;
+    if (!me || get().phase !== 'ready') return;
+    await online().removeSwipes(me.id, [key]).catch(() => {});
+  },
   async deleteAccount() {
     await online().deleteAccount();
-    useLibrary.getState().patchMeta({ onlineOwner: null, syncedIds: [], posterUploads: {} });
+    useLibrary.getState().patchMeta({ onlineOwner: null, syncedIds: [], syncedWatchIds: [], posterUploads: {} });
     set({ phase: 'signedOut', me: null, profile: null, friendships: [], feed: [], suggestions: [], likes: [] });
   },
   stop() {

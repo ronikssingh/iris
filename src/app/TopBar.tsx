@@ -7,6 +7,7 @@ import { useSettings } from '../state/settings';
 import { sound } from '../lib/sound';
 import { THEMES, THEME_BY_ID } from '../themes/themes';
 import { WorldThumb, capFirst, worldFont } from '../components/WorldThumb';
+import { incoming, useOnline } from '../state/online';
 import { changeTheme, msUntilRotation, randomTheme, resetRotationClock } from '../themes/controller';
 import type { ThemeId } from '../shared/settings';
 
@@ -16,6 +17,8 @@ const TABS: { name: Route['name']; label: string; icon: string }[] = [
   { name: 'write', label: 'Write', icon: 'pen' },
   { name: 'masterpieces', label: 'Masterpieces', icon: 'crown' },
   { name: 'upnext', label: 'Up Next', icon: 'queue' },
+  { name: 'discover', label: 'Discover', icon: 'flame' },
+  { name: 'friends', label: 'Friends', icon: 'people' },
 ];
 
 export function originOf(el: Element | null): [number, number] {
@@ -33,7 +36,8 @@ export function TopBar({ platform }: { platform: string }) {
   const [pickerOpen, setPickerOpen] = useState(false);
   const themeBtn = useRef<HTMLButtonElement>(null);
   const shuffleBtn = useRef<HTMLButtonElement>(null);
-  const active = route.name === 'detail' ? 'archive' : route.name;
+  const active = route.name === 'detail' ? 'archive' : route.name === 'friend' ? 'friends' : route.name;
+  const badge = useOnline((s) => (s.phase === 'ready' ? incoming(s).length + s.suggestions.filter((x) => x.toUser === s.me?.id && !x.seen).length : 0));
   const open = useUi((s) => s.themePickerOpen);
 
   useEffect(() => {
@@ -55,6 +59,7 @@ export function TopBar({ platform }: { platform: string }) {
             <button
               key={t.name}
               type="button"
+              title={t.label}
               className={'tab' + (on ? ' on' : '')}
               aria-current={on ? 'page' : undefined}
               onPointerEnter={() => sound.hover()}
@@ -70,6 +75,7 @@ export function TopBar({ platform }: { platform: string }) {
               )}
               <Icon name={t.icon} size={16} />
               <span className="tab-label">{t.label}</span>
+              {t.name === 'friends' && badge > 0 && <span className="tab-badge">{badge}</span>}
             </button>
           );
         })}
