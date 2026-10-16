@@ -1,6 +1,6 @@
 {
   "name": "iris",
-  "version": "1.1.2",
+  "version": "1.0.0",
   "description": "Your personal archive of movie, show and game critiques.",
   "main": "dist-electron/main.js",
   "scripts": {
@@ -19,26 +19,18 @@
   "productName": "Iris",
   "private": true,
   "devDependencies": {
-    "@electric-sql/pglite": "^0.5.10",
     "@fontsource-variable/archivo": "^5.3.0",
     "@fontsource-variable/big-shoulders-display": "^5.3.0",
     "@fontsource-variable/cinzel": "^5.3.0",
     "@fontsource-variable/cormorant-garamond": "^5.3.0",
-    "@fontsource-variable/fraunces": "^5.3.0",
     "@fontsource-variable/grenze-gotisch": "^5.3.0",
     "@fontsource-variable/instrument-sans": "^5.3.0",
     "@fontsource-variable/jost": "^5.3.0",
     "@fontsource-variable/tilt-neon": "^5.3.0",
     "@fontsource/bungee": "^5.3.0",
-    "@fontsource/im-fell-english-sc": "^5.3.0",
     "@fontsource/limelight": "^5.3.0",
-    "@fontsource/marcellus-sc": "^5.3.0",
     "@fontsource/michroma": "^5.3.0",
-    "@fontsource/rye": "^5.3.0",
-    "@fontsource/shippori-mincho": "^5.3.0",
-    "@fontsource/special-elite": "^5.3.0",
     "@resvg/resvg-js": "^2.6.2",
-    "@supabase/supabase-js": "^2.117.3",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
@@ -56,10 +48,10 @@
     "vitest": "^5.0.4",
     "zustand": "^5.0.15"
   },
-  "homepage": "https://github.com/ronikssingh/iris",
+  "homepage": "https://github.com/ronikssingh/marquee-desktop",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ronikssingh/iris.git"
+    "url": "https://github.com/ronikssingh/marquee-desktop.git"
   },
   "build": {
     "appId": "com.ronik.iris",

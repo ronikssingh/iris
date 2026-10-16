@@ -32,20 +32,19 @@ interface Props {
   title: string;
   type: MediaType;
   poster: string | null;
-  url?: string | null; // an online picture, used when there's no local poster file
   year?: string;
   className?: string;
   style?: CSSProperties;
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const Poster = memo(function Poster({ title, type, poster, url: remote, year, className, style, size = 'md' }: Props) {
+export const Poster = memo(function Poster({ title, type, poster, year, className, style, size = 'md' }: Props) {
   const [broken, setBroken] = useState(false);
-  const url = !broken ? (mediaUrl(poster) ?? remote ?? null) : null;
+  const url = !broken ? mediaUrl(poster) : null;
   if (url) {
     return (
       <div className={`poster poster-${size} ${className ?? ''}`} style={style}>
-        <img src={url} alt="" draggable={false} onError={() => setBroken(true)} decoding="async" referrerPolicy="no-referrer" />
+        <img src={url} alt="" draggable={false} onError={() => setBroken(true)} decoding="async" />
       </div>
     );
   }

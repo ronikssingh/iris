@@ -165,21 +165,6 @@ export const CLASS_BY_KEY: Record<ClassKey, ClassDef> = Object.fromEntries(CLASS
 
 export type Recommend = 'yes' | 'no';
 
-/** Where a title came from in an online catalogue, so it can be matched across friends and recommendations. */
-export interface ExtRef {
-  source: 'tmdb' | 'igdb';
-  kind: 'movie' | 'tv' | 'game';
-  id: string;
-}
-
-export interface Swipe {
-  key: string; // e.g. tmdb:movie:123
-  title: string;
-  type: MediaType;
-  verdict: 'like' | 'skip' | 'seen';
-  at: number;
-}
-
 export interface Critique {
   id: string;
   title: string;
@@ -197,10 +182,6 @@ export interface Critique {
   poster: string | null; // file name inside the media folder
   posterColor: string | null;
   year: string;
-  ext: ExtRef | null;
-  genres: string[];
-  favourite: boolean;
-  hidden: boolean; // kept off the friends feed
   createdAt: number;
   updatedAt: number;
 }
@@ -220,9 +201,6 @@ export interface WatchItem {
   studio: string;
   cast: string;
   description: string;
-  ext: ExtRef | null;
-  genres: string[];
-  from: string; // who recommended it, when it came from a friend
   order: number;
   addedAt: number;
   updatedAt: number;
@@ -244,8 +222,6 @@ export interface DraftData {
   poster: string | null;
   posterColor: string | null;
   year: string;
-  ext: ExtRef | null;
-  genres: string[];
 }
 
 export interface Draft {
@@ -266,9 +242,6 @@ export interface LibraryMeta {
   createdAt: number;
   legacyCheckedAt: number | null;
   legacyImported: number;
-  syncedIds: string[]; // critiques that have been shared online from this computer
-  posterUploads: Record<string, string>; // local poster file -> its online address
-  onlineOwner: string | null; // the online account this library is shared from
 }
 
 export interface Library {
@@ -278,7 +251,6 @@ export interface Library {
   watchlist: WatchItem[];
   drafts: Draft[];
   trash: TrashEntry[];
-  swipes: Swipe[];
   meta: LibraryMeta;
 }
 
@@ -347,16 +319,6 @@ const time = (v: unknown, fallback: number): number => {
   return Number.isFinite(n) && n > 0 ? n : fallback;
 };
 
-export function normalizeExt(v: any): ExtRef | null {
-  if (!v || typeof v !== 'object') return null;
-  const source = v.source === 'tmdb' || v.source === 'igdb' ? v.source : null;
-  const kind = v.kind === 'movie' || v.kind === 'tv' || v.kind === 'game' ? v.kind : null;
-  const id = typeof v.id === 'string' || typeof v.id === 'number' ? String(v.id).replace(/[^0-9a-zA-Z_-]/g, '').slice(0, 40) : '';
-  return source && kind && id ? { source, kind, id } : null;
-}
-export const extKey = (e: ExtRef | null): string | null => (e ? `${e.source}:${e.kind}:${e.id}` : null);
-const normGenres = (v: any): string[] => (Array.isArray(v) ? v.filter((g) => typeof g === 'string' && g.trim()).map((g: string) => g.trim().slice(0, 40)).slice(0, 8) : []);
-
 export function emptyScores(): Record<ScoreKey, number | null> {
   return Object.fromEntries(SCORE_KEYS.map((k) => [k, null])) as Record<ScoreKey, number | null>;
 }
@@ -391,10 +353,6 @@ export function normalizeCritique(raw: any): Critique {
     poster: safeMedia(raw.poster),
     posterColor: safeColor(raw.posterColor),
     year: str(raw.year).slice(0, 12),
-    ext: normalizeExt(raw.ext),
-    genres: normGenres(raw.genres),
-    favourite: !!raw.favourite,
-    hidden: !!raw.hidden,
     createdAt,
     updatedAt: time(raw.updatedAt, createdAt),
   };
@@ -417,9 +375,6 @@ export function normalizeWatch(raw: any, index = 0): WatchItem {
     studio: str(raw.studio),
     cast: str(raw.cast),
     description: str(raw.description),
-    ext: normalizeExt(raw.ext),
-    genres: normGenres(raw.genres),
-    from: str(raw.from).slice(0, 40),
     order: Number.isFinite(Number(raw.order)) ? Number(raw.order) : index,
     addedAt,
     updatedAt: time(raw.updatedAt, addedAt),
@@ -443,8 +398,6 @@ export function emptyDraftData(): DraftData {
     poster: null,
     posterColor: null,
     year: '',
-    ext: null,
-    genres: [],
   };
 }
 
@@ -480,8 +433,6 @@ export function normalizeDraft(raw: any): Draft {
       poster: safeMedia(d.poster),
       posterColor: safeColor(d.posterColor),
       year: str(d.year).slice(0, 12),
-      ext: normalizeExt(d.ext),
-      genres: normGenres(d.genres),
     },
     step: clampInt(raw.step, 0, 99) ?? 0,
     editingId: raw.editingId ? safeId(raw.editingId, 'c') : null,
@@ -499,8 +450,7 @@ export function emptyLibrary(): Library {
     watchlist: [],
     drafts: [],
     trash: [],
-    swipes: [],
-    meta: { createdAt: Date.now(), legacyCheckedAt: null, legacyImported: 0, syncedIds: [], posterUploads: {}, onlineOwner: null },
+    meta: { createdAt: Date.now(), legacyCheckedAt: null, legacyImported: 0 },
   };
 }
 
@@ -547,31 +497,11 @@ export function normalizeLibrary(raw: any): Library {
       }
     }
   }
-  if (Array.isArray(raw.swipes)) {
-    const seenS = new Set<string>();
-    for (const w of raw.swipes.slice(-3000)) {
-      if (!w || typeof w.key !== 'string' || seenS.has(w.key)) continue;
-      seenS.add(w.key);
-      lib.swipes.push({
-        key: w.key.slice(0, 80),
-        title: str(w.title).slice(0, 200),
-        type: isType(w.type) ? w.type : 'movie',
-        verdict: w.verdict === 'like' || w.verdict === 'seen' ? w.verdict : 'skip',
-        at: time(w.at, Date.now()),
-      });
-    }
-  }
   const m = raw.meta && typeof raw.meta === 'object' ? raw.meta : {};
   lib.meta = {
     createdAt: time(m.createdAt, Date.now()),
     legacyCheckedAt: Number.isFinite(Number(m.legacyCheckedAt)) && m.legacyCheckedAt ? Number(m.legacyCheckedAt) : null,
     legacyImported: Number(m.legacyImported) || 0,
-    syncedIds: Array.isArray(m.syncedIds) ? m.syncedIds.filter((x: any) => typeof x === 'string').slice(0, 20000) : [],
-    posterUploads:
-      m.posterUploads && typeof m.posterUploads === 'object'
-        ? (Object.fromEntries(Object.entries(m.posterUploads).filter(([k, v]) => MEDIA_NAME.test(k) && typeof v === 'string' && /^https:\/\//.test(v as string))) as Record<string, string>)
-        : {},
-    onlineOwner: typeof m.onlineOwner === 'string' && m.onlineOwner ? m.onlineOwner.slice(0, 80) : null,
   };
   return lib;
 }
@@ -624,8 +554,6 @@ export function mergeLibraries(base: Library, incoming: Library): { lib: Library
   }
   const dIds = new Set(lib.drafts.map((d) => d.id));
   for (const d of incoming.drafts) if (!dIds.has(d.id)) lib.drafts.push(d);
-  const sKeys = new Set(lib.swipes.map((w) => w.key));
-  for (const w of incoming.swipes ?? []) if (!sKeys.has(w.key)) lib.swipes.push(w);
   return { lib, added, updated };
 }
 
@@ -667,8 +595,6 @@ export function draftFromCritique(c: Critique): DraftData {
     poster: c.poster,
     posterColor: c.posterColor,
     year: c.year,
-    ext: c.ext,
-    genres: [...c.genres],
   };
 }
 
@@ -684,13 +610,11 @@ export function draftFromWatch(w: WatchItem): DraftData {
     poster: w.poster,
     posterColor: w.posterColor,
     year: w.year,
-    ext: w.ext,
-    genres: [...w.genres],
   };
 }
 
 /** Turn a complete draft into a critique. Throws if required fields are missing. */
-export function critiqueFromDraft(d: DraftData, id: string, createdAt: number, keep?: Pick<Critique, 'favourite' | 'hidden'>): Critique {
+export function critiqueFromDraft(d: DraftData, id: string, createdAt: number): Critique {
   const missing = missingRequired(d);
   if (missing.length) throw new Error('Missing: ' + missing.map((m) => m.label).join(', '));
   const scores = {} as Record<ScoreKey, number>;
@@ -718,10 +642,6 @@ export function critiqueFromDraft(d: DraftData, id: string, createdAt: number, k
     poster: d.poster,
     posterColor: d.posterColor,
     year: d.year,
-    ext: d.ext,
-    genres: d.genres,
-    favourite: keep?.favourite ?? false,
-    hidden: keep?.hidden ?? false,
     createdAt,
     updatedAt: now,
   });

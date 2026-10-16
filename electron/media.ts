@@ -4,7 +4,7 @@ import { net } from 'electron';
 import { ensureDir, exists, sha256, writeFileAtomic } from './fsutil';
 
 export const MEDIA_NAME = /^[a-f0-9]{16,64}\.(jpg|jpeg|png|webp|gif)$/;
-export const USER_AGENT = 'Iris/1.0 (personal critique journal; https://github.com/ronikssingh/iris)';
+export const USER_AGENT = 'Iris/1.0 (personal critique journal; https://github.com/ronikssingh/marquee-desktop)';
 
 const MIME: Record<string, string> = {
   jpg: 'image/jpeg',
@@ -55,7 +55,7 @@ export async function serveMedia(dir: string, url: string): Promise<Response> {
   }
 }
 
-const ALLOWED_REMOTE = /^https:\/\/([a-z0-9-]+\.)*(wikimedia\.org|wikipedia\.org|wikidata\.org|image\.tmdb\.org|images\.igdb\.com|supabase\.co)\//i;
+const ALLOWED_REMOTE = /^https:\/\/([a-z0-9-]+\.)*(wikimedia\.org|wikipedia\.org|wikidata\.org)\//i;
 
 /** Downloads an image for the poster picker. Any https image works when the user pasted the link themselves. */
 export async function fetchRemoteImage(url: string, userProvided: boolean): Promise<{ bytes: Uint8Array; mime: string } | null> {

@@ -295,7 +295,7 @@ export function ModalHost() {
           >
             <h2 className="modal-title">{modal.title}</h2>
             {modal.body && <div className="modal-body">{modal.body}</div>}
-            {modal.actions?.length !== 0 && <div className="modal-actions">
+            <div className="modal-actions">
               {(modal.actions ?? [{ label: 'Close' }]).map((a, i) => (
                 <Button
                   key={i}
@@ -316,7 +316,7 @@ export function ModalHost() {
                   {a.label}
                 </Button>
               ))}
-            </div>}
+            </div>
           </motion.div>
         </motion.div>
       )}

@@ -1,5 +1,5 @@
 /* The bridge between the UI and the Electron main process (exposed as window.iris). */
-import type { ExtRef, Library, MediaType } from './model';
+import type { Library, MediaType } from './model';
 import type { Settings } from './settings';
 
 export interface LoadResult {
@@ -18,7 +18,6 @@ export interface AppInfo {
   snapshotsFolder: string;
   isPackaged: boolean;
   introSpeed?: number; // only used by automated tests to slow the opening down
-  fakeOnline?: boolean; // automated tests use a pretend server instead of Supabase
 }
 
 export interface SnapshotInfo {
@@ -69,9 +68,6 @@ export interface LookupCandidate {
   image: string | null;
   qid: string | null;
   extract: string;
-  source?: 'tmdb' | 'igdb' | 'wiki';
-  ext?: ExtRef | null;
-  popularity?: number;
 }
 
 export interface LookupDetails {
@@ -83,33 +79,6 @@ export interface LookupDetails {
   cast: string;
   description: string;
   image: string | null;
-  ext?: ExtRef | null;
-  genres?: string[];
-}
-
-export interface RecCard {
-  key: string;
-  ext: ExtRef;
-  type: MediaType;
-  title: string;
-  year: string;
-  overview: string;
-  poster: string | null;
-  backdrop: string | null;
-  genres: string[];
-  score: number | null; // audience score out of 100
-  votes: number;
-  reason: string;
-}
-
-export interface RecRequest {
-  type: MediaType;
-  seeds: { title: string; type: MediaType; year: string; rating: number; ext: ExtRef | null }[];
-  exclude: string[];
-  excludeTitles: string[];
-  friends: { title: string; type: MediaType; rating: number; by: string; ext: ExtRef | null }[];
-  era: 'all' | 'recent';
-  page: number;
 }
 
 export interface IrisApi {
@@ -124,8 +93,6 @@ export interface IrisApi {
   lookup: {
     search(query: string, type: MediaType | null): Promise<LookupCandidate[]>;
     details(c: LookupCandidate): Promise<LookupDetails>;
-    status(): Promise<{ tmdb: boolean; igdb: boolean }>;
-    recommend(req: RecRequest): Promise<RecCard[]>;
   };
   backup: {
     status(): Promise<BackupStatus>;

@@ -19,8 +19,6 @@ const api: IrisApi = {
   lookup: {
     search: (q, type) => ipcRenderer.invoke('lookup:search', q, type),
     details: (c) => ipcRenderer.invoke('lookup:details', c),
-    status: () => ipcRenderer.invoke('lookup:status'),
-    recommend: (req) => ipcRenderer.invoke('lookup:recommend', req),
   },
   backup: {
     status: () => ipcRenderer.invoke('backup:status'),

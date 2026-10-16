@@ -13,13 +13,6 @@ const common = {
   sourcemap: false,
   logLevel: 'warning',
   minify: process.env.NODE_ENV === 'production',
-  define: {
-    __IRIS_KEYS__: JSON.stringify({
-      tmdb: process.env.TMDB_TOKEN || '',
-      igdbId: process.env.IGDB_CLIENT_ID || '',
-      igdbSecret: process.env.IGDB_CLIENT_SECRET || '',
-    }),
-  },
 };
 await build({ ...common, entryPoints: ['electron/main.ts'], outfile: path.join(out, 'main.js') });
 await build({ ...common, entryPoints: ['electron/preload.ts'], outfile: path.join(out, 'preload.js') });

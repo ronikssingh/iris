@@ -5,10 +5,6 @@ import { TopBar } from './app/TopBar';
 import { Intro } from './app/Intro';
 import { Onboarding } from './app/Onboarding';
 import { CelebrationHost } from './app/Celebration';
-import { ForYou } from './pages/ForYou';
-import { Friends } from './pages/Friends';
-import { FriendProfile } from './pages/FriendProfile';
-import { useOnline } from './state/online';
 import { Shortcuts } from './app/Shortcuts';
 import { ModalHost, Toasts } from './components/ui';
 import { Lobby } from './pages/Lobby';
@@ -29,7 +25,7 @@ import { colorOfStored } from './lib/images';
 import { appInfo, setAppInfo } from './lib/appInfo';
 
 function routeKey(r: Route) {
-  return r.name === 'detail' ? 'detail-' + r.id : r.name === 'write' ? 'write-' + (r.draftId ?? 'new') : r.name === 'friend' ? 'friend-' + r.id : r.name;
+  return r.name === 'detail' ? 'detail-' + r.id : r.name === 'write' ? 'write-' + (r.draftId ?? 'new') : r.name;
 }
 
 const pageVariants = {
@@ -52,12 +48,6 @@ function Page({ route }: { route: Route }) {
       return <Masterpieces />;
     case 'upnext':
       return <UpNext />;
-    case 'foryou':
-      return <ForYou />;
-    case 'friends':
-      return <Friends tab={route.tab} />;
-    case 'friend':
-      return <FriendProfile id={route.id} critique={route.critique} />;
     case 'settings':
       return <SettingsPage section={route.section} />;
   }
@@ -98,8 +88,6 @@ export function App() {
         if (!s.firstRunDone) useUi.setState({ onboarding: true });
         if (r.pendingOpen) setTimeout(() => runImportFlow(r.pendingOpen), 4800);
         setBoot('ready');
-        // sign back in to the friends service quietly in the background
-        setTimeout(() => void useOnline.getState().start(), 1500);
         // posters brought in without a colour get one now
         setTimeout(async () => {
           const lib = useLibrary.getState().lib;

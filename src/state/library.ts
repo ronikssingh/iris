@@ -5,7 +5,6 @@ import {
   type Critique,
   type Draft,
   type Library,
-  type Swipe,
   type TrashEntry,
   type WatchItem,
   type WatchStatus,
@@ -28,10 +27,6 @@ interface LibState {
   removeDraft: (id: string) => void;
   restoreTrash: (id: string) => void;
   purgeTrash: (id?: string) => void;
-  addSwipe: (w: Swipe) => void;
-  undoSwipe: (key: string) => void;
-  patchMeta: (m: Partial<Library['meta']>) => void;
-  mergeCritiques: (incoming: Critique[]) => void;
 }
 
 const TRASH_DAYS = 30;
@@ -146,37 +141,6 @@ export const useLibrary = create<LibState>((set, get) => ({
   purgeTrash: (id) => {
     const lib = get().lib;
     set({ lib: { ...lib, trash: id ? lib.trash.filter((t) => t.id !== id) : [] } });
-    scheduleSave();
-  },
-
-  addSwipe: (w) => {
-    const lib = get().lib;
-    set({ lib: { ...lib, swipes: [...lib.swipes.filter((x) => x.key !== w.key), w].slice(-3000) } });
-    scheduleSave();
-  },
-
-  undoSwipe: (key) => {
-    const lib = get().lib;
-    set({ lib: { ...lib, swipes: lib.swipes.filter((x) => x.key !== key) } });
-    scheduleSave();
-  },
-
-  patchMeta: (m) => {
-    const lib = get().lib;
-    set({ lib: { ...lib, meta: { ...lib.meta, ...m } } });
-    scheduleSave();
-  },
-
-  mergeCritiques: (incoming) => {
-    if (!incoming.length) return;
-    const lib = get().lib;
-    const critiques = [...lib.critiques];
-    for (const c of incoming) {
-      const i = critiques.findIndex((x) => x.id === c.id);
-      if (i < 0) critiques.push(c);
-      else if (c.updatedAt > critiques[i].updatedAt) critiques[i] = c;
-    }
-    set({ lib: { ...lib, critiques } });
     scheduleSave();
   },
 }));

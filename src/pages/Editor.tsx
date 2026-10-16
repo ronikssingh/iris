@@ -88,7 +88,7 @@ function Writer({ draft }: { draft: Draft }) {
     }
     const lib = useLibrary.getState();
     const existing = draft.editingId ? lib.lib.critiques.find((c) => c.id === draft.editingId) : null;
-    const c = critiqueFromDraft(d, existing?.id ?? newId('c'), existing?.createdAt ?? Date.now(), existing ?? undefined);
+    const c = critiqueFromDraft(d, existing?.id ?? newId('c'), existing?.createdAt ?? Date.now());
     lib.upsertCritique(c);
     lib.removeDraft(draft.id);
     if (draft.watchId) {
