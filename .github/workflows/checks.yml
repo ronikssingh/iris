@@ -1,0 +1,93 @@
+name: Live check
+
+# Talks to the real TMDB, IGDB and Supabase services with the app's own code and reports what
+# came back (never the keys themselves). Runs on pushes to the 1.2 branch, check/* branches and by hand.
+
+on:
+  push:
+    branches: ['check/**', 'v1.2']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    name: Live services
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci --ignore-scripts
+
+      - name: Check TMDB, IGDB and Supabase
+        env:
+          TMDB_TOKEN: ${{ secrets.TMDB_TOKEN || secrets.TMBD_TOKEN }}
+          IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
+          IGDB_CLIENT_SECRET: ${{ secrets.IGDB_CLIENT_SECRET }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: node scripts/live-check.mjs
+
+  supabase:
+    name: Online features on a local Supabase
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci --ignore-scripts
+
+      - name: Start Supabase with email codes switched on
+        run: |
+          mkdir -p "$RUNNER_TEMP/sb" && cd "$RUNNER_TEMP/sb"
+          npx --yes supabase@latest init --force < /dev/null
+          mkdir -p supabase/templates
+          echo '<p>Your Iris code is {{ .Token }}</p><p><a href="{{ .ConfirmationURL }}">Confirm</a></p>' > supabase/templates/confirmation.html
+          echo '<p>Your Iris code is {{ .Token }}</p><p><a href="{{ .ConfirmationURL }}">Reset</a></p>' > supabase/templates/recovery.html
+          python3 - <<'PY'
+          import re
+          p = 'supabase/config.toml'
+          s = open(p).read()
+          # confirmations on (only in the [auth.email] table), plenty of emails for the test
+          s = re.sub(r'(\[auth\.email\][^\[]*?enable_confirmations\s*=\s*)false', r'\1true', s, flags=re.S)
+          s = re.sub(r'email_sent\s*=\s*\d+', 'email_sent = 100', s)
+          s += '\n[auth.email.template.confirmation]\nsubject = "Confirm your Iris account"\ncontent_path = "./supabase/templates/confirmation.html"\n'
+          s += '\n[auth.email.template.recovery]\nsubject = "Reset your Iris password"\ncontent_path = "./supabase/templates/recovery.html"\n'
+          open(p, 'w').write(s)
+          print(re.findall(r'enable_confirmations\s*=\s*\w+', s), re.findall(r'email_sent\s*=\s*\d+', s))
+          PY
+          npx --yes supabase@latest start -x studio,imgproxy,edge-runtime,logflare,vector,supavisor,postgres-meta,realtime
+          npx --yes supabase@latest status -o env | sed -e 's/^/SB_/' > "$RUNNER_TEMP/sb.env"
+          cut -d= -f1 "$RUNNER_TEMP/sb.env"
+
+      - name: Run setup.sql twice
+        run: |
+          set -a; . "$RUNNER_TEMP/sb.env"; set +a
+          psql "$SB_DB_URL" -v ON_ERROR_STOP=1 -q -f supabase/setup.sql
+          psql "$SB_DB_URL" -v ON_ERROR_STOP=1 -q -f supabase/setup.sql
+          echo "setup.sql ran cleanly twice"
+
+      - name: Drive the online features
+        run: |
+          set -a; . "$RUNNER_TEMP/sb.env"; set +a
+          export API_URL="$SB_API_URL" ANON_KEY="$SB_ANON_KEY" PUBLISHABLE_KEY="${SB_PUBLISHABLE_KEY:-}" MAILPIT_URL="${SB_MAILPIT_URL:-}" INBUCKET_URL="${SB_INBUCKET_URL:-}"
+          node scripts/supabase-integration.mjs
+
+      - name: Explain a failure
+        if: failure()
+        run: |
+          log=$( (cat supabase-integration.txt 2>/dev/null; cd "$RUNNER_TEMP/sb" 2>/dev/null && npx --yes supabase@latest status 2>&1 | tail -20) | tail -n 60)
+          log="${log//'%'/'%25'}"; log="${log//$'\n'/'%0A'}"; log="${log//$'\r'/'%0D'}"
+          echo "::error title=Online features check failed::$log"
