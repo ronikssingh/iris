@@ -91,7 +91,7 @@ vec4 fwHouse(vec2 q, float t, float px, float fl, vec3 aur, vec3 ground){
 
   // ---- the roof: a great snow-laden hull, ridge dipping in the middle, ends rising
   float u = x / 0.215;
-  float ridge = 0.168 + 0.012 * u * u;
+  float ridge = 0.164 + 0.020 * u * u;
   float eave = 0.074;
   float halfW = mix(0.252, 0.212, clamp((y - eave) / (ridge - eave), 0.0, 1.0));
   float roofD = max(abs(x) - halfW, max(y - ridge, eave - 0.004 - y));
@@ -104,27 +104,34 @@ vec4 fwHouse(vec2 q, float t, float px, float fl, vec3 aur, vec3 ground){
     float sx = float(k);
     vec2 cross_ = vec2(sx * 0.212, ridge + 0.004);
     // the two boards: from the roof edges up through the crossing
-    gab = min(gab, sdTaper(q, vec2(sx * 0.236, ridge - 0.030), cross_ + vec2(-sx * 0.012, 0.016), 0.0042, 0.0036));
-    gab = min(gab, sdTaper(q, vec2(sx * 0.188, ridge - 0.030), cross_ + vec2(sx * 0.012, 0.016), 0.0042, 0.0036));
+    gab = min(gab, sdTaper(q, vec2(sx * 0.236, ridge - 0.030), cross_ + vec2(-sx * 0.012, 0.016), 0.0050, 0.0042));
+    gab = min(gab, sdTaper(q, vec2(sx * 0.188, ridge - 0.030), cross_ + vec2(sx * 0.012, 0.016), 0.0050, 0.0042));
     // the neck of the outer board curves out and up; the head looks away from the house
     vec2 n0 = cross_ + vec2(sx * 0.012, 0.016);
     vec2 n1 = n0 + vec2(sx * 0.010, 0.012);
     vec2 n2 = n1 + vec2(sx * 0.004, 0.010);
     gab = min(gab, min(sdTaper(q, n0, n1, 0.0036, 0.0032), sdTaper(q, n1, n2, 0.0032, 0.0034)));
-    vec2 hq = (q - n2) * vec2(sx, 1.0) / 1.7;
+    vec2 hq = (q - n2) * vec2(sx, 1.0) / 1.25;
     float head = sdTaper(hq, vec2(0.0, 0.0), vec2(0.016, 0.002), 0.0042, 0.0024);           // skull to snout
     head = min(head, sdTri(hq, vec2(0.003, 0.0015), vec2(0.018, -0.0045), vec2(0.004, -0.0028)));  // the open lower jaw
     head = min(head, sdTri(hq, vec2(-0.002, 0.003), vec2(-0.010, 0.011), vec2(0.003, 0.0045)));   // a swept-back horn
     head = min(head, sdTri(hq, vec2(-0.004, 0.000), vec2(-0.012, 0.004), vec2(-0.002, 0.004)));   // a second, lower horn
     head = max(head, -sdCircle(hq - vec2(0.005, 0.0015), 0.0010));                              // the eye
-    gab = min(gab, head * 1.7);
+    gab = min(gab, head * 1.25);
     // the inner board ends in a carved point
     vec2 c0 = cross_ + vec2(-sx * 0.012, 0.016);
     gab = min(gab, sdTaper(q, c0, c0 + vec2(-sx * 0.006, 0.010), 0.0036, 0.0008));
   }
+  // ---- barge boards down both gable ends, and a cap of boards along the ridge
+  float barge = 1e5;
+  for (int k = -1; k <= 1; k += 2){
+    float sx = float(k);
+    barge = min(barge, sdTaper(q, vec2(sx * 0.254, eave + 0.002), vec2(sx * 0.214, ridge - 0.002), 0.0040, 0.0034));
+  }
+  float rcap = max(abs(y - ridge - 0.001) - 0.0055, abs(x) - 0.214);
   // ---- the smoke hole: a little louvred box on the ridge
-  float louver = sdBox(q - vec2(-0.01, 0.186), vec2(0.014, 0.010));
-  louver = min(louver, sdTri(q, vec2(-0.028, 0.194), vec2(0.008, 0.194), vec2(-0.010, 0.206)));
+  float louver = sdBox(q - vec2(-0.01, 0.174), vec2(0.014, 0.010));
+  louver = min(louver, sdTri(q, vec2(-0.028, 0.182), vec2(0.008, 0.182), vec2(-0.010, 0.194)));
 
   // ---- the walls: upright staves between a sill and a wall-plate, on a stone footing
   float walls = sdBox(q - vec2(0.0, 0.041), vec2(0.228, 0.035));
@@ -138,7 +145,7 @@ vec4 fwHouse(vec2 q, float t, float px, float fl, vec3 aur, vec3 ground){
   float block = sdBox(bq - vec2(0.0, 0.007), vec2(0.009, 0.007)) - 0.002;
   float axe = min(sdSeg(bq, vec2(-0.002, 0.012), vec2(-0.016, 0.032)) - 0.0014, sdTri(bq, vec2(0.000, 0.010), vec2(0.008, 0.019), vec2(-0.006, 0.019)));
 
-  float all_ = min(min(min(roofD, gab), min(louver, walls)), min(min(footing, pile), min(barrels, min(block, axe))));
+  float all_ = min(min(min(min(roofD, barge), gab), min(louver, walls)), min(min(footing, pile), min(barrels, min(block, axe))));
   if (all_ > px * 2.0) return vec4(0.0);
 
   // ---- shade each part, back to front
@@ -215,11 +222,22 @@ vec4 fwHouse(vec2 q, float t, float px, float fl, vec3 aur, vec3 ground){
   if (roofD < px * 2.0){
     float k = clamp((y - eave) / (ridge - eave), 0.0, 1.0);
     vec3 rc = snowC * (0.62 + 0.55 * k);
-    // soft wind-sculpted drifts and a few dark patches of turf showing through
+    // wind-sculpted drifts: each ridge of snow lit on top by the aurora, shadowed beneath
     float dr = fbm4(vec2(x * 18.0, y * 34.0 - x * 6.0));
-    rc *= 0.86 + 0.24 * dr;
-    rc += snowC * 0.25 * smoothstep(0.55, 0.75, fbm4(vec2(x * 50.0, y * 80.0))) * k;
-    float turf = smoothstep(0.66, 0.74, fbm4(vec2(x * 40.0, y * 70.0))) * smoothstep(0.35, 0.0, k);
+    float dr2 = fbm4(vec2(x * 18.0, (y + 0.004) * 34.0 - x * 6.0));
+    rc *= 0.84 + 0.26 * dr;
+    rc += snowC * clamp((dr2 - dr) * 9.0, -0.4, 0.6) * 0.45;
+    rc += snowC * 0.22 * smoothstep(0.55, 0.75, fbm4(vec2(x * 50.0, y * 80.0))) * k;
+    // the lower courses: wooden shingles where the snow has slid away, lumps of it still caught on them
+    float bare = smoothstep(0.55, 0.20, k + 0.30 * (fbm4(vec2(x * 22.0, 3.0)) - 0.5)) * smoothstep(0.0, 0.06, k);
+    float row = floor((y - eave) / 0.0068);
+    float sxs = (x + 0.26) / 0.0095 + 0.5 * mod(row, 2.0);
+    float sf = fract(sxs), rf = fract((y - eave) / 0.0068);
+    vec3 shingle = woodC * (0.75 + 0.5 * hash11(floor(sxs) * 3.1 + row * 7.7)) * (0.65 + 0.35 * smoothstep(0.0, 0.5, rf));
+    shingle = mix(shingle, woodC * 0.35, smoothstep(0.10, 0.0, sf) + smoothstep(0.90, 1.0, sf));
+    shingle = mix(shingle, snowC * 0.9, smoothstep(0.62, 0.72, fbm4(vec2(x * 90.0, y * 140.0))));
+    rc = mix(rc, shingle, bare * 0.92);
+    float turf = smoothstep(0.66, 0.74, fbm4(vec2(x * 40.0, y * 70.0))) * smoothstep(0.35, 0.0, k) * (1.0 - bare);
     rc = mix(rc, vec3(0.04, 0.045, 0.03), turf * 0.8);
     // the ridge catches the aurora light; the ends of the rafters peek out under the eaves
     rc += vec3(0.2, 0.45, 0.3) * exp(-(ridge - y) * 250.0) * 0.25;
@@ -228,6 +246,15 @@ vec4 fwHouse(vec2 q, float t, float px, float fl, vec3 aur, vec3 ground){
     rc += rc * warm * 2.5 * fire * smoothstep(0.08, 0.06, y);
     c = mix(c, rc, af(roofD, px));
     cov = max(cov, af(roofD, px));
+  }
+  // barge boards and the ridge cap: dark timber edged with snow
+  if (min(barge, rcap) < px * 2.0){
+    float bd = min(barge, rcap);
+    vec3 bc = woodC * 0.9 * (0.8 + 0.3 * fbm4(q * vec2(400.0, 60.0)));
+    bc = mix(bc, snowC * (1.05 + 0.25 * fbm4(q * vec2(300.0, 90.0))), smoothstep(-0.002, 0.001, y - ridge) * step(rcap, barge));
+    bc += vec3(0.2, 0.42, 0.30) * exp(-abs(bd) * 900.0) * 0.18;
+    c = mix(c, bc, af(bd, px));
+    cov = max(cov, af(bd, px));
   }
   // icicles hanging from the eaves
   {
@@ -256,8 +283,8 @@ vec4 fwHouse(vec2 q, float t, float px, float fl, vec3 aur, vec3 ground){
   }
   // the smoke-hole louver, glowing from the hearth below
   if (louver < px * 2.0){
-    vec3 lc = mix(woodC, snowC, step(0.193, y));
-    lc += fire * fl * step(abs(y - 0.186), 0.005) * step(abs(x + 0.01), 0.010) * step(0.5, fract(x * 300.0)) * 1.2;
+    vec3 lc = mix(woodC, snowC, step(0.181, y));
+    lc += fire * fl * step(abs(y - 0.174), 0.005) * step(abs(x + 0.01), 0.010) * step(0.5, fract(x * 300.0)) * 1.2;
     c = mix(c, lc, af(louver, px));
     cov = max(cov, af(louver, px));
   }
@@ -404,7 +431,7 @@ vec3 scene(vec2 uv){
   }
   // smoke curling up from the roof's smoke hole
   {
-    vec2 sq = lq - vec2(-0.01, 0.196);
+    vec2 sq = lq - vec2(-0.01, 0.184);
     float rise = clamp(sq.y / 0.32, 0.0, 1.0);
     float sx = sq.x - rise * rise * 0.12 - 0.012 * sin(sq.y * 28.0 - t * 1.2);
     float smoke = exp(-abs(sx) / (0.006 + rise * 0.045)) * step(0.0, sq.y) * (1.0 - rise) * smoothstep(0.35, 0.75, fbm4(vec2(sx * 30.0, sq.y * 12.0 - t * 0.5)));

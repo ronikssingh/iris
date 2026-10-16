@@ -16,7 +16,6 @@ export const THEME_IDS = [
   'moonwake',
   'gloamwood',
   'velocity',
-  'goldentree',
   'spiritgrove',
   'fold',
   'windsweep',
