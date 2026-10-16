@@ -11,6 +11,7 @@ import { windsweep } from './worlds/windsweep';
 import { ringworld } from './worlds/ringworld';
 import { megacity } from './worlds/megacity';
 import { fold } from './worlds/fold';
+import { spiritgrove } from './worlds/spiritgrove';
 
 export const VERT = /* glsl */ `#version 300 es
 void main() {
@@ -520,6 +521,7 @@ const SCENES: Partial<Record<ThemeId, string>> = {
   ringworld,
   megacity,
   fold,
+  spiritgrove,
   vigil,
   skyward,
   mirage,
