@@ -2,9 +2,9 @@
 
 export const moonwake = /* glsl */ `
 const float MW_HZ = -0.10;
-const vec2 MW_MOON = vec2(0.30, 0.105);
+const vec2 MW_MOON = vec2(0.17, 0.105);
 const float MW_MOONR = 0.155;
-const vec2 MW_SHIP = vec2(0.168, -0.142);   // where the hull meets the water
+const vec2 MW_SHIP = vec2(0.035, -0.142);   // where the hull meets the water
 const float MW_SC = 1.1;                     // ship scale
 
 /* ---------------------------------------------------------------- the ship
@@ -232,15 +232,9 @@ vec3 scene(vec2 uv){
     vec3 sc = mix(vec3(0.030, 0.040, 0.068), vec3(0.62, 0.68, 0.84), lit);
     col = mix(col, sc, streak * 0.78);
     col += vec3(0.70, 0.78, 0.96) * streak * (1.0 - smoothstep(0.55, 0.84, c1)) * lit * 0.35;
-    // a low cloud bank resting on the horizon, silver along its top
-    float bn = fbm4(vec2(q.x * 3.2 + t * 0.004, 1.7));
-    float bn2 = fbm4(vec2(q.x * 9.0 - t * 0.006, h * 30.0));
-    float btop = 0.008 + 0.034 * smoothstep(0.38, 0.78, bn) + 0.010 * (bn2 - 0.5);
-    float bank = 1.0 - smoothstep(btop - 0.012, btop + 0.002, h);
-    float bankEdge = exp(-max(btop - h, 0.0) * 260.0) * bank;
-    float nearMoon = exp(-abs(q.x - MW_MOON.x) * 3.5);
-    vec3 bc = vec3(0.040, 0.050, 0.080) + vec3(0.60, 0.66, 0.84) * bankEdge * (0.10 + nearMoon * 0.60);
-    col = mix(col, bc, bank * 0.88);
+    // nothing but open sea to the horizon: a soft haze lying on the water, silvered under the moon
+    float hz2 = exp(-h * 38.0);
+    col = mix(col, vec3(0.10, 0.12, 0.17) + vec3(0.35, 0.40, 0.52) * exp(-abs(q.x - MW_MOON.x) * 3.5) * 0.35, hz2 * 0.55);
     // a shooting star now and then
     float cyc = floor(t / 19.0);
     float ph = t - cyc * 19.0;
@@ -253,35 +247,6 @@ vec3 scene(vec2 uv){
       float dd = sdSeg(q, tail, head);
       float along = clamp(dot(q - tail, dir) / max(length(head - tail), 1e-4), 0.0, 1.0);
       col += vec3(0.80, 0.88, 1.0) * exp(-dd / px * 1.3) * along * along * sin(3.14159 * k) * 1.6;
-    }
-    // a far island on the left, palms leaning in the wind
-    if (qs.x < -0.25 && h < 0.11){
-      float ix = qs.x;
-      float isl = hz + 0.003 + 0.034 * exp(-pow((ix + 0.55) * 6.0, 2.0)) + 0.020 * exp(-pow((ix + 0.42) * 9.0, 2.0)) + 0.009 * exp(-pow((ix + 0.66) * 11.0, 2.0)) + 0.004 * (fbm3(vec2(ix * 45.0, 2.0)) - 0.5);
-      float palms = 1e5;
-      for (int i = 0; i < 4; i++){
-        float fi = float(i);
-        vec2 b = vec2(-0.600 + fi * 0.046 + 0.008 * sin(fi * 3.1), hz + 0.027 - 0.0035 * fi);
-        if (abs(qs.x - b.x) > 0.075 || qs.y < b.y - 0.004) continue;
-        float lean = -0.38 + 0.24 * fi + 0.025 * sin(t * 0.5 + fi);
-        float H = 0.068 - 0.010 * abs(fi - 1.4);
-        vec2 c1 = b + vec2(sin(lean) * H * 0.25, H * 0.5);
-        vec2 tip = b + vec2(sin(lean) * H * 0.85, H);
-        palms = min(palms, min(sdTaper(qs, b, c1, 0.0017, 0.0012), sdTaper(qs, c1, tip, 0.0012, 0.0008)));
-        for (int k = 0; k < 9; k++){
-          float fk = float(k);
-          float a = -0.55 + fk * 0.53 + 0.10 * hash11(fi * 9.0 + fk) + 0.07 * sin(t * 0.8 + fi * 1.3 + fk);
-          vec2 dir = vec2(cos(a), sin(a));
-          float len = 0.019 * (0.8 + 0.35 * hash11(fi * 3.0 + fk * 1.7)) * (1.0 - 0.25 * max(dir.y, 0.0));
-          float droop = len * (0.55 - 0.3 * max(dir.y, 0.0));
-          vec2 e1 = tip + dir * len * 0.38 + vec2(0.0, len * 0.12);
-          vec2 e2 = tip + dir * len * 0.72 + vec2(0.0, len * 0.02) - vec2(0.0, droop * 0.25);
-          vec2 e3 = tip + vec2(dir.x * len, dir.y * len * 0.6) - vec2(0.0, droop);
-          palms = min(palms, min(sdTaper(qs, tip, e1, 0.0008, 0.0015), min(sdTaper(qs, e1, e2, 0.0015, 0.0010), sdTaper(qs, e2, e3, 0.0010, 0.0001))));
-        }
-      }
-      float islandCov = max(af(qs.y - isl, px), af(palms, px));
-      col = mix(col, vec3(0.018, 0.024, 0.042), islandCov);
     }
   } else {
     // the sea: long slow swells and fine ripples, all reflecting the moonlit sky

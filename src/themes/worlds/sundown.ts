@@ -4,8 +4,8 @@ export const sundown = /* glsl */ `
 const vec2 SN_SUN = vec2(0.24, -0.028);
 const float SN_SUNR = 0.046;
 const float SN_HZ = -0.06;
-const float SN_HS = 0.160;                     // horse scale (body length in screen heights)
-const vec2 SN_HORSE = vec2(-0.505, -0.145 + 0.75 * 0.160);   // horse origin; hooves stand on the bluff
+const float SN_HS = 0.172;                     // horse scale (body length in screen heights)
+const vec2 SN_HORSE = vec2(-0.505, -0.147 + 0.75 * 0.172);   // horse origin; hooves stand on the bluff
 
 vec3 snSky(vec2 p, float px, bool disc){
   float h = p.y - SN_HZ;
@@ -30,86 +30,141 @@ vec3 snFog(float x){
   return mix(vec3(0.90, 0.48, 0.38), vec3(1.0, 0.68, 0.38), near) * (0.55 + 0.75 * near);
 }
 
-/* ---- the horse and rider, in horse units (body length 1, hooves at y = -0.75), facing right ---- */
-float snHorse(vec2 p, float t){
+/* ---- the horse and rider, in horse units (body length 1, hooves at y = -0.75), facing right.
+   returns x = horse, y = rider, z = tack (saddle, bedroll, rifle, reins), so edges between them can catch light ---- */
+vec3 snHorse(vec2 p, float t){
+  float wind = sin(t * 1.25) * 0.55 + sin(t * 2.3 + 1.0) * 0.3;
+  // ---------------- the horse
   float body = sdEllipse(p - vec2(0.0, 0.03), vec2(0.47, 0.215));
-  body = smin(body, sdCircle(p - vec2(0.31, 0.045), 0.205), 0.08);
-  body = smin(body, sdCircle(p - vec2(-0.31, 0.075), 0.215), 0.08);
-  // the head dips and lifts now and then
+  body = smin(body, sdCircle(p - vec2(0.31, 0.045), 0.205), 0.08);        // chest
+  body = smin(body, sdCircle(p - vec2(-0.31, 0.075), 0.215), 0.08);       // quarters
+  body = smin(body, sdCircle(p - vec2(-0.22, 0.20), 0.10), 0.06);         // croup
   float horse = body;
   if (p.x > 0.12 && p.y > -0.12){
     float nod = 0.05 * sin(t * 0.37) * smoothstep(-0.3, 0.6, sin(t * 0.21 + 1.0)) - 0.02;
     vec2 pn = rot2(nod) * (p - vec2(0.36, 0.14)) + vec2(0.36, 0.14);
     float neck = sdTaper(pn, vec2(0.33, 0.12), vec2(0.60, 0.52), 0.18, 0.088);
     float crest = sdTaper(pn, vec2(0.24, 0.24), vec2(0.575, 0.60), 0.08, 0.058);
-    crest -= 0.014 * (n1(dot(pn - vec2(0.24, 0.24), vec2(0.6, 0.8)) * 70.0) - 0.5);
     neck = smin(neck, crest, 0.05);
-    float head = sdTaper(pn, vec2(0.635, 0.575), vec2(0.88, 0.33), 0.088, 0.050);
-    head = smin(head, sdCircle(pn - vec2(0.655, 0.49), 0.078), 0.03);
-    float ears = min(sdTri(pn, vec2(0.595, 0.625), vec2(0.588, 0.745), vec2(0.642, 0.65)), sdTri(pn, vec2(0.62, 0.625), vec2(0.626, 0.728), vec2(0.664, 0.64)));
+    // the mane: locks of hair lifting off the crest in the wind
+    vec2 cd = normalize(vec2(0.335, 0.36));
+    vec2 mq = pn - vec2(0.24, 0.24);
+    float along = dot(mq, cd);
+    float across = dot(mq, vec2(-cd.y, cd.x));
+    float li = floor(along * 22.0 + wind * 0.15);
+    float lock = fract(along * 22.0 + wind * 0.15);
+    float maneLen = (0.012 + 0.020 * hash11(li)) * smoothstep(0.0, 0.08, along) * (1.0 - smoothstep(0.40, 0.50, along));
+    float shape = sin(lock * 3.14159);
+    float mane = max(across - 0.070 - maneLen * shape, max(-along, along - 0.50));
+    mane = max(mane, 0.058 - across);
+    neck = min(neck, mane);
+    // the head: forehead, nose, muzzle and jaw, ears pricked, a forelock
+    float head = sdTaper(pn, vec2(0.635, 0.575), vec2(0.86, 0.345), 0.086, 0.046);
+    head = smin(head, sdCircle(pn - vec2(0.655, 0.49), 0.078), 0.03);            // the jaw
+    head = smin(head, sdCircle(pn - vec2(0.865, 0.335), 0.046), 0.02);           // the muzzle
+    head = max(head, -sdCircle(pn - vec2(0.905, 0.300), 0.012));                 // mouth line
+    float ears = min(sdTri(pn, vec2(0.595, 0.625), vec2(0.590, 0.750), vec2(0.642, 0.650)), sdTri(pn, vec2(0.622, 0.625), vec2(0.628, 0.735), vec2(0.666, 0.640)));
+    float forelock = sdTri(pn, vec2(0.640, 0.640), vec2(0.700, 0.600), vec2(0.680, 0.560));
     horse = smin(horse, neck, 0.08);
     horse = smin(horse, head, 0.04);
-    horse = min(horse, ears);
+    horse = min(horse, min(ears, forelock));
   }
-  // legs: near and far fore, near and far hind (one hind cocked at rest)
-  float legs = 1e5;
+  // legs: knees, hocks and fetlocks, a little feathering above each hoof
   if (p.y < -0.02){
-  legs = min(legs, sdTaper(p, vec2(0.30, -0.08), vec2(0.31, -0.40), 0.080, 0.044));
-  legs = min(legs, sdTaper(p, vec2(0.31, -0.40), vec2(0.315, -0.665), 0.040, 0.031));
-  legs = min(legs, sdTaper(p, vec2(0.315, -0.665), vec2(0.35, -0.745), 0.036, 0.043));
-  legs = min(legs, sdTaper(p, vec2(0.37, -0.08), vec2(0.40, -0.39), 0.072, 0.042));
-  legs = min(legs, sdTaper(p, vec2(0.40, -0.39), vec2(0.425, -0.665), 0.038, 0.030));
-  legs = min(legs, sdTaper(p, vec2(0.425, -0.665), vec2(0.465, -0.745), 0.034, 0.041));
-  legs = min(legs, sdTaper(p, vec2(-0.29, -0.02), vec2(-0.39, -0.37), 0.11, 0.052));
-  legs = min(legs, sdTaper(p, vec2(-0.39, -0.37), vec2(-0.365, -0.665), 0.044, 0.031));
-  legs = min(legs, sdTaper(p, vec2(-0.365, -0.665), vec2(-0.33, -0.745), 0.035, 0.043));
-  legs = min(legs, sdTaper(p, vec2(-0.23, -0.04), vec2(-0.30, -0.36), 0.095, 0.048));
-  legs = min(legs, sdTaper(p, vec2(-0.30, -0.36), vec2(-0.25, -0.64), 0.041, 0.030));
-  legs = min(legs, sdTaper(p, vec2(-0.25, -0.64), vec2(-0.205, -0.71), 0.033, 0.036));
-  horse = smin(horse, legs, 0.05);
+    float legs = 1e5;
+    legs = min(legs, sdTaper(p, vec2(0.30, -0.08), vec2(0.31, -0.40), 0.080, 0.046));
+    legs = min(legs, sdCircle(p - vec2(0.31, -0.40), 0.046));
+    legs = min(legs, sdTaper(p, vec2(0.31, -0.40), vec2(0.315, -0.645), 0.038, 0.030));
+    legs = min(legs, sdCircle(p - vec2(0.318, -0.648), 0.036));
+    legs = min(legs, sdTaper(p, vec2(0.318, -0.648), vec2(0.350, -0.722), 0.032, 0.032));
+    legs = min(legs, sdBox(p - vec2(0.358, -0.736), vec2(0.040, 0.014)) - 0.006);
+    legs = min(legs, sdTaper(p, vec2(0.37, -0.08), vec2(0.40, -0.39), 0.072, 0.044));
+    legs = min(legs, sdCircle(p - vec2(0.40, -0.39), 0.043));
+    legs = min(legs, sdTaper(p, vec2(0.40, -0.39), vec2(0.425, -0.645), 0.036, 0.029));
+    legs = min(legs, sdCircle(p - vec2(0.428, -0.648), 0.034));
+    legs = min(legs, sdTaper(p, vec2(0.428, -0.648), vec2(0.462, -0.722), 0.031, 0.031));
+    legs = min(legs, sdBox(p - vec2(0.470, -0.736), vec2(0.038, 0.014)) - 0.006);
+    legs = min(legs, sdTaper(p, vec2(-0.29, -0.02), vec2(-0.39, -0.37), 0.11, 0.054));
+    legs = min(legs, sdCircle(p - vec2(-0.392, -0.372), 0.052));                      // the hock
+    legs = min(legs, sdTaper(p, vec2(-0.39, -0.37), vec2(-0.365, -0.645), 0.042, 0.031));
+    legs = min(legs, sdCircle(p - vec2(-0.362, -0.648), 0.036));
+    legs = min(legs, sdTaper(p, vec2(-0.362, -0.648), vec2(-0.335, -0.722), 0.032, 0.032));
+    legs = min(legs, sdBox(p - vec2(-0.326, -0.736), vec2(0.040, 0.014)) - 0.006);
+    legs = min(legs, sdTaper(p, vec2(-0.23, -0.04), vec2(-0.30, -0.36), 0.095, 0.050));
+    legs = min(legs, sdCircle(p - vec2(-0.30, -0.36), 0.048));
+    legs = min(legs, sdTaper(p, vec2(-0.30, -0.36), vec2(-0.25, -0.62), 0.040, 0.030));
+    legs = min(legs, sdTaper(p, vec2(-0.25, -0.62), vec2(-0.205, -0.695), 0.031, 0.033));
+    // feathering at the fetlocks
+    float feather = 0.012 * (n1(p.x * 160.0) - 0.3) * smoothstep(-0.60, -0.68, p.y) * smoothstep(-0.75, -0.70, p.y);
+    horse = smin(horse, legs - feather, 0.05);
   }
-  // tail, streaming in the evening wind
+  // the tail: a sweep of hair parting into strands, streaming in the wind
   if (p.x < -0.36){
-    float sway = sin(t * 1.25) * 0.55 + sin(t * 2.3 + 1.0) * 0.3;
-    vec2 a0 = vec2(-0.465, 0.19), a1 = vec2(-0.57 - 0.03 * sway, 0.0), a2 = vec2(-0.62 - 0.07 * sway, -0.24), a3 = vec2(-0.62 - 0.11 * sway, -0.50);
-    float tail = min(min(sdTaper(p, a0, a1, 0.052, 0.062), sdTaper(p, a1, a2, 0.062, 0.050)), sdTaper(p, a2, a3, 0.050, 0.016));
-    tail -= 0.012 * (n1(p.y * 24.0 + p.x * 9.0 + t * 0.3) - 0.5);
+    vec2 a0 = vec2(-0.465, 0.19), a1 = vec2(-0.57 - 0.03 * wind, 0.0), a2 = vec2(-0.62 - 0.07 * wind, -0.24), a3 = vec2(-0.62 - 0.11 * wind, -0.50);
+    float tail = min(min(sdTaper(p, a0, a1, 0.050, 0.060), sdTaper(p, a1, a2, 0.060, 0.050)), sdTaper(p, a2, a3, 0.050, 0.014));
+    for (int k = 0; k < 4; k++){
+      float fk = float(k);
+      vec2 s0 = mix(a1, a2, 0.3 + fk * 0.15);
+      vec2 s1 = a3 + vec2((fk - 1.5) * 0.035 - 0.04 * wind * (0.5 + fk * 0.2), 0.02 * fk - 0.02);
+      tail = min(tail, sdTaper(p, s0, s1, 0.018, 0.003));
+    }
+    tail -= 0.008 * (n1(p.y * 40.0 + p.x * 12.0 + t * 0.3) - 0.5);
     horse = smin(horse, tail, 0.03);
   }
-  if (p.y < 0.15 || p.x > 0.32 || p.x < -0.30) return horse;
-  // saddle, bedroll and a coiled rope on the horn
-  float saddle = sdBox(p - vec2(0.03, 0.245), vec2(0.15, 0.03)) - 0.02;
-  saddle = min(saddle, sdTaper(p, vec2(0.17, 0.27), vec2(0.20, 0.36), 0.024, 0.02));
-  saddle = min(saddle, sdTaper(p, vec2(-0.12, 0.27), vec2(-0.135, 0.36), 0.032, 0.022));
-  saddle = min(saddle, sdTaper(p, vec2(-0.24, 0.30), vec2(-0.13, 0.30), 0.045, 0.045));
-  saddle = min(saddle, abs(length(p - vec2(0.205, 0.195)) - 0.05) - 0.012);
-  horse = min(horse, saddle);
-  // the rider
-  float r = sdCircle(p - vec2(0.0, 0.34), 0.09);
-  r = smin(r, sdTaper(p, vec2(0.0, 0.36), vec2(0.05, 0.645), 0.092, 0.112), 0.05);
-  r = smin(r, sdTaper(p, vec2(0.055, 0.65), vec2(0.075, 0.73), 0.042, 0.037), 0.03);
-  r = smin(r, sdCircle(p - vec2(0.08, 0.785), 0.058), 0.03);
-  // hat: curled brim and a creased crown
-  vec2 hp = rot2(-0.06) * (p - vec2(0.078, 0.835));
-  float brim = max(abs(hp.y - 1.4 * hp.x * hp.x) - 0.010, abs(hp.x) - 0.135);
-  float crown = sdBox(hp - vec2(0.0, 0.054), vec2(0.042, 0.047)) - 0.013;
-  crown = max(crown, -sdCircle(hp - vec2(0.0, 0.117), 0.021));
-  r = min(r, min(brim, crown));
-  // arms holding the reins
-  r = min(r, sdTaper(p, vec2(0.07, 0.63), vec2(0.14, 0.47), 0.046, 0.037));
-  r = min(r, sdTaper(p, vec2(0.14, 0.47), vec2(0.28, 0.455), 0.035, 0.029));
-  // leg in the stirrup
-  r = min(r, sdTaper(p, vec2(0.02, 0.34), vec2(0.17, 0.20), 0.064, 0.048));
-  r = min(r, sdTaper(p, vec2(0.17, 0.20), vec2(0.125, -0.05), 0.042, 0.036));
-  r = min(r, sdTaper(p, vec2(0.115, -0.06), vec2(0.195, -0.08), 0.032, 0.024));
-  // duster coat tail lifting in the wind
-  float flap = 0.025 * sin(t * 2.2) + 0.012 * sin(t * 3.7 + 1.0);
-  float coat = sdTri(p, vec2(-0.02, 0.48), vec2(-0.20 - flap, 0.13 + flap * 0.4), vec2(0.06, 0.17));
-  coat -= 0.007 * (n1(p.x * 90.0 + t) - 0.5);
-  r = min(r, coat);
-  // reins, slack
-  r = min(r, min(sdSeg(p, vec2(0.28, 0.455), vec2(0.56, 0.37)), sdSeg(p, vec2(0.56, 0.37), vec2(0.84, 0.36))) - 0.006);
-  return min(horse, r);
+  float tack = 1e5, r = 1e5;
+  if (p.y > -0.12 && p.x > -0.34 && p.x < 0.92){
+    // ---------------- the tack
+    float saddle = sdBox(p - vec2(0.03, 0.248), vec2(0.15, 0.028)) - 0.018;                    // seat and skirt
+    saddle = min(saddle, sdTaper(p, vec2(0.17, 0.27), vec2(0.20, 0.36), 0.024, 0.020));         // the horn
+    saddle = min(saddle, sdTaper(p, vec2(-0.12, 0.27), vec2(-0.135, 0.36), 0.032, 0.022));      // the cantle
+    float blanket = max(sdBox(p - vec2(0.02, 0.215), vec2(0.20, 0.035)), -(p.y - 0.18));
+    float bedroll = sdTaper(p, vec2(-0.26, 0.30), vec2(-0.13, 0.30), 0.048, 0.048);
+    float bags = sdBox(p - vec2(-0.20, 0.205), vec2(0.045, 0.055)) - 0.012;
+    float rope = abs(length(p - vec2(0.205, 0.192)) - 0.050) - 0.012;
+    // a rifle in its scabbard, slung forward along the shoulder
+    float rifle = sdTaper(p, vec2(0.10, 0.27), vec2(0.40, 0.05), 0.026, 0.020);
+    rifle = min(rifle, sdTaper(p, vec2(0.06, 0.29), vec2(0.12, 0.27), 0.028, 0.024));            // the stock above the scabbard
+    tack = min(min(min(saddle, blanket), min(bedroll, bags)), min(rope, rifle));
+    // reins, slack from the rider's hand to the bit, and the bridle over the head
+    float reins = min(sdSeg(p, vec2(0.29, 0.455), vec2(0.56, 0.37)), sdSeg(p, vec2(0.56, 0.37), vec2(0.86, 0.33))) - 0.006;
+    tack = min(tack, reins);
+    // ---------------- the rider
+    r = sdCircle(p - vec2(0.0, 0.34), 0.092);                                                  // seat
+    r = smin(r, sdTaper(p, vec2(0.0, 0.36), vec2(0.045, 0.640), 0.096, 0.120), 0.05);          // torso in a heavy coat
+    r = smin(r, sdTaper(p, vec2(0.055, 0.65), vec2(0.075, 0.73), 0.044, 0.038), 0.03);         // neck and collar
+    r = smin(r, sdCircle(p - vec2(0.082, 0.785), 0.058), 0.03);                                // head
+    r = min(r, sdTri(p, vec2(0.105, 0.785), vec2(0.150, 0.770), vec2(0.105, 0.750)));            // nose and jaw
+    // a bandana knotted at the throat, its ends fluttering back
+    r = min(r, sdTri(p, vec2(0.030, 0.705), vec2(-0.045 - 0.02 * wind, 0.690 + 0.01 * sin(t * 6.0)), vec2(0.035, 0.675)));
+    // the hat: a creased crown, a band, a brim curled at the sides
+    vec2 hp = rot2(-0.06) * (p - vec2(0.080, 0.835));
+    float brim = max(abs(hp.y - 1.5 * hp.x * hp.x) - 0.0105, abs(hp.x) - 0.138);
+    float crown = sdBox(hp - vec2(0.0, 0.054), vec2(0.043, 0.047)) - 0.013;
+    crown = max(crown, -sdCircle(hp - vec2(0.0, 0.118), 0.021));                                // the crease
+    crown = max(crown, -sdCircle(hp - vec2(-0.052, 0.090), 0.012));                             // pinch at the front
+    r = min(r, min(brim, crown));
+    // arms: one holding the reins, the other resting on the thigh
+    r = min(r, sdTaper(p, vec2(0.07, 0.63), vec2(0.14, 0.47), 0.046, 0.038));
+    r = min(r, sdTaper(p, vec2(0.14, 0.47), vec2(0.29, 0.455), 0.036, 0.030));
+    r = min(r, sdCircle(p - vec2(0.29, 0.455), 0.028));                                        // gloved fist
+    r = min(r, sdTaper(p, vec2(0.03, 0.62), vec2(-0.01, 0.46), 0.040, 0.034));
+    r = min(r, sdTaper(p, vec2(-0.01, 0.46), vec2(0.09, 0.38), 0.032, 0.028));
+    // gun belt and holster on the hip
+    r = min(r, sdBox(rot2(0.25) * (p - vec2(-0.045, 0.345)), vec2(0.018, 0.042)) - 0.008);
+    // leg in the stirrup, a spur at the heel
+    r = min(r, sdTaper(p, vec2(0.02, 0.34), vec2(0.17, 0.20), 0.066, 0.050));
+    r = min(r, sdTaper(p, vec2(0.17, 0.20), vec2(0.125, -0.04), 0.044, 0.036));
+    r = min(r, sdTaper(p, vec2(0.110, -0.055), vec2(0.200, -0.078), 0.034, 0.024));            // boot
+    r = min(r, sdTaper(p, vec2(0.095, -0.06), vec2(0.060, -0.075), 0.010, 0.004));             // spur
+    tack = min(tack, max(sdBox(p - vec2(0.150, -0.083), vec2(0.040, 0.012)) - 0.004, -sdBox(p - vec2(0.150, -0.075), vec2(0.030, 0.010))));  // stirrup
+    // the duster's tails, split and lifting in the wind
+    float flap = 0.025 * sin(t * 2.2) + 0.012 * sin(t * 3.7 + 1.0);
+    float coat = sdTri(p, vec2(-0.02, 0.48), vec2(-0.20 - flap, 0.13 + flap * 0.4), vec2(0.03, 0.17));
+    coat = min(coat, sdTri(p, vec2(0.02, 0.45), vec2(-0.12 - flap * 0.6, 0.10 + flap * 0.3), vec2(0.07, 0.15)));
+    coat -= 0.006 * (n1(p.x * 90.0 + t) - 0.5);
+    r = min(r, coat);
+  }
+  return vec3(horse, r, tack);
 }
 
 /* tall grass: blades bending in the wind */
@@ -133,8 +188,34 @@ float snGrass(vec2 p, float ground, float t, float scale, float seed){
   return d;
 }
 
+/* a big foreground spruce in its own frame: q.y 0 at the base, 1 at the tip; distance in those units */
+float snBigPine(vec2 q, float seed, float t){
+  if (q.y < -0.08 || q.y > 1.04 || abs(q.x) > 0.34) return 0.05;
+  float y = 1.0 - q.y;
+  q.x -= 0.012 * sin(t * 0.5 + seed) * q.y * q.y;          // the crown sways a little
+  float ax = abs(q.x);
+  float side = step(0.0, q.x);
+  float trunk = max(ax - 0.010 - 0.012 * y, max(q.y - 0.9, -q.y - 0.08));
+  // whorls of branches whose tips droop toward the outside; uneven spacing, ragged undersides
+  float env = 0.006 + 0.250 * pow(y, 0.95);
+  float r = ax / env;
+  float ty = (y - 0.050 * r * r * env * 4.0 - 0.10 * ax) * 10.0 + 0.30 * sin(y * 23.0 + seed) + seed;
+  ty += 0.22 * (gnoise(vec2(q.x * 90.0, floor(ty) * 3.1 + side)) - 0.5);
+  float tierI = floor(ty);
+  float f = fract(ty);
+  float tw = 0.72 + 0.50 * hash11(tierI * 7.31 + side * 13.7 + seed);
+  float w = env * (0.36 + 0.64 * pow(f, 0.6)) * tw;
+  w *= 0.88 + 0.12 * fract(ty * 3.0 + side * 0.5);
+  // ragged needles and small sprigs along every edge, a clean leader at the very top
+  float tipFade = smoothstep(0.0, 0.10, y);
+  w += (gnoise(vec2(q.y * 70.0, side * 9.0 + seed)) - 0.5) * 0.030 * (0.4 + y) * tipFade;
+  w += 0.014 * pow(max(0.0, sin(q.y * 260.0 + side * 2.0 + seed)), 6.0) * y * tipFade;
+  float crown = max(ax - w, max(q.y - 1.0, 0.035 - q.y));
+  return min(crown, trunk);
+}
+
 /* one forested ridge: returns its colour and coverage; depth below the crest fades into the haze */
-vec4 snRidge(vec2 p, float top, float spacing, float hMin, float hMax, float seed, vec3 near, vec3 far, float fogDepth, float px){
+vec4 snRidge(vec2 p, float top, float spacing, float hMin, float hMax, float seed, vec3 near, vec3 far, float fogDepth, float px, int rows){
   if (p.y > top + hMax + px * 2.0) return vec4(0.0);
   float tr = pineRow(p, top, spacing, hMin, hMax, seed);
   float m = min(p.y - top, tr);
@@ -143,6 +224,24 @@ vec4 snRidge(vec2 p, float top, float spacing, float hMin, float hMax, float see
   vec3 c = mix(near, snFog(p.x) * 0.80, smoothstep(0.0, fogDepth, depth) * 0.6);
   c = mix(c, far, exp(-depth * 400.0) * 0.4);
   c += vec3(1.0, 0.62, 0.35) * exp(-abs(m) * 1400.0) * exp(-abs(p.x - SN_SUN.x) * 3.0) * 0.6;
+  // forest running down the slope: more rows of pines, each a little deeper in the haze
+  if (m < 0.0 && rows > 0){
+    float gap = hMax * 0.85;
+    for (int k = 1; k <= 3; k++){
+      if (k > rows) break;
+      float fk = float(k);
+      float rt = top - gap * fk + gap * 0.25 * (n1(p.x / spacing * 0.15 + fk * 3.0) - 0.5);
+      if (p.y > rt + hMax + px * 2.0 || p.y < rt - hMax * 0.2) continue;
+      float tk = pineRow(p + vec2(spacing * 0.5 * fk, 0.0), rt, spacing, hMin, hMax, seed + fk * 7.0);
+      if (tk < px * 2.0){
+        float feet = smoothstep(rt - hMax * 0.12, rt + hMax * 0.50, p.y);
+        vec3 tc = mix(near * 0.60, snFog(p.x) * 0.80, smoothstep(0.0, fogDepth, depth) * 0.45);
+        tc += vec3(1.0, 0.62, 0.35) * exp(-abs(tk) * 1500.0) * smoothstep(rt + hMax * 0.35, rt + hMax * 0.95, p.y)
+            * exp(-abs(p.x - SN_SUN.x) * 3.0) * 0.30;
+        c = mix(c, tc, af(tk, px) * feet);
+      }
+    }
+  }
   return vec4(c, af(m, px));
 }
 
@@ -271,7 +370,7 @@ vec3 scene(vec2 uv){
     }
   }
   if (!hidB){
-    vec4 rB = snRidge(p3, yB, 0.0032, 0.004, 0.017, 7.0, vec3(0.42, 0.25, 0.37), vec3(0.52, 0.31, 0.43), 0.06, px);
+    vec4 rB = snRidge(p3, yB, 0.0030, 0.004, 0.017, 7.0, vec3(0.42, 0.25, 0.37), vec3(0.52, 0.31, 0.43), 0.06, px, 1);
     col = mix(col, rB.rgb, rB.a);
     // a far lake under the sun, a sliver of molten light
     float yL = SN_HZ - 0.092;
@@ -280,16 +379,16 @@ vec3 scene(vec2 uv){
     col = mix(col, lakec, lake * 0.9);
   }
   if (!hidC){
-    vec4 rC = snRidge(p4, yC, 0.0055, 0.008, 0.030, 11.0, vec3(0.25, 0.15, 0.26), vec3(0.34, 0.20, 0.33), 0.08, px);
+    vec4 rC = snRidge(p4, yC, 0.0048, 0.008, 0.030, 11.0, vec3(0.25, 0.15, 0.26), vec3(0.34, 0.20, 0.33), 0.08, px, 2);
     col = mix(col, rC.rgb, rC.a);
   }
   // nearer ridges, darker, their feet in the haze
   if (!hidD){
-    vec4 rD = snRidge(p5, yD, 0.0085, 0.012, 0.048, 17.0, vec3(0.13, 0.08, 0.15), vec3(0.20, 0.12, 0.21), 0.10, px);
+    vec4 rD = snRidge(p5, yD, 0.0070, 0.012, 0.048, 17.0, vec3(0.13, 0.08, 0.15), vec3(0.20, 0.12, 0.21), 0.10, px, 3);
     col = mix(col, rD.rgb, rD.a);
   }
   if (!hidE){
-    vec4 rE = snRidge(p5, yE, 0.012, 0.02, 0.07, 23.0, vec3(0.050, 0.036, 0.065), vec3(0.10, 0.065, 0.12), 0.6, px);
+    vec4 rE = snRidge(p5, yE, 0.0100, 0.02, 0.07, 23.0, vec3(0.050, 0.036, 0.065), vec3(0.10, 0.065, 0.12), 0.6, px, 3);
     col = mix(col, rE.rgb, rE.a);
   }
 
@@ -314,6 +413,27 @@ vec3 scene(vec2 uv){
     }
   }
 
+  // two big spruces at the far left of the bluff frame the rider; the sun catches their right edges
+  if (p5.x < -0.62 && p5.y < 0.36 && p5.y > -0.16){
+    float pt = 1e5, pr = 1e5;
+    vec2 toS = normalize(SN_SUN - p5);
+    for (int i = 0; i < 2; i++){
+      float fi = float(i);
+      float tx = -0.785 + fi * 0.090;
+      float H = 0.46 - fi * 0.16;
+      float gy = -0.112 - fi * 0.013;
+      vec2 tq = (p5 - vec2(tx, gy)) / H;
+      float e = 0.006 / H;
+      pt = min(pt, snBigPine(tq, fi * 3.7 + 1.0, t) * H);
+      pr = min(pr, snBigPine(tq + toS * e, fi * 3.7 + 1.0, t) * H);
+    }
+    if (pt < px * 2.0){
+      float rim = clamp((pr - pt) / 0.006, 0.0, 1.0) * smoothstep(-0.010, 0.0, pt);
+      vec3 tcol = vec3(0.026, 0.021, 0.032) + vec3(1.0, 0.60, 0.32) * rim * 0.9;
+      col = mix(col, tcol, af(pt, px));
+    }
+  }
+
   // the bluff the rider stands on: rock stepping down to the right, grass along the top
   float m5 = p5.y - y5;
   if (m5 < 0.06){
@@ -330,20 +450,25 @@ vec3 scene(vec2 uv){
     }
   }
 
-  // horse and rider, rim-lit by the setting sun
+  // horse and rider, rim-lit by the setting sun; the edges between them catch a thread of light too
   vec2 hp = (p5 - SN_HORSE) / SN_HS;
   if (abs(hp.x) < 1.0 && hp.y > -0.8 && hp.y < 1.0){
-    float d = snHorse(hp, t);
+    vec3 dd3 = snHorse(hp, t);
+    float d = min(dd3.x, min(dd3.y, dd3.z));
     float pxh = px / SN_HS;
     float cov = af(d, pxh);
     if (cov > 0.0){
-      float rim = 0.0;
-      if (d > -0.024){
-        vec2 toSun = normalize(SN_SUN - p5);
-        float d2 = snHorse(hp + toSun * 0.016, t);
-        rim = clamp((d - d2) / 0.016, 0.0, 1.0) * smoothstep(-0.022, 0.0, d);
-      }
-      vec3 fc = vec3(0.026, 0.020, 0.028) + vec3(1.0, 0.64, 0.34) * rim * 1.5;
+      vec2 toSun = normalize(SN_SUN - p5);
+      vec3 dd4 = snHorse(hp + toSun * 0.016, t);
+      float d2 = min(dd4.x, min(dd4.y, dd4.z));
+      float rim = clamp((d2 - d) / 0.016, 0.0, 1.0) * smoothstep(-0.020, 0.0, d);
+      // inner edges: the rider against the horse, the tack against both, a hairline of light on the sunward side
+      float innerR = clamp((dd4.y - dd3.y) / 0.016, 0.0, 1.0) * exp(-abs(dd3.y) / (pxh * 0.9)) * step(dd3.x, 0.0);
+      float innerT = clamp((dd4.z - dd3.z) / 0.016, 0.0, 1.0) * exp(-abs(dd3.z) / (pxh * 0.9)) * step(min(dd3.x, dd3.y), 0.0);
+      vec3 fc = vec3(0.026, 0.020, 0.028);
+      // a faint warm sheen on the horse's flank and the rider's coat
+      fc += vec3(0.20, 0.10, 0.05) * smoothstep(0.0, 0.5, hp.x + hp.y * 0.3) * step(d, 0.0) * 0.25;
+      fc += vec3(1.0, 0.64, 0.34) * (rim * 1.4 + innerR * 0.45 + innerT * 0.35);
       col = mix(col, fc, cov);
     }
   }

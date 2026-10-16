@@ -3,16 +3,11 @@ import type { ThemeId } from '../shared/settings';
 import { WLIB } from './worlds/lib';
 import { moonwake } from './worlds/moonwake';
 import { sundown } from './worlds/sundown';
-import { dragonwatch } from './worlds/dragonwatch';
 import { lanternmere } from './worlds/lanternmere';
-import { hanami } from './worlds/hanami';
 import { gloamwood } from './worlds/gloamwood';
 import { velocity } from './worlds/velocity';
-import { fimbulwinter as fimbulwinterNew } from './worlds/fimbulwinter';
-import { thedeep } from './worlds/thedeep';
+import { fimbulwinter } from './worlds/fimbulwinter';
 import { goldentree } from './worlds/goldentree';
-import { reclaimed } from './worlds/reclaimed';
-import { redplanet } from './worlds/redplanet';
 
 export const VERT = /* glsl */ `#version 300 es
 void main() {
@@ -323,52 +318,6 @@ vec3 scene(vec2 uv){
 }`;
 
 /* ---------------------------------------------------------- Fimbulwinter */
-const fimbulwinter = /* glsl */ `
-vec3 scene(vec2 uv){
-  float asp = uRes.x / uRes.y;
-  vec2 p = (uv - 0.5) * vec2(asp, 1.0);
-  vec3 col = mix(vec3(0.025, 0.06, 0.11), vec3(0.004, 0.01, 0.024), smoothstep(0.2, 1.0, uv.y));
-  vec2 sg = gl_FragCoord.xy / (2.0 * uRes.y / 900.0);
-  vec2 cell = floor(sg / 3.0);
-  float st = hash21(cell);
-  float tw = 0.55 + 0.45 * sin(uTime * (1.0 + st * 4.0) + st * 40.0);
-  vec2 spp = fract(sg / 3.0) - 0.5 - (hash22(cell) - 0.5) * 0.6;
-  col += vec3(0.82, 0.9, 1.0) * smoothstep(0.09, 0.0, length(spp)) * step(0.984, st) * tw * smoothstep(0.35, 0.85, uv.y);
-  vec3 aur = vec3(0.0);
-  for (int i = 0; i < 3; i++){
-    float fi = float(i);
-    float x = p.x * (0.85 + fi * 0.25) + fi * 4.0 + uMouse.x * 0.04;
-    float center = 0.6 + fi * 0.075 + (fbm3(vec2(x * 0.65 + uTime * 0.028, fi * 2.0)) - 0.5) * 0.36;
-    float yd = uv.y - center;
-    float curtain = exp(-max(yd, 0.0) * (5.0 - fi)) * exp(-max(-yd, 0.0) * 28.0);
-    float rays = vnoise(vec2(x * 16.0 + uTime * 0.35, fi)) * 0.65 + vnoise(vec2(x * 44.0 - uTime * 0.25, fi + 3.0)) * 0.35;
-    float flow = fbm3(vec2(x * 1.8 - uTime * 0.07, fi));
-    float a = curtain * (0.5 + rays * 0.6) * smoothstep(0.22, 0.7, flow);
-    vec3 c1 = vec3(0.18, 1.0, 0.64);
-    vec3 c2 = vec3(0.56, 0.34, 1.0);
-    aur += mix(c1, c2, clamp(yd * 4.0 + 0.3, 0.0, 1.0)) * a;
-  }
-  col += aur * 0.72;
-  for (int i = 0; i < 2; i++){
-    float fi = float(i);
-    float x = p.x * (1.1 + fi * 0.8) + uMouse.x * (0.03 + fi * 0.05) + fi * 7.0;
-    float h = 0.22 - fi * 0.09 + ridge(vec2(x * 0.9, fi * 5.0)) * (0.34 - fi * 0.1);
-    if (uv.y < h){
-      float depth = h - uv.y;
-      float rs = fbm(vec2(x * 7.0, uv.y * 12.0));
-      float snow = smoothstep(0.16, 0.0, depth + (rs - 0.5) * 0.12);
-      vec3 rock = mix(vec3(0.05, 0.09, 0.14), vec3(0.015, 0.025, 0.045), fi);
-      rock *= 0.75 + 0.5 * rs;
-      vec3 snowC = mix(vec3(0.36, 0.5, 0.62), vec3(0.72, 0.86, 0.95), rs) * (1.0 - fi * 0.35) + aur * 0.3;
-      col = mix(rock, snowC, snow * (1.0 - fi * 0.4));
-      col = mix(col, vec3(0.07, 0.13, 0.2), (1.0 - fi) * 0.38 * smoothstep(0.0, 0.25, depth));
-    }
-  }
-  float mist = fbm(vec2(p.x * 2.0 + uTime * 0.035, uv.y * 6.0));
-  col += vec3(0.25, 0.4, 0.5) * mist * smoothstep(0.26, 0.0, uv.y) * 0.34;
-  return col;
-}`;
-
 /* --------------------------------------------------------- Event Horizon */
 const eventhorizon = /* glsl */ `
 vec3 stars(vec2 q){
@@ -561,21 +510,16 @@ vec3 scene(vec2 uv){
 const SCENES: Partial<Record<ThemeId, string>> = {
   moonwake,
   sundown,
-  dragonwatch,
   lanternmere,
-  hanami,
   gloamwood,
   velocity,
-  thedeep,
   goldentree,
-  reclaimed,
-  redplanet,
   vigil,
   skyward,
   mirage,
   glitchpop,
   winedark,
-  fimbulwinter: fimbulwinterNew,
+  fimbulwinter,
   eventhorizon,
   midnightdrive,
   silverscreen,

@@ -203,6 +203,22 @@ vec3 scene(vec2 uv){
   col = mix(col, fogc * 0.9, mw * smoothstep(0.50, 0.85, fbm4(vec2(p1.x * 4.0 + t * 0.02, p1.y * 14.0))) * 0.45);
   col = mix(col, vec3(0.10, 0.13, 0.18), 0.12 * smoothstep(-0.2, 0.3, p1.y));
 
+  // heavy fog drawn in from both sides, so the eye goes straight to the castle
+  {
+    float fogN = fbm4(vec2(p1.x * 2.0 - t * 0.012, p1.y * 3.2 + t * 0.006));
+    float fogN2 = fbm4(vec2(p1.x * 5.0 + t * 0.02, p1.y * 7.0 - t * 0.01));
+    float sideL = smoothstep(-0.14, -0.70, p1.x + (fogN - 0.5) * 0.18);
+    float sideR = smoothstep(0.52, 0.86, p1.x - (fogN - 0.5) * 0.18);
+    float side = max(sideL, sideR);
+    float vert = smoothstep(0.42, 0.02, p1.y) * 0.75 + 0.25;              // thickest low down, thinner where the moon is
+    float amt = clamp(side * vert * (0.70 + 0.45 * fogN + 0.15 * fogN2), 0.0, 0.94);
+    vec3 fogSide = vec3(0.16, 0.20, 0.26) + vec3(0.18, 0.21, 0.26) * exp(-length(p1 - LM_MOON) * 2.5) * 0.6;
+    col = mix(col, fogSide, amt);
+    // a soft wall of mist over the water in the foreground corners
+    float corner = smoothstep(0.30, 0.85, abs(p1.x - 0.18)) * smoothstep(-0.10, -0.40, p1.y);
+    col = mix(col, vec3(0.13, 0.16, 0.21), corner * 0.45 * (0.6 + 0.4 * fogN2));
+  }
+
   // a procession of lantern boats drifting toward the boathouse
   for (int b = 0; b < 5; b++){
     float fb = float(b);
