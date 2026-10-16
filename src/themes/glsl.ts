@@ -12,6 +12,7 @@ import { fimbulwinter as fimbulwinterNew } from './worlds/fimbulwinter';
 import { thedeep } from './worlds/thedeep';
 import { goldentree } from './worlds/goldentree';
 import { reclaimed } from './worlds/reclaimed';
+import { redplanet } from './worlds/redplanet';
 
 export const VERT = /* glsl */ `#version 300 es
 void main() {
@@ -568,6 +569,7 @@ const SCENES: Partial<Record<ThemeId, string>> = {
   thedeep,
   goldentree,
   reclaimed,
+  redplanet,
   vigil,
   skyward,
   mirage,
