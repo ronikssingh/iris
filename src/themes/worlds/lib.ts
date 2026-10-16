@@ -85,6 +85,21 @@ float pineRow(vec2 p, float ground, float spacing, float hMin, float hMax, float
   }
   return d;
 }
+/* foliage as overlapping round clumps (2x2 search, exact for these radii):
+   x = depth inside the best clump (1 at its heart, 0 at its rim), yz = position within it */
+vec3 clump2(vec2 w, float seed){
+  vec2 ci = floor(w - 0.5);
+  vec3 best = vec3(-1.0, 0.0, 0.0);
+  for (int j = 0; j <= 1; j++) for (int i = 0; i <= 1; i++){
+    vec2 g = ci + vec2(float(i), float(j));
+    vec2 c = g + 0.25 + 0.50 * hash22(g + seed * 17.0);
+    float r = 0.62 + 0.13 * hash21(g * 1.7 + seed);
+    vec2 d = (w - c) / r;
+    float v = 1.0 - length(d);
+    if (v > best.x) best = vec3(v, d);
+  }
+  return best;
+}
 float luma(vec3 c){ return dot(c, vec3(0.2126, 0.7152, 0.0722)); }
 vec3 saturate3(vec3 c, float s){ return mix(vec3(luma(c)), c, s); }
 /* filmic curve with gentle shoulder, keeps bright light glowing instead of clipping */
