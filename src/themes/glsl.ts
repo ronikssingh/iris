@@ -9,6 +9,9 @@ import { hanami } from './worlds/hanami';
 import { gloamwood } from './worlds/gloamwood';
 import { velocity } from './worlds/velocity';
 import { fimbulwinter as fimbulwinterNew } from './worlds/fimbulwinter';
+import { thedeep } from './worlds/thedeep';
+import { goldentree } from './worlds/goldentree';
+import { reclaimed } from './worlds/reclaimed';
 
 export const VERT = /* glsl */ `#version 300 es
 void main() {
@@ -562,6 +565,9 @@ const SCENES: Partial<Record<ThemeId, string>> = {
   hanami,
   gloamwood,
   velocity,
+  thedeep,
+  goldentree,
+  reclaimed,
   vigil,
   skyward,
   mirage,
