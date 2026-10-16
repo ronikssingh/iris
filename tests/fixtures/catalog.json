@@ -1,0 +1,833 @@
+{
+ "/genre/movie/list": {
+  "genres": [
+   {
+    "id": 878,
+    "name": "Science Fiction"
+   },
+   {
+    "id": 18,
+    "name": "Drama"
+   },
+   {
+    "id": 12,
+    "name": "Adventure"
+   },
+   {
+    "id": 28,
+    "name": "Action"
+   }
+  ]
+ },
+ "/genre/tv/list": {
+  "genres": [
+   {
+    "id": 18,
+    "name": "Drama"
+   }
+  ]
+ },
+ "/search/movie": {
+  "results": [
+   {
+    "id": 693134,
+    "title": "Dune: Part Two",
+    "release_date": "2024-02-27",
+    "vote_count": 6500,
+    "vote_average": 8.1,
+    "genre_ids": [
+     878,
+     12
+    ],
+    "poster_path": "/p693134.jpg",
+    "backdrop_path": "/b693134.jpg",
+    "overview": "Dune: Part Two is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 157336,
+    "title": "Interstellar",
+    "release_date": "2014-11-05",
+    "vote_count": 37000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     878,
+     18,
+     12
+    ],
+    "poster_path": "/p157336.jpg",
+    "backdrop_path": "/b157336.jpg",
+    "overview": "Interstellar is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 329865,
+    "title": "Arrival",
+    "release_date": "2016-11-10",
+    "vote_count": 18000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     878,
+     18
+    ],
+    "poster_path": "/p329865.jpg",
+    "backdrop_path": "/b329865.jpg",
+    "overview": "Arrival is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 335984,
+    "title": "Blade Runner 2049",
+    "release_date": "2017-10-04",
+    "vote_count": 14000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     878,
+     18
+    ],
+    "poster_path": "/p335984.jpg",
+    "backdrop_path": "/b335984.jpg",
+    "overview": "Blade Runner 2049 is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   }
+  ]
+ },
+ "/search/multi": {
+  "results": [
+   {
+    "id": 693134,
+    "title": "Dune: Part Two",
+    "release_date": "2024-02-27",
+    "vote_count": 6500,
+    "vote_average": 8.1,
+    "genre_ids": [
+     878,
+     12
+    ],
+    "poster_path": "/p693134.jpg",
+    "backdrop_path": "/b693134.jpg",
+    "overview": "Dune: Part Two is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score.",
+    "media_type": "movie"
+   },
+   {
+    "id": 157336,
+    "title": "Interstellar",
+    "release_date": "2014-11-05",
+    "vote_count": 37000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     878,
+     18,
+     12
+    ],
+    "poster_path": "/p157336.jpg",
+    "backdrop_path": "/b157336.jpg",
+    "overview": "Interstellar is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score.",
+    "media_type": "movie"
+   },
+   {
+    "id": 329865,
+    "title": "Arrival",
+    "release_date": "2016-11-10",
+    "vote_count": 18000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     878,
+     18
+    ],
+    "poster_path": "/p329865.jpg",
+    "backdrop_path": "/b329865.jpg",
+    "overview": "Arrival is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score.",
+    "media_type": "movie"
+   }
+  ]
+ },
+ "/search/tv": {
+  "results": [
+   {
+    "id": 1396,
+    "name": "Breaking Bad",
+    "first_air_date": "2008-01-20",
+    "vote_count": 14000,
+    "vote_average": 8.9,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s1396.jpg",
+    "backdrop_path": null,
+    "overview": "Breaking Bad is a series everyone recommends."
+   },
+   {
+    "id": 94997,
+    "name": "House of the Dragon",
+    "first_air_date": "2022-08-21",
+    "vote_count": 5000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s94997.jpg",
+    "backdrop_path": null,
+    "overview": "House of the Dragon is a series everyone recommends."
+   },
+   {
+    "id": 136315,
+    "name": "The Bear",
+    "first_air_date": "2022-06-23",
+    "vote_count": 1200,
+    "vote_average": 8.1,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s136315.jpg",
+    "backdrop_path": null,
+    "overview": "The Bear is a series everyone recommends."
+   },
+   {
+    "id": 66732,
+    "name": "Stranger Things",
+    "first_air_date": "2016-07-15",
+    "vote_count": 17000,
+    "vote_average": 8.6,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s66732.jpg",
+    "backdrop_path": null,
+    "overview": "Stranger Things is a series everyone recommends."
+   }
+  ]
+ },
+ "/recommendations": {
+  "results": [
+   {
+    "id": 693134,
+    "title": "Dune: Part Two",
+    "release_date": "2024-02-27",
+    "vote_count": 6500,
+    "vote_average": 8.1,
+    "genre_ids": [
+     878,
+     12
+    ],
+    "poster_path": "/p693134.jpg",
+    "backdrop_path": "/b693134.jpg",
+    "overview": "Dune: Part Two is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 157336,
+    "title": "Interstellar",
+    "release_date": "2014-11-05",
+    "vote_count": 37000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     878,
+     18,
+     12
+    ],
+    "poster_path": "/p157336.jpg",
+    "backdrop_path": "/b157336.jpg",
+    "overview": "Interstellar is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 329865,
+    "title": "Arrival",
+    "release_date": "2016-11-10",
+    "vote_count": 18000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     878,
+     18
+    ],
+    "poster_path": "/p329865.jpg",
+    "backdrop_path": "/b329865.jpg",
+    "overview": "Arrival is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 335984,
+    "title": "Blade Runner 2049",
+    "release_date": "2017-10-04",
+    "vote_count": 14000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     878,
+     18
+    ],
+    "poster_path": "/p335984.jpg",
+    "backdrop_path": "/b335984.jpg",
+    "overview": "Blade Runner 2049 is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 27205,
+    "title": "Inception",
+    "release_date": "2010-07-15",
+    "vote_count": 37000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     878,
+     28
+    ],
+    "poster_path": "/p27205.jpg",
+    "backdrop_path": "/b27205.jpg",
+    "overview": "Inception is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 872585,
+    "title": "Oppenheimer",
+    "release_date": "2023-07-19",
+    "vote_count": 9800,
+    "vote_average": 8.1,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/p872585.jpg",
+    "backdrop_path": "/b872585.jpg",
+    "overview": "Oppenheimer is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 545611,
+    "title": "Everything Everywhere All at Once",
+    "release_date": "2022-03-24",
+    "vote_count": 6800,
+    "vote_average": 7.8,
+    "genre_ids": [
+     28,
+     12,
+     878
+    ],
+    "poster_path": "/p545611.jpg",
+    "backdrop_path": "/b545611.jpg",
+    "overview": "Everything Everywhere All at Once is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 76341,
+    "title": "Mad Max: Fury Road",
+    "release_date": "2015-05-13",
+    "vote_count": 22000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     28,
+     12,
+     878
+    ],
+    "poster_path": "/p76341.jpg",
+    "backdrop_path": "/b76341.jpg",
+    "overview": "Mad Max: Fury Road is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 264660,
+    "title": "Ex Machina",
+    "release_date": "2015-01-21",
+    "vote_count": 13000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     18,
+     878
+    ],
+    "poster_path": "/p264660.jpg",
+    "backdrop_path": "/b264660.jpg",
+    "overview": "Ex Machina is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 438631,
+    "title": "Dune",
+    "release_date": "2021-09-15",
+    "vote_count": 12000,
+    "vote_average": 7.8,
+    "genre_ids": [
+     878,
+     12
+    ],
+    "poster_path": "/p438631.jpg",
+    "backdrop_path": "/b438631.jpg",
+    "overview": "Dune is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   }
+  ]
+ },
+ "/discover/movie": {
+  "results": [
+   {
+    "id": 329865,
+    "title": "Arrival",
+    "release_date": "2016-11-10",
+    "vote_count": 18000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     878,
+     18
+    ],
+    "poster_path": "/p329865.jpg",
+    "backdrop_path": "/b329865.jpg",
+    "overview": "Arrival is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 335984,
+    "title": "Blade Runner 2049",
+    "release_date": "2017-10-04",
+    "vote_count": 14000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     878,
+     18
+    ],
+    "poster_path": "/p335984.jpg",
+    "backdrop_path": "/b335984.jpg",
+    "overview": "Blade Runner 2049 is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 27205,
+    "title": "Inception",
+    "release_date": "2010-07-15",
+    "vote_count": 37000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     878,
+     28
+    ],
+    "poster_path": "/p27205.jpg",
+    "backdrop_path": "/b27205.jpg",
+    "overview": "Inception is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 872585,
+    "title": "Oppenheimer",
+    "release_date": "2023-07-19",
+    "vote_count": 9800,
+    "vote_average": 8.1,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/p872585.jpg",
+    "backdrop_path": "/b872585.jpg",
+    "overview": "Oppenheimer is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 545611,
+    "title": "Everything Everywhere All at Once",
+    "release_date": "2022-03-24",
+    "vote_count": 6800,
+    "vote_average": 7.8,
+    "genre_ids": [
+     28,
+     12,
+     878
+    ],
+    "poster_path": "/p545611.jpg",
+    "backdrop_path": "/b545611.jpg",
+    "overview": "Everything Everywhere All at Once is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 76341,
+    "title": "Mad Max: Fury Road",
+    "release_date": "2015-05-13",
+    "vote_count": 22000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     28,
+     12,
+     878
+    ],
+    "poster_path": "/p76341.jpg",
+    "backdrop_path": "/b76341.jpg",
+    "overview": "Mad Max: Fury Road is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 264660,
+    "title": "Ex Machina",
+    "release_date": "2015-01-21",
+    "vote_count": 13000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     18,
+     878
+    ],
+    "poster_path": "/p264660.jpg",
+    "backdrop_path": "/b264660.jpg",
+    "overview": "Ex Machina is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 438631,
+    "title": "Dune",
+    "release_date": "2021-09-15",
+    "vote_count": 12000,
+    "vote_average": 7.8,
+    "genre_ids": [
+     878,
+     12
+    ],
+    "poster_path": "/p438631.jpg",
+    "backdrop_path": "/b438631.jpg",
+    "overview": "Dune is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   }
+  ]
+ },
+ "/trending/movie/week": {
+  "results": [
+   {
+    "id": 27205,
+    "title": "Inception",
+    "release_date": "2010-07-15",
+    "vote_count": 37000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     878,
+     28
+    ],
+    "poster_path": "/p27205.jpg",
+    "backdrop_path": "/b27205.jpg",
+    "overview": "Inception is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 872585,
+    "title": "Oppenheimer",
+    "release_date": "2023-07-19",
+    "vote_count": 9800,
+    "vote_average": 8.1,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/p872585.jpg",
+    "backdrop_path": "/b872585.jpg",
+    "overview": "Oppenheimer is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 545611,
+    "title": "Everything Everywhere All at Once",
+    "release_date": "2022-03-24",
+    "vote_count": 6800,
+    "vote_average": 7.8,
+    "genre_ids": [
+     28,
+     12,
+     878
+    ],
+    "poster_path": "/p545611.jpg",
+    "backdrop_path": "/b545611.jpg",
+    "overview": "Everything Everywhere All at Once is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 76341,
+    "title": "Mad Max: Fury Road",
+    "release_date": "2015-05-13",
+    "vote_count": 22000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     28,
+     12,
+     878
+    ],
+    "poster_path": "/p76341.jpg",
+    "backdrop_path": "/b76341.jpg",
+    "overview": "Mad Max: Fury Road is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 264660,
+    "title": "Ex Machina",
+    "release_date": "2015-01-21",
+    "vote_count": 13000,
+    "vote_average": 7.6,
+    "genre_ids": [
+     18,
+     878
+    ],
+    "poster_path": "/p264660.jpg",
+    "backdrop_path": "/b264660.jpg",
+    "overview": "Ex Machina is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   },
+   {
+    "id": 438631,
+    "title": "Dune",
+    "release_date": "2021-09-15",
+    "vote_count": 12000,
+    "vote_average": 7.8,
+    "genre_ids": [
+     878,
+     12
+    ],
+    "poster_path": "/p438631.jpg",
+    "backdrop_path": "/b438631.jpg",
+    "overview": "Dune is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score."
+   }
+  ]
+ },
+ "/discover/tv": {
+  "results": [
+   {
+    "id": 1396,
+    "name": "Breaking Bad",
+    "first_air_date": "2008-01-20",
+    "vote_count": 14000,
+    "vote_average": 8.9,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s1396.jpg",
+    "backdrop_path": null,
+    "overview": "Breaking Bad is a series everyone recommends."
+   },
+   {
+    "id": 94997,
+    "name": "House of the Dragon",
+    "first_air_date": "2022-08-21",
+    "vote_count": 5000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s94997.jpg",
+    "backdrop_path": null,
+    "overview": "House of the Dragon is a series everyone recommends."
+   },
+   {
+    "id": 136315,
+    "name": "The Bear",
+    "first_air_date": "2022-06-23",
+    "vote_count": 1200,
+    "vote_average": 8.1,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s136315.jpg",
+    "backdrop_path": null,
+    "overview": "The Bear is a series everyone recommends."
+   },
+   {
+    "id": 66732,
+    "name": "Stranger Things",
+    "first_air_date": "2016-07-15",
+    "vote_count": 17000,
+    "vote_average": 8.6,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s66732.jpg",
+    "backdrop_path": null,
+    "overview": "Stranger Things is a series everyone recommends."
+   }
+  ]
+ },
+ "/trending/tv/week": {
+  "results": [
+   {
+    "id": 1396,
+    "name": "Breaking Bad",
+    "first_air_date": "2008-01-20",
+    "vote_count": 14000,
+    "vote_average": 8.9,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s1396.jpg",
+    "backdrop_path": null,
+    "overview": "Breaking Bad is a series everyone recommends."
+   },
+   {
+    "id": 94997,
+    "name": "House of the Dragon",
+    "first_air_date": "2022-08-21",
+    "vote_count": 5000,
+    "vote_average": 8.4,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s94997.jpg",
+    "backdrop_path": null,
+    "overview": "House of the Dragon is a series everyone recommends."
+   },
+   {
+    "id": 136315,
+    "name": "The Bear",
+    "first_air_date": "2022-06-23",
+    "vote_count": 1200,
+    "vote_average": 8.1,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s136315.jpg",
+    "backdrop_path": null,
+    "overview": "The Bear is a series everyone recommends."
+   },
+   {
+    "id": 66732,
+    "name": "Stranger Things",
+    "first_air_date": "2016-07-15",
+    "vote_count": 17000,
+    "vote_average": 8.6,
+    "genre_ids": [
+     18
+    ],
+    "poster_path": "/s66732.jpg",
+    "backdrop_path": null,
+    "overview": "Stranger Things is a series everyone recommends."
+   }
+  ]
+ },
+ "/movie/": {
+  "id": 329865,
+  "title": "Arrival",
+  "release_date": "2016-11-10",
+  "vote_count": 18000,
+  "vote_average": 7.6,
+  "genre_ids": [
+   878,
+   18
+  ],
+  "poster_path": "/p329865.jpg",
+  "backdrop_path": "/b329865.jpg",
+  "overview": "Arrival is a well-loved film that people still argue about. A sweeping story with huge set pieces and a memorable score.",
+  "genres": [
+   {
+    "id": 878,
+    "name": "Science Fiction"
+   }
+  ],
+  "production_companies": [
+   {
+    "name": "Paramount Pictures"
+   }
+  ],
+  "credits": {
+   "crew": [
+    {
+     "job": "Director",
+     "name": "Denis Villeneuve"
+    }
+   ],
+   "cast": [
+    {
+     "name": "Amy Adams"
+    },
+    {
+     "name": "Jeremy Renner"
+    }
+   ]
+  }
+ },
+ "id.twitch.tv": {
+  "access_token": "test",
+  "expires_in": 3600
+ },
+ "api.igdb.com/v4/games": [
+  {
+   "id": 1942,
+   "name": "The Witcher 3: Wild Hunt",
+   "first_release_date": 1431993600,
+   "total_rating_count": 4500,
+   "total_rating": 93,
+   "cover": {
+    "image_id": "co1942"
+   },
+   "summary": "The Witcher 3: Wild Hunt is one of the most played games ever made.",
+   "genres": [
+    {
+     "id": 12,
+     "name": "Role-playing (RPG)"
+    }
+   ],
+   "involved_companies": [
+    {
+     "developer": true,
+     "company": {
+      "name": "A Studio"
+     }
+    }
+   ]
+  },
+  {
+   "id": 119133,
+   "name": "Elden Ring",
+   "first_release_date": 1645747200,
+   "total_rating_count": 3200,
+   "total_rating": 95,
+   "cover": {
+    "image_id": "co119133"
+   },
+   "summary": "Elden Ring is one of the most played games ever made.",
+   "genres": [
+    {
+     "id": 12,
+     "name": "Role-playing (RPG)"
+    }
+   ],
+   "involved_companies": [
+    {
+     "developer": true,
+     "company": {
+      "name": "A Studio"
+     }
+    }
+   ]
+  },
+  {
+   "id": 26192,
+   "name": "Red Dead Redemption 2",
+   "first_release_date": 1540512000,
+   "total_rating_count": 3900,
+   "total_rating": 94,
+   "cover": {
+    "image_id": "co26192"
+   },
+   "summary": "Red Dead Redemption 2 is one of the most played games ever made.",
+   "genres": [
+    {
+     "id": 12,
+     "name": "Role-playing (RPG)"
+    }
+   ],
+   "involved_companies": [
+    {
+     "developer": true,
+     "company": {
+      "name": "A Studio"
+     }
+    }
+   ]
+  },
+  {
+   "id": 113112,
+   "name": "Hades",
+   "first_release_date": 1600387200,
+   "total_rating_count": 1800,
+   "total_rating": 93,
+   "cover": {
+    "image_id": "co113112"
+   },
+   "summary": "Hades is one of the most played games ever made.",
+   "genres": [
+    {
+     "id": 12,
+     "name": "Role-playing (RPG)"
+    }
+   ],
+   "involved_companies": [
+    {
+     "developer": true,
+     "company": {
+      "name": "A Studio"
+     }
+    }
+   ]
+  },
+  {
+   "id": 1020,
+   "name": "Grand Theft Auto V",
+   "first_release_date": 1379376000,
+   "total_rating_count": 5000,
+   "total_rating": 90,
+   "cover": {
+    "image_id": "co1020"
+   },
+   "summary": "Grand Theft Auto V is one of the most played games ever made.",
+   "genres": [
+    {
+     "id": 12,
+     "name": "Role-playing (RPG)"
+    }
+   ],
+   "involved_companies": [
+    {
+     "developer": true,
+     "company": {
+      "name": "A Studio"
+     }
+    }
+   ]
+  }
+ ]
+}

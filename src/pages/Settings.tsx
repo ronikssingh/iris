@@ -512,7 +512,9 @@ function AboutSection() {
             Keyboard shortcuts
           </Button>
         </div>
-        <p className="set-note dim">Title details and posters come from Wikipedia and Wikidata when you choose to look them up.</p>
+        <p className="set-note dim">
+          Film and series details and posters come from TMDB, and game details from IGDB, when you pick a title; Wikipedia fills in anything they don’t have. This product uses the TMDB API but is not endorsed or certified by TMDB.
+        </p>
       </div>
     </div>
   );

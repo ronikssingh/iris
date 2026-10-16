@@ -6,6 +6,7 @@ import {
   dialog,
   ipcMain,
   Menu,
+  net,
   nativeTheme,
   protocol,
   screen,
@@ -14,7 +15,8 @@ import {
 } from 'electron';
 import { DataStore } from './store';
 import { fetchRemoteImage, mimeFor, saveMedia, serveMedia } from './media';
-import { searchTitles, titleDetails } from './lookup';
+import { catalogStatus, recommend, searchTitles, setCatalogHttp, titleDetails } from './catalog';
+import { USER_AGENT } from './media';
 import {
   BACKUP_EXT,
   buildBackup,
@@ -38,6 +40,26 @@ app.setName('Iris');
 if (process.env.IRIS_DATA_DIR) app.setPath('userData', path.resolve(process.env.IRIS_DATA_DIR));
 
 app.commandLine.appendSwitch('autoplay-policy', 'no-user-gesture-required');
+
+setCatalogHttp(async (url, init) => {
+  if (TEST && process.env.IRIS_CATALOG_FIXTURE) {
+    const fx = JSON.parse(await fsp.readFile(process.env.IRIS_CATALOG_FIXTURE, 'utf8')) as Record<string, unknown>;
+    const hit = Object.keys(fx)
+      .sort((a, b) => b.length - a.length)
+      .find((k) => url.includes(k));
+    if (!hit) throw new Error('no fixture for ' + url);
+    return fx[hit];
+  }
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 15000);
+  try {
+    const res = await net.fetch(url, { method: init?.method ?? 'GET', headers: { 'User-Agent': USER_AGENT, ...(init?.headers ?? {}) }, body: init?.body, signal: ctrl.signal });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } finally {
+    clearTimeout(t);
+  }
+});
 if (TEST) {
   app.commandLine.appendSwitch('ignore-gpu-blocklist');
   app.commandLine.appendSwitch('enable-unsafe-swiftshader');
@@ -371,6 +393,7 @@ function registerIpc(legacyReport: LoadResult['legacy'], recovered: string | nul
         snapshotsFolder: store.snapDir,
         isPackaged: app.isPackaged,
         introSpeed: TEST && process.env.IRIS_INTRO_SPEED ? Number(process.env.IRIS_INTRO_SPEED) : undefined,
+        fakeOnline: TEST && process.env.IRIS_FAKE_ONLINE === '1',
       },
     };
   });
@@ -397,6 +420,8 @@ function registerIpc(legacyReport: LoadResult['legacy'], recovered: string | nul
 
   ipcMain.handle('lookup:search', (_e, q: string, type) => searchTitles(String(q || ''), type ?? null));
   ipcMain.handle('lookup:details', (_e, c) => titleDetails(c));
+  ipcMain.handle('lookup:status', () => catalogStatus());
+  ipcMain.handle('lookup:recommend', (_e, req) => recommend(req));
 
   ipcMain.handle('backup:status', () => backupStatus());
   ipcMain.handle('backup:snapshot', (_e, reason?: string) => store.snapshot(reason || 'manual', true));

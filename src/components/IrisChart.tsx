@@ -10,6 +10,7 @@ export function IrisChart({
   labels = true,
   highlight,
   animate = true,
+  compare,
 }: {
   scores: Partial<Record<ScoreKey, number | null>>;
   cls: ClassKey;
@@ -17,6 +18,7 @@ export function IrisChart({
   labels?: boolean;
   highlight?: ScoreKey | null;
   animate?: boolean;
+  compare?: { scores: Partial<Record<ScoreKey, number | null>>; color: string } | null; // a second person's shape drawn underneath
 }) {
   const pad = labels ? 64 : 8;
   const vb = size + pad * 2;
@@ -44,6 +46,19 @@ export function IrisChart({
         const [x, y] = pt(i, 1);
         return <line key={s.key} x1={c} y1={c} x2={x} y2={y} className={'ic-spoke' + (highlight === s.key ? ' on' : '')} />;
       })}
+      {compare && (
+        <motion.polygon
+          points={SCORES.map((s, i) => pt(i, Math.max(0.02, (compare.scores[s.key] ?? 0) / 100)).join(',')).join(' ')}
+          fill="none"
+          stroke={compare.color}
+          strokeWidth={2}
+          strokeDasharray="5 5"
+          strokeLinejoin="round"
+          initial={animate ? { opacity: 0 } : false}
+          animate={{ opacity: 0.95 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        />
+      )}
       <motion.polygon
         points={poly}
         fill={`url(#ic-fill-${cls})`}

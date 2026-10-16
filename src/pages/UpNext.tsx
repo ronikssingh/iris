@@ -92,6 +92,9 @@ function AddBar({ existing, critiqued }: { existing: WatchItem[]; critiqued: str
       studio: '',
       cast: '',
       description: '',
+      ext: c?.ext ?? null,
+      genres: [],
+      from: '',
       order,
       addedAt: Date.now(),
       updatedAt: Date.now(),
@@ -116,6 +119,8 @@ function AddBar({ existing, critiqued }: { existing: WatchItem[]; critiqued: str
             studio: det.studio,
             cast: det.cast,
             description: det.description,
+            ext: det.ext ?? cur.ext,
+            genres: det.genres ?? cur.genres,
             poster: poster?.name ?? null,
             posterColor: poster?.color ?? null,
           });
@@ -175,7 +180,10 @@ function AddBar({ existing, critiqued }: { existing: WatchItem[]; critiqued: str
                 <span className="lookup-thumb">{c.thumb ? <img src={c.thumb} alt="" referrerPolicy="no-referrer" /> : <Icon name={c.type ?? 'movie'} size={18} />}</span>
                 <span className="lookup-text">
                   <span className="lookup-title">{c.title}</span>
-                  <span className="lookup-desc">{c.description}</span>
+                  <span className="lookup-desc">
+                    {c.description}
+                    <span className="lookup-src">{c.source === 'tmdb' ? 'TMDB' : c.source === 'igdb' ? 'IGDB' : 'Wikipedia'}</span>
+                  </span>
                 </span>
                 {busy === c.id && <span className="pi-spinner small" />}
               </button>
@@ -289,6 +297,7 @@ function WatchCard({ w, dragId, setDragId }: { w: WatchItem; dragId: string | nu
             {TYPE_LABEL[w.type]}
             {w.year ? `, ${w.year}` : ''}
           </span>
+          {w.from && <span className="watch-from">from {w.from}</span>}
         </span>
         {editingNote ? (
           <input

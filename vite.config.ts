@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: './',
   plugins: [react()],
+  define: {
+    __SUPABASE__: JSON.stringify({ url: process.env.SUPABASE_URL || '', key: process.env.SUPABASE_ANON_KEY || '' }),
+  },
   build: {
     outDir: 'dist',
     emptyOutDir: true,

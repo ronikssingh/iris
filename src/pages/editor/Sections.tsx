@@ -29,6 +29,9 @@ import type { LookupCandidate } from '../../shared/ipc';
 
 export type Patch = (p: Partial<DraftData>) => void;
 
+const SOURCE_LABEL = { tmdb: 'TMDB', igdb: 'IGDB', wiki: 'Wikipedia' } as const;
+
+
 /* --------------------------------------------------------- Title & type */
 
 export function WorkSection({ d, set, autoFocus }: { d: DraftData; set: Patch; autoFocus?: boolean }) {
@@ -77,6 +80,8 @@ export function WorkSection({ d, set, autoFocus }: { d: DraftData; set: Patch; a
       if (det.studio && !d.studio.trim()) patch.studio = det.studio;
       if (det.cast && !d.cast.trim()) patch.cast = det.cast;
       if (det.description && !d.description.trim()) patch.description = det.description;
+      if (det.ext) patch.ext = det.ext;
+      if (det.genres?.length) patch.genres = det.genres;
       set(patch);
       setDismissed(patch.title ?? d.title);
       if (det.image && !d.poster) {
@@ -130,7 +135,7 @@ export function WorkSection({ d, set, autoFocus }: { d: DraftData; set: Patch; a
             <motion.div className="lookup" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }}>
               <div className="lookup-head">
                 <Icon name="wand" size={15} />
-                <span>{loading ? 'Looking it up…' : 'Fill in the details from Wikipedia?'}</span>
+                <span>{loading ? 'Looking it up…' : 'Pick the right one to fill in the poster, credits and description'}</span>
                 {!loading && (
                   <button type="button" className="inline-link" onClick={() => setDismissed(d.title.trim())}>
                     No thanks
@@ -143,7 +148,10 @@ export function WorkSection({ d, set, autoFocus }: { d: DraftData; set: Patch; a
                     <span className="lookup-thumb">{c.thumb ? <img src={c.thumb} alt="" referrerPolicy="no-referrer" /> : <Icon name={c.type ?? 'movie'} size={20} />}</span>
                     <span className="lookup-text">
                       <span className="lookup-title">{c.title}</span>
-                      <span className="lookup-desc">{c.description}</span>
+                      <span className="lookup-desc">
+                        {c.description}
+                        <span className="lookup-src">{SOURCE_LABEL[c.source ?? 'wiki']}</span>
+                      </span>
                     </span>
                     {applying === c.id && <span className="pi-spinner small" />}
                   </button>

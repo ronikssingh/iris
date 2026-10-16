@@ -1,4 +1,4 @@
-node_modules/
+node_modules
 dist/
 dist-electron/
 release/
@@ -6,3 +6,6 @@ build/background.tiff
 *.log
 .DS_Store
 Thumbs.db
+live-check.txt
+.dev/
+supabase-integration.txt
