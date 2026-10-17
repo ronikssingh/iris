@@ -1,7 +1,8 @@
 /* Ringworld at night: a colossal ring rises from the horizon and arches across a sky full of stars,
    nebulae and the galaxy's band; its near reach is in night, pricked with city lights, its far side still
    in sunlight. A giant planet hangs as a thin crescent. Far below, a moonless valley glows with living
-   light; a great waterfall pours off a tabletop mountain into mist; the builders' pylon burns on our spur. */
+   light; its river pours over a horseshoe of falls into a gorge, the spray climbing in a glowing plume; the
+   builders' pylon burns on our spur. */
 
 export const ringworld = /* glsl */ `
 const float RW_HZ = -0.040;               // horizon
@@ -148,81 +149,50 @@ vec4 rwRing(vec2 p, float t, float px){
   return vec4(c, cov);
 }
 
-/* tabletop mountain with sheer walls: distance to its silhouette in screen units */
-float rwMesa(vec2 p, float x0, float x1, float top, float foot, float seed){
-  float tp = top + 0.008 * fbm1lo(p.x * 9.0 + seed) - 0.03 * smoothstep(x1 - 0.05, x1, p.x) - 0.03 * smoothstep(x0 + 0.05, x0, p.x);
-  float side = max(x0 - p.x, p.x - x1) + 0.006 * (fbm1lo(p.y * 40.0 + seed) - 0.5);
-  return max(max(p.y - tp, side), foot - p.y);
+/* the great falls: the valley's river spreads over a broad lip of rock and drops into a gorge it has cut back into
+   the valley floor, throwing up a plume of spray that climbs, glowing, high into the night */
+const float RW_FZ = 5600.0;               // distance of the lip at the head of the gorge (m)
+const float RW_FD = 240.0;                // how far the water falls (m)
+const float RW_FW = 640.0;                // half the width of the lip (m)
+const float RW_FK = 0.0018;               // how sharply the lip curves round into a horseshoe
+
+float rwRiverX(float z){ return 380.0 * sin(z * 0.00082 + 0.6) + 600.0 * sin(z * 0.00029 + 2.0) - 650.0; }
+
+// the gorge's centre and half-width (m) at distance z: the horseshoe at its head, then a cleft running toward us
+vec2 rwGorge(float z){
+  float XH = rwRiverX(RW_FZ);
+  float zArm = RW_FZ - RW_FK * RW_FW * RW_FW;
+  float hw = z > zArm ? sqrt(max(RW_FZ - z, 0.0) / RW_FK) : mix(170.0, RW_FW, smoothstep(zArm - 800.0, zArm, z));
+  hw += (40.0 * (n1(z / 120.0) - 0.5) + 20.0 * (n1(z / 37.0 + 4.0) - 0.5)) * smoothstep(RW_FZ - 200.0, zArm, z);
+  return vec2(mix(XH, rwRiverX(z), smoothstep(zArm, zArm - 800.0, z)), hw);
 }
 
-/* a waterfall seen whole: ribbons of water spilling over a lip, streaming, catching on a ledge, plunging into
-   a pool in clouds of spray. returns colour and coverage; fx = lip x, tp = lip height, foot = pool height */
-vec4 rwFall(vec2 p, float fx, float tp, float foot, float scale, float t, float px){
-  float H = tp - foot;
-  float yy = (tp - p.y) / H;                                  // 0 at the lip, 1 at the pool
-  if (yy < -0.05 || yy > 1.6 || abs(p.x - fx) > 0.12 * scale) return vec4(0.0);
-  vec3 rc = vec3(0.0); float ra = 0.0;                        // premultiplied, built back to front
-  float ledge = 0.46;
-  float below = smoothstep(ledge - 0.02, ledge + 0.10, yy);
-  float bow = 0.006 * scale * (1.0 - exp(-yy * 6.0)) + 0.009 * scale * below;
-  float xc = fx + bow + 0.0025 * scale * sin(yy * 9.0 + 1.0);
-  float w = scale * (0.011 + 0.030 * smoothstep(0.0, 1.0, yy) + 0.006 * below);
-  float lx = (p.x - xc) / w;
-  // spray and mist behind and around the plunge, drifting off to the right
-  vec2 mq = vec2((p.x - xc) / (0.085 * scale), (p.y - foot - 0.025 * scale) / (0.075 * scale));
-  float mistE = exp(-dot(mq * vec2(1.0, 0.8), mq * vec2(1.0, 0.8)));
-  float mistN = fbm4(vec2(p.x * 40.0 / scale - t * 0.12, p.y * 40.0 / scale - t * 0.5));
-  float mist = mistE * smoothstep(0.30, 0.78, mistN) * 0.85;
-  vec3 mistC = vec3(0.70, 0.78, 0.90) * (0.75 + 0.35 * mistN);
-  rc = mistC * mist; ra = mist;
-  // the pool: dark water, ripples spreading, foam where the water strikes
-  vec2 pq = vec2((p.x - xc) / (w * 3.0), (p.y - foot) / (0.011 * scale));
-  float pr = length(pq);
-  float pool = smoothstep(1.0, 0.85, pr) * step(p.y, foot + 0.011 * scale);
-  if (pool > 0.0){
-    float rip = 0.5 + 0.5 * sin(pr * 24.0 - t * 4.0);
-    vec3 pc = vec3(0.025, 0.04, 0.06) + RW_RING_LIGHT * 0.12 * rip * smoothstep(0.25, 0.9, pr);
-    float foam = smoothstep(0.55, 0.0, pr) * smoothstep(0.35, 0.75, fbm4(p * 200.0 / scale + vec2(t * 0.6, 0.0)));
-    pc = mix(pc, vec3(0.85, 0.90, 0.98), foam * 0.85);
-    rc = pc * pool + rc * (1.0 - pool); ra = pool + ra * (1.0 - pool);
-  }
-  if (yy >= -0.01 && yy <= 1.0){
-    // ribbons near the top that merge lower down, ragged frothing edges
-    float rib = fbm4(vec2(lx * 2.2 + 7.0, yy * 1.5 + scale * 3.0));
-    float ribbons = mix(smoothstep(0.36, 0.52, rib), 1.0, smoothstep(0.25, 0.75, yy));
-    float edgeN = 0.24 * (fbm4(vec2(p.y * 60.0 / scale + t * 3.0, lx > 0.0 ? 1.0 : 3.0)) - 0.5);
-    float env = smoothstep(1.0 + edgeN, 0.78 + edgeN, abs(lx)) * smoothstep(-0.01, 0.02, yy);
-    // streaks rushing down, fast in the centre, slower and broken at the edges, with ripples crossing them
-    float spd = 3.4 - 1.2 * abs(lx);
-    float st = fbm4(vec2(lx * 11.0 + 3.0, (p.y / scale) * 34.0 + t * spd));
-    float st2 = fbm4(vec2(lx * 27.0 + 9.0, (p.y / scale) * 66.0 + t * spd * 1.3));
-    float rp = 0.5 + 0.5 * sin((p.y / scale) * 260.0 + t * spd * 9.0 + lx * 2.0);
-    vec3 water = mix(vec3(0.34, 0.44, 0.58), vec3(0.92, 0.96, 1.0), smoothstep(0.40, 0.80, st * 0.65 + st2 * 0.35 + rp * 0.08));
-    water += vec3(0.20, 0.80, 0.85) * 0.08;
-    water *= 0.72 + 0.38 * smoothstep(1.0, 0.15, abs(lx));
-    float a = env * ribbons * (0.62 + 0.38 * st);
-    rc = water * a + rc * (1.0 - a); ra = a + ra * (1.0 - a);
-    // the white burst where it strikes the ledge
-    vec2 lq = vec2((p.x - xc) / (w * 1.8), (yy - ledge) / 0.06);
-    float burst = exp(-dot(lq, lq)) * smoothstep(0.35, 0.72, fbm4(vec2(p.x * 160.0, p.y * 90.0 - t * 1.5) / scale)) * 0.9;
-    rc = vec3(0.93, 0.96, 1.0) * burst + rc * (1.0 - burst); ra = burst + ra * (1.0 - burst);
-  }
-  // a veil of spray in front of the lower fall
-  float veil = mistE * smoothstep(0.45, 0.85, fbm4(vec2(p.x * 70.0 / scale + t * 0.05, p.y * 50.0 / scale - t * 0.8))) * 0.45;
-  rc = mistC * 1.1 * veil + rc * (1.0 - veil); ra = veil + ra * (1.0 - veil);
-  vec3 col = rc / max(ra, 1e-4);
-  // a moonbow in the spray: the ring's light split into faint colours
-  float mb = length((p - vec2(xc, foot - 0.01 * scale)) / scale);
-  float bow2 = exp(-pow((mb - 0.090) * 55.0, 2.0)) * mistE * smoothstep(0.0, 0.03, p.y - foot);
-  vec3 rainbow = 0.5 + 0.5 * cos(6.2831 * ((mb - 0.090) * 40.0 + vec3(0.0, 0.33, 0.67)));
-  col += rainbow * bow2 * 0.30;
-  ra = max(ra, bow2 * 0.25);
-  // spray droplets flung out of the mist
-  vec2 dg = (p - vec2(xc, foot)) * vec2(260.0, 260.0) / scale + vec2(0.0, t * 6.0);
-  float drop = step(0.93, hash21(floor(dg))) * smoothstep(0.25, 0.0, length(fract(dg) - 0.5)) * mistE;
-  col += vec3(0.9, 0.95, 1.0) * drop * 0.8;
-  ra = max(ra, drop * 0.6);
-  return vec4(col, clamp(ra, 0.0, 1.0));
+/* the plume of spray over the gorge: billows lit from above by the arch and from below by the forest's light,
+   leaning with the wind and thinning to rags as it climbs. premultiplied colour, coverage */
+vec4 rwPlume(vec2 p, float Z, float Xc, float t){
+  float X = p.x * Z;
+  float h = RW_H - (RW_HZ - p.y) * Z;
+  float hh = h + RW_FD;                                   // height above the gorge floor
+  if (hh < -60.0 || hh > 1600.0) return vec4(0.0);
+  float hp = max(hh, 0.0);
+  float R = 380.0 + 0.45 * hp;
+  float cx = Xc + 0.22 * hp + 35.0 * sin(hp / 190.0 - t * 0.15);
+  float qx = (X - cx) / R;
+  if (abs(qx) > 2.2) return vec4(0.0);
+  float env = exp(-qx * qx * 1.5) * smoothstep(1450.0, 150.0, hp) * smoothstep(-40.0, 60.0, hh);
+  vec2 nq = vec2((X - cx) / 130.0, h / 120.0 - t * 0.14);
+  float wv = fbm3(nq * 0.6 + vec2(t * 0.03, 0.0));
+  float n = fbm4(nq + wv * 1.3);
+  float nU = fbm4(nq + vec2(0.0, 0.35) + wv * 1.3);
+  float base = exp(-qx * qx * 1.2) * smoothstep(320.0, 40.0, hp) * smoothstep(-60.0, 40.0, hh);
+  float dens = clamp(env * (n * 2.0 - 0.36) + base * (0.35 + 0.5 * n), 0.0, 1.0);
+  float lit = clamp(0.5 + (n - nU) * 2.5, 0.0, 1.0);
+  vec3 c = mix(vec3(0.12, 0.15, 0.22), vec3(0.58, 0.66, 0.82), lit);
+  c += vec3(0.05, 0.28, 0.27) * smoothstep(320.0, 0.0, hp) * 0.45;
+  c += vec3(0.30, 0.34, 0.42) * base * 0.5;                // the foot, lit by the falling water
+  c = mix(c, vec3(0.03, 0.05, 0.09), 1.0 - exp(-Z * 0.00009));
+  float a = dens * 0.82 + env * 0.10;
+  return vec4(c * a, clamp(a, 0.0, 1.0));
 }
 
 vec3 scene(vec2 uv){
@@ -267,7 +237,7 @@ vec3 scene(vec2 uv){
     vec3 trees = vec3(0.010, 0.020, 0.020);
     vec3 c = mix(meadow, trees, forest);
     // glow-flora: tiny lights in the forest, thicker near the water
-    float rx = 380.0 * sin(z * 0.00082 + 0.6) + 600.0 * sin(z * 0.00029 + 2.0) - 650.0;
+    float rx = rwRiverX(z);
     float rw = 40.0 + 28.0 * sin(z * 0.0021);
     float nearRiver = exp(-abs(X - rx) / 500.0);
     vec2 bg = w * 0.025;
@@ -290,6 +260,65 @@ vec3 scene(vec2 uv){
     float village = step(0.75, hash21(floor(vg * 0.25))) * step(0.55, hash21(floor(vg * 3.0))) * smoothstep(0.35, 0.0, length(fract(vg * 3.0) - 0.5));
     village *= smoothstep(260.0, 60.0, abs(X - rx)) * (1.0 - water);
     c += vec3(1.0, 0.66, 0.30) * village * 0.9;
+    // the great falls: rapids fanning out over a broad lip, a curtain of water dropping into the gorge it has
+    // cut, the gorge running on toward us with the river white in its bed
+    {
+      float XH = rwRiverX(RW_FZ);
+      // the lip under this column: where z = FZ - FK (x z - XH)^2, then roughened
+      float qa = max(RW_FK * p2.x * p2.x, 1e-9), qb = 1.0 - 2.0 * RW_FK * p2.x * XH, qc = RW_FK * XH * XH - RW_FZ;
+      float zl = (-qb + sqrt(max(qb * qb - 4.0 * qa * qc, 0.0))) / (2.0 * qa);
+      zl += 45.0 * (n1((p2.x * zl - XH) / 70.0) - 0.5);
+      float Xl = p2.x * zl;
+      float ul = (Xl - XH) / RW_FW;
+      float yl = RW_HZ - RW_H / zl;
+      float yb = RW_HZ - (RW_H + RW_FD) / zl;
+      if (abs(ul) < 1.3 && z > zl - 2000.0 && z < zl + 1000.0){
+        float faceM = smoothstep(1.0, 0.86, abs(ul));
+        if (p2.y > yl){
+          // rapids: the river fans out over the lip, foam streaming toward the edge
+          float k = clamp((z - zl) / 900.0, 0.0, 1.0);
+          float halfW = mix(RW_FW, rw, sqrt(k));
+          float sheet = smoothstep(halfW + pw, halfW - pw, abs(X - mix(XH, rx, k))) * step(z, zl + 900.0);
+          float foam = smoothstep(0.30, 0.80, vnoise(vec2((X - XH) / 16.0, (z - zl) / 50.0 + t * 0.7))) * (0.45 + 0.55 * (1.0 - k));
+          vec3 wc = mix(mix(refl, vec3(0.14, 0.18, 0.26), 0.5), vec3(0.62, 0.70, 0.84), foam * 0.8);
+          wc += vec3(0.80, 0.86, 0.98) * 0.35 * smoothstep(3.0 * px, 0.0, p2.y - yl);    // the glassy edge
+          c = mix(c, wc, sheet);
+        } else if (p2.y > yb){
+          // the curtain: water where the lip runs, dark wet rock between, streaks racing down
+          float hf = (yl - p2.y) / (yl - yb);
+          float dx = Xl - XH;
+          float wet = smoothstep(0.30, 0.44, n1(dx / 60.0 + 3.0) * 0.6 + n1(dx / 19.0 + 8.0) * 0.4 + 0.16 * (1.0 - abs(ul))) * smoothstep(0.92, 0.70, abs(ul));
+          float st = vnoise(vec2(dx / 8.0, hf * 2.5 - t * 1.4)) * 0.6 + vnoise(vec2(dx / 3.5, hf * 5.0 - t * 2.1)) * 0.4;
+          vec3 water = mix(vec3(0.28, 0.36, 0.50), vec3(0.84, 0.90, 1.0), smoothstep(0.30, 0.80, st));
+          vec3 rock = vec3(0.014, 0.018, 0.026) + RW_RING_LIGHT * 0.03 * (1.0 - hf);
+          vec3 cur = mix(rock, water, wet * (1.0 - 0.25 * hf));
+          cur = mix(cur, vec3(0.50, 0.57, 0.70), smoothstep(0.35, 1.0, hf) * 0.85 * smoothstep(0.95, 0.55, abs(ul)));    // the foot lost in spray
+          c = mix(c, cur, faceM);
+        } else {
+          // the gorge: looking down into it, its floor and the river, its left wall in shadow
+          vec2 g0 = rwGorge(z);
+          float gx0 = g0.x, gw0 = g0.y;
+          float gEnd = smoothstep(RW_FZ - 2500.0, RW_FZ - 2300.0, z);
+          float inG = smoothstep(gw0 + pw, gw0 - pw, abs(X - gx0)) * gEnd;
+          if (inG > 0.0){
+            float zf = (RW_H + RW_FD) / (RW_HZ - p2.y);
+            float Xf = p2.x * zf;
+            vec2 gf = rwGorge(zf);
+            float gxf = gf.x;
+            float floorV = smoothstep(gf.y + 15.0, gf.y - 15.0, abs(Xf - gxf));
+            float rv = smoothstep(60.0, 22.0, abs(Xf - gxf));
+            float foam = smoothstep(0.35, 0.80, vnoise(vec2((Xf - gxf) / 14.0, zf / 40.0 + t * 0.8)));
+            vec3 fl = vec3(0.010, 0.014, 0.020) + vec3(0.34, 0.42, 0.56) * rv * (0.45 + 0.40 * foam) * smoothstep(RW_FZ - 2400.0, RW_FZ - 1600.0, zf);
+            fl += vec3(0.16, 0.20, 0.28) * 0.55 * smoothstep(RW_FZ - 2000.0, RW_FZ, zf);   // spray hanging in the gorge
+            float zw = (gx0 - gw0) / min(p2.x, -1e-4);                             // where the sight line meets the left wall
+            float hwl = clamp((RW_H - (RW_HZ - p2.y) * zw) / RW_FD + 1.0, 0.0, 1.0);
+            vec3 wall = vec3(0.016, 0.020, 0.030) + RW_RING_LIGHT * 0.06 * hwl * hwl + vec3(0.16, 0.20, 0.28) * 0.35 * smoothstep(RW_FZ - 1800.0, RW_FZ, zw);
+            c = mix(c, mix(wall, fl, floorV), inG);
+          }
+          c += RW_RING_LIGHT * 0.10 * smoothstep(2.5 * pw, 0.0, abs(abs(X - gx0) - gw0)) * gEnd * step(z, zl);
+        }
+      }
+    }
     c = mix(c, vec3(0.03, 0.05, 0.09), 1.0 - exp(-z * 0.00009));
     // luminous mist lying in the low ground, drifting
     float vm = smoothstep(0.55, 0.80, fbm4(vec2(X * 0.0006 - t * 0.01, z * 0.0011)));
@@ -304,49 +333,9 @@ vec3 scene(vec2 uv){
     float dens = smoothstep(0.66, 0.80, cd);
     vec3 cc = mix(vec3(0.03, 0.04, 0.07), RW_RING_LIGHT * 0.35, clamp((cd - cd2) * 9.0 + 0.4, 0.0, 1.0));
     col = mix(col, cc, dens * 0.9);
-  }
-
-  // tabletop mountains on the left, dark walls with ringlight on their edges; a great waterfall pours off the
-  // near one in two stages into a pool of mist, a slimmer fall beside it, another on the far mesa
-  vec2 p3 = p + m * vec2(0.020, 0.008);
-  for (int k = 1; k >= 0; k--){
-    float fk = float(k);
-    float x0 = k == 0 ? -0.64 : -0.92, x1 = k == 0 ? -0.22 : -0.56;
-    float top = k == 0 ? -0.075 : -0.050, foot = k == 0 ? -0.265 : -0.200;
-    vec2 pk = p3 + m * vec2(0.006 * fk, 0.0);
-    float dm = rwMesa(pk, x0, x1, top, foot, fk * 5.0);
-    float tp = top + 0.008 * fbm1lo(pk.x * 9.0 + fk * 5.0);
-    if (dm < px * 2.0){
-      float crown = smoothstep(tp - 0.012, tp - 0.004, pk.y);
-      float u = (pk.x - x0) / (x1 - x0);
-      vec2 wq = pk + 0.012 * vec2(gnoise(pk * 30.0), gnoise(pk * 30.0 + 5.0));
-      float frac = abs(gnoise(vec2(wq.x * 55.0, wq.y * 7.0) + fk * 3.0)) + 0.45 * abs(gnoise(vec2(wq.x * 150.0, wq.y * 22.0)));
-      vec3 wall = mix(vec3(0.015, 0.016, 0.022), vec3(0.06, 0.065, 0.085), smoothstep(0.10, 0.70, frac));
-      wall += RW_RING_LIGHT * smoothstep(0.75, 1.0, u) * 0.05;
-      float ledgeV = smoothstep(0.62, 0.72, fbm4(wq * vec2(26.0, 70.0) + fk * 7.0)) * smoothstep(0.35, 0.6, frac);
-      wall += vec3(0.10, 0.80, 0.70) * ledgeV * step(0.7, vnoise(pk * 400.0)) * 0.25;          // glowing moss on the ledges
-      vec3 jungle = vec3(0.012, 0.022, 0.020) + RW_RING_LIGHT * smoothstep(tp - 0.003, tp, pk.y) * 0.18;
-      vec3 mc = mix(wall, jungle, crown);
-      mc += RW_RING_LIGHT * exp(-max(-dm, 0.0) * 400.0) * 0.16;
-      mc += RW_RING_LIGHT * smoothstep(tp - 0.004, tp, pk.y) * 0.10;
-      mc = mix(mc, vec3(0.03, 0.05, 0.09), 0.10 + 0.25 * fk + 0.25 * smoothstep(foot + 0.06, foot, pk.y));
-      col = mix(col, mc, af(dm, px));
-    }
-    // the falls
-    if (k == 0){
-      // the river running across the mesa top to the lip
-      float rvx = -0.36 + 0.02 * sin(pk.y * 160.0);
-      float onTop = smoothstep(tp - 0.011, tp - 0.007, pk.y) * step(pk.y, tp);
-      float riverTop = smoothstep(0.0025, 0.0008, abs(pk.x - rvx - (tp - pk.y) * 0.0)) * onTop * step(pk.x, -0.30) * step(-0.42, pk.x);
-      col = mix(col, vec3(0.62, 0.72, 0.86), riverTop * 0.6);
-      vec4 fa = rwFall(pk, -0.360, tp - 0.004, foot, 1.0, t, px);
-      col = mix(col, fa.rgb, fa.a);
-      vec4 fb = rwFall(pk, -0.475, tp - 0.004, foot + 0.004, 0.45, t + 3.0, px);
-      col = mix(col, fb.rgb, fb.a * 0.9);
-    } else {
-      vec4 fc = rwFall(pk, -0.70, tp - 0.004, foot, 0.40, t + 7.0, px);
-      col = mix(col, fc.rgb, fc.a * 0.75);
-    }
+    // the plume over the gorge
+    vec4 pl = rwPlume(p2, RW_FZ - 150.0, rwRiverX(RW_FZ) + 20.0, t);
+    col = col * (1.0 - pl.a) + pl.rgb;
   }
 
   // our spur: dark meadow, glowing flowers, tall trees black against the stars, and the builders' pylon ablaze
