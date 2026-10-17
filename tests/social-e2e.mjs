@@ -86,6 +86,22 @@ await step('sign in and make a profile', async () => {
   await win.fill('.pe-fields input >> nth=0', 'Ronik S!');
   const v = await win.inputValue('.pe-fields input >> nth=0');
   if (v !== 'roniks') throw new Error('username not cleaned: ' + v);
+  // a picture of your own: move and zoom it inside the circle, then use it
+  await win.setInputFiles('.avatar-picker input[type=file]', path.resolve('src/themes/thumbs/sundown.webp'));
+  await win.waitForSelector('.crop-stage', { timeout: 10000 });
+  const box = await win.locator('.crop-stage').boundingBox();
+  await win.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await win.mouse.wheel(0, -400);
+  await win.waitForTimeout(300);
+  await win.mouse.down();
+  await win.mouse.move(box.x + box.width / 2 + 60, box.y + box.height / 2 + 25, { steps: 6 });
+  await win.mouse.up();
+  await win.waitForTimeout(400);
+  await shot('crop-editor');
+  await win.click('.crop .btn-primary');
+  await win.waitForSelector('.avatar-choice.upload.on', { timeout: 10000 });
+  await win.waitForTimeout(400);
+  await shot('profile-own-picture');
   await win.click('.avatar-choice >> nth=12');
   await win.waitForTimeout(500);
   await shot('profile-setup');
