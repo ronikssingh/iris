@@ -398,41 +398,56 @@ export async function recommend(req: RecRequest): Promise<RecCard[]> {
     if (!st.tmdb) return [];
     const kind = tmdbKind(req.type);
     const min = TMDB_MIN_VOTES[kind];
+    // TMDB's own recommendations drift into poorly liked films that happen to share an audience (The 5th Wave
+    // for Dune), and series scores run high, so each kind has its own floor for how well liked a title must be
+    const minAvg = kind === 'movie' ? 6.6 : 7.2;
+    const liked = (x: any) => Number(x?.vote_average) || 0;
     const names = (await tmdbGenres())[kind];
     const genreWeight = new Map<number, number>();
-    // 1. titles like the ones you rated highest
+    // 1. titles like the ones you rated highest, the closest matches (TMDB lists them first) and the best liked ahead
     await Promise.all(
       seeds.map(async (s) => {
         const ext = await resolveSeed(s);
         if (!ext || ext.source !== 'tmdb') return;
         try {
           const r = await tmdb(`/${kind}/${ext.id}/recommendations`, { page: Math.min(page, 3) });
-          for (const x of r?.results ?? []) {
-            if ((x.vote_count ?? 0) < min) continue;
+          const rows: any[] = r?.results ?? [];
+          rows.forEach((x, i) => {
+            if ((x.vote_count ?? 0) < min || liked(x) < minAvg) return;
             for (const g of x.genre_ids ?? []) genreWeight.set(g, (genreWeight.get(g) ?? 0) + s.rating / 1000);
-            add(tmdbCard(x, kind, `Because you gave ${s.title} ${s.rating}`, names), 3 + s.rating / 400 + Math.log10(x.vote_count));
-          }
+            const near = 0.9 * (1 - i / Math.max(rows.length, 1));
+            add(tmdbCard(x, kind, `Because you gave ${s.title} ${s.rating}`, names), 3 + s.rating / 400 + Math.log10(x.vote_count) + (liked(x) - 7) * 1.2 + near);
+          });
         } catch {
           /* one seed failing shouldn't sink the rest */
         }
       }),
     );
-    // 2. well-known titles in the genres you rate highly
+    // 2. the most acclaimed titles in the genres you rate highly (not merely the most voted on), leaving out
+    //    animation unless it's among them, and the kinds of thing nobody means here
     const topGenres = [...genreWeight.entries()].sort((a, b) => b[1] - a[1]).slice(0, 2).map(([g]) => g);
     try {
-      const params: Record<string, string | number> = { sort_by: 'vote_count.desc', 'vote_count.gte': min, include_adult: 'false', page };
+      const skip = kind === 'movie' ? [99, 10770] : [10762, 10763, 10764, 10766, 10767];
+      if (!topGenres.includes(16)) skip.push(16);
+      const params: Record<string, string | number> = { sort_by: 'vote_average.desc', 'vote_count.gte': min * 2, without_genres: skip.join(','), include_adult: 'false', page };
       if (topGenres.length) params.with_genres = topGenres.join('|');
       if (req.era === 'recent') params[kind === 'movie' ? 'primary_release_date.gte' : 'first_air_date.gte'] = '2000-01-01';
       const r = await tmdb(`/discover/${kind}`, params);
       const label = topGenres.map((g) => names[g]).filter(Boolean).join(' and ');
-      for (const x of r?.results ?? []) add(tmdbCard(x, kind, label ? `Big in ${label}, which you rate highly` : 'One of the most loved of all time', names), 1.5 + Math.log10(x.vote_count || 1) * 0.6);
+      for (const x of r?.results ?? []) {
+        if (liked(x) < minAvg) continue;
+        add(tmdbCard(x, kind, label ? `Among the best loved in ${label}, which you rate highly` : 'One of the most loved of all time', names), 1.5 + Math.log10(x.vote_count || 1) * 0.6 + (liked(x) - 7.5));
+      }
     } catch {
       /* fine */
     }
-    // 3. what everyone's watching right now
+    // 3. what everyone's watching right now, if it's any good
     try {
       const r = await tmdb(`/trending/${kind}/week`, { page });
-      for (const x of r?.results ?? []) if ((x.vote_count ?? 0) >= min / 3) add(tmdbCard(x, kind, 'Everyone is talking about this one this week', names), 1.8 + Math.log10(x.vote_count || 1) * 0.4);
+      for (const x of r?.results ?? []) {
+        if ((x.vote_count ?? 0) < min / 3 || liked(x) < minAvg - 0.2) continue;
+        add(tmdbCard(x, kind, 'Everyone is talking about this one this week', names), 1.8 + Math.log10(x.vote_count || 1) * 0.4 + (liked(x) - 7) * 0.6);
+      }
     } catch {
       /* fine */
     }
