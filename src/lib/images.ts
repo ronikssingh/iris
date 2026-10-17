@@ -2,6 +2,23 @@
 
 export const mediaUrl = (name: string | null | undefined): string | null => (name ? `iris-media://m/${name}` : null);
 
+/* Pictures whose address came from someone else (a friend's critique, a suggestion, a profile) are shown or
+   downloaded only from the catalogues' image servers and this app's own storage, never from anywhere a stranger
+   chooses. */
+const OWN_STORAGE = (() => {
+  const u = (typeof __SUPABASE__ !== 'undefined' ? __SUPABASE__.url : '').trim().replace(/\/+$/, '');
+  return u ? u + '/storage/v1/object/public/' : null;
+})();
+const CATALOGUE_IMAGES = /^https:\/\/(image\.tmdb\.org|images\.igdb\.com|upload\.wikimedia\.org)\//;
+
+export function trustedImageUrl(url: string | null | undefined, only?: 'avatars'): string | null {
+  if (!url) return null;
+  if (url.startsWith('blob:')) return url;
+  if (OWN_STORAGE && url.startsWith(OWN_STORAGE + (only ? only + '/' : ''))) return url;
+  if (!only && CATALOGUE_IMAGES.test(url)) return url;
+  return null;
+}
+
 const MAX_W = 720;
 const MAX_H = 1080;
 
@@ -70,8 +87,10 @@ export async function savePoster(input: Blob): Promise<{ name: string; color: st
   return { name, color };
 }
 
-export async function savePosterFromUrl(url: string): Promise<{ name: string; color: string } | null> {
-  const r = await window.iris.media.fetchRemote(url);
+/** Downloads a poster. pasted: the person typed or pasted this link themselves, so any web address is fine. */
+export async function savePosterFromUrl(url: string, pasted = false): Promise<{ name: string; color: string } | null> {
+  if (!pasted && !trustedImageUrl(url)) return null;
+  const r = await window.iris.media.fetchRemote(url, pasted);
   if (!r) return null;
   const blob = new Blob([r.bytes as BlobPart], { type: r.mime || 'image/jpeg' });
   return savePoster(blob);

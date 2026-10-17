@@ -27,9 +27,10 @@ create table if not exists public.friendships (
 create unique index if not exists friendships_one_per_pair
   on public.friendships (least(requester, addressee), greatest(requester, addressee));
 
+-- Answers only about the asker's own friendships, so nobody can map out who else is friends with whom.
 create or replace function public.are_friends(a uuid, b uuid)
 returns boolean language sql stable security definer set search_path = public as $$
-  select exists (
+  select coalesce(auth.uid() in (a, b), false) and exists (
     select 1 from public.friendships f
     where f.status = 'accepted'
       and ((f.requester = a and f.addressee = b) or (f.requester = b and f.addressee = a))
@@ -73,6 +74,11 @@ alter table public.critiques add constraint critiques_class_override_valid
   check (class_override is null or class_override in ('masterpiece', 'perfect', 'great', 'good', 'average', 'below', 'terrible'));
 alter table public.critiques drop constraint if exists critiques_poster_color_size;
 alter table public.critiques add constraint critiques_poster_color_size check (poster_color is null or char_length(poster_color) <= 24);
+-- scores and genres stay small (checked for new and changed rows, so running this again never trips on old ones)
+alter table public.critiques drop constraint if exists critiques_scores_size;
+alter table public.critiques add constraint critiques_scores_size check (octet_length(scores::text) <= 4000) not valid;
+alter table public.critiques drop constraint if exists critiques_genres_size;
+alter table public.critiques add constraint critiques_genres_size check (cardinality(genres) <= 12 and octet_length(array_to_string(genres, ',')) <= 1000) not valid;
 create index if not exists critiques_recent on public.critiques (updated_at desc);
 create index if not exists critiques_ext on public.critiques (ext_key);
 
@@ -98,6 +104,9 @@ create table if not exists public.watchlist (
   updated_at timestamptz not null,
   primary key (user_id, id)
 );
+
+alter table public.watchlist drop constraint if exists watchlist_genres_size;
+alter table public.watchlist add constraint watchlist_genres_size check (cardinality(genres) <= 12 and octet_length(array_to_string(genres, ',')) <= 1000) not valid;
 
 create table if not exists public.swipes (
   user_id uuid not null default auth.uid() references public.profiles (id) on delete cascade,

@@ -9,6 +9,7 @@ import { useOnline, onlineActions, friendIds, nameOf } from '../state/online';
 import { useUi } from '../state/ui';
 import { explain, type Profile, type Reply } from '../online/api';
 import { relTime } from '../lib/format';
+import { trustedImageUrl } from '../lib/images';
 import { sound } from '../lib/sound';
 import type { MediaType } from '../shared/model';
 
@@ -23,7 +24,7 @@ const PRESET_WORLDS = ['vigil', 'skyward', 'mirage', 'glitchpop', 'winedark', 'f
 
 /** The picture to show for a stored avatar value: a world, an uploaded picture's address, or the default. */
 export function avatarSrc(v: string | null | undefined): string | null {
-  if (v && /^https?:\/\/|^blob:/.test(v)) return v;
+  if (v && /^https?:\/\/|^blob:/.test(v)) return trustedImageUrl(v, 'avatars') ?? worldPic('winedark');
   if (v?.startsWith('world:')) return worldPic(v.slice(6)) ?? worldPic('winedark');
   if (v?.startsWith('preset:')) return worldPic(PRESET_WORLDS[(Number(v.slice(7)) - 1 + 64) % PRESET_WORLDS.length] ?? 'winedark');
   return worldPic('winedark');

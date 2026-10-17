@@ -13,7 +13,7 @@ const api: IrisApi = {
   saveSettings: (s) => ipcRenderer.invoke('iris:save-settings', s),
   media: {
     save: (bytes, ext) => ipcRenderer.invoke('media:save', bytes, ext),
-    fetchRemote: (url) => ipcRenderer.invoke('media:fetch', url),
+    fetchRemote: (url, pasted) => ipcRenderer.invoke('media:fetch', url, pasted === true),
     readFile: (p) => ipcRenderer.invoke('media:read-file', p),
   },
   lookup: {

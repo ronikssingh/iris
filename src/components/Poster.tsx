@@ -1,5 +1,5 @@
 import { memo, useState, type CSSProperties } from 'react';
-import { mediaUrl } from '../lib/images';
+import { mediaUrl, trustedImageUrl } from '../lib/images';
 import { hashStr } from '../lib/format';
 import { Icon } from './Icon';
 import type { MediaType } from '../shared/model';
@@ -41,7 +41,7 @@ interface Props {
 
 export const Poster = memo(function Poster({ title, type, poster, url: remote, year, className, style, size = 'md' }: Props) {
   const [broken, setBroken] = useState(false);
-  const url = !broken ? (mediaUrl(poster) ?? remote ?? null) : null;
+  const url = !broken ? (mediaUrl(poster) ?? trustedImageUrl(remote)) : null;
   if (url) {
     return (
       <div className={`poster poster-${size} ${className ?? ''}`} style={style}>

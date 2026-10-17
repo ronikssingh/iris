@@ -406,7 +406,8 @@ function registerIpc(legacyReport: LoadResult['legacy'], recovered: string | nul
   });
 
   ipcMain.handle('media:save', async (_e, bytes: Uint8Array, ext: string) => saveMedia(store.mediaDir, new Uint8Array(bytes), ext));
-  ipcMain.handle('media:fetch', async (_e, url: string) => fetchRemoteImage(String(url), true));
+  // any address only for a link the person pasted; otherwise just the catalogues' and the online store's
+  ipcMain.handle('media:fetch', async (_e, url: string, pasted?: boolean) => fetchRemoteImage(String(url), pasted === true));
   ipcMain.handle('media:read-file', async (_e, file: string) => {
     try {
       const f = String(file);

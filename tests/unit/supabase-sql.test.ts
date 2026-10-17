@@ -95,6 +95,14 @@ describe('supabase/setup.sql', () => {
     expect(await as(C, () => q(`select * from public.friendships`))).toHaveLength(0);
   });
 
+  it('answers who is friends with whom only about your own friendships', async () => {
+    const asks = (who: string, x: string, y: string) => as(who, () => q(`select public.are_friends($1, $2) as f`, [x, y])).then((r) => r[0].f);
+    expect(await asks(A, A, B)).toBe(true);
+    expect(await asks(B, A, B)).toBe(true);
+    expect(await asks(C, A, B)).toBe(false); // a stranger can't map out other people's friends
+    expect(await asks(C, C, A)).toBe(false);
+  });
+
   it('keeps names and the taste line for friends only', async () => {
     await as(A, () => q(`update public.profiles set display_name = 'Ronik', bio = 'Sci-fi first' where id = $1`, [A]));
     // strangers can see usernames and pictures, but not names or bios
@@ -196,6 +204,17 @@ describe('supabase/setup.sql', () => {
     } finally {
       await db.exec(`reset role;`);
     }
+  });
+
+  it('keeps scores and genres to a sensible size', async () => {
+    const big = JSON.stringify(Object.fromEntries(Array.from({ length: 300 }, (_, i) => ['score' + i, Math.random().toString(36)])));
+    expect(await as(A, () => fails(`insert into public.critiques (user_id, id, title, type, scores, total, class, created_at, updated_at) values ($1, 'big', 'Big', 'movie', $2::jsonb, 1, 'terrible', now(), now())`, [A, big]))).toBe(true);
+    const many = Array.from({ length: 13 }, (_, i) => 'Genre ' + i);
+    expect(await as(A, () => fails(`insert into public.critiques (user_id, id, title, type, scores, total, class, genres, created_at, updated_at) values ($1, 'many', 'Many', 'movie', '{}', 1, 'terrible', $2, now(), now())`, [A, many]))).toBe(true);
+    expect(await as(A, () => fails(`insert into public.watchlist (id, title, type, genres, added_at, updated_at) values ('w-many', 'Many', 'movie', $1, now(), now())`, [many]))).toBe(true);
+    // the app's own rows are well inside the limits
+    await as(A, () => q(`insert into public.watchlist (id, title, type, genres, added_at, updated_at) values ('w-ok', 'Fine', 'movie', $1, now(), now())`, [many.slice(0, 12)]));
+    await as(A, () => q(`delete from public.watchlist where id = 'w-ok'`));
   });
 
   it('removes everything when someone deletes their account', async () => {

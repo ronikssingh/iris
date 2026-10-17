@@ -65,7 +65,10 @@ async function rememberPeople(ids: string[]) {
   set({ people: { ...get().people, ...Object.fromEntries(ps.map((p) => [p.id, p])) } });
 }
 
-export function toShared(c: Critique, owner: string, posterUrl: string | null): SharedCritique {
+export // the online copy keeps at most a dozen genres (the database refuses more)
+const fitGenres = (g: string[] | undefined) => (g ?? []).slice(0, 12).map((x) => x.slice(0, 60));
+
+function toShared(c: Critique, owner: string, posterUrl: string | null): SharedCritique {
   return {
     owner,
     id: c.id,
@@ -88,7 +91,7 @@ export function toShared(c: Critique, owner: string, posterUrl: string | null): 
     recommend: c.recommend,
     favourite: c.favourite,
     hidden: c.hidden,
-    genres: c.genres,
+    genres: fitGenres(c.genres),
     posterColor: c.posterColor,
     createdAt: c.createdAt,
     updatedAt: c.updatedAt,
@@ -116,7 +119,7 @@ function toWatchRow(w: WatchItem, owner: string, posterUrl: string | null): Sync
     studio: w.studio,
     cast: w.cast,
     description: w.description,
-    genres: w.genres,
+    genres: fitGenres(w.genres),
     from: w.from,
     order: w.order,
     addedAt: w.addedAt,

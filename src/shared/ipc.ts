@@ -118,7 +118,7 @@ export interface IrisApi {
   saveSettings(s: Settings): Promise<{ ok: boolean; error?: string }>;
   media: {
     save(bytes: Uint8Array, ext: 'jpg' | 'png' | 'webp'): Promise<string>;
-    fetchRemote(url: string): Promise<{ bytes: Uint8Array; mime: string } | null>;
+    fetchRemote(url: string, pasted?: boolean): Promise<{ bytes: Uint8Array; mime: string } | null>;
     readFile(path: string): Promise<{ bytes: Uint8Array; mime: string } | null>;
   };
   lookup: {

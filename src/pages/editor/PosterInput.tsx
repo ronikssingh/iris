@@ -57,7 +57,7 @@ export function PosterInput({
         const f = firstImageFile(e.dataTransfer.files);
         if (f) return void take(() => savePoster(f));
         const link = e.dataTransfer.getData('text/uri-list') || e.dataTransfer.getData('text/plain');
-        if (/^https?:\/\//.test(link)) void take(() => savePosterFromUrl(link.trim()));
+        if (/^https?:\/\//.test(link)) void take(() => savePosterFromUrl(link.trim(), true));
       }}
       onPaste={(e) => {
         const f = firstImageFile(e.clipboardData.items);
@@ -89,7 +89,7 @@ export function PosterInput({
           className="pi-url"
           onSubmit={(e) => {
             e.preventDefault();
-            if (/^https?:\/\//.test(url.trim())) void take(() => savePosterFromUrl(url.trim()));
+            if (/^https?:\/\//.test(url.trim())) void take(() => savePosterFromUrl(url.trim(), true));
           }}
         >
           <Icon name="link" size={14} />
