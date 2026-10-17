@@ -127,14 +127,15 @@ if (sbUrl && sbKey) {
   } catch (e) {
     note('Supabase sign-in settings', 'FAILED ' + e.message);
   }
-  const tables = ['profiles', 'friendships', 'critiques', 'likes', 'comments', 'suggestions'];
+  const tables = ['profiles', 'friendships', 'critiques', 'likes', 'comments', 'suggestions', 'watchlist', 'swipes'];
   const found = [];
   const missing = [];
   for (const t of tables) {
     try {
       const r = await fetch(`${sbUrl}/rest/v1/${t}?select=*&limit=1`, { headers: h });
       const body = await r.text();
-      if (r.ok) found.push(t);
+      // the check isn't signed in: a table that refuses it (42501) exists and is correctly kept for signed-in people
+      if (r.ok || /42501/.test(body)) found.push(t);
       else missing.push(`${t} (HTTP ${r.status} ${body.slice(0, 120)})`);
     } catch (e) {
       missing.push(`${t} (${e.message})`);
